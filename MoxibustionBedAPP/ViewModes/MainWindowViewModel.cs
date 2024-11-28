@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using MoxibustionBedAPP.Models;
+using MoxibustionBedAPP.Properties;
 using MoxibustionBedAPP.Views;
 
 namespace MoxibustionBedAPP.ViewModes
@@ -20,12 +24,20 @@ namespace MoxibustionBedAPP.ViewModes
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        //public enum UserControlType
-        //{
-        //    FunctionControl,
-        //    DataMonitoring,
-        //    PlayMusic
-        //}
+        public PlayMusicViewModel SharedVM { get; set; }
+        public MainWindowViewModel()
+        {
+            //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
+            //ReadFileNamesFromFolder(@".\Resources\Music");
+            //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
+            //SerialPortManager.Instance.ReceiveData();
+            //SerialPortManager.Instance.ReceiveData();
+            //SerialPortManager.Instance.ReceiveData();
+            //SerialPortManager.Instance.ReceiveData();
+            //SerialPortManager.Instance.ReceiveData();
+            CurrentUserControl = new FunctionControlView();
+            SharedVM = new PlayMusicViewModel();
+        }
 
         private UserControl _currentUserControl;
         public UserControl CurrentUserControl
@@ -41,7 +53,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
-
+        /// <summary>
+        /// 显示功能控制界面
+        /// </summary>
         public ICommand ShowFunctionControlCommand
         {
             get
@@ -53,6 +67,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 显示数据监控界面
+        /// </summary>
         public ICommand ShowDataMonitoringCommand
         {
             get
@@ -64,6 +81,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 显示音乐播放界面
+        /// </summary>
         public ICommand ShowPlayMusicCommand
         {
             get
@@ -75,6 +95,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 显示参数设置界面
+        /// </summary>
         public ICommand ShowParameterSettingCommand
         {
             get

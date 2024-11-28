@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Views
 {
@@ -22,6 +23,9 @@ namespace MoxibustionBedAPP.Views
         public MainWindowView()
         {
             InitializeComponent();
+            //var usercontrol = new PlayMusicView();
+            ////usercontrol.ViewModel=
+            //this.contentPresenter
         }
     }
 }
