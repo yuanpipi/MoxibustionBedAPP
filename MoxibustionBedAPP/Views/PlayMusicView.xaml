@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"     
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <!--DataContext="{Binding RelativeSource={RelativeSource self},Path=viewmo}"-->
+    <!--DataContext="{Binding RelativeSource={RelativeSource self},Path=ViewModel}"-->
     <UserControl.Resources>
         <viewmodel:PlayMusicViewModel x:Key="PlayMusicViewModel"/>
     </UserControl.Resources>
@@ -94,7 +94,15 @@
                     <Image VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Source="..\Resources/Pictures/Musicplayer.png" Margin="10"/>
                     <Image Grid.Row="0"/>
                     <TextBlock Text="{Binding Name}" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
-                    <Slider x:Name="progressSlider" Grid.Row="2" VerticalAlignment="Center" Margin="30,0,30,0" Grid.ColumnSpan="2"/>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+                        <Slider x:Name="progressSlider" Grid.Column="1" VerticalAlignment="Center" Value="{Binding CurrentPosition}" Maximum="{Binding TotalDuration}"/>
+                        <TextBlock Text="{Binding Duration}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Gray"/>
+                    </Grid>
                     <Grid Grid.Row="3" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1.5*"/>
@@ -104,10 +112,26 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="1.5*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="上一曲" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="播放" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="下一曲" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Text="随机/顺序" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Text="上一曲" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                        <TextBlock Text="播放" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding PlayOrPause}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                        <TextBlock Text="下一曲" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                        <TextBlock Text="随机/顺序" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
                     </Grid>
                 </Grid>
 

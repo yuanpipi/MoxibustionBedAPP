@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,10 +19,62 @@ namespace MoxibustionBedAPP.ViewModes
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #region 变量定义
         private ObservableCollection<MusicModel> _fileNames;
         public PlayerViewModel player;
+        private MediaPlayer _mediaPlayer = new MediaPlayer();
 
+        private double currentPosition;
+
+        public double CurrentPosition
+        {
+            get { return currentPosition; }
+            set
+            {
+                currentPosition = value;
+                OnPropertyChanged(nameof(CurrentPosition));
+            }
+        }
+
+        private double totalDuration;
+        public double TotalDuration
+        {
+            get { return totalDuration; }
+            set
+            {
+                totalDuration = value;
+                OnPropertyChanged(nameof(TotalDuration));
+            }
+        }
+
+        /// <summary>
+        /// listbox点击事件
+        /// </summary>
         public RelayCommand ItemSelectedCommand { get; set; }
+
+        /// <summary>
+        /// 上一曲点击事件
+        /// </summary>
+        public RelayCommand Previous { get; set; }
+        
+        /// <summary>
+        /// 下一曲点击事件
+        /// </summary>
+        public RelayCommand Next { get; set; }
+        
+        /// <summary>
+        /// 播放/暂停点击事件
+        /// </summary>
+        public RelayCommand PlayOrPause { get; set; }
+
+        /// <summary>
+        /// 随机/暂停事件
+        /// </summary>
+        public RelayCommand RandomOrSequence {  get; set; }
+
+        /// <summary>
+        /// 歌曲名称
+        /// </summary>
         private string name;
         public string Name
         {
@@ -33,6 +86,54 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 音乐时长
+        /// </summary>
+        private string duration;
+        public string Duration
+        {
+            get 
+            { 
+                return duration; 
+            }
+            set
+            {
+                duration = value;
+                OnPropertyChanged(nameof(Duration));
+            }
+        }
+
+        /// <summary>
+        /// 是否正在播放音乐
+        /// </summary>
+        private bool _isPlaying;
+        public bool IsPlaying
+        {
+            get { return _isPlaying; }
+            set
+            {
+                _isPlaying = value;
+                OnPropertyChanged("IsPlaying");
+            }
+        }
+
+        /// <summary>
+        /// 是否是随机
+        /// </summary>
+        private bool _isRandom;
+        public bool IsRandom
+        {
+            get { return _isRandom; }
+            set
+            {
+                _isRandom = value;
+                OnPropertyChanged("IsRandom");
+            }
+        }
+
+        /// <summary>
+        /// listbox选择的index
+        /// </summary>
         private int selectIndex;
         public int SelectIndex
         {
@@ -43,17 +144,50 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(SelectIndex));
             }
         }
+
+        /// <summary>
+        /// 播放的歌曲间隔
+        /// </summary>
+        private int num;
+
+        /// <summary>
+        /// 定时器用于更新播放进度
+        /// </summary>
+        private System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(1000);
+        #endregion
+
         public PlayMusicViewModel()
         {
             //FileNames=MainWindowViewModel.FileNames;
             ReadFileNamesFromFolder(@".\Resources\Music");
             //ButtonClickCommand = new RelayCommand(Click);
-            ItemSelectedCommand=new RelayCommand(OnItemSelected);
+            ItemSelectedCommand =new RelayCommand(OnItemSelected);
             player=new PlayerViewModel();
             Name = "Song Name";
             SelectIndex = -1;
+            Duration = "00:00";
+            Previous = new RelayCommand(LastSong);
+            Next = new RelayCommand(NextSong);
+            PlayOrPause = new RelayCommand(PlayOrPauseSong);
+            num = 1;
+            IsRandom = false;
+            RandomOrSequence = new RelayCommand(RandomOrSequenceSong);
+
+            UpdateProgressTimer.Elapsed += (sender, e) =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (_mediaPlayer.Source != null)
+                    {
+                        CurrentPosition = _mediaPlayer.Position.TotalSeconds;
+                        TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+                    }
+                });
+            };
+
         }
 
+        #region 自定义方法
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -82,6 +216,7 @@ namespace MoxibustionBedAPP.ViewModes
                 //Directory.GetFiles(folderPath).Select(Path.GetFileName)
                 FileNames = new ObservableCollection<MusicModel>();
                 string name = "";
+                string time = "";
                 foreach (string file in Directory.GetFiles(folderPath))
                 {
                     if (file.EndsWith(".mp3") || file.EndsWith(".wav"))
@@ -91,7 +226,7 @@ namespace MoxibustionBedAPP.ViewModes
                         MusicModel music = new MusicModel
                         {
                             FilePath = Path.GetFullPath(file),
-                            MusicName = name.Insert(name.LastIndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) + 1, " - ")
+                            MusicName = name.Insert(name.LastIndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) + 1, " - "),
                         };
                         FileNames.Add(music);//保存文件中的音乐信息
                     }
@@ -117,28 +252,27 @@ namespace MoxibustionBedAPP.ViewModes
             PlayMusic();
         }
 
-        private MediaPlayer _mediaPlayer = new MediaPlayer();
-        private bool _isPlaying;
-
-
-        public bool IsPlaying
-        {
-            get { return _isPlaying; }
-            set
-            {
-                _isPlaying = value;
-                OnPropertyChanged("IsPlaying");
-            }
-        }
-
         /// <summary>
         /// 播放音乐
         /// </summary>
         public void PlayMusic()
         {
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));
+            Thread.Sleep(150);
+            //加载音乐时长
+            if (_mediaPlayer.NaturalDuration.HasTimeSpan)
+            {
+                //TimeSpan t = _mediaPlayer.NaturalDuration.TimeSpan;
+                Duration = _mediaPlayer.NaturalDuration.TimeSpan.ToString().TrimStart(new char[] { '0', ':' });
+                Duration = Duration.Remove(Duration.IndexOf('.'));
+            }
+            //Duration = _mediaPlayer.NaturalDuration.TimeSpan.ToString();
             _mediaPlayer.Play();
             IsPlaying = true;
+            CurrentPosition = _mediaPlayer.Position.TotalSeconds;
+            TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+            //启动定时器更新进度
+            UpdateProgressTimer.Start();
         }
 
         /// <summary>
@@ -147,6 +281,8 @@ namespace MoxibustionBedAPP.ViewModes
         public void PauseMusic()
         {
             _mediaPlayer.Pause();
+            // 停止定时器
+            UpdateProgressTimer.Stop();
             IsPlaying = false;
         }
 
@@ -156,7 +292,68 @@ namespace MoxibustionBedAPP.ViewModes
         public void StopMusic()
         {
             _mediaPlayer.Stop();
+            // 停止定时器
+            UpdateProgressTimer.Stop();
             IsPlaying = false;
         }
+        
+        /// <summary>
+        /// 上一曲事件
+        /// </summary>
+        private void LastSong()
+        {
+            int i;
+            i = SelectIndex - num;
+            if (i < 0)
+            {
+                i = FileNames.Count()+i;
+            }
+            SelectIndex = i;
+            PlayMusic();
+        }
+        
+        /// <summary>
+        /// 下一曲事件
+        /// </summary>
+        private void NextSong()
+        {
+            SelectIndex = (SelectIndex + num) % FileNames.Count;
+            PlayMusic();
+        }
+
+        /// <summary>
+        /// 播放或暂停
+        /// </summary>
+        private void PlayOrPauseSong()
+        {
+            if(IsPlaying)
+            {
+                PauseMusic();
+            }
+            else
+            {
+                _mediaPlayer.Play();
+                IsPlaying = true;
+                UpdateProgressTimer.Start();
+            }
+        }
+
+        /// <summary>
+        /// 随机或顺序
+        /// </summary>
+        private void RandomOrSequenceSong()
+        {
+            IsRandom = !IsRandom;
+            if(IsRandom)
+            {
+                Random random = new Random();
+                num = random.Next(2,10);
+            }
+            else
+            {
+                num = 1;
+            }
+        }
+        #endregion
     }
 }

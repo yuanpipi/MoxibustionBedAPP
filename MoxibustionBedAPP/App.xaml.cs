@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using MoxibustionBedAPP.Models;
+using MoxibustionBedAPP.ViewModes;
 using MoxibustionBedAPP.Views;
 
 namespace MoxibustionBedAPP
@@ -21,11 +22,15 @@ namespace MoxibustionBedAPP
             //打开串口并且接受来自底层的数据
             SerialPortManager.Instance.OpenPort();
 
+            //定义一个共享的PlayMusicViewModel
+            PlayMusicViewModel sharedPlayMusicModel= new PlayMusicViewModel();
+            //sharedPlayMusicModel.ReadFileNamesFromFolder(@".\Resources\Music");
             //显示在两块屏幕上
             var screen1 = System.Windows.Forms.Screen.AllScreens[0];
             var screen2 = System.Windows.Forms.Screen.AllScreens[1];
 
-            var window1 = new MainWindowView
+            //创建window1，并将sharedPlayMusicModel传入
+            var window1 = new MainWindowView(sharedPlayMusicModel)
             {
                 WindowStartupLocation = WindowStartupLocation.Manual,
                 WindowState = WindowState.Normal,
@@ -36,7 +41,9 @@ namespace MoxibustionBedAPP
                 Left = screen1.Bounds.Left,
                 Top = screen1.Bounds.Top
             };
-            var window2 = new MainWindowCopyView
+
+            //创建window2，并将sharedPlayMusicModel传入
+            var window2 = new MainWindowCopyView(sharedPlayMusicModel)
             {
                 WindowStartupLocation = WindowStartupLocation.Manual,
                 WindowState = WindowState.Normal,

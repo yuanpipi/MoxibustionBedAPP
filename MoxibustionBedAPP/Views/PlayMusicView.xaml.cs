@@ -25,6 +25,16 @@ namespace MoxibustionBedAPP.Views
         {
             InitializeComponent();
             DataContext = new PlayMusicViewModel();
+            progressSlider.ValueChanged += ProgressSlider_ValueChanged;
+        }
+
+        private void ProgressSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var viewModel = (PlayMusicViewModel)this.DataContext;
+            if (mediaPlayer.Source != null)
+            {
+                mediaPlayer.Position = TimeSpan.FromSeconds(e.NewValue);
+            }
         }
 
         public object ViewModel

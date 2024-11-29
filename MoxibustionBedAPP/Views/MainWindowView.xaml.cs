@@ -20,9 +20,10 @@ namespace MoxibustionBedAPP.Views
     /// </summary>
     public partial class MainWindowView : Window
     {
-        public MainWindowView()
+        public MainWindowView(PlayMusicViewModel sharedPlayMusicModel)
         {
             InitializeComponent();
+            DataContext=new MainWindowViewModel { SharedVM = sharedPlayMusicModel };
             //var usercontrol = new PlayMusicView();
             ////usercontrol.ViewModel=
             //this.contentPresenter

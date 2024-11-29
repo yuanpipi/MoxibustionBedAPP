@@ -24,6 +24,11 @@ namespace MoxibustionBedAPP.ViewModes
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private PlayMusicView PlayMusicView { get; set; }
+        private FunctionControlView FunctionControlView { get; set; }
+        private DataMonitoringView DataMonitoringView {  get; set; }
+        private ParameterSettingView ParameterSettingView {  get; set; }
+
         public PlayMusicViewModel SharedVM { get; set; }
         public MainWindowViewModel()
         {
@@ -36,7 +41,11 @@ namespace MoxibustionBedAPP.ViewModes
             //SerialPortManager.Instance.ReceiveData();
             //SerialPortManager.Instance.ReceiveData();
             CurrentUserControl = new FunctionControlView();
-            SharedVM = new PlayMusicViewModel();
+            //SharedVM = new PlayMusicViewModel();
+            PlayMusicView= new PlayMusicView();
+            FunctionControlView = new FunctionControlView();
+            DataMonitoringView= new DataMonitoringView();
+            ParameterSettingView= new ParameterSettingView();
         }
 
         private UserControl _currentUserControl;
@@ -90,7 +99,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentUserControl = new PlayMusicView();
+                    CurrentUserControl = PlayMusicView;
                 });
             }
         }

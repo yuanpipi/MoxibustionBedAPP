@@ -14,7 +14,7 @@ namespace MoxibustionBedAPP.ViewModes
 
         public MainWindowCopyViewModel()
         {
-            SharedVM = new PlayMusicViewModel();
+            //SharedVM = new PlayMusicViewModel();
         }
     }
 }
