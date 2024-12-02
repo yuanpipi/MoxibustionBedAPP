@@ -71,6 +71,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\MusicModel.cs" />
+    <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\SerialPortManager.cs" />
     <Compile Include="ViewModes\DataMonitoringViewModel.cs" />
@@ -78,9 +79,7 @@
     <Compile Include="ViewModes\MainWindowCopyViewModel.cs" />
     <Compile Include="ViewModes\MainWindowViewModel.cs" />
     <Compile Include="ViewModes\ParameterSettingViewModel.cs" />
-    <Compile Include="ViewModes\PlayerViewModel.cs" />
     <Compile Include="ViewModes\PlayMusicViewModel.cs" />
-    <Compile Include="ViewModes\SharedViewModel.cs" />
     <Compile Include="Views\DataMonitoringView.xaml.cs">
       <DependentUpon>DataMonitoringView.xaml</DependentUpon>
     </Compile>
@@ -99,9 +98,6 @@
     </Compile>
     <Compile Include="Views\ParameterSettingView.xaml.cs">
       <DependentUpon>ParameterSettingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PlayerView.xaml.cs">
-      <DependentUpon>PlayerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PlayMusicView.xaml.cs">
       <DependentUpon>PlayMusicView.xaml</DependentUpon>
@@ -123,10 +119,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ParameterSettingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PlayerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

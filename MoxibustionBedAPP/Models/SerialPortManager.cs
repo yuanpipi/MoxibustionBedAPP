@@ -13,6 +13,9 @@ namespace MoxibustionBedAPP.Models
 {
     public class SerialPortManager
     {
+        /// <summary>
+        /// 串口变量
+        /// </summary>
         private static SerialPortManager _instance;
         public static SerialPortManager Instance
         {
@@ -64,6 +67,9 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 关闭串口
+        /// </summary>
         public void ClosePort()
         {
             if(_serialPort != null && _serialPort.IsOpen)
@@ -138,6 +144,11 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 接受下位机数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void ReceiveData(object sender,SerialDataReceivedEventArgs e)
         {
             if (_serialPort.IsOpen)
@@ -161,6 +172,52 @@ namespace MoxibustionBedAPP.Models
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// CRC校验
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static byte[] CRC16(byte[] bytes)
+        {
+            //计算并填写CRC校验码
+            int crc = 0xffff;
+            int len = bytes.Length;
+            for (int n = 0; n < len; n++)
+            {
+                byte i;
+                crc ^= bytes[n];
+                for (i = 0; i < 8; i++)
+                {
+                    int TT;
+                    TT = crc & 1;
+                    crc = crc >> 1;
+                    crc = crc & 0x7fff;
+                    if (TT == 1)
+                    {
+                        crc = crc ^ 0xa001;
+                    }
+                    crc = crc & 0xffff;
+                }
+
+            }
+            var nl = bytes.Length + 2;
+            //生成的两位校验码
+            byte[] redata = new byte[2];
+            redata[0] = (byte)((crc & 0xff));
+            redata[1] = (byte)((crc >> 8) & 0xff);
+
+            //重新组织字节数组
+            var newByte = new byte[nl];
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                newByte[i] = bytes[i];
+            }
+            newByte[nl - 2] = (byte)redata[0];
+            newByte[nl - 1] = redata[1];
+            // HelperTypeConversion.concat(bytes, newByte)
+            return newByte;
         }
     }
 }

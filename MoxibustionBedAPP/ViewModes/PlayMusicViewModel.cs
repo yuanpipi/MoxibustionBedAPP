@@ -21,8 +21,8 @@ namespace MoxibustionBedAPP.ViewModes
 
         #region 变量定义
         private ObservableCollection<MusicModel> _fileNames;
-        public PlayerViewModel player;
-        private MediaPlayer _mediaPlayer = new MediaPlayer();
+        //public PlayerViewModel player;
+        public MediaPlayer _mediaPlayer = new MediaPlayer();
 
         private double currentPosition;
 
@@ -71,6 +71,8 @@ namespace MoxibustionBedAPP.ViewModes
         /// 随机/暂停事件
         /// </summary>
         public RelayCommand RandomOrSequence {  get; set; }
+
+        //public RelayCommand SliderValueChangedCommand { get; set; }
 
         /// <summary>
         /// 歌曲名称
@@ -154,6 +156,9 @@ namespace MoxibustionBedAPP.ViewModes
         /// 定时器用于更新播放进度
         /// </summary>
         private System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(1000);
+
+        private int minutes;
+        private int seconds;
         #endregion
 
         public PlayMusicViewModel()
@@ -162,7 +167,7 @@ namespace MoxibustionBedAPP.ViewModes
             ReadFileNamesFromFolder(@".\Resources\Music");
             //ButtonClickCommand = new RelayCommand(Click);
             ItemSelectedCommand =new RelayCommand(OnItemSelected);
-            player=new PlayerViewModel();
+            //player=new PlayerViewModel();
             Name = "Song Name";
             SelectIndex = -1;
             Duration = "00:00";
@@ -172,7 +177,9 @@ namespace MoxibustionBedAPP.ViewModes
             num = 1;
             IsRandom = false;
             RandomOrSequence = new RelayCommand(RandomOrSequenceSong);
+            //SliderValueChangedCommand = new RelayCommand(OnSliderValueChanged);
 
+            //音乐播放进度条+时间倒计时
             UpdateProgressTimer.Elapsed += (sender, e) =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -181,10 +188,24 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         CurrentPosition = _mediaPlayer.Position.TotalSeconds;
                         TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+                        minutes = (int)(TotalDuration - CurrentPosition) / 60;
+                        seconds = (int)(TotalDuration - CurrentPosition) % 60;
+                        if (seconds < 10)
+                        {
+                            Duration = $"{minutes}:0{seconds}";
+                        }
+                        else
+                        {
+                            Duration = $"{minutes}:{seconds}";
+                        }
+                    }
+                    //自动播放下一首歌曲
+                    if (CurrentPosition == TotalDuration)
+                    {
+                        NextSong();
                     }
                 });
             };
-
         }
 
         #region 自定义方法
@@ -216,7 +237,6 @@ namespace MoxibustionBedAPP.ViewModes
                 //Directory.GetFiles(folderPath).Select(Path.GetFileName)
                 FileNames = new ObservableCollection<MusicModel>();
                 string name = "";
-                string time = "";
                 foreach (string file in Directory.GetFiles(folderPath))
                 {
                     if (file.EndsWith(".mp3") || file.EndsWith(".wav"))
@@ -228,6 +248,7 @@ namespace MoxibustionBedAPP.ViewModes
                             FilePath = Path.GetFullPath(file),
                             MusicName = name.Insert(name.LastIndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) + 1, " - "),
                         };
+                        FileNames.Add(music);//保存文件中的音乐信息
                         FileNames.Add(music);//保存文件中的音乐信息
                     }
                 }
@@ -259,18 +280,21 @@ namespace MoxibustionBedAPP.ViewModes
         {
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));
             Thread.Sleep(150);
-            //加载音乐时长
-            if (_mediaPlayer.NaturalDuration.HasTimeSpan)
-            {
-                //TimeSpan t = _mediaPlayer.NaturalDuration.TimeSpan;
-                Duration = _mediaPlayer.NaturalDuration.TimeSpan.ToString().TrimStart(new char[] { '0', ':' });
-                Duration = Duration.Remove(Duration.IndexOf('.'));
-            }
-            //Duration = _mediaPlayer.NaturalDuration.TimeSpan.ToString();
             _mediaPlayer.Play();
             IsPlaying = true;
+            //加载音乐时长
             CurrentPosition = _mediaPlayer.Position.TotalSeconds;
             TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+            minutes = (int)(TotalDuration - CurrentPosition) / 60;
+            seconds = (int)(TotalDuration - CurrentPosition) % 60;
+            if (seconds < 10)
+            {
+                Duration = $"{minutes}:0{seconds}";
+            }
+            else
+            {
+                Duration = $"{minutes}:{seconds}";
+            }
             //启动定时器更新进度
             UpdateProgressTimer.Start();
         }
@@ -354,6 +378,14 @@ namespace MoxibustionBedAPP.ViewModes
                 num = 1;
             }
         }
+
+        //private void OnSliderValueChanged(object parameter)
+        //{
+        //    if (parameter is double value && _mediaPlayer != null)
+        //    {
+        //        _mediaPlayer.Position = TimeSpan.FromSeconds(value);
+        //    }
+        //}
         #endregion
     }
 }

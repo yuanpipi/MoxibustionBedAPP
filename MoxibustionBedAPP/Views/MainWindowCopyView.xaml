@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
         mc:Ignorable="d"
-        Title="MainWindowCopyView" Height="768" Width="1024" WindowStyle="None" WindowState="Maximized">
+        Title="MainWindowCopyView" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="MainWindowViewModel"/>
     </Window.DataContext>

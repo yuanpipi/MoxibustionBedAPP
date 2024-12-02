@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1024">
     <UserControl.Resources>
         <viewmodel:ParameterSettingViewModel x:Key="ParameterSettingViewModel"/>
     </UserControl.Resources>

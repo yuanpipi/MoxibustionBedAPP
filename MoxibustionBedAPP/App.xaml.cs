@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows;
 using MoxibustionBedAPP.Models;
@@ -16,6 +17,7 @@ namespace MoxibustionBedAPP
     /// </summary>
     public partial class App : Application
     {
+        public static PlayMusicViewModel sharedPlayMusicModel;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -23,7 +25,7 @@ namespace MoxibustionBedAPP
             SerialPortManager.Instance.OpenPort();
 
             //定义一个共享的PlayMusicViewModel
-            PlayMusicViewModel sharedPlayMusicModel= new PlayMusicViewModel();
+            sharedPlayMusicModel = new PlayMusicViewModel();
             //sharedPlayMusicModel.ReadFileNamesFromFolder(@".\Resources\Music");
             //显示在两块屏幕上
             var screen1 = System.Windows.Forms.Screen.AllScreens[0];
@@ -32,29 +34,27 @@ namespace MoxibustionBedAPP
             //创建window1，并将sharedPlayMusicModel传入
             var window1 = new MainWindowView(sharedPlayMusicModel)
             {
-                WindowStartupLocation = WindowStartupLocation.Manual,
                 WindowState = WindowState.Normal,
                 WindowStyle = WindowStyle.None,
-                Title = screen1.DeviceName,
+                Title = "华伟医疗 - 医师",
                 Width = screen1.Bounds.Width,
                 Height = screen1.Bounds.Height,
                 Left = screen1.Bounds.Left,
                 Top = screen1.Bounds.Top
             };
-
-            //创建window2，并将sharedPlayMusicModel传入
+           //创建window2，并将sharedPlayMusicModel传入
             var window2 = new MainWindowCopyView(sharedPlayMusicModel)
             {
-                WindowStartupLocation = WindowStartupLocation.Manual,
                 WindowState = WindowState.Normal,
                 WindowStyle = WindowStyle.None,
-                Title = screen2.DeviceName,
+                Title = "华伟医疗 - 患者",
                 Width = screen2.Bounds.Width,
                 Height = screen2.Bounds.Height,
                 Left = screen2.Bounds.Left,
                 Top = screen2.Bounds.Top,
-                IsEnabled = false
+                //IsEnabled = false
             };
+ 
             window1.Show();
             window2.Show();
 

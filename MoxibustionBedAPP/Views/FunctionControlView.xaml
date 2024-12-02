@@ -6,7 +6,7 @@
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="768" d:DesignWidth="1024">
+             d:DesignHeight="600" d:DesignWidth="1024">
     <UserControl.Resources>
         <viewmodel:FunctionControlViewModel x:Key="FunctionControlViewModel"/>
     </UserControl.Resources>
@@ -21,7 +21,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Border CornerRadius="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGray" Margin="20,10,20,10">
+        <Border CornerRadius="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGray" Margin="20,10,20,10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -48,20 +48,20 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Border CornerRadius="20" Background="DarkGray" Grid.Row="0" Grid.Column="0" Margin="0,30,20,30">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="0" Margin="0,30,20,30">
                 <TextBlock Text="舱盖点开" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
             </Border>
-            <Border CornerRadius="20" Background="DarkGray" Grid.Row="1" Grid.Column="0" Margin="0,30,20,30">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="0" Margin="0,30,20,30">
                 <TextBlock Text="一键开仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
             </Border>
-            <Border CornerRadius="20" Background="DarkGray" Grid.Row="0" Grid.Column="1" Margin="20,30,0,30">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="1" Margin="20,30,0,30">
                 <TextBlock Text="舱盖点关" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
             </Border>
-            <Border CornerRadius="20" Background="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="20,30,0,30">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="20,30,0,30">
                 <TextBlock Text="一键关仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
             </Border>
         </Grid>
-        <Border CornerRadius="20" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Background="LightGray" Margin="20,10,20,20">
+        <Border CornerRadius="10" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Background="LightGray" Margin="20,10,20,20">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -69,16 +69,16 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="20" Background="DarkGray" Grid.Row="0" Margin="20,30,20,30">
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Margin="20,30,20,30">
                     <TextBlock Text="排烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
                 </Border>
-                <Border CornerRadius="20" Background="DarkGray" Grid.Row="1" Margin="20,30,20,30">
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Margin="20,30,20,30">
                     <TextBlock Text="净烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
                 </Border>
-                <Border CornerRadius="20" Background="DarkGray" Grid.Row="2" Margin="20,30,20,30">
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="2" Margin="20,30,20,30">
                     <TextBlock Text="摇摆系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
                 </Border>
-                <Border CornerRadius="20" Background="DarkGray" Grid.Row="3" Margin="20,30,20,30">
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="3" Margin="20,30,20,30">
                     <TextBlock Text="红外灯" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
                 </Border>
             </Grid>
@@ -89,11 +89,11 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="手动模式/自动模式" FontSize="22" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Border CornerRadius="20" Background="DarkGray" Grid.Row="1" Margin="20">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Margin="20">
                 <TextBlock Text="预热" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
             </Border>
         </Grid>
-        <Border Grid.Row="1" Grid.Column="3" CornerRadius="20" Background="DarkGray" Margin="20">
+        <Border Grid.Row="1" Grid.Column="3" CornerRadius="10" Background="DarkGray" Margin="20">
             <TextBlock Text="点火" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
         </Border>
     </Grid>

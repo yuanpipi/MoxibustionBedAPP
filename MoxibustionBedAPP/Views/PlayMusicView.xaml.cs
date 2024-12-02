@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Views
@@ -24,16 +25,21 @@ namespace MoxibustionBedAPP.Views
         public PlayMusicView()
         {
             InitializeComponent();
-            DataContext = new PlayMusicViewModel();
+            DataContext = App.sharedPlayMusicModel;
             progressSlider.ValueChanged += ProgressSlider_ValueChanged;
         }
 
+        /// <summary>
+        /// 进度条滑动事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProgressSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             var viewModel = (PlayMusicViewModel)this.DataContext;
-            if (mediaPlayer.Source != null)
+            if (viewModel != null && viewModel._mediaPlayer != null)
             {
-                mediaPlayer.Position = TimeSpan.FromSeconds(e.NewValue);
+                viewModel._mediaPlayer.Position = TimeSpan.FromSeconds(e.NewValue);
             }
         }
 
