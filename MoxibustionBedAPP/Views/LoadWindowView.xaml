@@ -1,0 +1,83 @@
+﻿<Window x:Class="MoxibustionBedAPP.Views.LoadWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
+        mc:Ignorable="d"
+        Title="LoadWindowView" Height="600" Width="1024" WindowStyle="None">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform Angle="-92" CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform Y="-0.14"/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF985C33"/>
+                <GradientStop Color="#FFF1C09E" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="77"/>
+            <RowDefinition/>
+            <RowDefinition Height="77"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="104.5"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="104.5"/>
+        </Grid.ColumnDefinitions>
+        <Border CornerRadius="15" Grid.Row="1" Grid.Column="1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="315"/>
+                </Grid.ColumnDefinitions>
+                <Border CornerRadius="15" Grid.Column="0" >
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/Views/LoadPicture.png" Opacity="1"/>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="3"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="1" Grid.Column="2" Source="../Resource/Picture/HuaWeiIcon.png"/>
+                    </Grid>
+                </Border>
+                <Grid Grid.Column="1" Background="White"/>
+                <Border CornerRadius="15" Grid.Column="1" Grid.ColumnSpan="2" Background="White">
+                    <Grid>
+                        
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -86,6 +86,9 @@
     <Compile Include="Views\FunctionControlView.xaml.cs">
       <DependentUpon>FunctionControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoadWindowView.xaml.cs">
+      <DependentUpon>LoadWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindowCopyView.xaml.cs">
       <DependentUpon>MainWindowCopyView.xaml</DependentUpon>
     </Compile>
@@ -102,11 +105,18 @@
     <Compile Include="Views\PlayMusicView.xaml.cs">
       <DependentUpon>PlayMusicView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PopUpBoxView.xaml.cs">
+      <DependentUpon>PopUpBoxView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\DataMonitoringView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\FunctionControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayMusicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopUpBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +205,14 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Views\12.png" />
+    <Resource Include="Views\LoadPicture.png" />
+    <Resource Include="Resources\Pictures\HuaWeiIcon.png" />
+    <Resource Include="Resources\Pictures\LoadPicture.png" />
+    <Content Include="Views\未标题-1-08.png.svg" />
+    <Resource Include="Views\图像 1%403x.png" />
+    <Resource Include="Views\图像 1%402x.png" />
+    <Resource Include="Views\图像 1.png" />
     <Resource Include="Resources\Pictures\Musicplayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
