@@ -42,7 +42,7 @@ namespace MoxibustionBedAPP
             sharedPlayMusicModel = new PlayMusicViewModel();
             //显示在两块屏幕上
             var screen1 = System.Windows.Forms.Screen.AllScreens[0];
-            var screen2 = System.Windows.Forms.Screen.AllScreens[1];
+            //var screen2 = System.Windows.Forms.Screen.AllScreens[1];
 
             //创建window1，并将sharedPlayMusicModel传入
             var window1 = new MainWindowView(sharedPlayMusicModel)
@@ -56,19 +56,19 @@ namespace MoxibustionBedAPP
                 Top = screen1.Bounds.Top
             };
            //创建window2，并将sharedPlayMusicModel传入
-            var window2 = new MainWindowCopyView(sharedPlayMusicModel)
-            {
-                WindowState = WindowState.Normal,
-                WindowStyle = WindowStyle.None,
-                Title = "华伟医疗 - 患者",
-                Width = screen2.Bounds.Width,
-                Height = screen2.Bounds.Height,
-                Left = screen2.Bounds.Left,
-                Top = screen2.Bounds.Top,
-                //IsEnabled = false
-            };
+            //var window2 = new MainWindowCopyView(sharedPlayMusicModel)
+            //{
+            //    WindowState = WindowState.Normal,
+            //    WindowStyle = WindowStyle.None,
+            //    Title = "华伟医疗 - 患者",
+            //    Width = screen2.Bounds.Width,
+            //    Height = screen2.Bounds.Height,
+            //    Left = screen2.Bounds.Left,
+            //    Top = screen2.Bounds.Top,
+            //    //IsEnabled = false
+            //};
             window1.Show();
-            window2.Show();
+            //window2.Show();
             loadWindow.Close();
         }
     }

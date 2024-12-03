@@ -97,13 +97,82 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
-        public ICommand LoadCompleteCommand { get; set; }
+        //public ICommand LoadCompleteCommand { get; set; }
+
+        /// <summary>
+        /// 按钮一背景图
+        /// </summary>
+        private string _btnBack1;
+        public string BtnBack1
+        {
+            get
+            {
+                return _btnBack1;
+            }
+            set
+            {
+                _btnBack1 = value;
+                OnPropertyChanged(nameof(BtnBack1));
+            }
+        }
+
+        /// <summary>
+        /// 按钮二背景图
+        /// </summary>
+        private string _btnBack2;
+        public string BtnBack2
+        {
+            get
+            {
+                return _btnBack2;
+            }
+            set
+            {
+                _btnBack2 = value;
+                OnPropertyChanged(nameof(BtnBack2));
+            }
+        }
+
+        /// <summary>
+        /// 按钮三背景图
+        /// </summary>
+        private string _btnBack3;
+        public string BtnBack3
+        {
+            get
+            {
+                return _btnBack3;
+            }
+            set
+            {
+                _btnBack3 = value;
+                OnPropertyChanged(nameof(BtnBack3));
+            }
+        }
+
+        /// <summary>
+        /// 按钮四背景图
+        /// </summary>
+        private string _btnBack4;
+        public string BtnBack4
+        {
+            get
+            {
+                return _btnBack4;
+            }
+            set
+            {
+                _btnBack4 = value;
+                OnPropertyChanged(nameof(BtnBack4));
+            }
+        }
+
         #endregion
 
         public MainWindowViewModel()
         {
             IsLoading = true;
-            LoadCompleteCommand = new RelayCommand(LoadComplete);
+            //LoadCompleteCommand = new RelayCommand(LoadComplete);
             //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
             //ReadFileNamesFromFolder(@".\Resources\Music");
             //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
@@ -117,7 +186,11 @@ namespace MoxibustionBedAPP.ViewModes
             FunctionControlView = new FunctionControlView();//定义功能控制界面
             DataMonitoringView= new DataMonitoringView();//定义数据监控界面
             ParameterSettingView= new ParameterSettingView();//定义参数设置界面
-            
+            BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
+            BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+
             //显示时间，每隔一秒刷新
             UpdateProgressTimer.Elapsed += (sender, e) =>
             {
@@ -140,6 +213,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     CurrentUserControl = new FunctionControlView();
+                    BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
                 });
             }
         }
@@ -154,6 +231,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     CurrentUserControl = new DataMonitoringView();
+                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "../Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
                 });
             }
         }
@@ -168,6 +249,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     CurrentUserControl = PlayMusicView;
+                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack4 = "../Resources/Pictures/BtnStyleSelected.png";
                 });
             }
         }
@@ -182,13 +267,17 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     CurrentUserControl = new ParameterSettingView();
+                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack2 = "../Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
                 });
             }
         }
-        private void LoadComplete()
-        {
-            IsLoading = false;
-        }
+        //private void LoadComplete()
+        //{
+        //    IsLoading = false;
+        //}
 
         #endregion
 
