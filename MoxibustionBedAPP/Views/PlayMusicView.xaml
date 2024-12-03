@@ -136,8 +136,8 @@
                     </Grid>
                 </Grid>
 
-                <DockPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="20">
-                    <ListView x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}">
+                <Border CornerRadius="15" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="20" Background="White">
+                    <ListView x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}">
                         <behavior:Interaction.Triggers>
                             <behavior:EventTrigger EventName="SelectionChanged">
                                 <behavior:InvokeCommandAction Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
@@ -151,7 +151,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListView>
-                </DockPanel>
+                </Border>
             </Grid>
         </Border>
     </Grid>

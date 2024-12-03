@@ -196,7 +196,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    CurrentTime = DateTime.Now.ToString();
+                    CurrentTime = DateTime.Now.ToString("yyyy年MM月dd日  HH： mm： ss");
                 });
             };
             UpdateProgressTimer.Start();
