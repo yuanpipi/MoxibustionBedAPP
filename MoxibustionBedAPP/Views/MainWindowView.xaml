@@ -10,7 +10,11 @@
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
-    <Grid Background="#FAEFE0">
+    <Grid>
+        <!--叠加背景图-->
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/Pictures/MainBackgroundImage.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="9.7*"/>
@@ -24,13 +28,7 @@
             <ColumnDefinition Width="884.58*"/>
             <ColumnDefinition Width="69.71*"/>
         </Grid.ColumnDefinitions>
-        <!--叠加背景图-->
-        <Grid Grid.Row="0" Grid.RowSpan="7" Grid.Column="0" Grid.ColumnSpan="3">
-            <Grid.Background>
-                <ImageBrush ImageSource="../Resources/Pictures/MainBackgroundImage.png"/>
-            </Grid.Background>
-        </Grid>
-        
+
         <!--状态栏-->
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
             <!--状态栏背景色—>渐变色-->
@@ -95,70 +93,70 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="9" Source="../Resources/Pictures/BtnListStyle.png"/>
             <TextBlock Grid.Row="1" Grid.Column="1">
-                    <TextBlock.Background>
+                <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack1}"/>
-                    </TextBlock.Background>
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding ShowFunctionControlCommand}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                </TextBlock.Background>
+                <TextBlock.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ShowFunctionControlCommand}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
             <Image Grid.Row="1" Grid.Column="1" Source="../Resources/Pictures/FunctionControl.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowFunctionControlCommand}"/>
                 </Image.InputBindings>
             </Image>
 
-                <TextBlock Grid.Row="1" Grid.Column="3">
-                    <TextBlock.Background>
+            <TextBlock Grid.Row="1" Grid.Column="3">
+                <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack2}"/>
-                    </TextBlock.Background>
-                    <TextBlock.InputBindings>
+                </TextBlock.Background>
+                <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                </TextBlock.InputBindings>
+            </TextBlock>
             <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/Parameter.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </Image.InputBindings>
             </Image>
 
-                <TextBlock Grid.Row="1" Grid.Column="5">
-                    <TextBlock.Background>
+            <TextBlock Grid.Row="1" Grid.Column="5">
+                <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack3}"/>
-                    </TextBlock.Background>
-                    <TextBlock.InputBindings>
+                </TextBlock.Background>
+                <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowDataMonitoringCommand}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                </TextBlock.InputBindings>
+            </TextBlock>
             <Image Grid.Row="1" Grid.Column="5" Source="../Resources/Pictures/Data.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowDataMonitoringCommand}"/>
                 </Image.InputBindings>
             </Image>
 
-                <TextBlock Grid.Row="1" Grid.Column="7">
-                    <TextBlock.Background>
+            <TextBlock Grid.Row="1" Grid.Column="7">
+                <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack4}"/>
-                    </TextBlock.Background>
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                </TextBlock.Background>
+                <TextBlock.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
             <Image Grid.Row="1" Grid.Column="7" Source="../Resources/Pictures/Music.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
                 </Image.InputBindings>
             </Image>
-                <!--<Button Grid.Column="0" Command="{Binding ShowFunctionControlCommand}" Style="{StaticResource CustomButtonStyle}">
+            <!--<Button Grid.Column="0" Command="{Binding ShowFunctionControlCommand}" Style="{StaticResource CustomButtonStyle}">
                     <Button.Background>
                         <ImageBrush ImageSource="/Views/BtnStyleUnselect.png"/>
                     </Button.Background>
                 </Button>-->
-                <!--<Button Content="数据监控" Grid.Column="1" Command="{Binding ShowDataMonitoringCommand}"/>
+            <!--<Button Content="数据监控" Grid.Column="1" Command="{Binding ShowDataMonitoringCommand}"/>
                 <Button Content="参数设置" Grid.Column="2" Command="{Binding ShowParameterSettingCommand}"/>
                 <Button Content="音乐播放" Grid.Column="3" Command="{Binding ShowPlayMusicCommand}"/>-->
         </Grid>
-        
+
         <!--用户控件显示-->
         <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}"/>
     </Grid>

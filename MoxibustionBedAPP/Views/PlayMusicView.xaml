@@ -24,7 +24,21 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Border CornerRadius="10" Grid.Row="0" Background="DarkGray" Margin="0,0,20,10">
+            <Border CornerRadius="10" Grid.Row="0" Margin="0,0,20,10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.25*"/>
@@ -40,7 +54,21 @@
                     <TextBlock Text="预热温度" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
                 </Grid>
             </Border>
-            <Border CornerRadius="10" Grid.Row="1" Background="DarkGray" Margin="0,5,20,5">
+            <Border CornerRadius="10" Grid.Row="1" Margin="0,5,20,5">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.25*"/>
@@ -54,7 +82,21 @@
                     <TextBlock Text="舱盖开关" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
                 </Grid>
             </Border>
-            <Border CornerRadius="10" Grid.Row="2" Background="DarkGray" Margin="0,10,20,0">
+            <Border CornerRadius="10" Grid.Row="2" Margin="0,10,20,0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.25*"/>
@@ -71,7 +113,21 @@
                 </Grid>
             </Border>
         </Grid>
-        <Border CornerRadius="10" Grid.Column="1" Background="DarkGray" Margin="10,0,0,0">
+        <Border CornerRadius="10" Grid.Column="1" Margin="10,0,0,0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60*"/>

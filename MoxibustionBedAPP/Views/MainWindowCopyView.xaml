@@ -11,20 +11,63 @@
         <viewmodel:MainWindowViewModel x:Name="MainWindowViewModel"/>
     </Window.DataContext>
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../Resources/Pictures/MainBackgroundImage.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="9.7*"/>
+            <RowDefinition Height="530.3*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="LightGray">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="500"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="69.71*"/>
+            <ColumnDefinition Width="884.58*"/>
+            <ColumnDefinition Width="69.71*"/>
+        </Grid.ColumnDefinitions>
+        <!--状态栏-->
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            <!--状态栏背景色—>渐变色-->
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="14.35*"/>
+                <RowDefinition Height="8.2*"/>
+                <RowDefinition Height="23.95*"/>
+                <RowDefinition Height="13.5*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="26.18*"/>
+                <ColumnDefinition Width="20.1*"/>
+                <ColumnDefinition Width="11.75*"/>
+                <ColumnDefinition Width="193.3*"/>
+                <ColumnDefinition Width="195*"/>
+                <ColumnDefinition Width="156.84*"/>
+                <ColumnDefinition Width="299.87*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="26.14*"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="34.82*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontWeight="Light"/>
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png"/>
         </Grid>
-        <local:PlayMusicView Margin="10" Grid.Row="1"/>
+        <local:PlayMusicView Margin="10" Grid.Row="2" Grid.Column="1"/>
         
     </Grid>
 </Window>
