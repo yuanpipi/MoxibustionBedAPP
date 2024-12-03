@@ -29,10 +29,18 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="上舱温度" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature}" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="背部舱温度" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature}" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="腿部舱温度" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature}" Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="预热温度" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature}" Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </Border>
         <Border CornerRadius="10" Grid.Row="0" Grid.Column="1" Background="DarkGray" Margin="20,20,10,15">
@@ -45,10 +53,18 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="红外灯" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="排烟系统" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="净烟系统" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="摇摆系统" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </Border>
         <Border CornerRadius="10" Grid.Row="1" Grid.Column="0" Background="DarkGray" Margin="20,20,10,15">
@@ -60,9 +76,16 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <TextBlock Text="点火状态" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="灸疗模式" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Text="舱盖开关" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="" Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1"  Margin="20,20,10,15">

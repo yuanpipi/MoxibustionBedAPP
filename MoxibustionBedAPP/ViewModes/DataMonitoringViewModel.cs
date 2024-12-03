@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MoxibustionBedAPP.ViewModes
 {
-    internal class DataMonitoringViewModel
+    public class DataMonitoringViewModel
     {
+        public DataMonitoringViewModel()
+        {
+            //var PropertyModel = (App.PropertyModelInstance)Application.Current.Resources["PropertyModelKey"];
+        }
     }
 }

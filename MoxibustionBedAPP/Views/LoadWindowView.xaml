@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         mc:Ignorable="d"
-        Title="LoadWindowView" Height="600" Width="1024" WindowStyle="None">
+        Title="LoadWindowView" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.75">
@@ -22,13 +22,13 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="77"/>
-            <RowDefinition/>
-            <RowDefinition Height="77"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="446*"/>
+            <RowDefinition Height="77*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="104.5"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="815*"/>
             <ColumnDefinition Width="104.5"/>
         </Grid.ColumnDefinitions>
         <Border CornerRadius="15" Grid.Row="1" Grid.Column="1">
@@ -48,33 +48,75 @@
             </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="15"/>
-                    <ColumnDefinition Width="315"/>
+                    <ColumnDefinition Width="485*"/>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="315*"/>
                 </Grid.ColumnDefinitions>
                 <Border CornerRadius="15" Grid.Column="0" >
                     <Grid>
                         <Grid.Background>
-                            <ImageBrush ImageSource="/Views/LoadPicture.png" Opacity="1"/>
+                            <ImageBrush Opacity="1" ImageSource="../Resources/Pictures/LoadPicture.png"/>
                         </Grid.Background>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="3"/>
-                            <ColumnDefinition/>
+                            <ColumnDefinition Width="30*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="452*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="33"/>
-                            <RowDefinition Height="100"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="30*"/>
+                            <RowDefinition Height="33*"/>
+                            <RowDefinition Height="71*"/>
+                            <RowDefinition Height="48*"/>
+                            <RowDefinition Height="166*"/>
+                            <RowDefinition Height="22*"/>
+                            <RowDefinition Height="14*"/>
+                            <RowDefinition Height="27*"/>
+                            <RowDefinition Height="35*"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="1" Grid.Column="2" Source="../Resource/Picture/HuaWeiIcon.png"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Text="欢迎使用该产品" FontFamily="华文行楷" FontSize="42.74" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="White" FontWeight="Regular"/>
+                        <Image Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Source="../Resources/Pictures/Loading.png"/>
+                        <Border CornerRadius="13.5" Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1" Width="130" HorizontalAlignment="Left">
+                            <TextBlock Text="Wait a little while" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="SourceHanSansCN-Medium-GBpc-EUC" FontSize="11.68" Foreground="White"/>
+                        </Border>
+                        <Image Grid.Row="1" Grid.Column="2" Source="/Views/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     </Grid>
                 </Border>
                 <Grid Grid.Column="1" Background="White"/>
                 <Border CornerRadius="15" Grid.Column="1" Grid.ColumnSpan="2" Background="White">
                     <Grid>
-                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28.6*"/>
+                            <RowDefinition Height="37*"/>
+                            <RowDefinition Height="2.26*"/>
+                            <RowDefinition Height="41*"/>
+                            <RowDefinition Height="145.71*"/>
+                            <RowDefinition Height="39*"/>
+                            <RowDefinition Height="6.38*"/>
+                            <RowDefinition Height="38*"/>
+                            <RowDefinition Height="11.8*"/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="12.44*"/>
+                            <RowDefinition Height="25.1*"/>
+                            <RowDefinition Height="25.1*"/>
+                            <RowDefinition Height="28.6*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="27.2*"/>
+                            <ColumnDefinition Width="2.7*"/>
+                            <ColumnDefinition Width="9.4*"/>
+                            <ColumnDefinition Width="12.16*"/>
+                            <ColumnDefinition Width="118.23*"/>
+                            <ColumnDefinition Width="108.81*"/>
+                            <ColumnDefinition Width="9.4*"/>
+                            <ColumnDefinition Width="27.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Hello!" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Foreground="#DDB08E" VerticalAlignment="Center"  HorizontalAlignment="Left" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontSize="30" FontWeight="Medium"/>
+                        <TextBlock Text="Welcome" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="4" Foreground="#DDB08E" VerticalAlignment="Center"  HorizontalAlignment="Left" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontSize="30" FontWeight="Medium"/>
+                        <TextBlock Text="HW-270" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="1" Foreground="#73441A" VerticalAlignment="Center"  HorizontalAlignment="Right" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontSize="28.8" FontWeight="Medium"/>
+                        <TextBlock Text="智能中医灸疗床" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="4" Foreground="#73441A" VerticalAlignment="Center"  HorizontalAlignment="Right" FontFamily="华文行楷" FontSize="33.92" FontWeight="Regular"/>
+                        <Rectangle Fill="#DDB08E" Grid.Row="9" Grid.Column="3" Grid.ColumnSpan="4" Height="2" Width="258.6" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <TextBlock Text="Intelligent Chinese Moxibustion" Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="4" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontSize="16" FontWeight="Medium"/>
+                        <TextBlock Text="treatment bed" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="4" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontSize="16" FontWeight="Medium"/>
                     </Grid>
                 </Border>
             </Grid>

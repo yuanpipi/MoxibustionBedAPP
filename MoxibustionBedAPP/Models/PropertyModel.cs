@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,14 +12,20 @@ namespace MoxibustionBedAPP.Models
     /// <summary>
     /// 属性
     /// </summary>
-    public class PropertyModel
+    public class PropertyModel : INotifyPropertyChanged
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         /// <summary>
         /// 上舱温度
         /// 0~100
         /// </summary>
-        private double upper_CabinTemperature;
-        public double Upper_CabinTemperature
+        private string upper_CabinTemperature;
+        public string Upper_CabinTemperature
         {
             get 
             { 
@@ -27,6 +34,7 @@ namespace MoxibustionBedAPP.Models
             set 
             { 
                 upper_CabinTemperature = value; 
+                OnPropertyChanged(nameof(Upper_CabinTemperature));
             }
         }
 
@@ -34,8 +42,8 @@ namespace MoxibustionBedAPP.Models
         /// 背部温度
         /// 0~100
         /// </summary>
-        private double backTemperature;
-        public double BackTemperature
+        private string backTemperature;
+        public string BackTemperature
         {
             get
             {
@@ -44,6 +52,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 backTemperature = value;
+                OnPropertyChanged(nameof(BackTemperature));
             }
         }
 
@@ -51,8 +60,8 @@ namespace MoxibustionBedAPP.Models
         /// 腿部温度
         /// 0~100
         /// </summary>
-        private double legTemperature;
-        public double LegTemperature
+        private string legTemperature;
+        public string LegTemperature
         {
             get
             {
@@ -61,6 +70,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 legTemperature = value;
+                OnPropertyChanged(nameof(LegTemperature));
             }
         }
 
@@ -68,8 +78,8 @@ namespace MoxibustionBedAPP.Models
         /// 预热温度
         /// 0~100
         /// </summary>
-        private double preheadTemperature;
-        public double PreheadTemperature
+        private string preheadTemperature;
+        public string PreheadTemperature
         {
             get
             {
@@ -78,6 +88,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 preheadTemperature = value;
+                OnPropertyChanged(nameof(PreheadTemperature));
             }
         }
 
@@ -85,8 +96,8 @@ namespace MoxibustionBedAPP.Models
         /// 上舱报警温度
         /// 0~100
         /// </summary>
-        private double upperAlarmCabinTemperature;
-        public double UpperAlarmCabinTemperature
+        private string upperAlarmCabinTemperature;
+        public string UpperAlarmCabinTemperature
         {
             get
             {
@@ -95,6 +106,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 upperAlarmCabinTemperature = value;
+                OnPropertyChanged(nameof(UpperAlarmCabinTemperature));
             }
         }
 
@@ -102,8 +114,8 @@ namespace MoxibustionBedAPP.Models
         /// 背部报警温度
         /// 0~100
         /// </summary>
-        private double backAlarmTemperature;
-        public double BackAlarmTemperature
+        private string backAlarmTemperature;
+        public string BackAlarmTemperature
         {
             get
             {
@@ -112,6 +124,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 backAlarmTemperature = value;
+                OnPropertyChanged(nameof(BackAlarmTemperature));
             }
         }
 
@@ -119,8 +132,8 @@ namespace MoxibustionBedAPP.Models
         /// 腿部报警温度
         /// 0~100
         /// </summary>
-        private double legAlarmTemperature;
-        public double LegAlarmTemperature
+        private string legAlarmTemperature;
+        public string LegAlarmTemperature
         {
             get
             {
@@ -129,6 +142,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 legAlarmTemperature = value;
+                OnPropertyChanged(nameof(LegAlarmTemperature));
             }
         }
 
@@ -150,6 +164,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 backMoxibustionColumn_Height = value;
+                OnPropertyChanged(nameof(backMoxibustionColumn_Height));
             }
         }
 
@@ -171,6 +186,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 legMoxibustionColumn_Height= value;
+                OnPropertyChanged(nameof(legMoxibustionColumn_Height));
             }
         }
 
@@ -191,6 +207,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 batteryLevel = value;
+                OnPropertyChanged(nameof(BatteryLevel));
             }
         }
 
@@ -199,8 +216,8 @@ namespace MoxibustionBedAPP.Models
         /// True：On
         /// False：Off
         /// </summary>
-        private bool infraredLamp;
-        public bool InfraredLamp
+        private int infraredLamp;
+        public int InfraredLamp
         {
             get
             {
@@ -209,6 +226,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 infraredLamp = value;
+                OnPropertyChanged(nameof(InfraredLamp));
             }
         }
 
@@ -227,6 +245,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 smokeExhaustSystem = value;
+                OnPropertyChanged(nameof(SmokeExhaustSystem));
             }
         }
 
@@ -245,6 +264,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 smokePurificationSystem = value;
+                OnPropertyChanged(nameof(SmokePurificationSystem));
             }
         }
 
@@ -263,6 +283,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 swingSystem = value;
+                OnPropertyChanged(nameof(SwingSystem));
             }
         }
 
@@ -281,6 +302,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 hatch = value;
+                OnPropertyChanged(nameof(Hatch));
             }
         }
 
@@ -299,6 +321,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 ignitionStatus = value;
+                OnPropertyChanged(nameof(InignitionStatus));
             }
         }
 
@@ -317,12 +340,13 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 moxibustionTherapyMode = value;
+                OnPropertyChanged(nameof(MoxibustionTherapyMode));
             }
         }
 
         /// <summary>
         /// 预热时间
-        /// 分钟？
+        /// 分钟
         /// </summary>
         private double preheadTime;
         public double PreheadTime
@@ -334,15 +358,35 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 preheadTime = value;
+                OnPropertyChanged(nameof(PreheadTime));
+            }
+        }
+
+        /// <summary>
+        /// 预热模式
+        /// true为：预热开始
+        /// false为：停止预热
+        /// </summary>
+        private bool preheadMode;
+        public bool PreheadMode
+        {
+            get
+            {
+                return preheadMode;
+            }
+            set
+            {
+                preheadMode = value;
+                OnPropertyChanged(nameof(PreheadMode));
             }
         }
 
         /// <summary>
         /// 点火时间
-        /// 秒？
+        /// 秒
         /// </summary>
-        private bool ignitionTime;
-        public bool InignitionTime
+        private double ignitionTime;
+        public double InignitionTime
         {
             get
             {
@@ -351,15 +395,16 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 ignitionTime = value;
+                OnPropertyChanged(nameof(InignitionTime));
             }
         }
 
         /// <summary>
         /// 灸疗时间
-        /// 分钟？
+        /// 分钟
         /// </summary>
-        private bool moxibustionTherapyTime;
-        public bool MoxibustionTherapyTime
+        private double moxibustionTherapyTime;
+        public double MoxibustionTherapyTime
         {
             get
             {
@@ -368,6 +413,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 moxibustionTherapyTime = value;
+                OnPropertyChanged(nameof(MoxibustionTherapyMode));
             }
         }
 
@@ -377,6 +423,8 @@ namespace MoxibustionBedAPP.Models
         /// False：不自动开盖
         /// </summary>
         private bool automaticLidOpening;
+
+
         public bool AutomaticLidOpening
         {
             get
@@ -386,6 +434,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 automaticLidOpening = value;
+                OnPropertyChanged(nameof(AutomaticLidOpening));
             }
         }
     }

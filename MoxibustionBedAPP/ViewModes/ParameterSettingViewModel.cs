@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoxibustionBedAPP.ViewModes
 {
-    internal class ParameterSettingViewModel
+    public class ParameterSettingViewModel
     {
     }
 }

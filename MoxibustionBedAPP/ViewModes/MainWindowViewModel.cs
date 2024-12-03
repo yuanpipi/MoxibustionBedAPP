@@ -62,6 +62,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 当前时间
+        /// </summary>
         private string currentTime;
         public string CurrentTime
         {
@@ -79,10 +82,28 @@ namespace MoxibustionBedAPP.ViewModes
         /// 定时器用于更新时间
         /// </summary>
         private System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(500);
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get
+            {
+                return _isLoading;
+            }
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged(nameof(IsLoading));
+            }
+        }
+
+        public ICommand LoadCompleteCommand { get; set; }
         #endregion
 
         public MainWindowViewModel()
         {
+            IsLoading = true;
+            LoadCompleteCommand = new RelayCommand(LoadComplete);
             //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
             //ReadFileNamesFromFolder(@".\Resources\Music");
             //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
@@ -164,6 +185,11 @@ namespace MoxibustionBedAPP.ViewModes
                 });
             }
         }
+        private void LoadComplete()
+        {
+            IsLoading = false;
+        }
+
         #endregion
 
     }

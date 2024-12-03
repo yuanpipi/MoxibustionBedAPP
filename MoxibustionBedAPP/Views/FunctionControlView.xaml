@@ -6,26 +6,77 @@
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1024">
+             d:DesignHeight="420" d:DesignWidth="931">
     <UserControl.Resources>
         <viewmodel:FunctionControlViewModel x:Key="FunctionControlViewModel"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="350*"/>
+            <ColumnDefinition Width="36.05*"/>
+            <ColumnDefinition Width="339.16*"/>
+            <ColumnDefinition Width="36.05*"/>
+            <ColumnDefinition Width="169.74*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="203.74*"/>
+            <RowDefinition Height='22.84*'/>
+            <RowDefinition Height="193.42*"/>
         </Grid.RowDefinitions>
-        <Border CornerRadius="10" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="LightGray" Margin="20,10,20,10">
+        <!--灸柱调节：背部点升点降、腿部点升点降-->
+        <Border CornerRadius="25" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="31.96"/>
+                    <RowDefinition Height="35.87"/>
                     <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="35.87"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HighSet.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <!--<TextBlock Text="背部点升" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+                <TextBlock Text="腿部点升" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+                <TextBlock Text="背部点降" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+                <TextBlock Text="腿部点降" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>-->
+            </Grid>
+        </Border>
+
+        <!--舱盖操作：一键开关舱、舱盖点开点关-->
+        <Border CornerRadius="25" Grid.Row="2" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid Grid.Row="2" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31.96"/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
@@ -33,68 +84,161 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="背部点升" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
-                <TextBlock Text="腿部点升" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
-                <TextBlock Text="背部点降" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
-                <TextBlock Text="腿部点降" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HatchSet.png" HorizontalAlignment="Left"/>
+                <!--<Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="舱盖点开" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                </Border>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="0">
+                    <TextBlock Text="一键开仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                </Border>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Text="舱盖点关" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                </Border>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="1">
+                    <TextBlock Text="一键关仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                </Border>-->
             </Grid>
         </Border>
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,10,20,10">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="0" Margin="0,30,20,30">
-                <TextBlock Text="舱盖点开" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-            </Border>
-            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="0" Margin="0,30,20,30">
-                <TextBlock Text="一键开仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-            </Border>
-            <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Grid.Column="1" Margin="20,30,0,30">
-                <TextBlock Text="舱盖点关" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-            </Border>
-            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="20,30,0,30">
-                <TextBlock Text="一键关仓" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-            </Border>
-        </Grid>
-        <Border CornerRadius="10" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Background="LightGray" Margin="20,10,20,20">
+
+        <!--辅助系统操作：排烟、净烟、摇摆系统开关、红外线开关-->
+        <Border CornerRadius="25" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="31.96"/>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Border CornerRadius="10" Background="DarkGray" Grid.Row="0" Margin="20,30,20,30">
-                    <TextBlock Text="排烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Accessibility.png" HorizontalAlignment="Left"/>
+                <!--<Border CornerRadius="10" Background="DarkGray" Grid.Row="0">
+                    <TextBlock Text="排烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding SmokeExhaust}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Border>
-                <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Margin="20,30,20,30">
-                    <TextBlock Text="净烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="1">
+                    <TextBlock Text="净烟系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding SmokePurification}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Border>
-                <Border CornerRadius="10" Background="DarkGray" Grid.Row="2" Margin="20,30,20,30">
-                    <TextBlock Text="摇摆系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="2">
+                    <TextBlock Text="摇摆系统" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Swing}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Border>
-                <Border CornerRadius="10" Background="DarkGray" Grid.Row="3" Margin="20,30,20,30">
-                    <TextBlock Text="红外灯" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-                </Border>
+                <Border CornerRadius="10" Background="DarkGray" Grid.Row="3">
+                    <TextBlock Text="红外灯" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26">
+                        --><!--<TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Swing}"/>
+                        </TextBlock.InputBindings>--><!--
+                    </TextBlock>
+                </Border>-->
             </Grid>
         </Border>
-        <Grid Grid.Row="0" Grid.Column="3">
+
+        <!--模式切换：手动、自动/预热功能-->
+        <Grid Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">
             <Grid.RowDefinitions>
+                <RowDefinition Height="121.59*"/>
+                <RowDefinition Height="20.93*"/>
+                <RowDefinition Height="90*"/>
+                <RowDefinition Height="20.93*"/>
+                <RowDefinition Height="166.55*"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="15" Grid.Row="0">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="31.96"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="../Resources/Pictures/ModeChange.png" HorizontalAlignment="Left"/>
+                </Grid>
+                <!--<TextBlock Text="模式切换" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>-->
+            </Border>
+            
+            
+            <Border CornerRadius="15" Grid.Row="2">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="预热" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+            </Border>
+            
+            
+            <Border CornerRadius="15" Grid.Row="4">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Color="#FF985C33"/>
+                        <GradientStop Color="#FFF1C09E" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="点火" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
+            </Border>
+            <!--<Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="手动模式/自动模式" FontSize="22" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1" Margin="20">
+            <Border CornerRadius="10" Background="DarkGray" Grid.Row="1">
                 <TextBlock Text="预热" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-            </Border>
+            </Border>-->
         </Grid>
-        <Border Grid.Row="1" Grid.Column="3" CornerRadius="10" Background="DarkGray" Margin="20">
+
+        <!--点火功能-->
+        <!--<Border Grid.Row="1" Grid.Column="3" CornerRadius="10" Background="DarkGray">
             <TextBlock Text="点火" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>
-        </Border>
+        </Border>-->
     </Grid>
 </UserControl>

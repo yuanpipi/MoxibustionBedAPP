@@ -109,15 +109,71 @@ namespace MoxibustionBedAPP.Models
         }
 
         public event EventHandler<byte[]> DataReceived;
+
+        /// <summary>
+        /// 处理接收到的数据
+        /// </summary>
+        /// <param name="data"></param>
         protected virtual void OnDataReceived(byte[] data)
         {
-            //string message = "";
-            DataReceived?.Invoke(this, data);
-            //for(int i=0;i<data.Count();i++)
-            //{
-            //    message+= data[i].ToString();
-            //}
-            //MessageBox.Show(message);
+            //DataReceived?.Invoke(this, data);
+            // 将ASCII字节数组转换为字符串
+            string asciiString = Encoding.ASCII.GetString(data);
+
+            // 分割字符串以获取每个字节的十六进制表示
+            string[] hexValues = asciiString.Split(' ');
+
+            // 创建字节数组来存储转换后的值
+            byte[] bytes = new byte[hexValues.Length];
+
+            // 将每个十六进制字符串转换为字节
+            for (int i = 0; i < hexValues.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(hexValues[i], 16);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
         /// <summary>
@@ -163,8 +219,7 @@ namespace MoxibustionBedAPP.Models
                         if (buffer.Length <= 0)
                             return;
                         _serialPort.Read(buffer, 0, buffer.Length);
-                        OnDataReceived(buffer);
-                            //MessageBox.Show(buffer);
+                        OnDataReceived(buffer);//处理接收到的数据
                     }
                     catch (Exception ex)
                     {
@@ -176,6 +231,8 @@ namespace MoxibustionBedAPP.Models
 
         /// <summary>
         /// CRC校验
+        /// 从帧长度开始到数据帧结束，不包括帧头帧尾
+        /// for (int n = 0; n < len; n++)
         /// </summary>
         /// <param name="bytes"></param>
         /// <returns></returns>
@@ -184,7 +241,7 @@ namespace MoxibustionBedAPP.Models
             //计算并填写CRC校验码
             int crc = 0xffff;
             int len = bytes.Length;
-            for (int n = 0; n < len; n++)
+            for (int n = 2; n < len-2; n++)
             {
                 byte i;
                 crc ^= bytes[n];
@@ -202,20 +259,20 @@ namespace MoxibustionBedAPP.Models
                 }
 
             }
-            var nl = bytes.Length + 2;
+            //var nl = bytes.Length + 2;
             //生成的两位校验码
             byte[] redata = new byte[2];
             redata[0] = (byte)((crc & 0xff));
             redata[1] = (byte)((crc >> 8) & 0xff);
 
             //重新组织字节数组
-            var newByte = new byte[nl];
+            var newByte = new byte[len];
             for (int i = 0; i < bytes.Length; i++)
             {
                 newByte[i] = bytes[i];
             }
-            newByte[nl - 2] = (byte)redata[0];
-            newByte[nl - 1] = redata[1];
+            newByte[len - 4] = (byte)redata[0];
+            newByte[len - 3] = redata[1];
             // HelperTypeConversion.concat(bytes, newByte)
             return newByte;
         }
