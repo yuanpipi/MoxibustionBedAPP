@@ -274,10 +274,22 @@ namespace MoxibustionBedAPP.ViewModes
                 });
             }
         }
-        //private void LoadComplete()
-        //{
-        //    IsLoading = false;
-        //}
+
+        /// <summary>
+        /// 显示测试功能界面
+        /// </summary>
+        public ICommand ShowTestWindowCommand
+        {
+            get
+            {
+                return new RelayCommand(() =>
+                {
+                    App.Test = new TestWindowView();
+
+                    App.Test.Show();
+                });
+            }
+        }
 
         #endregion
 

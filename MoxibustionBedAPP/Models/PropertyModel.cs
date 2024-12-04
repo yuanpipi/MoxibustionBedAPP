@@ -24,8 +24,8 @@ namespace MoxibustionBedAPP.Models
         /// 上舱温度
         /// 0~100
         /// </summary>
-        private string upper_CabinTemperature;
-        public string Upper_CabinTemperature
+        private int upper_CabinTemperature;
+        public int Upper_CabinTemperature
         {
             get 
             { 
@@ -42,8 +42,8 @@ namespace MoxibustionBedAPP.Models
         /// 背部温度
         /// 0~100
         /// </summary>
-        private string backTemperature;
-        public string BackTemperature
+        private int backTemperature;
+        public int BackTemperature
         {
             get
             {
@@ -60,8 +60,8 @@ namespace MoxibustionBedAPP.Models
         /// 腿部温度
         /// 0~100
         /// </summary>
-        private string legTemperature;
-        public string LegTemperature
+        private int legTemperature;
+        public int LegTemperature
         {
             get
             {
@@ -78,8 +78,8 @@ namespace MoxibustionBedAPP.Models
         /// 预热温度
         /// 0~100
         /// </summary>
-        private string preheadTemperature;
-        public string PreheadTemperature
+        private int preheadTemperature;
+        public int PreheadTemperature
         {
             get
             {
@@ -96,8 +96,8 @@ namespace MoxibustionBedAPP.Models
         /// 上舱报警温度
         /// 0~100
         /// </summary>
-        private string upperAlarmCabinTemperature;
-        public string UpperAlarmCabinTemperature
+        private int upperAlarmCabinTemperature;
+        public int UpperAlarmCabinTemperature
         {
             get
             {
@@ -114,8 +114,8 @@ namespace MoxibustionBedAPP.Models
         /// 背部报警温度
         /// 0~100
         /// </summary>
-        private string backAlarmTemperature;
-        public string BackAlarmTemperature
+        private int backAlarmTemperature;
+        public int BackAlarmTemperature
         {
             get
             {
@@ -132,8 +132,8 @@ namespace MoxibustionBedAPP.Models
         /// 腿部报警温度
         /// 0~100
         /// </summary>
-        private string legAlarmTemperature;
-        public string LegAlarmTemperature
+        private int legAlarmTemperature;
+        public int LegAlarmTemperature
         {
             get
             {
@@ -213,8 +213,10 @@ namespace MoxibustionBedAPP.Models
 
         /// <summary>
         /// 红外线
-        /// True：On
-        /// False：Off
+        /// 00:关
+        /// 01：1档
+        /// 02：2档
+        /// 03：3档
         /// </summary>
         private int infraredLamp;
         public int InfraredLamp
@@ -235,8 +237,8 @@ namespace MoxibustionBedAPP.Models
         /// True：On
         /// False：Off
         /// </summary>
-        private bool smokeExhaustSystem;
-        public bool SmokeExhaustSystem
+        private int smokeExhaustSystem;
+        public int SmokeExhaustSystem
         {
             get
             {
@@ -348,8 +350,8 @@ namespace MoxibustionBedAPP.Models
         /// 预热时间
         /// 分钟
         /// </summary>
-        private double preheadTime;
-        public double PreheadTime
+        private int preheadTime;
+        public int PreheadTime
         {
             get
             {
@@ -385,8 +387,8 @@ namespace MoxibustionBedAPP.Models
         /// 点火时间
         /// 秒
         /// </summary>
-        private double ignitionTime;
-        public double InignitionTime
+        private int ignitionTime;
+        public int InignitionTime
         {
             get
             {
@@ -403,8 +405,8 @@ namespace MoxibustionBedAPP.Models
         /// 灸疗时间
         /// 分钟
         /// </summary>
-        private double moxibustionTherapyTime;
-        public double MoxibustionTherapyTime
+        private int moxibustionTherapyTime;
+        public int MoxibustionTherapyTime
         {
             get
             {
@@ -423,8 +425,6 @@ namespace MoxibustionBedAPP.Models
         /// False：不自动开盖
         /// </summary>
         private bool automaticLidOpening;
-
-
         public bool AutomaticLidOpening
         {
             get

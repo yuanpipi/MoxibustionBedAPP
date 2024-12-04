@@ -56,6 +56,9 @@ namespace MoxibustionBedAPP.Models
                 {
                     _serialPort.Open();//打开串口
                     Console.WriteLine("串口已打开");
+                    //读写超时设置
+                    _serialPort.WriteTimeout = 3000;
+                    _serialPort.ReadTimeout = 3000;
                     _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                     //StartReceivingData();
                 }
@@ -125,55 +128,75 @@ namespace MoxibustionBedAPP.Models
 
             // 创建字节数组来存储转换后的值
             byte[] bytes = new byte[hexValues.Length];
+            byte[] b = new byte[hexValues.Length];
 
             // 将每个十六进制字符串转换为字节
             for (int i = 0; i < hexValues.Length; i++)
             {
                 bytes[i] = Convert.ToByte(hexValues[i], 16);
+                b[i] = Convert.ToByte(hexValues[i], 16);
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //数据验证
+            b[b.Count() - 3] = 0x00;
+            b[b.Count() - 4] = 0x00;
+            b = CRC16(b);
+            if (b[b.Count() - 3] == bytes[bytes.Count() - 3]&& b[b.Count() - 4] == bytes[bytes.Count() - 4])
+            {
+                if(bytes[5]==0x12)//监控数据
+                {
+                    App.PropertyModelInstance.Upper_CabinTemperature = Convert.ToInt16(bytes[6]);//上舱温度
+                    App.PropertyModelInstance.BackTemperature= Convert.ToInt16(bytes[7]);//背部温度
+                    App.PropertyModelInstance.LegTemperature= Convert.ToInt16(bytes[8]);//腿部温度
+                    App.PropertyModelInstance.BackMoxibustionColumn_Height=Convert.ToInt16(bytes[9]);//背部灸柱高度
+                    App.PropertyModelInstance.LegMoxibustionColumn_Height = Convert.ToInt16(bytes[10]);//腿部灸柱高度
+                    App.PropertyModelInstance.BatteryLevel= Convert.ToInt16(bytes[11]);//电池电量
+                    App.PropertyModelInstance.InfraredLamp= Convert.ToInt16(bytes[12]);//红外灯
+                    App.PropertyModelInstance.SmokeExhaustSystem = Convert.ToInt16(bytes[13]);//排烟系统
+                    App.PropertyModelInstance.SmokePurificationSystem=bytes[14] == 0x00 ? false : true;//净烟系统
+                    App.PropertyModelInstance.SwingSystem=bytes[15] == 0x00 ? false :true;//摇摆系统
+                    App.PropertyModelInstance.Hatch=bytes[16] == 0x00 ? false :true;//舱盖
+                }
+                else
+                {
+                    switch(bytes[5])
+                    {
+                        case 0x01://治疗参数设置
+                            break;
+                        case 0x02://设置预热
+                            break;
+                        case 0x03://点火选择
+                            break;
+                        case 0x04://背部点升
+                            break;
+                        case 0x05://背部点降
+                            break;
+                        case 0x06://腿部点升
+                            break;
+                        case 0x07://腿部点降
+                            break;
+                        case 0x08://舱盖点开
+                            break;
+                        case 0x09://舱盖点关
+                            break;
+                        case 0x0A://一键开舱
+                            break;
+                        case 0x0B://一键关舱
+                            break;
+                        case 0x0C://排烟系统
+                            break;
+                        case 0x0D://净烟系统
+                            break;
+                        case 0x0E://摇摆系统
+                            break;
+                        case 0x0F://红外灯
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show($"数据错误！");
+            }
         }
 
         /// <summary>
@@ -184,7 +207,18 @@ namespace MoxibustionBedAPP.Models
         {
             if (_serialPort.IsOpen)
             {
-                _serialPort.Write(data,0,data.Length);
+                try
+                {
+                    _serialPort.Write(data, 0, data.Length);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"数据发送失败: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"串口未打开");
             }
         }
 
@@ -196,7 +230,18 @@ namespace MoxibustionBedAPP.Models
         {
             if (_serialPort.IsOpen)
             {
-                _serialPort.Write(data);
+                try
+                {
+                    _serialPort.Write(data);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"数据发送失败: {ex.Message}");
+                }
+            }
+            else
+            {
+                MessageBox.Show($"串口未打开");
             }
         }
 
@@ -209,7 +254,7 @@ namespace MoxibustionBedAPP.Models
         {
             if (_serialPort.IsOpen)
             {
-                _serialPort.ReadTimeout = 10000;
+                _serialPort.ReadTimeout = 3000;//读取超时
 
                 if (_serialPort.BytesToRead > 0)
                 {
@@ -223,9 +268,13 @@ namespace MoxibustionBedAPP.Models
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("串口数据接受失败："+ex.Message);
+                        MessageBox.Show("串口数据接受失败："+ex.Message);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show($"串口未打开");
             }
         }
 

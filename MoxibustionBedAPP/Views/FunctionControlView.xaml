@@ -51,10 +51,14 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HighSet.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <!--<TextBlock Text="背部点升" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+                <TextBlock Text="背部点升" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
                 <TextBlock Text="腿部点升" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
                 <TextBlock Text="背部点降" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
-                <TextBlock Text="腿部点降" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>-->
+                <TextBlock Text="腿部点降" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
             </Grid>
         </Border>
 
@@ -185,6 +189,20 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Source="../Resources/Pictures/ModeChange.png" HorizontalAlignment="Left"/>
+                    <Image Grid.Row="1">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="True">
+                                        <Setter Property="Source" Value="../Resources/Pictures/Auto.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="False">
+                                        <Setter Property="Source" Value="../Resources/Pictures/HandOperated.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
                 </Grid>
                 <!--<TextBlock Text="模式切换" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26"/>-->
             </Border>

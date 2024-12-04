@@ -19,6 +19,10 @@ namespace MoxibustionBedAPP
     {
         public static PlayMusicViewModel sharedPlayMusicModel;
         public static PropertyModel PropertyModelInstance { get; set; }
+
+        public static TestWindowView Test { get;set; }
+
+        public static bool IsReceive { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -29,11 +33,29 @@ namespace MoxibustionBedAPP
 
             //将PropertyModel注册为资源
             PropertyModelInstance = new PropertyModel();
-            PropertyModelInstance.Upper_CabinTemperature = "25";
-            PropertyModelInstance.BackTemperature = "26";
-            PropertyModelInstance.LegTemperature = "28";
-            PropertyModelInstance.PreheadTemperature = "10";
-            //Resources.Add("PropertyModelKey", PropertyModelInstance);
+            PropertyModelInstance.Upper_CabinTemperature = 40;//上舱温度
+            PropertyModelInstance.BackTemperature = 40;//背部温度
+            PropertyModelInstance.LegTemperature = 40;//腿部温度
+            PropertyModelInstance.PreheadTemperature = 40;//预热温度
+            PropertyModelInstance.UpperAlarmCabinTemperature = 67;//上舱报警温度
+            PropertyModelInstance.BackAlarmTemperature = 67;//背部报警温度
+            PropertyModelInstance.LegAlarmTemperature = 67;//腿部报警温度
+            PropertyModelInstance.PreheadTime = 30;//预热时间
+            PropertyModelInstance.MoxibustionTherapyTime = 90;//灸疗时间
+            PropertyModelInstance.InignitionTime = 120;//点火时间
+            PropertyModelInstance.AutomaticLidOpening = true;//自动开盖
+
+
+            PropertyModelInstance.MoxibustionTherapyMode = false;//灸疗模式
+            PropertyModelInstance.InfraredLamp = 0;//红外灯
+            PropertyModelInstance.SmokeExhaustSystem = 0;//排烟系统
+            PropertyModelInstance.SmokePurificationSystem=false;//净烟系统
+            PropertyModelInstance.SwingSystem = false;//摇摆系统
+            PropertyModelInstance.InignitionStatus = false;//点火模式
+            PropertyModelInstance.Hatch = false;//舱盖
+            PropertyModelInstance.BackMoxibustionColumn_Height = 3;//背部灸柱高度
+            PropertyModelInstance.LegMoxibustionColumn_Height = 2;//腿部灸柱高度
+            PropertyModelInstance.BatteryLevel = 1;//电池电量
 
             //打开串口并且接受来自底层的数据
             SerialPortManager.Instance.OpenPort();

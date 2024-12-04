@@ -80,6 +80,7 @@
     <Compile Include="ViewModes\MainWindowViewModel.cs" />
     <Compile Include="ViewModes\ParameterSettingViewModel.cs" />
     <Compile Include="ViewModes\PlayMusicViewModel.cs" />
+    <Compile Include="ViewModes\TestWindowViewModel.cs" />
     <Compile Include="Views\DataMonitoringView.xaml.cs">
       <DependentUpon>DataMonitoringView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +108,9 @@
     </Compile>
     <Compile Include="Views\PopUpBoxView.xaml.cs">
       <DependentUpon>PopUpBoxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestWindowView.xaml.cs">
+      <DependentUpon>TestWindowView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\DataMonitoringView.xaml">
       <SubType>Designer</SubType>
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PopUpBoxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +213,7 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\HandOperated.png" />
     <Resource Include="Resources\Pictures\Accessibility.png" />
     <Resource Include="Resources\Pictures\Auto.png" />
     <Resource Include="Resources\Pictures\BackClickDown.png" />

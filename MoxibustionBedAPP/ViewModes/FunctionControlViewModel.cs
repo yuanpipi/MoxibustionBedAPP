@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -14,34 +15,38 @@ namespace MoxibustionBedAPP.ViewModes
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        ///// <summary>
+        ///// 排烟系统
+        ///// </summary>
+        //public RelayCommand SmokeExhaust { get; set; }
+        ///// <summary>
+        ///// 净烟系统
+        ///// </summary>
+        //public RelayCommand SmokePurification { get; set; }
+        ///// <summary>
+        ///// 摇摆系统
+        ///// </summary>
+        //public RelayCommand Swing { get; set; }
+        ///// <summary>
+        ///// 红外灯关闭
+        ///// </summary>
+        //public RelayCommand InfraredLampClose { get; set; }
+        ///// <summary>
+        ///// 红外灯低档
+        ///// </summary>
+        //public RelayCommand InfraredLampLow { get; set; }
+        ///// <summary>
+        ///// 红外灯中档
+        ///// </summary>
+        //public RelayCommand InfraredLampMedium { get; set; }
+        ///// <summary>
+        ///// 红外灯高档
+        ///// </summary>
+        //public RelayCommand InfraredLampHigh { get; set; }
         /// <summary>
-        /// 排烟系统
+        /// 公共指令发送方法
         /// </summary>
-        public RelayCommand SmokeExhaust { get; set; }
-        /// <summary>
-        /// 净烟系统
-        /// </summary>
-        public RelayCommand SmokePurification { get; set; }
-        /// <summary>
-        /// 摇摆系统
-        /// </summary>
-        public RelayCommand Swing { get; set; }
-        /// <summary>
-        /// 红外灯关闭
-        /// </summary>
-        public RelayCommand InfraredLampClose { get; set; }
-        /// <summary>
-        /// 红外灯低档
-        /// </summary>
-        public RelayCommand InfraredLampLow { get; set; }
-        /// <summary>
-        /// 红外灯中档
-        /// </summary>
-        public RelayCommand InfraredLampMedium { get; set; }
-        /// <summary>
-        /// 红外灯高档
-        /// </summary>
-        public RelayCommand InfraredLampHigh { get; set; }
+        public ICommand PublicFunction { get; set; }
 
 
 
@@ -56,19 +61,22 @@ namespace MoxibustionBedAPP.ViewModes
 
         public FunctionControlViewModel()
         {
-            SmokeExhaust = new RelayCommand(SmokeExhaustSystemMethod);
-            SmokePurification = new RelayCommand(SmokePurificationSystemMethod);
-            Swing = new RelayCommand(SwingSystemMethod);
-            InfraredLampClose = new RelayCommand(InfraredLampCloseMethod);
-            InfraredLampLow = new RelayCommand(InfraredLampLowMethod);
-            InfraredLampMedium = new RelayCommand(InfraredLampMediumMethod);
-            InfraredLampHigh = new RelayCommand(InfraredLampHighMethod);
+            //SmokeExhaust = new RelayCommand(SmokeExhaustSystemMethod);
+            //SmokePurification = new RelayCommand(SmokePurificationSystemMethod);
+            //Swing = new RelayCommand(SwingSystemMethod);
+            //InfraredLampClose = new RelayCommand(InfraredLampCloseMethod);
+            //InfraredLampLow = new RelayCommand(InfraredLampLowMethod);
+            //InfraredLampMedium = new RelayCommand(InfraredLampMediumMethod);
+            //InfraredLampHigh = new RelayCommand(InfraredLampHighMethod);
+            //PublicFunction = new RelayCommand(FunctionMethod);
+            PublicFunction = new RelayCommand(ExecuteFunctionMethod);
         }
 
         /// <summary>
-        /// 排烟系统
+        /// 操作指令公共方法
         /// </summary>
-        private void SmokeExhaustSystemMethod()
+        /// <param name="parameter"></param>
+        private void ExecuteFunctionMethod(object parameter)
         {
             byte[] data = new byte[11];
             data[0] = 0x55;
@@ -76,20 +84,207 @@ namespace MoxibustionBedAPP.ViewModes
             data[2] = 0x07;
             data[3] = 0x01;
             data[4] = 0x10;
-            data[5] = 0x0C;
-            if (App.PropertyModelInstance.SmokeExhaustSystem)
+            switch(parameter)
             {
-                data[6] = 0x01;
-            }
-            else
-            {
-                data[6] = 0x02;
+                case "TreatmentMode"://设置治疗模式
+                    {
+
+                        data[5] = 0x00;
+                        if (App.PropertyModelInstance.MoxibustionTherapyMode)
+                        {
+                            data[6] = 0x02;
+                        }
+                        else
+                        {
+                            data[6] = 0x01;
+                        }
+                        break;
+                    }
+                case "Prehead"://设置预热
+                    {
+
+                        data[5] = 0x02;
+                        if (App.PropertyModelInstance.PreheadMode)
+                        {
+                            data[6] = 0x02;
+                        }
+                        else
+                        {
+                            data[6] = 0x01;
+                        }
+                        break;
+                    }
+                case "Inignition"://点火选择
+                    {
+                        data[5] = 0x06;
+                        if (App.PropertyModelInstance.InignitionStatus)
+                        {
+                            data[6] = 0x02;
+                        }
+                        else
+                        {
+                            data[6] = 0x01;
+                        }
+                        break;
+                    }
+                case "BackMoxibustionColumnUp"://背部点升
+                    {
+                        data[5] = 0x04;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "BackMoxibustionColumnDown"://背部点降
+                    {
+                        data[5] = 0x05;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "LegMoxibustionColumnUp"://腿部点降
+                    {
+                        data[5] = 0x06;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "LegMoxibustionColumnDown"://腿部点降
+                    {
+                        data[5] = 0x07;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "HatchClickUp"://舱盖点开
+                    {
+                        data[5] = 0x08;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "HatchClickDown"://舱盖点关
+                    {
+                        data[5] = 0x09;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "OpenHatch"://一键开舱
+                    {
+                        data[5] = 0x0A;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "CloseHatch"://一键关舱
+                    {
+                        data[5] = 0x0B;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "SmokeExhaustClose"://关闭排烟系统
+                    {
+                        data[5] = 0x0C;
+                        data[6] = 0x00;
+                        break;
+                    }
+                case "SmokeExhaustLow"://排烟系统低档
+                    {
+                        data[5] = 0x0C;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "SmokeExhaustMedium"://排烟系统中档
+                    {
+                        data[5] = 0x0C;
+                        data[6] = 0x02;
+                        break;
+                    }
+                case "SmokeExhaustHigh"://排烟系统高档
+                    {
+                        data[5] = 0x0C;
+                        data[6] = 0x03;
+                        break;
+                    }
+                case "SmokePurificationSystem"://净烟系统
+                    {
+                        data[5] = 0x0D;
+                        if (App.PropertyModelInstance.SmokePurificationSystem)
+                        {
+                            data[6] = 0x01;
+                        }
+                        else
+                        {
+                            data[6] = 0x02;
+                        }
+                        break;
+                    }
+                case "SwingSystem"://摇摆系统
+                    {
+                        data[5] = 0x0E;
+                        if (App.PropertyModelInstance.SmokePurificationSystem)
+                        {
+                            data[6] = 0x01;
+                        }
+                        else
+                        {
+                            data[6] = 0x02;
+                        }
+                        break;
+                    }
+                case "InfraredLampClose"://红外线关
+                    {
+                        data[5] = 0x0F;
+                        data[6] = 0x00;
+                        break;
+                    }
+                case "InfraredLampLow"://红外线低档
+                    {
+                        data[5] = 0x0F;
+                        data[6] = 0x01;
+                        break;
+                    }
+                case "InfraredLampMedium"://红外线中档
+                    {
+                        data[5] = 0x0F;
+                        data[6] = 0x02;
+                        break;
+                    }
+                case "InfraredLampHigh"://红外线高档
+                    {
+                        data[5] = 0x0F;
+                        data[6] = 0x03;
+                        break;
+                    }
             }
             data[9] = 0x55;
             data[10] = 0xAA;
-            data=SerialPortManager.CRC16(data);
+            data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
         }
+
+
+
+
+
+        /// <summary>
+        /// 排烟系统
+        /// </summary>
+        //private void SmokeExhaustSystemMethod()
+        //{
+        //    byte[] data = new byte[11];
+        //    data[0] = 0x55;
+        //    data[1] = 0xAA;
+        //    data[2] = 0x07;
+        //    data[3] = 0x01;
+        //    data[4] = 0x10;
+        //    data[5] = 0x0C;
+        //    if (App.PropertyModelInstance.SmokeExhaustSystem)
+        //    {
+        //        data[6] = 0x01;
+        //    }
+        //    else
+        //    {
+        //        data[6] = 0x02;
+        //    }
+        //    data[9] = 0x55;
+        //    data[10] = 0xAA;
+        //    data=SerialPortManager.CRC16(data);
+        //    SerialPortManager.Instance.SendData(data);
+        //}
 
         /// <summary>
         /// 净烟系统

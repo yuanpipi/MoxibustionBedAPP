@@ -70,7 +70,11 @@
             <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
+                </Image.InputBindings>
+            </Image>
         </Grid>
 
         <!--按钮栏-->
