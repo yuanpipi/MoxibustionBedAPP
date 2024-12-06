@@ -20,6 +20,7 @@ namespace MoxibustionBedAPP.ViewModes
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region 变量定义
+        private int i = 0;
         private ObservableCollection<MusicModel> _fileNames;
         //public PlayerViewModel player;
         public MediaPlayer _mediaPlayer = new MediaPlayer();
@@ -164,7 +165,7 @@ namespace MoxibustionBedAPP.ViewModes
         public PlayMusicViewModel()
         {
             //FileNames=MainWindowViewModel.FileNames;
-            ReadFileNamesFromFolder(@".\Resources\Music");
+            ReadFileNamesFromFolder(@"./Resources/Music");
             //ButtonClickCommand = new RelayCommand(Click);
             ItemSelectedCommand =new RelayCommand(OnItemSelected);
             //player=new PlayerViewModel();
@@ -278,11 +279,21 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public void PlayMusic()
         {
+            i++;            
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));
-            Thread.Sleep(150);
+            //Thread.Sleep(350);
+            //加载音乐时长
+            while (!_mediaPlayer.NaturalDuration.HasTimeSpan)
+            {
+                Thread.Sleep(10);
+            }
+            //if (!_mediaPlayer.NaturalDuration.HasTimeSpan)
+            //{
+            //    Thread.Sleep(150);
+            //}
+            
             _mediaPlayer.Play();
             IsPlaying = true;
-            //加载音乐时长
             CurrentPosition = _mediaPlayer.Position.TotalSeconds;
             TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             minutes = (int)(TotalDuration - CurrentPosition) / 60;

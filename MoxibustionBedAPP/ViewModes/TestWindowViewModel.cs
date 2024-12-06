@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MoxibustionBedAPP.Models;
 
@@ -31,6 +33,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="parameter"></param>
         private void ExecuteFunctionMethod(object parameter)
         {
+            App.IsReceive = false;
             byte[] data = new byte[11];
             data[0] = 0x55;
             data[1] = 0xAA;
@@ -207,6 +210,11 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+            Thread.Sleep(1500);
+            if (!App.IsReceive)
+            {
+                MessageBox.Show($"串口错误，无返回数据");
+            }
         }
 
     }

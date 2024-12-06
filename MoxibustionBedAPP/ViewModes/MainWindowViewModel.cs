@@ -171,35 +171,43 @@ namespace MoxibustionBedAPP.ViewModes
 
         public MainWindowViewModel()
         {
-            IsLoading = true;
-            //LoadCompleteCommand = new RelayCommand(LoadComplete);
-            //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
-            //ReadFileNamesFromFolder(@".\Resources\Music");
-            //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
-            //SerialPortManager.Instance.ReceiveData();
-            //SerialPortManager.Instance.ReceiveData();
-            //SerialPortManager.Instance.ReceiveData();
-            //SerialPortManager.Instance.ReceiveData();
-            //SerialPortManager.Instance.ReceiveData();
-            CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
-            PlayMusicView= new PlayMusicView();//定义音乐播放界面
-            FunctionControlView = new FunctionControlView();//定义功能控制界面
-            DataMonitoringView= new DataMonitoringView();//定义数据监控界面
-            ParameterSettingView= new ParameterSettingView();//定义参数设置界面
-            BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
-            BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-            BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-            BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
-
-            //显示时间，每隔一秒刷新
-            UpdateProgressTimer.Elapsed += (sender, e) =>
+            try
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                IsLoading = true;
+                //LoadCompleteCommand = new RelayCommand(LoadComplete);
+                //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
+                //ReadFileNamesFromFolder(@".\Resources\Music");
+                //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
+                //SerialPortManager.Instance.ReceiveData();
+                //SerialPortManager.Instance.ReceiveData();
+                //SerialPortManager.Instance.ReceiveData();
+                //SerialPortManager.Instance.ReceiveData();
+                //SerialPortManager.Instance.ReceiveData();
+                CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
+                PlayMusicView = new PlayMusicView();//定义音乐播放界面
+                FunctionControlView = new FunctionControlView();//定义功能控制界面
+                DataMonitoringView = new DataMonitoringView();//定义数据监控界面
+                ParameterSettingView = new ParameterSettingView();//定义参数设置界面
+                BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
+                BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+                BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+                BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+
+                //显示时间，每隔一秒刷新
+                UpdateProgressTimer.Elapsed += (sender, e) =>
                 {
-                    CurrentTime = DateTime.Now.ToString("yyyy年MM月dd日  HH： mm： ss");
-                });
-            };
-            UpdateProgressTimer.Start();
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        CurrentTime = DateTime.Now.ToString("yyyy/MM/dd HH：mm：ss");
+                    });
+                };
+                UpdateProgressTimer.Start();
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         #region 自定义方法

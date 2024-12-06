@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
         mc:Ignorable="d"
-        Title="MainWindowCopyView" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized">
+        Title="MainWindowCopyView" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" Margin="0">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel x:Name="MainWindowViewModel"/>
     </Window.DataContext>
@@ -62,12 +62,11 @@
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontWeight="Light"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="思源宋体 CN 细体" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png"/>
         </Grid>
         <local:PlayMusicView Margin="10" Grid.Row="2" Grid.Column="1"/>
-        
     </Grid>
 </Window>

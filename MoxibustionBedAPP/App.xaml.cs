@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using MoxibustionBedAPP.Models;
@@ -27,9 +28,11 @@ namespace MoxibustionBedAPP
         {
             base.OnStartup(e);
             //显示加载界面
+            
             LoadWindowView loadWindow = new LoadWindowView();
+
             loadWindow.Show();
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(2000);
 
             //将PropertyModel注册为资源
             PropertyModelInstance = new PropertyModel();
@@ -47,8 +50,8 @@ namespace MoxibustionBedAPP
 
 
             PropertyModelInstance.MoxibustionTherapyMode = false;//灸疗模式
-            PropertyModelInstance.InfraredLamp = 0;//红外灯
-            PropertyModelInstance.SmokeExhaustSystem = 0;//排烟系统
+            PropertyModelInstance.InfraredLamp = 1;//红外灯
+            PropertyModelInstance.SmokeExhaustSystem = 3;//排烟系统
             PropertyModelInstance.SmokePurificationSystem=false;//净烟系统
             PropertyModelInstance.SwingSystem = false;//摇摆系统
             PropertyModelInstance.InignitionStatus = false;//点火模式
@@ -64,7 +67,7 @@ namespace MoxibustionBedAPP
             sharedPlayMusicModel = new PlayMusicViewModel();
             //显示在两块屏幕上
             var screen1 = System.Windows.Forms.Screen.AllScreens[0];
-            //var screen2 = System.Windows.Forms.Screen.AllScreens[1];
+            var screen2 = System.Windows.Forms.Screen.AllScreens[1];
 
             //创建window1，并将sharedPlayMusicModel传入
             var window1 = new MainWindowView(sharedPlayMusicModel)
@@ -77,20 +80,20 @@ namespace MoxibustionBedAPP
                 Left = screen1.Bounds.Left,
                 Top = screen1.Bounds.Top
             };
-           //创建window2，并将sharedPlayMusicModel传入
-            //var window2 = new MainWindowCopyView(sharedPlayMusicModel)
-            //{
-            //    WindowState = WindowState.Normal,
-            //    WindowStyle = WindowStyle.None,
-            //    Title = "华伟医疗 - 患者",
-            //    Width = screen2.Bounds.Width,
-            //    Height = screen2.Bounds.Height,
-            //    Left = screen2.Bounds.Left,
-            //    Top = screen2.Bounds.Top,
-            //    //IsEnabled = false
-            //};
+            //创建window2，并将sharedPlayMusicModel传入
+             var window2 = new MainWindowCopyView(sharedPlayMusicModel)
+             {
+                 WindowState = WindowState.Normal,
+                 WindowStyle = WindowStyle.None,
+                 Title = "华伟医疗 - 患者",
+                 Width = screen2.Bounds.Width,
+                 Height = screen2.Bounds.Height,
+                 Left = screen2.Bounds.Left,
+                 Top = screen2.Bounds.Top,
+                 //IsEnabled = false
+             };
             window1.Show();
-            //window2.Show();
+            window2.Show();
             loadWindow.Close();
         }
     }

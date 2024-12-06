@@ -234,8 +234,10 @@ namespace MoxibustionBedAPP.Models
 
         /// <summary>
         /// 排烟系统
-        /// True：On
-        /// False：Off
+        /// 00:关
+        /// 01：1档
+        /// 02：2档
+        /// 03：3档
         /// </summary>
         private int smokeExhaustSystem;
         public int SmokeExhaustSystem

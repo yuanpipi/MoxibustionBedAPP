@@ -12,6 +12,47 @@
     <!--DataContext="{Binding RelativeSource={RelativeSource self},Path=ViewModel}"-->
     <UserControl.Resources>
         <viewmodel:PlayMusicViewModel x:Key="PlayMusicViewModel"/>
+        <!--<Style x:Key="CustomSliderStyle" TargetType="Slider">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid>
+                            --><!-- 轨道背景 --><!--
+                            <Border x:Name="TrackBackground" Background="White" Height="4" CornerRadius="2"/>
+                            --><!-- 滑块轨道 --><!--
+                            <Border x:Name="Track" Height="4" Margin="0,0,0,0" CornerRadius="2">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <LinearGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="-45" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform/>
+                                            </TransformGroup>
+                                        </LinearGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF96391C"/>
+                                        <GradientStop Color="#FFEDDAC5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            --><!-- 滑块拇指 --><!--
+                            <Thumb x:Name="Thumb" Background="DarkGray" Width="12" Height="12" Margin="0 -4 0 0" />
+                            --><!--<Border x:Name="Track" Background="DarkGray" Height="4" Margin="0,0,0,0"
+                Width="{TemplateBinding Value, Converter={StaticResource DoubleToPercentConverter}}"/>-->
+                            <!-- 当前值显示 -->
+                            <!--<TextBlock x:Name="ValueText" Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:0.00}'}"
+                                       Foreground="Orange" Background="Orange" Margin="4 0 0 0" Padding="2"/>--><!--
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Thumb" Property="Background" Value="DarkOrange"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>-->
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -193,7 +234,7 @@
                 </Grid>
 
                 <Border CornerRadius="15" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="20" Background="White">
-                    <ListView x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}">
+                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}">
                         <behavior:Interaction.Triggers>
                             <behavior:EventTrigger EventName="SelectionChanged">
                                 <behavior:InvokeCommandAction Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
@@ -206,7 +247,7 @@
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-                    </ListView>
+                    </ListBox>
                 </Border>
             </Grid>
         </Border>

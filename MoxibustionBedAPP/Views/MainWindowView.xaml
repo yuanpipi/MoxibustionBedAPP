@@ -6,7 +6,7 @@
         xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized">
+        Title="MainWindow" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized" Closing="Window_Closing" ResizeMode="NoResize" Margin="0">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="SourceHanSansCN-Regular-GBpc-EUC" FontWeight="Light"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="思源宋体 CN 细体" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png">
@@ -163,5 +163,11 @@
 
         <!--用户控件显示-->
         <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}"/>
+
+        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Hidden" IsEnabled="False">
+            <Border.Background>
+                <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
+            </Border.Background>
+        </Border>
     </Grid>
 </Window>

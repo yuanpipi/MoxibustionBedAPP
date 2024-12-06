@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace MoxibustionBedAPP.Models
 {
-    public class SerialPortManager
+    public class SerialPortManager : IDisposable
     {
         /// <summary>
         /// 串口变量
@@ -31,6 +31,7 @@ namespace MoxibustionBedAPP.Models
 
         private SerialPort _serialPort;
         private CancellationTokenSource _cancellationTokenSource;
+        private bool _isDisposed = false;
 
         private SerialPortManager()
         {
@@ -158,39 +159,48 @@ namespace MoxibustionBedAPP.Models
                 }
                 else
                 {
-                    switch(bytes[5])
+                    App.IsReceive = true;
+                    if (bytes[6]==0x01)
                     {
-                        case 0x01://治疗参数设置
-                            break;
-                        case 0x02://设置预热
-                            break;
-                        case 0x03://点火选择
-                            break;
-                        case 0x04://背部点升
-                            break;
-                        case 0x05://背部点降
-                            break;
-                        case 0x06://腿部点升
-                            break;
-                        case 0x07://腿部点降
-                            break;
-                        case 0x08://舱盖点开
-                            break;
-                        case 0x09://舱盖点关
-                            break;
-                        case 0x0A://一键开舱
-                            break;
-                        case 0x0B://一键关舱
-                            break;
-                        case 0x0C://排烟系统
-                            break;
-                        case 0x0D://净烟系统
-                            break;
-                        case 0x0E://摇摆系统
-                            break;
-                        case 0x0F://红外灯
-                            break;
+                        Console.WriteLine("操作成功");
                     }
+                    else if(bytes[6] == 0x02)
+                    {
+                        MessageBox.Show("操作失败，请重新操作");
+                    }
+                    //switch(bytes[5])
+                    //{
+                    //    case 0x01://治疗参数设置
+                    //        break;
+                    //    case 0x02://设置预热
+                    //        break;
+                    //    case 0x03://点火选择
+                    //        break;
+                    //    case 0x04://背部点升
+                    //        break;
+                    //    case 0x05://背部点降
+                    //        break;
+                    //    case 0x06://腿部点升
+                    //        break;
+                    //    case 0x07://腿部点降
+                    //        break;
+                    //    case 0x08://舱盖点开
+                    //        break;
+                    //    case 0x09://舱盖点关
+                    //        break;
+                    //    case 0x0A://一键开舱
+                    //        break;
+                    //    case 0x0B://一键关舱
+                    //        break;
+                    //    case 0x0C://排烟系统
+                    //        break;
+                    //    case 0x0D://净烟系统
+                    //        break;
+                    //    case 0x0E://摇摆系统
+                    //        break;
+                    //    case 0x0F://红外灯
+                    //        break;
+                    //}
                 }
             }
             else
@@ -324,6 +334,28 @@ namespace MoxibustionBedAPP.Models
             newByte[len - 3] = redata[1];
             // HelperTypeConversion.concat(bytes, newByte)
             return newByte;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                if (disposing)
+                {
+                    // 如果托管资源需要释放
+                    _serialPort?.Dispose();
+                }
+
+                // 释放非托管资源（如果有）
+
+                _isDisposed = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
