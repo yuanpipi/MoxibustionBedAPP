@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Views
 {
@@ -23,6 +24,7 @@ namespace MoxibustionBedAPP.Views
         public ParameterSettingView()
         {
             InitializeComponent();
+            DataContext = new ParameterSettingViewModel();
         }
     }
 }

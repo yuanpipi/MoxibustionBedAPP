@@ -12,149 +12,244 @@
     <!--DataContext="{Binding RelativeSource={RelativeSource self},Path=ViewModel}"-->
     <UserControl.Resources>
         <viewmodel:PlayMusicViewModel x:Key="PlayMusicViewModel"/>
-        <!--<Style x:Key="CustomSliderStyle" TargetType="Slider">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Slider">
-                        <Grid>
-                            --><!-- 轨道背景 --><!--
-                            <Border x:Name="TrackBackground" Background="White" Height="4" CornerRadius="2"/>
-                            --><!-- 滑块轨道 --><!--
-                            <Border x:Name="Track" Height="4" Margin="0,0,0,0" CornerRadius="2">
-                                <Border.Background>
-                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                        <LinearGradientBrush.RelativeTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                                <RotateTransform Angle="-45" CenterX="0.5" CenterY="0.5"/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </LinearGradientBrush.RelativeTransform>
-                                        <GradientStop Color="#FF96391C"/>
-                                        <GradientStop Color="#FFEDDAC5" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
-                            --><!-- 滑块拇指 --><!--
-                            <Thumb x:Name="Thumb" Background="DarkGray" Width="12" Height="12" Margin="0 -4 0 0" />
-                            --><!--<Border x:Name="Track" Background="DarkGray" Height="4" Margin="0,0,0,0"
-                Width="{TemplateBinding Value, Converter={StaticResource DoubleToPercentConverter}}"/>-->
-                            <!-- 当前值显示 -->
-                            <!--<TextBlock x:Name="ValueText" Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:0.00}'}"
-                                       Foreground="Orange" Background="Orange" Margin="4 0 0 0" Padding="2"/>--><!--
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Thumb" Property="Background" Value="DarkOrange"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>-->
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="166.76*"/>
+            <ColumnDefinition Width="33.24*"/>
+            <ColumnDefinition Width="732.86*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Border CornerRadius="10" Grid.Row="0" Margin="0,0,20,10">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
-                        <LinearGradientBrush.RelativeTransform>
-                            <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF985C33"/>
-                        <GradientStop Color="#FFF1C09E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition Height="0.25*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="上舱温度" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="背部舱温度" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="腿部舱温度" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="预热温度" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" Grid.Row="1" Margin="0,5,20,5">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
-                        <LinearGradientBrush.RelativeTransform>
-                            <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF985C33"/>
-                        <GradientStop Color="#FFF1C09E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition Height="0.25*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="点火状态" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="灸疗模式" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="舱盖开关" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" Grid.Row="2" Margin="0,10,20,0">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
-                        <LinearGradientBrush.RelativeTransform>
-                            <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF985C33"/>
-                        <GradientStop Color="#FFF1C09E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.25*"/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition Height="0.25*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="红外灯" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="排烟系统" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="净烟系统" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                    <TextBlock Text="摇摆系统" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="10,0,0,0"/>
-                </Grid>
-            </Border>
-        </Grid>
-        <Border CornerRadius="10" Grid.Column="1" Margin="10,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="119.94*"/>
+            <RowDefinition Height="29.71*"/>
+            <RowDefinition Height="112.06*"/>
+            <RowDefinition Height="29.71*"/>
+            <RowDefinition Height="131.69*"/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="10" Grid.Row="0" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12.6*"/>
+                    <RowDefinition Height="23.685*"/>
+                    <RowDefinition Height="23.685*"/>
+                    <RowDefinition Height="23.685*"/>
+                    <RowDefinition Height="23.685*"/>
+                    <RowDefinition Height="12.6*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10.53*"/>
+                    <ColumnDefinition Width="95.82*"/>
+                    <ColumnDefinition Width="13.65*"/>
+                    <ColumnDefinition Width="36.23*"/>
+                    <ColumnDefinition Width="10.53*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="上舱温度" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16"/>
+                <TextBlock Text="背部舱温度" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16"/>
+                <TextBlock Text="腿部舱温度" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16"/>
+                <TextBlock Text="预热温度" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Border CornerRadius="10" Grid.Row="2" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12.6*"/>
+                    <RowDefinition Height="28.95*"/>
+                    <RowDefinition Height="28.95*"/>
+                    <RowDefinition Height="28.95*"/>
+                    <RowDefinition Height="12.6*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10.53*"/>
+                    <ColumnDefinition Width="82.85*"/>
+                    <ColumnDefinition Width="62.85*"/>
+                    <ColumnDefinition Width="10.53*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="治疗状态" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="True">
+                                    <Setter Property="Text" Value="治疗中"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="False">
+                                    <Setter Property="Text" Value="未治疗"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="灸疗模式" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="True">
+                                    <Setter Property="Text" Value="自动"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="False">
+                                    <Setter Property="Text" Value="手动"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="舱盖开关" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="True">
+                                    <Setter Property="Text" Value="打开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="False">
+                                    <Setter Property="Text" Value="闭合"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Border>
+        <Border CornerRadius="10" Grid.Row="4" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="12.6*"/>
+                    <RowDefinition Height="26.6*"/>
+                    <RowDefinition Height="26.6*"/>
+                    <RowDefinition Height="26.6*"/>
+                    <RowDefinition Height="26.6*"/>
+                    <RowDefinition Height="12.6*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10.53*"/>
+                    <ColumnDefinition Width="82.85*"/>
+                    <ColumnDefinition Width="62.85*"/>
+                    <ColumnDefinition Width="10.53*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="红外灯" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <Setter Property="Text" Value="低"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <Setter Property="Text" Value="中"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <Setter Property="Text" Value="高"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="排烟系统" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <Setter Property="Text" Value="低"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <Setter Property="Text" Value="中"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <Setter Property="Text" Value="高"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="净烟系统" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                    <Setter Property="Text" Value="开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Text="摇摆系统" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Grid.Row="4" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                    <Setter Property="Text" Value="开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <Border CornerRadius="10" Grid.Column="2" Grid.Row="0" Grid.RowSpan="5">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
                     <LinearGradientBrush.RelativeTransform>
@@ -171,84 +266,137 @@
             </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60*"/>
-                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="48.78*"/>
+                    <ColumnDefinition Width="67.55*"/>
+                    <ColumnDefinition Width="15.22*"/>
+                    <ColumnDefinition Width="46.02*"/>
+                    <ColumnDefinition Width="26.23*"/>
+                    <ColumnDefinition Width="31.18*"/>
+                    <ColumnDefinition Width="43*"/>
+                    <ColumnDefinition Width="31.18*"/>
+                    <ColumnDefinition Width="26.33*"/>
+                    <ColumnDefinition Width="96.04*"/>
+                    <ColumnDefinition Width="12.65*"/>
+                    <ColumnDefinition Width="19.68*"/>
+                    <ColumnDefinition Width="33.18*"/>
+                    <ColumnDefinition Width="213.44*"/>
+                    <ColumnDefinition Width="22.43*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="15*"/>
-                    <RowDefinition Height="70*"/>
-                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="17.76*"/>
+                    <RowDefinition Height="200.24*"/>
+                    <RowDefinition Height="44.9*"/>
+                    <RowDefinition Height="19.97*"/>
+                    <RowDefinition Height="5.92*"/>
+                    <RowDefinition Height="17.7*"/>
+                    <RowDefinition Height="8.51*"/>
+                    <RowDefinition Height="43*"/>
+                    <RowDefinition Height="38.97*"/>
+                    <RowDefinition Height="17.76*"/>
                 </Grid.RowDefinitions>
                 <!--<local:PlayerView Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>-->
 
-                <Grid Grid.Row="1" Grid.Column="0" VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="70*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="10*"/>
-                    </Grid.RowDefinitions>
-                    <MediaElement x:Name="mediaPlayer" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
-                    <Image VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Source="..\Resources/Pictures/Musicplayer.png" Margin="10"/>
-                    <Image Grid.Row="0" Source="../Resource/Picture/Musicplayer.png"/>
-                    <TextBlock Text="{Binding Name}" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="20"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="80"/>
-                        </Grid.ColumnDefinitions>
-                        <Slider x:Name="progressSlider" Grid.Column="1" VerticalAlignment="Center" Value="{Binding CurrentPosition}" Maximum="{Binding TotalDuration}"/>
-                        <TextBlock Text="{Binding Duration}" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,0,0,0" Foreground="Gray"/>
-                    </Grid>
-                    <Grid Grid.Row="3" Grid.ColumnSpan="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1.5*"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="1.5*"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="上一曲" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                        <TextBlock Text="播放" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding PlayOrPause}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                        <TextBlock Text="下一曲" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                        <TextBlock Text="随机/顺序" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
-                            </TextBlock.InputBindings>
-                        </TextBlock>
-                    </Grid>
-                </Grid>
-
-                <Border CornerRadius="15" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Margin="20" Background="White">
-                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}">
+                <MediaElement x:Name="mediaPlayer" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9"/>
+                <Image VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" Source="../Resources/Pictures/Musicplayer.png"/>
+                <!--<Image Grid.Row="0" Source="../Resource/Picture/Musicplayer.png"/>-->
+                <TextBlock Text="{Binding Name}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Foreground="#73441A" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <Slider x:Name="progressSlider" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Value="{Binding CurrentPosition}" Maximum="{Binding TotalDuration}"/>
+                <TextBlock Text="{Binding Duration}" Grid.Row="5" Grid.Column="11" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"/>
+                <Image Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding RandomOrSequencePicture}" Stretch="None">
+                        <Image.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
+                        </Image.InputBindings>
+                    </Image>
+                <Image Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/PreviousMusic.png" Stretch="None">
+                    <Image.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
+                    </Image.InputBindings>
+                </Image>
+                <Image Grid.Row="7" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding PlayOrPausePicture}" Stretch="None">
+                    <Image.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding PlayOrPause}"/>
+                    </Image.InputBindings>
+                </Image>
+                <Image Grid.Row="7" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/NextMusic.png" Stretch="None">
+                    <Image.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
+                    </Image.InputBindings>
+                </Image>
+                
+                
+                <Border CornerRadius="15" Grid.Column="13" Grid.Row="1" Grid.RowSpan="8">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="#FF985C33"/>
+                            <GradientStop Color="#FFF1C09E" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <!--<ListBox.Resources>                            --><!--<Style TargetType="ListBox">                                --><!--自定义选中项的颜色--><!--                                <Setter Property="ItemContainerStyle">                                    <Setter.Value>                                        <Style TargetType="ListBoxItem">                                            <Setter Property="SnapsToDevicePixels" Value="True"/>                                            <Setter Property="Background" Value="Transparent"/>                                            <Setter Property="Template">                                                <Setter.Value>                                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">                                                        <Border Background="Transparent" SnapsToDevicePixels="True">                                                            <ContentPresenter/>                                                        </Border>                                                    </ControlTemplate>                                                </Setter.Value>                                            </Setter>                                            <Style.Triggers>                                                <Trigger Property="IsSelected" Value="true">                                                    <Setter Property="Background" Value="Yellow"/>                                                    <Setter Property="Foreground" Value="Red"/>                                                </Trigger>                                                <Trigger Property="IsMouseOver" Value="true">                                                    <Setter Property="Background" Value="LightGreen"/>                                                    <Setter Property="Foreground" Value="OrangeRed"/>                                                </Trigger>                                            </Style.Triggers>                                        </Style>                                    </Setter.Value>                                </Setter>                            </Style>--><!--
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                            <Border Background="Transparent" SnapsToDevicePixels="True">
+                                                <ContentPresenter/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                --><!--有点问题，定义不到--><!--
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="true">
+                                        <Setter Property="Background" Value="Yellow"/>
+                                        <Setter Property="Foreground" Value="Red"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                        <Setter Property="Foreground" Value="OrangeRed"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBox.Resources>-->
+                        
                         <behavior:Interaction.Triggers>
                             <behavior:EventTrigger EventName="SelectionChanged">
                                 <behavior:InvokeCommandAction Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
                             </behavior:EventTrigger>
                         </behavior:Interaction.Triggers>
+
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <TextBlock Text="{Binding MusicName}" FontSize="18" Height="35" VerticalAlignment="Center"/>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20.98*"/>
+                                        <ColumnDefinition Width="12.28*"/>
+                                        <ColumnDefinition Width="166.74*"/>
+                                        <ColumnDefinition Width="13.44*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="../Resources/Pictures/PlayIcon.png"/>
+                                    <Grid Grid.Column="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding MusicName}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                    </Grid>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Border>
+                
             </Grid>
         </Border>
     </Grid>

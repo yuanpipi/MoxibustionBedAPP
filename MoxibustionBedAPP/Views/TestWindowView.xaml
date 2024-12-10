@@ -43,14 +43,14 @@
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="30*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="上舱温度：" Grid.Row="0" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="背部温度：" Grid.Row="1" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="腿部温度：" Grid.Row="2" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="预热系统：" Grid.Row="3" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="上舱温度：" Grid.Row="0" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="背部温度：" Grid.Row="1" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="腿部温度：" Grid.Row="2" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="预热系统：" Grid.Row="3" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -64,8 +64,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="点火状态：" Grid.Row="4" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="点火状态：" Grid.Row="4" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -79,8 +79,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="灸疗模式：" Grid.Row="5" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="5" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="灸疗模式：" Grid.Row="5" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="5" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -94,8 +94,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="红外灯状态：" Grid.Row="6" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="6" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="红外灯状态：" Grid.Row="6" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="6" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -115,8 +115,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="排烟系统：" Grid.Row="7" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="排烟系统：" Grid.Row="7" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -136,8 +136,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="净烟系统：" Grid.Row="8" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="8" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="净烟系统：" Grid.Row="8" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="8" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -151,8 +151,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="摇摆系统：" Grid.Row="9" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="9" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="摇摆系统：" Grid.Row="9" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="9" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -166,8 +166,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="舱门状态：" Grid.Row="10" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="10" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="舱门状态：" Grid.Row="10" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="10" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -181,8 +181,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="背部灸柱高度：" Grid.Row="11" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="11" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="背部灸柱高度：" Grid.Row="11" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="11" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -205,8 +205,8 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-            <TextBlock Text="腿部灸柱高度：" Grid.Row="12" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="12" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <TextBlock Text="腿部灸柱高度：" Grid.Row="12" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+            <TextBlock Grid.Row="12" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -246,21 +246,21 @@
             </Grid.ColumnDefinitions>
             <Border CornerRadius="30" Grid.Row="0" Grid.Column="2" Margin="10" Background="#FFFFCF76">
                 <Border.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Prehead"/>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                 </Border.InputBindings>
                 <TextBlock Text="预热" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Prehead"/>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                     </TextBlock.InputBindings>
                 </TextBlock>
             </Border>
             <Border CornerRadius="30" Grid.Row="0" Grid.Column="3" Margin="10" Background="#FFFFCF76">
                 <Border.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Inignition"/>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                 </Border.InputBindings>
                 <TextBlock Text="点火" FontSize="28" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Inignition"/>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                     </TextBlock.InputBindings>
                 </TextBlock>
             </Border>

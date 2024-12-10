@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using MoxibustionBedAPP.Models;
+using MoxibustionBedAPP.Properties;
 
 namespace MoxibustionBedAPP.ViewModes
 {
@@ -107,6 +108,41 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
+        /// 随机播放图片
+        /// </summary>
+        private string randomOrSequencePicture;
+        public string RandomOrSequencePicture
+        {
+            get 
+            { 
+                return randomOrSequencePicture; 
+            }
+            set
+            {
+                randomOrSequencePicture = value;
+                OnPropertyChanged(nameof(RandomOrSequencePicture));
+            }
+        }
+        
+
+        /// <summary>
+        /// 播放暂停图片
+        /// </summary>
+        private string playOrPausePicture;
+        public string PlayOrPausePicture
+        {
+            get 
+            { 
+                return playOrPausePicture; 
+            }
+            set
+            {
+                playOrPausePicture = value;
+                OnPropertyChanged(nameof(PlayOrPausePicture));
+            }
+        }
+
+        /// <summary>
         /// 是否正在播放音乐
         /// </summary>
         private bool _isPlaying;
@@ -172,6 +208,8 @@ namespace MoxibustionBedAPP.ViewModes
             Name = "Song Name";
             SelectIndex = -1;
             Duration = "00:00";
+            RandomOrSequencePicture = "../Resources/Pictures/Sequence.png";
+            PlayOrPausePicture = "../Resources/Pictures/PlayMusic.png";
             Previous = new RelayCommand(LastSong);
             Next = new RelayCommand(NextSong);
             PlayOrPause = new RelayCommand(PlayOrPauseSong);
@@ -306,6 +344,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 Duration = $"{minutes}:{seconds}";
             }
+            PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
             //启动定时器更新进度
             UpdateProgressTimer.Start();
         }
@@ -319,6 +358,7 @@ namespace MoxibustionBedAPP.ViewModes
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
+            PlayOrPausePicture = "../Resources/Pictures/PlayMusic.png";
         }
 
         /// <summary>
@@ -369,6 +409,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 _mediaPlayer.Play();
                 IsPlaying = true;
+                PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
                 UpdateProgressTimer.Start();
             }
         }
@@ -383,10 +424,12 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 Random random = new Random();
                 num = random.Next(2,10);
+                RandomOrSequencePicture = "../Resources/Pictures/Random.png";
             }
             else
             {
                 num = 1;
+                RandomOrSequencePicture = "../Resources/Pictures/Sequence.png";
             }
         }
 

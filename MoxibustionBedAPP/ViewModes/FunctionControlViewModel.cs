@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -50,9 +51,21 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public ICommand PublicFunction { get; set; }
 
+        public ICommand Prehead { get; set; }
 
+        public ICommand Inignition { get; set; }
 
-
+        public static DispatcherTimer _timer; 
+        public static bool _isCountingDown;
+        public bool IsCountingDown
+        {
+            get { return _isCountingDown; }
+            set
+            {
+                _isCountingDown = value;
+                OnPropertyChanged(nameof(IsCountingDown));
+            }
+        }
 
 
 
@@ -72,6 +85,8 @@ namespace MoxibustionBedAPP.ViewModes
             //InfraredLampHigh = new RelayCommand(InfraredLampHighMethod);
             //PublicFunction = new RelayCommand(FunctionMethod);
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
+            Prehead = new RelayCommand(PreheadMethod);
+            Inignition= new RelayCommand(InignitionMethod);
         }
 
         /// <summary>
@@ -256,11 +271,11 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
-            Thread.Sleep(1500);
-            if (!App.IsReceive)
-            {
-                MessageBox.Show($"串口错误，无返回数据");
-            }
+            //Thread.Sleep(1500);
+            //if (!App.IsReceive)
+            //{
+            //    MessageBox.Show($"串口错误，无返回数据");
+            //}
         }
 
         ///// <summary>
@@ -569,57 +584,113 @@ namespace MoxibustionBedAPP.ViewModes
         //    SerialPortManager.Instance.SendData(data);
         //}
 
-        ///// <summary>
-        ///// 预热选择
-        ///// </summary>
-        //private void PreheadMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x02;
-        //    if(App.PropertyModelInstance.PreheadMode)
-        //    {
-        //        data[6] = 0x02;
-        //    }
-        //    else
-        //    {
-        //        data[6] = 0x01;
-        //    }
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
+        /// <summary>
+        /// 预热选择
+        /// </summary>
+        private void PreheadMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
 
-        ///// <summary>
-        ///// 点火选择
-        ///// </summary>
-        //private void InignitionMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x03;
-        //    if (App.PropertyModelInstance.InignitionStatus)
-        //    {
-        //        data[6] = 0x02;
-        //    }
-        //    else
-        //    {
-        //        data[6] = 0x01;
-        //    }
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
+
+
+            data[5] = 0x02;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.PreheadMode = true;
+            IsCountingDown = true;
+            App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+            App.PropertyModelInstance.CountdownSeconds = 0;
+            StartCountdown();
+        }
+
+        /// <summary>
+        /// 点火选择
+        /// </summary>
+        private void InignitionMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.Hatch = false;
+
+
+            data[5] = 0x03;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.InignitionStatus = true;
+            IsCountingDown = true;
+            App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+            App.PropertyModelInstance.CountdownMinutes = 0;
+            StartCountdown();
+        }
+
+
+        private void StartCountdown()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Tick += Timer_Tick;
+            _timer.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            //App.PropertyModelInstance.CountdownSeconds--;
+            //if (App.PropertyModelInstance.CountdownSeconds < 0)
+            //{
+            //    _timer.Stop();
+            //    App.PropertyModelInstance.CountdownSeconds = 0;
+            //}
+
+            if (App.PropertyModelInstance.CountdownSeconds > 0)
+            {
+                App.PropertyModelInstance.CountdownSeconds--;
+            }
+            else if (App.PropertyModelInstance.CountdownMinutes > 0)
+            {
+                App.PropertyModelInstance.CountdownMinutes--;
+                App.PropertyModelInstance.CountdownSeconds = 59;
+            }
+            else
+            {
+                _timer.Stop();
+                IsCountingDown = false;
+                if(App.PropertyModelInstance.PreheadMode == true)
+                {
+                    App.PropertyModelInstance.PreheadMode = false;
+                }
+                else if(App.PropertyModelInstance.InignitionStatus == true)
+                {
+                    App.PropertyModelInstance.InignitionStatus = false;
+                }
+            }
+        }
 
         //private void Instance_DataReceived(object sender,string data)
         //{

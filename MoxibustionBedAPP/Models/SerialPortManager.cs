@@ -153,9 +153,9 @@ namespace MoxibustionBedAPP.Models
                     App.PropertyModelInstance.BatteryLevel= Convert.ToInt16(bytes[11]);//电池电量
                     App.PropertyModelInstance.InfraredLamp= Convert.ToInt16(bytes[12]);//红外灯
                     App.PropertyModelInstance.SmokeExhaustSystem = Convert.ToInt16(bytes[13]);//排烟系统
-                    App.PropertyModelInstance.SmokePurificationSystem=bytes[14] == 0x00 ? false : true;//净烟系统
-                    App.PropertyModelInstance.SwingSystem=bytes[15] == 0x00 ? false :true;//摇摆系统
-                    App.PropertyModelInstance.Hatch=bytes[16] == 0x00 ? false :true;//舱盖
+                    App.PropertyModelInstance.SmokePurificationSystem=bytes[14] == 0x02 ? false : true;//净烟系统
+                    App.PropertyModelInstance.SwingSystem=bytes[15] == 0x02 ? false :true;//摇摆系统
+                    App.PropertyModelInstance.Hatch=bytes[16] == 0x02 ? false :true;//舱盖
                 }
                 else
                 {
@@ -220,6 +220,11 @@ namespace MoxibustionBedAPP.Models
                 try
                 {
                     _serialPort.Write(data, 0, data.Length);
+                    Thread.Sleep(500);
+                    if (App.IsReceive == false)
+                    {
+                        MessageBox.Show($"串口错误，无应答数据");
+                    }
                 }
                 catch (Exception ex)
                 {

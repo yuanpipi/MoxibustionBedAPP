@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
@@ -70,8 +70,8 @@
                 <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HighSet.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <!--<Image Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Source="../Resources/Pictures/BackHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Image Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/LegHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                <TextBlock Text="背部高度" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="腿部高度" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="背部高度" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="腿部高度" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Image Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
@@ -83,7 +83,7 @@
                     </Image.InputBindings>
                 </Image>
 
-                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontWeight="Bold">
+                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSerifCN-Bold}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -106,7 +106,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontWeight="Bold">
+                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSerifCN-Bold}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -195,7 +195,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickUp"/>
                     </Image.InputBindings>
                 </Image>
-                <TextBlock Text="舱盖点开" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="思源宋体 CN 常规" Foreground="#73441A">
+                <TextBlock Text="舱盖点开" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
                     <TextBlock.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickUp"/>
                     </TextBlock.InputBindings>
@@ -205,7 +205,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickDown"/>
                     </Image.InputBindings>
                 </Image>
-                <TextBlock Text="舱盖点关" Grid.Row="8" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="思源宋体 CN 常规" Foreground="#73441A">
+                <TextBlock Text="舱盖点关" Grid.Row="8" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
                     <TextBlock.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickDown"/>
                     </TextBlock.InputBindings>
@@ -217,7 +217,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
                     </Image.InputBindings>
                 </Image>
-                <TextBlock Text="一键开舱" Grid.Row="2" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="思源宋体 CN 常规" Foreground="#73441A">
+                <TextBlock Text="一键开舱" Grid.Row="2" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
                     <TextBlock.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
                     </TextBlock.InputBindings>
@@ -227,7 +227,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
                     </Image.InputBindings>
                 </Image>
-                <TextBlock Text="一键关舱" Grid.Row="8" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="思源宋体 CN 常规" Foreground="#73441A">
+                <TextBlock Text="一键关舱" Grid.Row="8" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
                     <TextBlock.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
                     </TextBlock.InputBindings>
@@ -287,9 +287,9 @@
                     <ColumnDefinition Width="19.71*"/>
                 </Grid.ColumnDefinitions>
                 <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Accessibility.png" HorizontalAlignment="Left"/>
-                
-                
-                <TextBlock Text="摇摆系统" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="思源宋体 CN 常规" HorizontalAlignment="Center"/>
+
+
+                <TextBlock Text="摇摆系统" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
                     <Image.Style>
                         <Style TargetType="Image">
@@ -308,7 +308,7 @@
                     </Image.InputBindings>
                 </Image>
                 <!--<Image Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Source="../Resources/Pictures/SmokePurificationSystem.png"/>-->
-                <TextBlock Text="净烟系统" Grid.Row="6" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="思源宋体 CN 常规" HorizontalAlignment="Center"/>
+                <TextBlock Text="净烟系统" Grid.Row="6" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="6" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
                     <Image.Style>
                         <Style TargetType="Image">
@@ -326,9 +326,9 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
                     </Image.InputBindings>
                 </Image>
-                
-                
-                <TextBlock Text="排烟系统" Grid.Row="11" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="思源宋体 CN 常规" HorizontalAlignment="Center"/>
+
+
+                <TextBlock Text="排烟系统" Grid.Row="11" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="11" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
                 <Grid Grid.Row="10" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -355,7 +355,7 @@
                         <RowDefinition Height="23.02*"/>
                         <RowDefinition Height="9.99*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
                         </TextBlock.InputBindings>
@@ -383,7 +383,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -404,7 +404,7 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
                         </TextBlock.InputBindings>
@@ -432,7 +432,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -453,7 +453,7 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
                         </TextBlock.InputBindings>
@@ -481,7 +481,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -507,7 +507,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
                         </Image.InputBindings>
                     </Image>-->
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
                         </TextBlock.InputBindings>
@@ -555,7 +555,7 @@
                             </Style>
                         </Image.Style>
                     </Image>-->
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -576,9 +576,26 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
+                <Border Grid.Row="10" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="8">
+                    <Border.Background>
+                        <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
+                    </Border.Background>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
                 
                 
-                <TextBlock Text="红外灯" Grid.Row="17" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="思源宋体 CN 常规" HorizontalAlignment="Center"/>
+                <TextBlock Text="红外灯" Grid.Row="17" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="17" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
                 <Grid Grid.Row="16" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
@@ -610,7 +627,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
                         </Image.InputBindings>
                     </Image>-->
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
                         </TextBlock.InputBindings>
@@ -658,18 +675,18 @@
                             </Style>
                         </Image.Style>
                     </Image>-->
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
-                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -679,9 +696,9 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    
-                    
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+
+
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </TextBlock.InputBindings>
@@ -709,7 +726,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -720,10 +737,10 @@
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -732,7 +749,7 @@
 
                     
                     
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
                         </TextBlock.InputBindings>
@@ -741,16 +758,16 @@
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -760,7 +777,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -782,7 +799,7 @@
                     </TextBlock>
 
                     
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </TextBlock.InputBindings>
@@ -791,17 +808,17 @@
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -810,7 +827,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="思源宋体 CN 常规" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
@@ -818,10 +835,10 @@
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -913,18 +930,23 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                    <Image Grid.Row="6" Grid.Column="2" Source="../Resources/Pictures/Change.png">
+                    <!--<Image Grid.Row="6" Grid.Column="2" Source="../Resources/Pictures/Change.png">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
                         </Image.InputBindings>
-                    </Image>
+                    </Image>-->
+                    <TextBlock Text="(点击切换)" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="12" Foreground="#73441A">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Grid>
             </Border>
 
 
             <Border CornerRadius="15" Grid.Row="2">
                 <Border.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Prehead"/>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                 </Border.InputBindings>
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
@@ -942,27 +964,36 @@
                 </Border.Background>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="25.8*"/>
-                        <RowDefinition Height="38.4*"/>
-                        <RowDefinition Height="25.8*"/>
+                        <RowDefinition Height="26.56*"/>
+                        <RowDefinition Height="7.87*"/>
+                        <RowDefinition Height="22.66*"/>
+                        <RowDefinition Height="7.87*"/>
+                        <RowDefinition Height="26.56*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="47.38*"/>
-                        <ColumnDefinition Width="95.24*"/>
-                        <ColumnDefinition Width="47.38*"/>
+                        <ColumnDefinition Width="36.58*"/>
+                        <ColumnDefinition Width="36.72*"/>
+                        <ColumnDefinition Width="12.14*"/>
+                        <ColumnDefinition Width="46.38*"/>
+                        <ColumnDefinition Width="38.18*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="1" Grid.Column="1" Source="../Resources/Pictures/Prehead.png">
+                    <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Prehead.png">
                         <Image.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Prehead"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                         </Image.InputBindings>
                     </Image>
+                    <TextBlock Text="预热" Grid.Row="2" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Grid>
             </Border>
 
 
             <Border CornerRadius="15" Grid.Row="4">
                 <Border.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Inignition"/>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                 </Border.InputBindings>
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
@@ -980,22 +1011,32 @@
                 </Border.Background>
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="64.555*"/>
-                        <RowDefinition Height="37.44*"/>
-                        <RowDefinition Height="64.555*"/>
+                        <RowDefinition Height="65.39*"/>
+                        <RowDefinition Height="7.36*"/>
+                        <RowDefinition Height="22.72*"/>
+                        <RowDefinition Height="7.36*"/>
+                        <RowDefinition Height="65.39*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="42.105*"/>
-                        <ColumnDefinition Width="85.79*"/>
-                        <ColumnDefinition Width="42.105*"/>
+                        <ColumnDefinition Width="41.86*"/>
+                        <ColumnDefinition Width="32.64*"/>
+                        <ColumnDefinition Width="6.2*"/>
+                        <ColumnDefinition Width="46.95*"/>
+                        <ColumnDefinition Width="42.35*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="1" Grid.Column="1" Source="../Resources/Pictures/Inignition.png">
+                    <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Inignition.png">
                         <Image.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="Inignition"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                         </Image.InputBindings>
                     </Image>
+                    <TextBlock Text="点火" Grid.Row="2" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
                 </Grid>
             </Border>
+            
         </Grid>
     </Grid>
 </UserControl>

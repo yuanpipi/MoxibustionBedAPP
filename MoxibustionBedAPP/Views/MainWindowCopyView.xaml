@@ -17,12 +17,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="9.7*"/>
-            <RowDefinition Height="530.3*"/>
+            <RowDefinition Height="506.88"/>
+            <RowDefinition Height="23.42*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="69.71*"/>
-            <ColumnDefinition Width="884.58*"/>
-            <ColumnDefinition Width="69.71*"/>
+            <ColumnDefinition Width="46.28*"/>
+            <ColumnDefinition Width="931.44*"/>
+            <ColumnDefinition Width="46.28*"/>
         </Grid.ColumnDefinitions>
         <!--状态栏-->
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
@@ -62,7 +63,7 @@
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="思源宋体 CN 细体" FontWeight="Light"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White"  FontFamily="{StaticResource SourceHanSerifCN-Light}" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png"/>

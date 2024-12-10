@@ -41,8 +41,8 @@ namespace MoxibustionBedAPP
             PropertyModelInstance.LegTemperature = 40;//腿部温度
             PropertyModelInstance.PreheadTemperature = 40;//预热温度
             PropertyModelInstance.UpperAlarmCabinTemperature = 67;//上舱报警温度
-            PropertyModelInstance.BackAlarmTemperature = 67;//背部报警温度
-            PropertyModelInstance.LegAlarmTemperature = 67;//腿部报警温度
+            PropertyModelInstance.BackAlarmTemperature = 77;//背部报警温度
+            PropertyModelInstance.LegAlarmTemperature = 77;//腿部报警温度
             PropertyModelInstance.PreheadTime = 30;//预热时间
             PropertyModelInstance.MoxibustionTherapyTime = 90;//灸疗时间
             PropertyModelInstance.InignitionTime = 120;//点火时间
@@ -55,6 +55,7 @@ namespace MoxibustionBedAPP
             PropertyModelInstance.SmokePurificationSystem=false;//净烟系统
             PropertyModelInstance.SwingSystem = false;//摇摆系统
             PropertyModelInstance.InignitionStatus = false;//点火模式
+            PropertyModelInstance.PreheadMode = false;//预热模式
             PropertyModelInstance.Hatch = false;//舱盖
             PropertyModelInstance.BackMoxibustionColumn_Height = 3;//背部灸柱高度
             PropertyModelInstance.LegMoxibustionColumn_Height = 2;//腿部灸柱高度

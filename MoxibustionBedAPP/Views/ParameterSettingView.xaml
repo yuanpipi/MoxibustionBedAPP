@@ -29,10 +29,10 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="上舱温度设置" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="背部舱温度设置" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="腿部舱温度设置" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="预热温度设置" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="上舱温度设置" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="背部舱温度设置" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="腿部舱温度设置" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="预热温度设置" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
             </Grid>
         </Border>
         <Border CornerRadius="10" Grid.Row="0" Grid.Column="1" Background="DarkGray" Margin="20,20,10,15">
@@ -44,9 +44,9 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="预热时间" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="灸疗时间" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="点火时间" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="预热时间" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="灸疗时间" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="点火时间" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
             </Grid>
         </Border>
         <Border CornerRadius="10" Grid.Row="1" Grid.Column="0" Background="DarkGray" Margin="20,20,10,15">
@@ -58,9 +58,9 @@
                     <RowDefinition/>
                     <RowDefinition Height="0.25*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="上舱报警温度" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="背部报警温度" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
-                <TextBlock Text="腿部报警温度" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+                <TextBlock Text="上舱报警温度" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="背部报警温度" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="腿部报警温度" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
             </Grid>
         </Border>
         <Grid Grid.Row="1" Grid.Column="1" Margin="20,20,10,15">
@@ -70,10 +70,18 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Border CornerRadius="10" Grid.Row="0" Background="DarkGray">
-                <TextBlock Text="灸疗结束后自动开盖：是、否" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26"/>
+                <TextBlock Text="灸疗结束后自动开盖：是、否" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="26" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
             </Border>
-            <TextBlock Text="保存设置" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
-            <TextBlock Text="恢复初始值" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26"/>
+            <TextBlock Text="保存设置" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+                <TextBlock.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
+            <TextBlock Text="恢复初始值" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+                <TextBlock.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
+                </TextBlock.InputBindings>
+            </TextBlock>
         </Grid>
     </Grid>
 </UserControl>

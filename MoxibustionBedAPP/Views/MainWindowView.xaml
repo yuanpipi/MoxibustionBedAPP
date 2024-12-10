@@ -24,9 +24,9 @@
             <RowDefinition Height="20.06"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="69.71*"/>
-            <ColumnDefinition Width="884.58*"/>
-            <ColumnDefinition Width="69.71*"/>
+            <ColumnDefinition Width="46.28*"/>
+            <ColumnDefinition Width="931.44*"/>
+            <ColumnDefinition Width="46.28*"/>
         </Grid.ColumnDefinitions>
 
         <!--状态栏-->
@@ -67,7 +67,7 @@
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
-            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="思源宋体 CN 细体" FontWeight="Light"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png">
@@ -96,7 +96,7 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
             <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="9" Source="../Resources/Pictures/BtnListStyle.png"/>
-            <TextBlock Grid.Row="1" Grid.Column="1">
+            <TextBlock Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack1}"/>
                 </TextBlock.Background>
@@ -110,7 +110,7 @@
                 </Image.InputBindings>
             </Image>
 
-            <TextBlock Grid.Row="1" Grid.Column="3">
+            <TextBlock Grid.Row="1" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack2}"/>
                 </TextBlock.Background>
@@ -124,7 +124,7 @@
                 </Image.InputBindings>
             </Image>
 
-            <TextBlock Grid.Row="1" Grid.Column="5">
+            <TextBlock Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack3}"/>
                 </TextBlock.Background>
@@ -138,7 +138,7 @@
                 </Image.InputBindings>
             </Image>
 
-            <TextBlock Grid.Row="1" Grid.Column="7">
+            <TextBlock Grid.Row="1" Grid.Column="7" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack4}"/>
                 </TextBlock.Background>
@@ -164,10 +164,126 @@
         <!--用户控件显示-->
         <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}"/>
 
-        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3" Visibility="Hidden" IsEnabled="False">
+        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3">
             <Border.Background>
                 <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
             </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionStatus}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionStatus}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130.78*"/>
+                    <RowDefinition Height="2.72*"/>
+                    <RowDefinition Height="43.44*"/>
+                    <RowDefinition Height="2.72*"/>
+                    <RowDefinition Height="88.28*"/>
+                    <RowDefinition Height="32.83*"/>
+                    <RowDefinition Height="34.29*"/>
+                    <RowDefinition Height="41.16*"/>
+                    <RowDefinition Height="94.05*"/>
+                    <RowDefinition Height="22.24*"/>
+                    <RowDefinition Height="107.49*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="406.17*"/>
+                    <ColumnDefinition Width="17.54*"/>
+                    <ColumnDefinition Width="31.34*"/>
+                    <ColumnDefinition Width="12.94*"/>
+                    <ColumnDefinition Width="9.98*"/>
+                    <ColumnDefinition Width="77.91*"/>
+                    <ColumnDefinition Width="44.55*"/>
+                    <ColumnDefinition Width="12.28*"/>
+                    <ColumnDefinition Width="411.29*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="../Resources/Pictures/CountDown.png"/>
+                <TextBlock Text="点火中" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="47" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="点火倒计时" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
+                    <Span>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
+                        <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>
+                    </Span>
+                </TextBlock>
+                <TextBlock Text="停止点火" Grid.Row="9" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="22" Foreground="White" TextDecorations="Underline">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding StopInignitionCommon}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3">
+            <Border.Background>
+                <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadMode}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130.78*"/>
+                    <RowDefinition Height="2.72*"/>
+                    <RowDefinition Height="43.44*"/>
+                    <RowDefinition Height="2.72*"/>
+                    <RowDefinition Height="88.28*"/>
+                    <RowDefinition Height="32.83*"/>
+                    <RowDefinition Height="34.29*"/>
+                    <RowDefinition Height="41.16*"/>
+                    <RowDefinition Height="94.05*"/>
+                    <RowDefinition Height="22.24*"/>
+                    <RowDefinition Height="107.49*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="406.17*"/>
+                    <ColumnDefinition Width="17.54*"/>
+                    <ColumnDefinition Width="31.34*"/>
+                    <ColumnDefinition Width="12.94*"/>
+                    <ColumnDefinition Width="9.98*"/>
+                    <ColumnDefinition Width="77.91*"/>
+                    <ColumnDefinition Width="44.55*"/>
+                    <ColumnDefinition Width="12.28*"/>
+                    <ColumnDefinition Width="411.29*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="../Resources/Pictures/CountDown.png"/>
+                <TextBlock Text="预热中" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="47" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="预热倒计时" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
+                    <Span>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
+                        <Run Text="min" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
+                        <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>
+                    </Span>
+                </TextBlock>
+                <TextBlock Text="停止预热" Grid.Row="9" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="22" Foreground="White" TextDecorations="Underline">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding StopPreheadCommon}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>
+            </Grid>
         </Border>
     </Grid>
 </Window>

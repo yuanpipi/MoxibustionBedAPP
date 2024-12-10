@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.Properties;
 using MoxibustionBedAPP.Views;
@@ -167,32 +168,35 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 停止点火
+        /// </summary>
+        public ICommand StopInignitionCommon {  get; set; }
+
+        /// <summary>
+        /// 停止预热
+        /// </summary>
+        public ICommand StopPreheadCommon {  get; set; }
+
         #endregion
 
         public MainWindowViewModel()
         {
+            
+            IsLoading = true;
+            CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
+            PlayMusicView = new PlayMusicView();//定义音乐播放界面
+            FunctionControlView = new FunctionControlView();//定义功能控制界面
+            DataMonitoringView = new DataMonitoringView();//定义数据监控界面
+            ParameterSettingView = new ParameterSettingView();//定义参数设置界面
+            StopInignitionCommon = new RelayCommand(StopInignitionMethod);
+            StopPreheadCommon = new RelayCommand(StopPreheadMethod);
+            BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
+            BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
             try
             {
-                IsLoading = true;
-                //LoadCompleteCommand = new RelayCommand(LoadComplete);
-                //PlayMusicViewModel.playMusic.ReadFileNamesFromFolder(@".\Resources\Music");
-                //ReadFileNamesFromFolder(@".\Resources\Music");
-                //SerialPortManager.Instance.SendData(new byte[] { 0x55, 0xaa, 0x11 });
-                //SerialPortManager.Instance.ReceiveData();
-                //SerialPortManager.Instance.ReceiveData();
-                //SerialPortManager.Instance.ReceiveData();
-                //SerialPortManager.Instance.ReceiveData();
-                //SerialPortManager.Instance.ReceiveData();
-                CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
-                PlayMusicView = new PlayMusicView();//定义音乐播放界面
-                FunctionControlView = new FunctionControlView();//定义功能控制界面
-                DataMonitoringView = new DataMonitoringView();//定义数据监控界面
-                ParameterSettingView = new ParameterSettingView();//定义参数设置界面
-                BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
-                BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-                BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-                BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
-
                 //显示时间，每隔一秒刷新
                 UpdateProgressTimer.Elapsed += (sender, e) =>
                 {
@@ -297,6 +301,52 @@ namespace MoxibustionBedAPP.ViewModes
                     App.Test.Show();
                 });
             }
+        }
+
+
+
+        /// <summary>
+        /// 预热选择
+        /// </summary>
+        private void StopPreheadMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x02;
+            data[6] = 0x02;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.PreheadMode = false;
+            FunctionControlViewModel._timer.Stop();
+            FunctionControlViewModel._isCountingDown = false;
+        }
+
+        /// <summary>
+        /// 点火选择
+        /// </summary>
+        private void StopInignitionMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x03;
+            data[6] = 0x02;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.InignitionStatus = false;
+            FunctionControlViewModel._timer.Stop();
+            FunctionControlViewModel._isCountingDown = false;
         }
 
         #endregion

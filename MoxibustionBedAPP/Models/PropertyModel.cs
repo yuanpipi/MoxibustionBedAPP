@@ -349,6 +349,25 @@ namespace MoxibustionBedAPP.Models
         }
 
         /// <summary>
+        /// 是否处于治疗
+        /// True：治疗中
+        /// False：未治疗
+        /// </summary>
+        private bool isMoxibustionTherapyMode;
+        public bool IsMoxibustionTherapyMode
+        {
+            get
+            {
+                return isMoxibustionTherapyMode;
+            }
+            set
+            {
+                isMoxibustionTherapyMode = value;
+                OnPropertyChanged(nameof(MoxibustionTherapyMode));
+            }
+        }
+
+        /// <summary>
         /// 预热时间
         /// 分钟
         /// </summary>
@@ -439,5 +458,35 @@ namespace MoxibustionBedAPP.Models
                 OnPropertyChanged(nameof(AutomaticLidOpening));
             }
         }
+
+        /// <summary>
+        /// 倒计时秒
+        /// </summary>
+        private int _countdownSeconds;
+        public int CountdownSeconds
+        {
+            get { return _countdownSeconds; }
+            set
+            {
+                _countdownSeconds = value;
+                OnPropertyChanged(nameof(CountdownSeconds));
+            }
+        }
+
+        /// <summary>
+        /// 倒计时分钟
+        /// </summary>
+        private int _countdownMinutes;
+        public int CountdownMinutes
+        {
+            get { return _countdownMinutes; }
+            set
+            {
+                _countdownMinutes = value;
+                OnPropertyChanged(nameof(CountdownMinutes));
+            }
+        }
+
+
     }
 }

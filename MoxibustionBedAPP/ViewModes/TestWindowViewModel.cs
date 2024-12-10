@@ -17,10 +17,14 @@ namespace MoxibustionBedAPP.ViewModes
 
         public RelayCommand CloseWindow { get; set; }
         public ICommand PublicFunction { get; set; }
+        public ICommand Prehead { get; set; }
+        public ICommand Inignition { get; set; }
         public TestWindowViewModel()
         {
             CloseWindow = new RelayCommand(CloseWindowMethod);
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
+            Prehead = new RelayCommand(PreheadMethod);
+            Inignition = new RelayCommand(InignitionMethod);
         }
         private void CloseWindowMethod()
         {
@@ -215,6 +219,81 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 MessageBox.Show($"串口错误，无返回数据");
             }
+        }
+
+        /// <summary>
+        /// 预热选择
+        /// </summary>
+        private void PreheadMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+
+
+
+
+
+
+            data[5] = 0x02;
+            if (App.PropertyModelInstance.PreheadMode)
+            {
+                data[6] = 0x02;
+            }
+            else
+            {
+                data[6] = 0x01;
+            }
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.PreheadMode = true;
+        }
+
+        /// <summary>
+        /// 点火选择
+        /// </summary>
+        private void InignitionMethod()
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.Hatch = false;
+
+
+            data[5] = 0x03;
+            if (App.PropertyModelInstance.InignitionStatus)
+            {
+                data[6] = 0x02;
+            }
+            else
+            {
+                data[6] = 0x01;
+            }
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.InignitionStatus = true;
         }
 
     }

@@ -15,6 +15,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -128,9 +128,6 @@
     <Compile Include="Views\PlayMusicView.xaml.cs">
       <DependentUpon>PlayMusicView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PopUpBoxView.xaml.cs">
-      <DependentUpon>PopUpBoxView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\TestWindowView.xaml.cs">
       <DependentUpon>TestWindowView.xaml</DependentUpon>
     </Compile>
@@ -159,10 +156,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayMusicView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PopUpBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -219,7 +212,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Music\001_Bandari_-_碧涧流泉.mp3" />
-    <Content Include="Resources\Music\002_Bandari_-_变幻彩风_1.mp3" />
+    <Content Include="Resources\Music\002_Bandari_-_变幻彩风.mp3" />
     <Content Include="Resources\Music\003_Bandari_-_大海奔腾.mp3" />
     <Content Include="Resources\Music\004_Bandari_-_冬表树.mp3" />
     <Content Include="Resources\Music\005_Bandari_-_感觉完美.mp3" />
@@ -253,6 +246,14 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\PlayIcon.png" />
+    <Resource Include="Resources\Pictures\StopMusic.png" />
+    <Resource Include="Resources\Pictures\NextMusic.png" />
+    <Resource Include="Resources\Pictures\PlayByOne.png" />
+    <Resource Include="Resources\Pictures\PlayMusic.png" />
+    <Resource Include="Resources\Pictures\PreviousMusic.png" />
+    <Resource Include="Resources\Pictures\Random.png" />
+    <Resource Include="Resources\Pictures\Sequence.png" />
     <Resource Include="Resources\Pictures\Low.png" />
     <Resource Include="Resources\Pictures\Medium.png" />
     <Resource Include="Resources\Pictures\LowUnselected.png" />
@@ -275,6 +276,7 @@
     <Resource Include="Resources\Pictures\HighUnselected.png" />
     <Resource Include="Resources\Pictures\Change.png" />
     <Resource Include="Resources\Pictures\Inignition.png" />
+    <Resource Include="Resources\Pictures\CountDown.png" />
     <Content Include="Resources\Pictures\Loading.avi" />
     <Resource Include="Resources\Pictures\Loading.gif" />
     <Resource Include="Resources\Pictures\HandOperated.png" />
