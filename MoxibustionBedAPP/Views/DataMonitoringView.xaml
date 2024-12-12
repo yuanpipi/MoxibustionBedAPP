@@ -12,155 +12,162 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="227.01*"/>
+            <RowDefinition Height="26.31*"/>
+            <RowDefinition Height="167.56*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="62.46*"/>
+            <ColumnDefinition Width="17.54*"/>
+            <ColumnDefinition Width="374.02*"/>
+            <ColumnDefinition Width="35.5*"/>
+            <ColumnDefinition Width="62.46*"/>
+            <ColumnDefinition Width="17.54*"/>
+            <ColumnDefinition Width="238.46*"/>
+            <ColumnDefinition Width="42.24*"/>
+            <ColumnDefinition Width="93.32*"/>
         </Grid.ColumnDefinitions>
-        <Border CornerRadius="10" Grid.Row="0" Grid.Column="0" Background="DarkGray" Margin="20,20,10,15">
+
+        <Border CornerRadius="5.5" Grid.Row="0" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="温度参数" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            </TextBlock>
+        </Border>
+        <Border CornerRadius="5.5" Grid.Row="0" Grid.Column="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="25.9*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="25.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="14.5*"/>
+                    <ColumnDefinition Width="221.12*"/>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="28.18*"/>
+                    <ColumnDefinition Width="27.04*"/>
+                    <ColumnDefinition Width="14.5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="上舱温度" Grid.Row="1" FontSize="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="背部舱温度" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="腿部舱温度" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="预热温度" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="上舱温度:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="背部舱温度:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="腿部舱温度:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Rectangle Fill="White" Height="1" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="预热温度:" Grid.Row="7" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Temp.png" Stretch="None"/>
             </Grid>
         </Border>
-        <Border CornerRadius="10" Grid.Row="0" Grid.Column="1" Background="DarkGray" Margin="20,20,10,15">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="0.25*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="红外灯" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Margin="10,0,0,0"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
-                                    <Setter Property="Text" Value="关闭"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
-                                    <Setter Property="Text" Value="低档"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                    <Setter Property="Text" Value="中档"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                    <Setter Property="Text" Value="高档"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBlock Text="排烟系统" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
-                                    <Setter Property="Text" Value="关闭"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
-                                    <Setter Property="Text" Value="低档"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                    <Setter Property="Text" Value="中档"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
-                                    <Setter Property="Text" Value="高档"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBlock Text="净烟系统" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
-                                    <Setter Property="Text" Value="开启"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
-                                    <Setter Property="Text" Value="关闭"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-                <TextBlock Text="摇摆系统" Grid.Row="4" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="4" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
-                                    <Setter Property="Text" Value="开启"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
-                                    <Setter Property="Text" Value="关闭"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
-            </Grid>
+
+
+
+
+        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="0">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="治疗状态" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            </TextBlock>
         </Border>
-        <Border CornerRadius="10" Grid.Row="1" Grid.Column="0" Background="DarkGray" Margin="20,20,10,15">
+        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.25*"/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition Height="0.25*"/>
+                    <RowDefinition Height="25.9*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="25.9*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="14.5*"/>
+                    <ColumnDefinition Width="221.12*"/>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="28.18*"/>
+                    <ColumnDefinition Width="27.04*"/>
+                    <ColumnDefinition Width="14.5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="点火状态" Grid.Row="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+                <TextBlock Text="治疗状态:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionStatus}" Value="True">
-                                    <Setter Property="Text" Value="已点火"/>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="True">
+                                    <Setter Property="Text" Value="治疗中"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionStatus}" Value="False">
-                                    <Setter Property="Text" Value="未点火"/>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="False">
+                                    <Setter Property="Text" Value="未治疗"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="灸疗模式" Grid.Row="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="2" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+                <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="灸疗模式:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -174,339 +181,782 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="舱盖开关" Grid.Row="3" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                <TextBlock Grid.Row="3" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+                <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="舱盖开关:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="True">
-                                    <Setter Property="Text" Value="舱盖打开"/>
+                                    <Setter Property="Text" Value="打开"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="False">
-                                    <Setter Property="Text" Value="舱盖关闭"/>
+                                    <Setter Property="Text" Value="闭合"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+                <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Computer.png" Stretch="None"/>
             </Grid>
         </Border>
-        <Grid Grid.Row="1" Grid.Column="1"  Margin="20,20,10,15">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Rectangle Grid.Row="0" Grid.Column="0" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="1" Grid.Column="0" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="2" Grid.Column="0" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="3" Grid.Column="0" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="4" Grid.Column="0" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <TextBlock Text="背部灸柱高度" Grid.Row="5" Grid.Column="0" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
 
-            <Rectangle Grid.Row="0" Grid.Column="1" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="1" Grid.Column="1" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="2" Grid.Column="1" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="3" Grid.Column="1" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="4" Grid.Column="1" Fill="DarkGray" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <TextBlock Text="腿部灸柱高度" Grid.Row="5" Grid.Column="1" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
 
-            <Rectangle Grid.Row="2" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Green"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="3" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Green"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Orange"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <Rectangle Grid.Row="4" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Rectangle.Style>
-                    <Style TargetType="Rectangle">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Green"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Orange"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Setter Property="Fill" Value="Red"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Rectangle.Style>
-            </Rectangle>
-            <TextBlock Text="电池电量" Grid.Row="5" Grid.Column="2" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
 
-        </Grid>
+
+
+        <Border CornerRadius="5.5" Grid.Row="0" Grid.Column="4">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="辅助系统" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            </TextBlock>
+        </Border>
+        <Border CornerRadius="5.5" Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25.9*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="43.05*"/>
+                    <RowDefinition Height="25.9*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="14.5*"/>
+                    <ColumnDefinition Width="221.12*"/>
+                    <ColumnDefinition Width="55*"/>
+                    <ColumnDefinition Width="28.18*"/>
+                    <ColumnDefinition Width="27.04*"/>
+                    <ColumnDefinition Width="14.5*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="红外灯" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <Setter Property="Text" Value="低"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <Setter Property="Text" Value="中"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <Setter Property="Text" Value="高"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="排烟系统" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <Setter Property="Text" Value="低"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <Setter Property="Text" Value="中"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <Setter Property="Text" Value="高"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="净烟系统" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                    <Setter Property="Text" Value="开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Rectangle Fill="White" Height="1" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <TextBlock Text="摇摆系统" Grid.Row="7" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                    <Setter Property="Text" Value="开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                    <Setter Property="Text" Value="关"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Set.png" Stretch="None"/>
+            </Grid>
+        </Border>
+
+        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15.16*"/>
+                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="5.76*"/>
+                    <RowDefinition Height="34.02"/>
+                    <RowDefinition Height="8.71"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="37.62*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="39.14*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="64.81*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="39.14*"/>
+                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="28.34*"/>
+                    <ColumnDefinition Width="4.49*"/>
+                    <ColumnDefinition Width="30.11*"/>
+                    <ColumnDefinition Width="4.49*"/>
+                    <ColumnDefinition Width="22.51*"/>
+                </Grid.ColumnDefinitions>
+
+                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="5" Grid.Column="2" BorderThickness="1">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" Grid.Row="2" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" Grid.Row="3" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" Grid.Row="4" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" Grid.Row="5" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <TextBlock TextWrapping="Wrap" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="16" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    背部
+                    灸柱高度
+                </TextBlock>
+
+                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="5" Grid.Column="6" BorderThickness="1">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                </Border>
+                <Border CornerRadius="7.35" Grid.Row="1" Grid.Column="6" Width="33.75" Height="17.01" BorderThickness="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="2" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="3" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="4" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="5" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border.BorderBrush>
+                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                            <DrawingBrush.Drawing>
+                                <DrawingGroup>
+                                    <GeometryDrawing Brush="#A5744A">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,50,50" />
+                                                <RectangleGeometry Rect="50,50,50,50" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Border.BorderBrush>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Background" Value="#E06B28"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <TextBlock Text="腿部灸柱高度" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+
+                <!--<Rectangle Grid.Row="2" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle Grid.Row="3" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+                <Rectangle Grid.Row="4" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Green"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Fill" Value="Red"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>-->
+                <Image Grid.Row="1" Grid.RowSpan="5" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="../Resources/Pictures/Battery.png" Stretch="None"/>
+                <Grid Grid.Row="1" Grid.RowSpan="5" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                    <Rectangle Grid.Row="1">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Orange"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                    <Rectangle Grid.Row="2">
+                        <Rectangle.Style>
+                            <Style TargetType="Rectangle">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Green"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Orange"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Fill" Value="Red"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Rectangle.Style>
+                    </Rectangle>
+                </Grid>
+                <TextBlock Text="电池电量" Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="3" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+            </Grid>
+        </Border>
+
     </Grid>
 </UserControl>

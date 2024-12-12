@@ -1,0 +1,28 @@
+﻿<Window x:Class="MoxibustionBedAPP.Views.PopupBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
+        xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
+        mc:Ignorable="d"
+        Title="PopupBox" Height="80" Width="240" WindowStyle="None" Margin="0" Background="Transparent" AllowsTransparency="True">
+    <Window.DataContext>
+        <viewmodel:PopupBoxViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="5">
+        <Border.Background>
+            <SolidColorBrush Color="#FFA7A5A5" Opacity="0.5"/>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="White"/>
+            <Rectangle Grid.Row="1" Height="1" Fill="Gray"/>
+            <TextBlock Text="{Binding Message}" Grid.Row="2" Width="190" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="Black"/>
+        </Grid>
+    </Border>
+</Window>

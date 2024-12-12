@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.ViewModes;
 using MoxibustionBedAPP.Views;
@@ -27,12 +28,6 @@ namespace MoxibustionBedAPP
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            //显示加载界面
-            
-            LoadWindowView loadWindow = new LoadWindowView();
-
-            loadWindow.Show();
-            System.Threading.Thread.Sleep(2000);
 
             //将PropertyModel注册为资源
             PropertyModelInstance = new PropertyModel();
@@ -45,13 +40,13 @@ namespace MoxibustionBedAPP
             PropertyModelInstance.LegAlarmTemperature = 77;//腿部报警温度
             PropertyModelInstance.PreheadTime = 30;//预热时间
             PropertyModelInstance.MoxibustionTherapyTime = 90;//灸疗时间
-            PropertyModelInstance.InignitionTime = 120;//点火时间
+            PropertyModelInstance.InignitionTime = 20;//点火时间
             PropertyModelInstance.AutomaticLidOpening = true;//自动开盖
 
 
             PropertyModelInstance.MoxibustionTherapyMode = false;//灸疗模式
-            PropertyModelInstance.InfraredLamp = 1;//红外灯
-            PropertyModelInstance.SmokeExhaustSystem = 3;//排烟系统
+            PropertyModelInstance.InfraredLamp = 0;//红外灯
+            PropertyModelInstance.SmokeExhaustSystem = 0;//排烟系统
             PropertyModelInstance.SmokePurificationSystem=false;//净烟系统
             PropertyModelInstance.SwingSystem = false;//摇摆系统
             PropertyModelInstance.InignitionStatus = false;//点火模式
@@ -60,6 +55,7 @@ namespace MoxibustionBedAPP
             PropertyModelInstance.BackMoxibustionColumn_Height = 3;//背部灸柱高度
             PropertyModelInstance.LegMoxibustionColumn_Height = 2;//腿部灸柱高度
             PropertyModelInstance.BatteryLevel = 1;//电池电量
+            PropertyModelInstance.IsMoxibustionTherapyMode = false;//治疗状态
 
             //打开串口并且接受来自底层的数据
             SerialPortManager.Instance.OpenPort();
@@ -93,9 +89,26 @@ namespace MoxibustionBedAPP
                  Top = screen2.Bounds.Top,
                  //IsEnabled = false
              };
-            window1.Show();
-            window2.Show();
-            loadWindow.Close();
+
+
+            //显示加载界面
+
+            LoadWindowView loadWindow = new LoadWindowView();
+            loadWindow.Show();
+
+            var timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(3)
+            };
+            timer.Tick += (sender, args) =>
+            {
+                window1.Show();
+                window2.Show();
+                loadWindow.Close();
+                ((DispatcherTimer)sender).Stop();
+            };
+            timer.Start();
+
         }
     }
 }

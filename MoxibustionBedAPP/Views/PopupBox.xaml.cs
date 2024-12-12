@@ -10,21 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Views
 {
     /// <summary>
-    /// FunctionControlView.xaml 的交互逻辑
+    /// PopupBox.xaml 的交互逻辑
     /// </summary>
-    public partial class FunctionControlView : UserControl
+    public partial class PopupBox : Window
     {
-        public FunctionControlView()
+        public PopupBox()
         {
             InitializeComponent();
-            this.DataContext = new FunctionControlViewModel();
+            this.DataContext = new PopupBoxViewModel();
         }
     }
 }

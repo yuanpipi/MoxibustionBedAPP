@@ -363,7 +363,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 isMoxibustionTherapyMode = value;
-                OnPropertyChanged(nameof(MoxibustionTherapyMode));
+                OnPropertyChanged(nameof(IsMoxibustionTherapyMode));
             }
         }
 

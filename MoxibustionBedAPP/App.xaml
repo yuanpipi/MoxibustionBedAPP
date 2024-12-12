@@ -42,6 +42,8 @@
                         pack://application:,,,/Resources/Fonts/SourceHanSerifCN-SemiBold-7.otf#思源宋体 CN 半粗体
                     </FontFamily>
                 </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

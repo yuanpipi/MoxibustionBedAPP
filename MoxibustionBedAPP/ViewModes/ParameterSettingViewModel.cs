@@ -33,6 +33,11 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void SaveSettingMethod()
         {
+            //保存进文件
+
+
+
+            //发送至下位机
             byte[] data = new byte[18];
             data[0] = 0x55;
             data[1] = 0xAA;

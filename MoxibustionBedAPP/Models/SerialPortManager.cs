@@ -156,6 +156,23 @@ namespace MoxibustionBedAPP.Models
                     App.PropertyModelInstance.SmokePurificationSystem=bytes[14] == 0x02 ? false : true;//净烟系统
                     App.PropertyModelInstance.SwingSystem=bytes[15] == 0x02 ? false :true;//摇摆系统
                     App.PropertyModelInstance.Hatch=bytes[16] == 0x02 ? false :true;//舱盖
+
+
+                    if(App.PropertyModelInstance.Upper_CabinTemperature>=App.PropertyModelInstance.UpperAlarmCabinTemperature)
+                    {
+                        MessageBox.Show("上舱温度过高!");
+                    }
+                    if(App.PropertyModelInstance.BackTemperature>=App.PropertyModelInstance.BackAlarmTemperature)
+                    {
+                        MessageBox.Show("背部温度过高!");
+                    }
+                    if(App.PropertyModelInstance.LegTemperature>=App.PropertyModelInstance.LegAlarmTemperature)
+                    {
+                        MessageBox.Show("腿部温度过高!");
+                    }
+
+
+
                 }
                 else
                 {

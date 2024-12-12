@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="LoadWindowView" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized" ResizeMode="NoResize" Margin="0">
@@ -81,8 +82,9 @@
                         <!--<wfi:WindowsFormsHost Grid.Row="5" Grid.Column="2" Width="130" HorizontalAlignment="Left">
                             <winForms:PictureBox x:Name="pictureGifShow"/>
                         </wfi:WindowsFormsHost>-->
-                        <MediaElement x:Name="mediaElement" Height="22" Width="130" Source="../Resources/Pictures/Loading.avi" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" LoadedBehavior="Play" UnloadedBehavior="Manual" Panel.ZIndex="1"/>
-                        
+                        <!--<MediaElement x:Name="mediaElement" Height="22" Width="130" Source="../Resources/Pictures/Loading.avi" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" LoadedBehavior="Play" UnloadedBehavior="Manual" Panel.ZIndex="1"/>-->
+                        <hc:LoadingCircle Grid.Row="4" Grid.RowSpan="2"  Grid.Column="2" Width="130" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="White"/>
+
                         <Border CornerRadius="13.5" Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1" Width="130" HorizontalAlignment="Left">
                             <TextBlock Text="Wait a little while" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="11.68" Foreground="White"/>
                         </Border>

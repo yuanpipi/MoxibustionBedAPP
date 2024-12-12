@@ -51,6 +51,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>..\packages\HandyControl.3.5.1\lib\net48\HandyControl.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
     </Reference>
@@ -102,6 +105,7 @@
     <Compile Include="ViewModes\MainWindowViewModel.cs" />
     <Compile Include="ViewModes\ParameterSettingViewModel.cs" />
     <Compile Include="ViewModes\PlayMusicViewModel.cs" />
+    <Compile Include="ViewModes\PopupBoxViewModel.cs" />
     <Compile Include="ViewModes\TestWindowViewModel.cs" />
     <Compile Include="Views\DataMonitoringView.xaml.cs">
       <DependentUpon>DataMonitoringView.xaml</DependentUpon>
@@ -127,6 +131,9 @@
     </Compile>
     <Compile Include="Views\PlayMusicView.xaml.cs">
       <DependentUpon>PlayMusicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PopupBox.xaml.cs">
+      <DependentUpon>PopupBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestWindowView.xaml.cs">
       <DependentUpon>TestWindowView.xaml</DependentUpon>
@@ -156,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayMusicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PopupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -246,6 +257,11 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\Stop.png" />
+    <Resource Include="Resources\Pictures\Musicplayer.png" />
+    <Resource Include="Resources\Pictures\Title.png" />
+    <Resource Include="Resources\Pictures\Set.png" />
+    <Resource Include="Resources\Pictures\Temp.png" />
     <Resource Include="Resources\Pictures\PlayIcon.png" />
     <Resource Include="Resources\Pictures\StopMusic.png" />
     <Resource Include="Resources\Pictures\NextMusic.png" />
@@ -254,46 +270,23 @@
     <Resource Include="Resources\Pictures\PreviousMusic.png" />
     <Resource Include="Resources\Pictures\Random.png" />
     <Resource Include="Resources\Pictures\Sequence.png" />
-    <Resource Include="Resources\Pictures\Low.png" />
-    <Resource Include="Resources\Pictures\Medium.png" />
-    <Resource Include="Resources\Pictures\LowUnselected.png" />
-    <Resource Include="Resources\Pictures\MediumUnselected.png" />
-    <Resource Include="Resources\Pictures\OpenBtn.png.png" />
-    <Resource Include="Resources\Pictures\SmokeExhaustSystem.png" />
-    <Resource Include="Resources\Pictures\SmokePurificationSystem.png" />
-    <Resource Include="Resources\Pictures\SwingSystem.png" />
-    <Resource Include="Resources\Pictures\BackHigh.png" />
-    <Resource Include="Resources\Pictures\LegHigh.png" />
     <Resource Include="Resources\Pictures\BtnDownSelected.png" />
     <Resource Include="Resources\Pictures\BtnDownUnselected.png" />
     <Resource Include="Resources\Pictures\BtnUpSelected.png" />
     <Resource Include="Resources\Pictures\BtnUpUnselected.png" />
     <Resource Include="Resources\Pictures\BtnBackground.png" />
     <Resource Include="Resources\Pictures\InfraredLamp.png" />
-    <Resource Include="Resources\Pictures\Close.png" />
-    <Resource Include="Resources\Pictures\High.png" />
-    <Resource Include="Resources\Pictures\CloseUnselected.png" />
-    <Resource Include="Resources\Pictures\HighUnselected.png" />
-    <Resource Include="Resources\Pictures\Change.png" />
     <Resource Include="Resources\Pictures\Inignition.png" />
     <Resource Include="Resources\Pictures\CountDown.png" />
-    <Content Include="Resources\Pictures\Loading.avi" />
-    <Resource Include="Resources\Pictures\Loading.gif" />
+    <Resource Include="Resources\Pictures\Computer.png" />
+    <Resource Include="Resources\Pictures\Battery.png" />
     <Resource Include="Resources\Pictures\HandOperated.png" />
-    <Resource Include="Resources\Pictures\Accessibility.png" />
     <Resource Include="Resources\Pictures\Auto.png" />
-    <Resource Include="Resources\Pictures\ClickClose.png" />
-    <Resource Include="Resources\Pictures\ClickOpen.png" />
     <Resource Include="Resources\Pictures\Clock.png" />
     <Resource Include="Resources\Pictures\CloseBtn.png" />
-    <Resource Include="Resources\Pictures\CloseHatch.png" />
     <Resource Include="Resources\Pictures\HatchBtnBack.png" />
     <Resource Include="Resources\Pictures\HatchBtnBackSelected.png" />
-    <Resource Include="Resources\Pictures\HatchSet.png" />
-    <Resource Include="Resources\Pictures\HighSet.png" />
-    <Resource Include="Resources\Pictures\ModeChange.png" />
     <Resource Include="Resources\Pictures\OpenBtn.png" />
-    <Resource Include="Resources\Pictures\OpenHatch.png" />
     <Resource Include="Resources\Pictures\Prehead.png" />
     <Resource Include="Resources\Pictures\QuestionLogo.png" />
     <Resource Include="Resources\Pictures\SettingLogo.png" />
@@ -306,10 +299,8 @@
     <Resource Include="Resources\Pictures\FunctionControl.png" />
     <Resource Include="Resources\Pictures\Music.png" />
     <Resource Include="Resources\Pictures\Parameter.png" />
-    <Resource Include="Resources\Pictures\Loading.png" />
     <Resource Include="Resources\Pictures\HuaWeiIcon.png" />
     <Resource Include="Resources\Pictures\LoadPicture.png" />
-    <Resource Include="Resources\Pictures\Musicplayer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

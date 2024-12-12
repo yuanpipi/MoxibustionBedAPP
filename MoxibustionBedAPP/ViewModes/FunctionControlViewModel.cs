@@ -17,44 +17,24 @@ namespace MoxibustionBedAPP.ViewModes
     public class FunctionControlViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        ///// <summary>
-        ///// 排烟系统
-        ///// </summary>
-        //public RelayCommand SmokeExhaust { get; set; }
-        ///// <summary>
-        ///// 净烟系统
-        ///// </summary>
-        //public RelayCommand SmokePurification { get; set; }
-        ///// <summary>
-        ///// 摇摆系统
-        ///// </summary>
-        //public RelayCommand Swing { get; set; }
-        ///// <summary>
-        ///// 红外灯关闭
-        ///// </summary>
-        //public RelayCommand InfraredLampClose { get; set; }
-        ///// <summary>
-        ///// 红外灯低档
-        ///// </summary>
-        //public RelayCommand InfraredLampLow { get; set; }
-        ///// <summary>
-        ///// 红外灯中档
-        ///// </summary>
-        //public RelayCommand InfraredLampMedium { get; set; }
-        ///// <summary>
-        ///// 红外灯高档
-        ///// </summary>
-        //public RelayCommand InfraredLampHigh { get; set; }
         /// <summary>
         /// 公共指令发送方法
         /// </summary>
         public ICommand PublicFunction { get; set; }
 
+        /// <summary>
+        /// 预热
+        /// </summary>
         public ICommand Prehead { get; set; }
 
+        /// <summary>
+        /// 点火
+        /// </summary>
         public ICommand Inignition { get; set; }
 
+        /// <summary>
+        /// 倒计时
+        /// </summary>
         public static DispatcherTimer _timer; 
         public static bool _isCountingDown;
         public bool IsCountingDown
@@ -67,7 +47,133 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 开舱背景图
+        /// </summary>
+        private string _openHatch;
+        public string OpenHatch
+        {
+            get
+            {
+                return _openHatch;
+            }
+            set
+            {
+                _openHatch = value;
+                OnPropertyChanged(nameof(OpenHatch));
+            }
+        }
 
+        /// <summary>
+        /// 关舱背景图
+        /// </summary>
+        private string _closeHatch;
+        public string CloseHatch
+        {
+            get
+            {
+                return _closeHatch;
+            }
+            set
+            {
+                _closeHatch = value;
+                OnPropertyChanged(nameof(CloseHatch));
+            }
+        }
+
+        /// <summary>
+        /// 是否处于开舱状态
+        /// </summary>
+        private bool isOpen;
+        public bool IsOpen
+        {
+            get
+            {
+                return isOpen;
+            }
+            set
+            {
+                isOpen = value;
+                OnPropertyChanged(nameof(IsOpen));
+            }
+        }
+
+        /// <summary>
+        /// 是否处于关舱状态
+        /// </summary>
+        private bool isClose;
+        public bool IsClose
+        {
+            get
+            {
+                return isClose;
+            }
+            set
+            {
+                isClose = value;
+                OnPropertyChanged(nameof(IsClose));
+            }
+        }
+
+        /// <summary>
+        /// 是否选中排烟系统
+        /// </summary>
+        private bool isSmokeExhaust;
+        public bool IsSmokeExhaust
+        {
+            get
+            {
+                return isSmokeExhaust;
+            }
+            set
+            {
+                isSmokeExhaust = value;
+                OnPropertyChanged(nameof(IsSmokeExhaust));
+            }
+        }
+
+        /// <summary>
+        /// 排烟系统选中-》关闭净烟系统
+        /// </summary>
+        public ICommand RadioBtnOfSmoke { get; }
+
+
+        private bool _radioBtnCanUse;
+        public bool RadioBtnCanUse
+        {
+            get
+            {
+                return _radioBtnCanUse;
+            }
+            set
+            {
+                _radioBtnCanUse = value;
+                OnPropertyChanged(nameof(RadioBtnCanUse));
+            }
+        }
+
+
+        /// <summary>
+        /// 是否选中净烟系统
+        /// </summary>
+        private bool isSmokePurification;
+        public bool IsSmokePurification
+        {
+            get
+            {
+                return isSmokePurification;
+            }
+            set
+            {
+                isSmokePurification = value;
+                OnPropertyChanged(nameof(IsSmokePurification));
+            }
+        }
+
+        private DispatcherTimer timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(5)
+        };
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -76,17 +182,17 @@ namespace MoxibustionBedAPP.ViewModes
 
         public FunctionControlViewModel()
         {
-            //SmokeExhaust = new RelayCommand(SmokeExhaustSystemMethod);
-            //SmokePurification = new RelayCommand(SmokePurificationSystemMethod);
-            //Swing = new RelayCommand(SwingSystemMethod);
-            //InfraredLampClose = new RelayCommand(InfraredLampCloseMethod);
-            //InfraredLampLow = new RelayCommand(InfraredLampLowMethod);
-            //InfraredLampMedium = new RelayCommand(InfraredLampMediumMethod);
-            //InfraredLampHigh = new RelayCommand(InfraredLampHighMethod);
-            //PublicFunction = new RelayCommand(FunctionMethod);
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
             Prehead = new RelayCommand(PreheadMethod);
             Inignition= new RelayCommand(InignitionMethod);
+            OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+            CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+            RadioBtnOfSmoke = new RelayCommand(CloseSmokeSystem);
+            RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+            IsOpen = false;
+            IsClose=false;
+            IsSmokeExhaust = true;
+            IsSmokePurification = false;
         }
 
         /// <summary>
@@ -95,6 +201,17 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="parameter"></param>
         private void ExecuteFunctionMethod(object parameter)
         {
+            if(isClose&& (string)parameter== "OpenHatch")
+            {
+                MessageBox.Show("关舱过程中不能够开舱");
+                return;
+            }
+            if (IsOpen && (string)parameter == "CloseHatch")
+            {
+                MessageBox.Show("开舱过程中不能够关舱");
+                return;
+            }
+
             byte[] data = new byte[11];
             data[0] = 0x55;
             data[1] = 0xAA;
@@ -168,28 +285,54 @@ namespace MoxibustionBedAPP.ViewModes
                         data[6] = 0x01;
                         break;
                     }
-                case "HatchClickUp"://舱盖点开
-                    {
-                        data[5] = 0x08;
-                        data[6] = 0x01;
-                        break;
-                    }
-                case "HatchClickDown"://舱盖点关
-                    {
-                        data[5] = 0x09;
-                        data[6] = 0x01;
-                        break;
-                    }
+                //case "HatchClickUp"://舱盖点开
+                //    {
+                //        data[5] = 0x08;
+                //        data[6] = 0x01;
+                //        break;
+                //    }
+                //case "HatchClickDown"://舱盖点关
+                //    {
+                //        data[5] = 0x09;
+                //        data[6] = 0x01;
+                //        break;
+                //    }
                 case "OpenHatch"://一键开舱
                     {
-                        data[5] = 0x0A;
-                        data[6] = 0x01;
+                        if (IsOpen == false)
+                        {
+                            IsOpen = true;
+                            data[5] = 0x0A;
+                            data[6] = 0x01;
+                            OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                        }
+                        else
+                        {
+                            IsOpen = false;
+                            timer.Stop();
+                            data[5] = 0x0A;
+                            data[6] = 0x02;
+                            OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                        }
                         break;
                     }
                 case "CloseHatch"://一键关舱
                     {
-                        data[5] = 0x0B;
-                        data[6] = 0x01;
+                        if (IsClose == false)
+                        {
+                            IsClose = true;
+                            data[5] = 0x0B;
+                            data[6] = 0x01;
+                            CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                        }
+                        else
+                        {
+                            IsClose = false;
+                            timer.Stop();
+                            data[5] = 0x0B;
+                            data[6] = 0x02;
+                            CloseHatch= "../Resources/Pictures/HatchBtnBack.png";
+                        }
                         break;
                     }
                 case "SmokeExhaustClose"://关闭排烟系统
@@ -202,6 +345,7 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         data[5] = 0x0C;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.SmokeExhaustSystem = 1;//排烟系统
                         break;
                     }
                 case "SmokeExhaustMedium"://排烟系统中档
@@ -271,318 +415,33 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+
+            if(IsOpen)
+            {
+                timer.Tick += (sender, args) =>
+                {
+                    IsOpen = false;
+                    OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    ((DispatcherTimer)sender).Stop();
+                };
+                timer.Start();
+            }
+            if(IsClose)
+            {
+                timer.Tick += (sender, args) =>
+                {
+                    IsClose = false;
+                    CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    ((DispatcherTimer)sender).Stop();
+                };
+                timer.Start();
+            }
             //Thread.Sleep(1500);
             //if (!App.IsReceive)
             //{
             //    MessageBox.Show($"串口错误，无返回数据");
             //}
         }
-
-        ///// <summary>
-        ///// 排烟系统
-        ///// </summary>
-        //private void SmokeExhaustSystemMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0C;
-        //    if (App.PropertyModelInstance.SmokeExhaustSystem)
-        //    {
-        //        data[6] = 0x01;
-        //    }
-        //    else
-        //    {
-        //        data[6] = 0x02;
-        //    }
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 净烟系统
-        ///// </summary>
-        //private void SmokePurificationSystemMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0D;
-        //    if (App.PropertyModelInstance.SmokePurificationSystem)
-        //    {
-        //        data[6] = 0x01;
-        //    }
-        //    else
-        //    {
-        //        data[6] = 0x02;
-        //    }
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 摇摆系统
-        ///// </summary>
-        //private void SwingSystemMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0E;
-        //    if (App.PropertyModelInstance.SmokePurificationSystem)
-        //    {
-        //        data[6] = 0x01;
-        //    }
-        //    else
-        //    {
-        //        data[6] = 0x02;
-        //    }
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 红外灯关
-        ///// </summary>
-        //private void InfraredLampCloseMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0F;
-        //    data[6] = 0x00;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 红外灯低档
-        ///// </summary>
-        //private void InfraredLampLowMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0F;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 红外灯中档
-        ///// </summary>
-        //private void InfraredLampMediumMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0F;
-        //    data[6] = 0x02;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 红外灯高档
-        ///// </summary>
-        //private void InfraredLampHighMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0F;
-        //    data[6] = 0x03;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 背部点升
-        ///// </summary>
-        //private void BackMoxibustionColumnUpMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x04;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 背部点降
-        ///// </summary>
-        //private void BackMoxibustionColumnDownMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x05;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 腿部点升
-        ///// </summary>
-        //private void LegMoxibustionColumnUpMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x06;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 腿部点降
-        ///// </summary>
-        //private void LegMoxibustionColumnDownMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x07;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 舱盖点升
-        ///// </summary>
-        //private void HatchClickUpMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x08;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 舱盖点降
-        ///// </summary>
-        //private void HatchClickDownMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x09;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 一键开舱
-        ///// </summary>
-        //private void OpenHatchMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0A;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
-
-        ///// <summary>
-        ///// 一键关舱
-        ///// </summary>
-        //private void CloseHatchMethod()
-        //{
-        //    byte[] data = new byte[11];
-        //    data[0] = 0x55;
-        //    data[1] = 0xAA;
-        //    data[2] = 0x07;
-        //    data[3] = 0x01;
-        //    data[4] = 0x10;
-        //    data[5] = 0x0B;
-        //    data[6] = 0x01;
-        //    data[9] = 0x55;
-        //    data[10] = 0xAA;
-        //    data = SerialPortManager.CRC16(data);
-        //    SerialPortManager.Instance.SendData(data);
-        //}
 
         /// <summary>
         /// 预热选择
@@ -648,7 +507,40 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
             App.PropertyModelInstance.CountdownMinutes = 0;
             StartCountdown();
+            ////治疗倒计时
+            //App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
+            //IsCountingDown = true;
+            //App.PropertyModelInstance.CountdownSeconds = 0;
+            //App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
+            //StartCountdown();
         }
+
+
+        private void CloseSmokeSystem(object parameter)
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            
+            if ((string)parameter== "SmokeExhaust")
+            {
+                data[5] = 0x0D;
+                data[6] = 0x02;
+            }
+            else if((string)parameter== "SmokePurification")
+            {
+                data[5] = 0x0C;
+                data[6] = 0x00;
+            }
+            data[9] = 0x55;
+            data[10] = 0xAA;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+        }
+
 
 
         private void StartCountdown()
@@ -661,13 +553,6 @@ namespace MoxibustionBedAPP.ViewModes
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //App.PropertyModelInstance.CountdownSeconds--;
-            //if (App.PropertyModelInstance.CountdownSeconds < 0)
-            //{
-            //    _timer.Stop();
-            //    App.PropertyModelInstance.CountdownSeconds = 0;
-            //}
-
             if (App.PropertyModelInstance.CountdownSeconds > 0)
             {
                 App.PropertyModelInstance.CountdownSeconds--;
@@ -688,45 +573,20 @@ namespace MoxibustionBedAPP.ViewModes
                 else if(App.PropertyModelInstance.InignitionStatus == true)
                 {
                     App.PropertyModelInstance.InignitionStatus = false;
+                    //开始治疗后，舱盖控制模块不能控制
+                    App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
+                    RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+                    IsCountingDown = true;
+                    App.PropertyModelInstance.CountdownSeconds = 0;
+                    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
+                    StartCountdown();
+                }
+                else if(App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
+                {
+                    App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
+                    RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                 }
             }
         }
-
-        //private void Instance_DataReceived(object sender,string data)
-        //{
-        //    System.Windows.Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-        //    {
-        //        ReceivedData = data;
-        //    }));
-        //}
-
-        //private string _receivedData;
-        //public string ReceivedData
-        //{
-        //    get
-        //    {
-        //        return _receivedData;
-        //    }
-        //    set
-        //    {
-        //        _receivedData = value;
-        //        OnPropertyChanged("ReceivedData");
-        //    }
-        //}
-
-        //public void OpenSerialPort(string portName,int baudRate)
-        //{
-        //    SerialPortManager.Instance.OpenPort(portName, baudRate);
-        //}
-
-        //public void CloseSerialPort()
-        //{
-        //    SerialPortManager.Instance.ClosePort();
-        //}
-
-        //public void SendSerialData(string data)
-        //{
-        //   // SerialPortManager.Instance.SendData(data);
-        //}
     }
 }

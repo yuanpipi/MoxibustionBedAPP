@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
@@ -19,9 +20,9 @@
             <ColumnDefinition Width="169.74*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="203.74*"/>
-            <RowDefinition Height='11.52*'/>
-            <RowDefinition Height="203.74*"/>
+            <RowDefinition Height="226.77*"/>
+            <RowDefinition Height="15.48*"/>
+            <RowDefinition Height="177.75*"/>
         </Grid.RowDefinitions>
         <!--灸柱调节：背部点升点降、腿部点升点降-->
         <Border CornerRadius="25" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
@@ -67,11 +68,12 @@
                     <ColumnDefinition Width="28.41*"/>
                     <ColumnDefinition Width="39.03*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HighSet.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="13" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <TextBlock Text="高度调节" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
                 <!--<Image Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Source="../Resources/Pictures/BackHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Image Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/LegHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                <TextBlock Text="背部高度" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="腿部高度" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="背部升降" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="腿部升降" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Image Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
@@ -129,7 +131,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                
+
                 <Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown"/>
@@ -161,82 +163,210 @@
             </Border.Background>
             <Grid Grid.Row="2" Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="31.95*"/>
-                    <RowDefinition Height="1.65*"/>
-                    <RowDefinition Height="26.085*"/>
-                    <RowDefinition Height="22.23*"/>
-                    <RowDefinition Height="26.085*"/>
-                    <RowDefinition Height="6.23*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="6.21*"/>
-                    <RowDefinition Height="26.085*"/>
-                    <RowDefinition Height="22.23*"/>
-                    <RowDefinition Height="26.085*"/>
-                    <RowDefinition Height="8.1*"/>
+                    <RowDefinition Height="31.96*"/>
+                    <RowDefinition Height="20.865*"/>
+                    <RowDefinition Height="104.05*"/>
+                    <RowDefinition Height="20.865*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="9.5*"/>
-                    <ColumnDefinition Width="28.605*"/>
-                    <ColumnDefinition Width="3.61*"/>
-                    <ColumnDefinition Width="94.65*"/>
-                    <ColumnDefinition Width="3.61*"/>
-                    <ColumnDefinition Width="28.605*"/>
-                    <ColumnDefinition Width="14*"/>
-                    <ColumnDefinition Width="28.605*"/>
-                    <ColumnDefinition Width="3.61*"/>
-                    <ColumnDefinition Width="94.65*"/>
-                    <ColumnDefinition Width="3.61*"/>
-                    <ColumnDefinition Width="28.605*"/>
-                    <ColumnDefinition Width="8.34*"/>
+                    <ColumnDefinition Width="7.23*"/>
+                    <ColumnDefinition Width="164.16*"/>
+                    <ColumnDefinition Width="7.23*"/>
+                    <ColumnDefinition Width="164.16*"/>
+                    <ColumnDefinition Width="7.23*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/HatchSet.png" HorizontalAlignment="Left"/>
-                <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" Source="../Resources/Pictures/HatchBtnBack.png" HorizontalAlignment="Center">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickUp"/>
-                    </Image.InputBindings>
-                </Image>
-                <TextBlock Text="舱盖点开" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickUp"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
-                <Image Grid.Row="8" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" Source="../Resources/Pictures/HatchBtnBack.png" HorizontalAlignment="Center">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickDown"/>
-                    </Image.InputBindings>
-                </Image>
-                <TextBlock Text="舱盖点关" Grid.Row="8" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="HatchClickDown"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
-                <Rectangle Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" Fill="#73441A" Height="1"/>
-                <Rectangle Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="3" Fill="#73441A" Height="1"/>
-                <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/HatchBtnBack.png" HorizontalAlignment="Center">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
-                    </Image.InputBindings>
-                </Image>
-                <TextBlock Text="一键开舱" Grid.Row="2" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
-                <Image Grid.Row="8" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/HatchBtnBack.png" HorizontalAlignment="Center">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
-                    </Image.InputBindings>
-                </Image>
-                <TextBlock Text="一键关舱" Grid.Row="8" Grid.RowSpan="3" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
-                    <TextBlock.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
-                    </TextBlock.InputBindings>
-                </TextBlock>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <TextBlock Text="舱盖控制" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
+
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36.025*"/>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="36.025*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32.09*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="32.09*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding OpenHatch}">
+                        <Image.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
+                        </Image.InputBindings>
+                    </Image>
+                    <TextBlock Text="一键开舱" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
+                        </TextBlock.InputBindings>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="../Resources/Pictures/Stop.png">
+                        <Image.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
+                        </Image.InputBindings>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="停止" Grid.Row="1" Grid.Column="3" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
+                        </TextBlock.InputBindings>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+
+                <Grid Grid.Row="2" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36.025*"/>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="36.025*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="32.09*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="32.09*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding CloseHatch}">
+                        <Image.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
+                        </Image.InputBindings>
+                    </Image>
+                    <TextBlock Text="一键关舱" Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
+                        </TextBlock.InputBindings>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="../Resources/Pictures/Stop.png">
+                        <Image.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
+                        </Image.InputBindings>
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                    <TextBlock Text="停止" Grid.Row="1" Grid.Column="3" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
+                        </TextBlock.InputBindings>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Grid>
+
             </Grid>
         </Border>
 
-        <!--辅助系统操作：排烟、净烟、摇摆系统开关、红外线开关-->
-        <Border CornerRadius="25" Grid.Row="0" Grid.RowSpan="3" Grid.Column="2">
+        <!--高度调节模块覆盖-->
+        <Border CornerRadius="25" Grid.Row="0" Grid.Column="0">
+            <Border.Background>
+                <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
+        <!--舱盖控制模块覆盖-->
+        <Border CornerRadius="25" Grid.Row="2" Grid.Column="0">
+            <Border.Background>
+                <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
+        <!--系统功能模块操作：摇摆系统开关、红外线开关-->
+        <Border CornerRadius="25" Grid.Row="0" Grid.Column="2">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
                     <LinearGradientBrush.RelativeTransform>
@@ -258,17 +388,7 @@
                     <RowDefinition Height="10.34*"/>
                     <RowDefinition Height="22.32*"/>
                     <RowDefinition Height="10.34*"/>
-                    <RowDefinition Height="47.93*"/>
-                    <RowDefinition Height="10.34*"/>
-                    <RowDefinition Height="22.32*"/>
-                    <RowDefinition Height="10.34*"/>
                     <RowDefinition Height="41.54*"/>
-                    <RowDefinition Height="6.845*"/>
-                    <RowDefinition Height="10.34*"/>
-                    <RowDefinition Height="22.32*"/>
-                    <RowDefinition Height="10.34*"/>
-                    <RowDefinition Height="6.845*"/>
-                    <RowDefinition Height="34.23*"/>
                     <RowDefinition Height="6.845*"/>
                     <RowDefinition Height="10.34*"/>
                     <RowDefinition Height="22.32*"/>
@@ -286,8 +406,8 @@
                     <ColumnDefinition Width="18.88*"/>
                     <ColumnDefinition Width="19.71*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Accessibility.png" HorizontalAlignment="Left"/>
-
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <TextBlock Text="系统功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
                 <TextBlock Text="摇摆系统" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
@@ -307,30 +427,10 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
                     </Image.InputBindings>
                 </Image>
-                <!--<Image Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Source="../Resources/Pictures/SmokePurificationSystem.png"/>-->
-                <TextBlock Text="净烟系统" Grid.Row="6" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
-                <Image Grid.Row="6" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
-                    <Image.Style>
-                        <Style TargetType="Image">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
-                                    <Setter Property="Source" Value="../Resources/Pictures/OpenBtn.png"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
-                                    <Setter Property="Source" Value="../Resources/Pictures/CloseBtn.png"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Image.Style>
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
-                    </Image.InputBindings>
-                </Image>
 
-
-                <TextBlock Text="排烟系统" Grid.Row="11" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
-                <Image Grid.Row="11" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
-                <Grid Grid.Row="10" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
+                <TextBlock Text="红外灯" Grid.Row="7" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
+                <Image Grid.Row="7" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
+                <Grid Grid.Row="6" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="6.92*"/>
                         <ColumnDefinition Width="3.895*"/>
@@ -357,46 +457,51 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="2" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
+                        </Border.InputBindings>
+                    </Border>
                     <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
                         </Border.InputBindings>
                     </Border>
                     <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -404,49 +509,54 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="6" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
+                        </Border.InputBindings>
+                    </Border>
                     <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="3" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="低" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -455,46 +565,51 @@
 
                     <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="10" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
+                        </Border.InputBindings>
+                    </Border>
                     <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="9" Grid.ColumnSpan="3" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
                         </Border.InputBindings>
                     </Border>
                     <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -502,193 +617,258 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    <!--<Image Grid.Row="1" Grid.Column="14" Source="../Resources/Pictures/LowUnselected.png" VerticalAlignment="Center">
-                        <Image.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
-                        </Image.InputBindings>
-                    </Image>-->
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="14" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
+                        </Border.InputBindings>
+                    </Border>
                     <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="13" Grid.ColumnSpan="3" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </Border.InputBindings>
                     </Border>
-                    <!--<Image Grid.Row="1" Grid.Column="14" Source="../Resources/Pictures/Low.png" VerticalAlignment="Center">
-                        <Image.Style>
-                            <Style TargetType="Image">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>-->
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="高" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Border Grid.Row="10" Grid.RowSpan="5" Grid.Column="0" Grid.ColumnSpan="8">
-                    <Border.Background>
-                        <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
-                    </Border.Background>
-                    <Border.Style>
-                        <Style TargetType="Border">
+            </Grid>
+        </Border>
+
+        <!--系统功能模块覆盖-->
+        <Border CornerRadius="25" Grid.Row="0" Grid.Column="2">
+            <Border.Background>
+                <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
+        <!--除烟功能模块功能-->
+        <Border CornerRadius="25" Grid.Row="2" Grid.Column="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31.96*"/>
+                    <RowDefinition Height="12.22*"/>
+                    <RowDefinition Height="32*"/>
+                    <RowDefinition Height="18*"/>
+                    <RowDefinition Height="56.53*"/>
+                    <RowDefinition Height="27.03*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="31.775*"/>
+                    <ColumnDefinition Width="131.03*"/>
+                    <ColumnDefinition Width="24.39*"/>
+                    <ColumnDefinition Width="131.03*"/>
+                    <ColumnDefinition Width="31.775*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <TextBlock Text="除烟功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
+
+                <RadioButton Grid.Row="2" Grid.Column="1" Content="排烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokeExhaust}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokeExhaust" IsEnabled="{Binding RadioBtnCanUse}"/>
+                <RadioButton Grid.Row="2" Grid.Column="3" Content="净烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokePurification}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokePurification" IsEnabled="{Binding RadioBtnCanUse}"/>
+
+                <Image Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnBackground.png" Stretch="Fill"/>
+                <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                <DataTrigger Binding="{Binding IsSmokeExhaust}" Value="True">
                                     <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSmokeExhaust}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Border.Style>
-                </Border>
-                
-                
-                <TextBlock Text="红外灯" Grid.Row="17" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
-                <Image Grid.Row="17" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
-                <Grid Grid.Row="16" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
+                    </Grid.Style>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="6.92*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="23.39*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="6.92*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="23.39*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="6.92*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="23.39*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="6.92*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="23.39*"/>
-                        <ColumnDefinition Width="3.895*"/>
-                        <ColumnDefinition Width="6.92*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="61*"/>
+                        <ColumnDefinition Width="10.6125*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="9.99*"/>
-                        <RowDefinition Height="23.02*"/>
-                        <RowDefinition Height="9.99*"/>
+                        <RowDefinition Height="5.59*"/>
+                        <RowDefinition Height="45.35*"/>
+                        <RowDefinition Height="5.59*"/>
                     </Grid.RowDefinitions>
-                    <!--<Image Grid.Row="1" Grid.Column="2" Source="../Resources/Pictures/CloseUnselected.png" VerticalAlignment="Center">
-                        <Image.InputBindings>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="关" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                        <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
-                        </Image.InputBindings>
-                    </Image>-->
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
-                        <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
-                    <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" Background="#EFB684">
+                    <Border Grid.Row="1" Grid.Column="1" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustClose"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" CornerRadius="5.37" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampClose"/>
-                        </Border.InputBindings>
                     </Border>
-                    <!--<Image Grid.Row="1" Grid.Column="2" Source="../Resources/Pictures/Close.png" VerticalAlignment="Center">
-                        <Image.Style>
-                            <Style TargetType="Image">
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="关" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Image.Style>
-                    </Image>-->
-                    <TextBlock Text="关" Grid.Row="1" Grid.Column="2" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="低" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="3" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustLow"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3" CornerRadius="5.37" Background="#EFB684">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="低" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -697,100 +877,50 @@
                     </TextBlock>
 
 
-
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Grid.Row="1" Grid.Column="5" Text="中" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
-                    <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="3" Background="#EFB684">
-                        <Border.Style>
-                            <Style TargetType="Border">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
+                    <Border Grid.Row="1" Grid.Column="5" CornerRadius="5.37">
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustMedium"/>
                         </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="高" Grid.Row="1" Grid.Column="6" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-
-                    
-                    
-                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
-                        <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
-                    <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="9" Grid.ColumnSpan="3" Background="#EFB684">
+                    <Border Grid.Row="1" Grid.Column="5" CornerRadius="5.37" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampMedium"/>
-                        </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="中" Grid.Row="1" Grid.Column="10" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Grid.Row="1" Grid.Column="5" Text="中" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -798,56 +928,169 @@
                         </TextBlock.Style>
                     </TextBlock>
 
-                    
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="20" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                    <TextBlock Grid.Row="1" Grid.Column="7" Text="高" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
-                    <Border CornerRadius="5.37" Grid.Row="0" Grid.RowSpan="3" Grid.Column="13" Grid.ColumnSpan="3" Background="#EFB684">
+                    <Border Grid.Row="1" Grid.Column="7" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokeExhaustHigh"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="7" CornerRadius="5.37" Background="#EFB684">
                         <Border.Style>
                             <Style TargetType="Border">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Border.Style>
-                        <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
-                        </Border.InputBindings>
                     </Border>
-                    <TextBlock Text="低" Grid.Row="1" Grid.Column="14" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Grid.Row="1" Grid.Column="7" Text="高" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="0">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="1">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="1">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="2">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokeExhaustSystem}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="2">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InfraredLamp}" Value="3">
-                                        <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
+
                 </Grid>
+
+                <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSmokePurification}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSmokePurification}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="132.6125*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="132.6125*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5.59*"/>
+                        <RowDefinition Height="45.35*"/>
+                        <RowDefinition Height="5.59*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="关" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="1" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" CornerRadius="5.37" Background="#EFB684">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="关" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="开" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <Border Grid.Row="1" Grid.Column="3" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SmokePurificationSystem"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="3" CornerRadius="5.37" Background="#EFB684">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="开" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                </Grid>
+
+
+
             </Grid>
         </Border>
 
@@ -893,7 +1136,8 @@
                         <ColumnDefinition Width="29.09*"/>
                         <ColumnDefinition Width="23.945*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="../Resources/Pictures/ModeChange.png" HorizontalAlignment="Left"/>
+                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                    <TextBlock Text="模式切换" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
                     <Grid Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5">
                         <Grid.Background>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.95">
@@ -930,18 +1174,33 @@
                             </Style>
                         </Image.Style>
                     </Image>
-                    <!--<Image Grid.Row="6" Grid.Column="2" Source="../Resources/Pictures/Change.png">
-                        <Image.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
-                        </Image.InputBindings>
-                    </Image>-->
-                    <TextBlock Text="(点击切换)" Grid.Row="6" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="12" Foreground="#73441A">
+                    <TextBlock Text="(点击切换)" Grid.Row="5" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="15" Foreground="#73441A">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
                 </Grid>
             </Border>
+            <Border CornerRadius="15" Grid.Row="0" Grid.Column="0">
+                <Border.Background>
+                    <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+                </Border.Background>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
 
 
             <Border CornerRadius="15" Grid.Row="2">
@@ -982,13 +1241,33 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                         </Image.InputBindings>
                     </Image>
-                    <TextBlock Text="预热" Grid.Row="2" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
+                    <TextBlock Text="预热" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
                 </Grid>
             </Border>
+            <Border CornerRadius="15" Grid.Row="2" Grid.Column="0">
+                <Border.Background>
+                    <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+                </Border.Background>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
 
 
             <Border CornerRadius="15" Grid.Row="4">
@@ -1029,14 +1308,14 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                         </Image.InputBindings>
                     </Image>
-                    <TextBlock Text="点火" Grid.Row="2" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Text="点火" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                         </TextBlock.InputBindings>
                     </TextBlock>
                 </Grid>
             </Border>
-            
+
         </Grid>
     </Grid>
 </UserControl>
