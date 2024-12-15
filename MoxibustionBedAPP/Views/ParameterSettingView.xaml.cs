@@ -26,5 +26,49 @@ namespace MoxibustionBedAPP.Views
             InitializeComponent();
             DataContext = new ParameterSettingViewModel();
         }
+
+        private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            e.Handled= true;
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (App.PropertyModelInstance.UpperAlarmCabinTemperature < App.PropertyModelInstance.Upper_CabinTemperature)
+            {
+                App.PropertyModelInstance.UpperAlarmCabinTemperature = App.PropertyModelInstance.Upper_CabinTemperature;
+            }
+        }
+
+        private void Slider_ValueChanged_1(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            App.PropertyModelInstance.UpperAlarmCabinTemperature = App.PropertyModelInstance.Upper_CabinTemperature;
+        }
+
+        private void Slider_ValueChanged_2(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            App.PropertyModelInstance.BackAlarmTemperature = App.PropertyModelInstance.BackTemperature;
+        }
+
+        private void Slider_ValueChanged_3(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (App.PropertyModelInstance.BackAlarmTemperature < App.PropertyModelInstance.BackTemperature)
+            {
+                App.PropertyModelInstance.BackAlarmTemperature = App.PropertyModelInstance.BackTemperature;
+            }
+        }
+
+        private void Slider_ValueChanged_4(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            App.PropertyModelInstance.LegAlarmTemperature=App.PropertyModelInstance.LegTemperature;
+        }
+
+        private void Slider_ValueChanged_5(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(App.PropertyModelInstance.LegAlarmTemperature < App.PropertyModelInstance.LegTemperature)
+            {
+                App.PropertyModelInstance.LegAlarmTemperature = App.PropertyModelInstance.LegTemperature;
+            }
+        }
     }
 }

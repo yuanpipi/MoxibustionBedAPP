@@ -47,10 +47,10 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
 
-        public static void ShowPopupBox(string title,string message)
+        public static void ShowPopupBox(string message)
         {
             PopupBox popupBox = new PopupBox();
-
+            popupBox.PopupBoxViewModel.Message = message;
             popupBox.Show();
             count++;
             var timer = new DispatcherTimer

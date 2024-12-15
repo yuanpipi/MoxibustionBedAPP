@@ -7,7 +7,7 @@
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="420" d:DesignWidth="931">
+             d:DesignHeight="419.92" d:DesignWidth="931.44">
     <UserControl.Resources>
         <viewmodel:FunctionControlViewModel x:Key="FunctionControlViewModel"/>
     </UserControl.Resources>
@@ -85,7 +85,7 @@
                     </Image.InputBindings>
                 </Image>
 
-                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSerifCN-Bold}">
+                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -108,7 +108,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSerifCN-Bold}">
+                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -1088,9 +1088,6 @@
                     </TextBlock>
 
                 </Grid>
-
-
-
             </Grid>
         </Border>
 
@@ -1098,10 +1095,10 @@
         <Grid Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="121.59*"/>
-                <RowDefinition Height="20.93*"/>
+                <RowDefinition Height="15.18*"/>
                 <RowDefinition Height="90*"/>
-                <RowDefinition Height="20.93*"/>
-                <RowDefinition Height="166.55*"/>
+                <RowDefinition Height="15.48*"/>
+                <RowDefinition Height="178*"/>
             </Grid.RowDefinitions>
             <Border CornerRadius="15" Grid.Row="0">
                 <Border.Background>
@@ -1157,7 +1154,7 @@
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
                         </Grid.InputBindings>
                     </Grid>
-                    <Image Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Image Grid.Row="2" Grid.RowSpan="3"  Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="TreatmentMode"/>
                         </Image.InputBindings>
@@ -1200,8 +1197,6 @@
                     </Style>
                 </Border.Style>
             </Border>
-
-
 
             <Border CornerRadius="15" Grid.Row="2">
                 <Border.InputBindings>
@@ -1267,8 +1262,6 @@
                     </Style>
                 </Border.Style>
             </Border>
-
-
 
             <Border CornerRadius="15" Grid.Row="4">
                 <Border.InputBindings>

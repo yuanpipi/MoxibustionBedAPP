@@ -20,10 +20,12 @@ namespace MoxibustionBedAPP.Views
     /// </summary>
     public partial class PopupBox : Window
     {
+        public PopupBoxViewModel PopupBoxViewModel { get; set; }
         public PopupBox()
         {
             InitializeComponent();
-            this.DataContext = new PopupBoxViewModel();
+            PopupBoxViewModel = new PopupBoxViewModel();
+            this.DataContext = PopupBoxViewModel;
         }
     }
 }

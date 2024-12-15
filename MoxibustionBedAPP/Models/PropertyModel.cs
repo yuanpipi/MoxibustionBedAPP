@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Forms;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -92,6 +93,8 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+
+
         /// <summary>
         /// 上舱报警温度
         /// 0~100
@@ -143,6 +146,110 @@ namespace MoxibustionBedAPP.Models
             {
                 legAlarmTemperature = value;
                 OnPropertyChanged(nameof(LegAlarmTemperature));
+            }
+        }
+
+
+
+        /// <summary>
+        /// 上舱实时温度
+        /// </summary>
+        private int upper_CabinTemperatureNow;
+        public int Upper_CabinTemperatureNow
+        {
+            get
+            {
+                return upper_CabinTemperatureNow;
+            }
+            set
+            {
+                upper_CabinTemperatureNow = value;
+                OnPropertyChanged(nameof(Upper_CabinTemperatureNow));
+            }
+        }
+
+        /// <summary>
+        /// 背部实时温度
+        /// </summary>
+        private int backTemperatureNow;
+        public int BackTemperatureNow
+        {
+            get
+            {
+                return backTemperatureNow;
+            }
+            set
+            {
+                backTemperatureNow = value;
+                OnPropertyChanged(nameof(BackTemperatureNow));
+            }
+        }
+
+        /// <summary>
+        /// 腿部实时温度
+        /// </summary>
+        private int legTemperatureNow;
+        public int LegTemperatureNow
+        {
+            get
+            {
+                return legTemperatureNow;
+            }
+            set
+            {
+                legTemperatureNow = value;
+                OnPropertyChanged(nameof(LegTemperatureNow));
+            }
+        }
+
+        /// <summary>
+        /// 上舱温度是否报警
+        /// </summary>
+        private bool isUpperAlarm;
+        public bool IsUpperAlarm
+        {
+            get
+            {
+                return isUpperAlarm;
+            }
+            set
+            {
+                isUpperAlarm = value;
+                OnPropertyChanged(nameof(IsUpperAlarm));
+            }
+        }
+
+        /// <summary>
+        /// 背部温度是否报警
+        /// </summary>
+        private bool isBackAlarm;
+        public bool IsBackAlarm
+        {
+            get
+            {
+                return isBackAlarm;
+            }
+            set
+            {
+                isBackAlarm = value;
+                OnPropertyChanged(nameof(IsBackAlarm));
+            }
+        }
+
+        /// <summary>
+        /// 腿部温度是否报警
+        /// </summary>
+        private bool isLegAlarm;
+        public bool IsLegAlarm
+        {
+            get
+            {
+                return isLegAlarm;
+            }
+            set
+            {
+                isLegAlarm = value;
+                OnPropertyChanged(nameof(IsLegAlarm));
             }
         }
 
@@ -210,6 +317,8 @@ namespace MoxibustionBedAPP.Models
                 OnPropertyChanged(nameof(BatteryLevel));
             }
         }
+
+
 
         /// <summary>
         /// 红外线
@@ -291,6 +400,8 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+
+
         /// <summary>
         /// 舱盖
         /// True：舱盖打开
@@ -312,7 +423,7 @@ namespace MoxibustionBedAPP.Models
 
         /// <summary>
         /// 点火模式
-        /// True：已点火
+        /// True：点火中
         /// False：未点火
         /// </summary>
         private bool ignitionStatus;
@@ -326,6 +437,25 @@ namespace MoxibustionBedAPP.Models
             {
                 ignitionStatus = value;
                 OnPropertyChanged(nameof(InignitionStatus));
+            }
+        }
+
+        /// <summary>
+        /// 点火状态
+        /// True：已点火
+        /// False：未点火
+        /// </summary>
+        private bool isIgnitionStatus;
+        public bool IsInignitionStatus
+        {
+            get
+            {
+                return isIgnitionStatus;
+            }
+            set
+            {
+                isIgnitionStatus = value;
+                OnPropertyChanged(nameof(IsInignitionStatus));
             }
         }
 
@@ -436,7 +566,7 @@ namespace MoxibustionBedAPP.Models
             set
             {
                 moxibustionTherapyTime = value;
-                OnPropertyChanged(nameof(MoxibustionTherapyMode));
+                OnPropertyChanged(nameof(MoxibustionTherapyTime));
             }
         }
 
@@ -484,6 +614,26 @@ namespace MoxibustionBedAPP.Models
             {
                 _countdownMinutes = value;
                 OnPropertyChanged(nameof(CountdownMinutes));
+            }
+        }
+
+
+        /// <summary>
+        /// 是否是净烟系统
+        /// true:净烟系统
+        /// false:排烟系统
+        /// </summary>
+        private bool isSmokePurificationSystem;
+        public bool IsSmokePurificationSystem
+        {
+            get
+            {
+                return isSmokePurificationSystem;
+            }
+            set
+            {
+                isSmokePurificationSystem = value;
+                OnPropertyChanged(nameof (IsSmokePurificationSystem));
             }
         }
 

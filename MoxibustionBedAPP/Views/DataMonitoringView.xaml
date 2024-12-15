@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1026">
+             d:DesignHeight="419.92" d:DesignWidth="931.44">
     <UserControl.Resources>
         <viewmodel:DataMonitoringViewModel x:Key="DataMonitoringViewModel"/>
     </UserControl.Resources>
@@ -43,7 +43,7 @@
                     <GradientStop Color="#FFF1C09E" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="温度参数" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="系统功能" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
             </TextBlock>
         </Border>
         <Border CornerRadius="5.5" Grid.Row="0" Grid.Column="2">
@@ -81,23 +81,75 @@
                     <ColumnDefinition Width="27.04*"/>
                     <ColumnDefinition Width="14.5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="上舱温度:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="治疗倒计时:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Span>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="22"/>
+                        <Run Text="min" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="22"/>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="22"/>
+                        <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="22"/>
+                    </Span>
+                </TextBlock>
+                
                 <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <TextBlock Text="背部舱温度:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="灸疗模式:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="True">
+                                    <Setter Property="Text" Value="自动"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="False">
+                                    <Setter Property="Text" Value="手动"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!--<TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperatureNow,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>-->
+                
                 <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <TextBlock Text="腿部舱温度:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="舱盖开关:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="True">
+                                    <Setter Property="Text" Value="打开"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="False">
+                                    <Setter Property="Text" Value="闭合"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!--<TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperatureNow,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>-->
+                
                 <Rectangle Fill="White" Height="1" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <TextBlock Text="预热温度:" Grid.Row="7" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="点火状态:" Grid.Row="7" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsInignitionStatus}" Value="True">
+                                    <Setter Property="Text" Value="已点火"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsInignitionStatus}" Value="False">
+                                    <Setter Property="Text" Value="未点火"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!--<TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>-->
                 <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Temp.png" Stretch="None"/>
             </Grid>
         </Border>
-
-
-
 
         <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="0">
             <Border.Background>
@@ -114,7 +166,7 @@
                     <GradientStop Color="#FFF1C09E" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock Text="治疗状态" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Text="实时温度" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
             </TextBlock>
         </Border>
         <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="2">
@@ -150,8 +202,25 @@
                     <ColumnDefinition Width="27.04*"/>
                     <ColumnDefinition Width="14.5*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="治疗状态:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Text="上舱温度:" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsUpperAlarm}" Value="true">
+                                    <Setter Property="Foreground" Value="#E06B28"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsUpperAlarm}" Value="false">
+                                    <Setter Property="Foreground" Value="#73441A"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                
+                <!--<TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -164,10 +233,28 @@
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
-                </TextBlock>
+                </TextBlock>-->
+                
                 <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <TextBlock Text="灸疗模式:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Text="背部舱温度:" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsBackAlarm}" Value="true">
+                                    <Setter Property="Foreground" Value="#E06B28"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsBackAlarm}" Value="false">
+                                    <Setter Property="Foreground" Value="#73441A"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                
+                <!--<TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -180,10 +267,28 @@
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
-                </TextBlock>
+                </TextBlock>-->
+                
                 <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <TextBlock Text="舱盖开关:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Text="腿部舱温度:" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsLegAlarm}" Value="true">
+                                    <Setter Property="Foreground" Value="#E06B28"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsLegAlarm}" Value="false">
+                                    <Setter Property="Foreground" Value="#73441A"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                
+                <!--<TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -196,7 +301,8 @@
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
-                </TextBlock>
+                </TextBlock>-->
+                
                 <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Computer.png" Stretch="None"/>
             </Grid>
         </Border>
@@ -259,7 +365,7 @@
                     <ColumnDefinition Width="14.5*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="红外灯" Grid.Row="1" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -281,7 +387,7 @@
                 </TextBlock>
                 <Rectangle Fill="White" Height="1" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
                 <TextBlock Text="排烟系统" Grid.Row="3" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Grid.Row="3" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -303,7 +409,7 @@
                 </TextBlock>
                 <Rectangle Fill="White" Height="1" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
                 <TextBlock Text="净烟系统" Grid.Row="5" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Grid.Row="5" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -319,7 +425,7 @@
                 </TextBlock>
                 <Rectangle Fill="White" Height="1" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
                 <TextBlock Text="摇摆系统" Grid.Row="7" Grid.Column="1" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
-                <TextBlock Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
+                <TextBlock Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -337,7 +443,26 @@
             </Grid>
         </Border>
 
-        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
+
+        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="4">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                            <RotateTransform Angle="-135" CenterX="0.5" CenterY="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF985C33"/>
+                    <GradientStop Color="#FFF1C09E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <TextBlock Text="灸柱高度" Foreground="#73441A" TextWrapping="Wrap" Width="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center">
+            </TextBlock>
+        </Border>
+        <Border CornerRadius="5.5" Grid.Row="2" Grid.Column="6" Grid.ColumnSpan="3">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.37">
                     <LinearGradientBrush.RelativeTransform>
@@ -367,13 +492,13 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="37.62*"/>
-                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="39.14*"/>
-                    <ColumnDefinition Width="12*"/>
-                    <ColumnDefinition Width="64.81*"/>
-                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="32.81*"/>
+                    <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="39.14*"/>
-                    <ColumnDefinition Width="12*"/>
+                    <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="28.34*"/>
                     <ColumnDefinition Width="4.49*"/>
                     <ColumnDefinition Width="30.11*"/>
@@ -594,10 +719,7 @@
                         </Style>
                     </Border.Style>
                 </Border>
-                <TextBlock TextWrapping="Wrap" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="16" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}">
-                    背部
-                    灸柱高度
-                </TextBlock>
+                <TextBlock Text="背部灸盘" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="20" Foreground="#73441A" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
 
                 <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="5" Grid.Column="6" BorderThickness="1">
                     <Border.BorderBrush>
@@ -812,76 +934,10 @@
                         </Style>
                     </Border.Style>
                 </Border>
-                <TextBlock Text="腿部灸柱高度" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="腿部灸盘" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
 
-                <!--<Rectangle Grid.Row="2" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Rectangle.Style>
-                        <Style TargetType="Rectangle">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Green"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
-                </Rectangle>
-                <Rectangle Grid.Row="3" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Rectangle.Style>
-                        <Style TargetType="Rectangle">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Green"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Orange"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
-                </Rectangle>
-                <Rectangle Grid.Row="4" Grid.Column="2" Width="40" Height="20" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Rectangle.Style>
-                        <Style TargetType="Rectangle">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Green"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Orange"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                    <Setter Property="Fill" Value="Red"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Rectangle.Style>
-                </Rectangle>-->
-                <Image Grid.Row="1" Grid.RowSpan="5" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="../Resources/Pictures/Battery.png" Stretch="None"/>
-                <Grid Grid.Row="1" Grid.RowSpan="5" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
+                <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="../Resources/Pictures/Battery.png" Stretch="None"/>
+                <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -893,7 +949,7 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Green"/>
+                                        <Setter Property="Fill" Value="#58AA4A"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -914,11 +970,11 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Green"/>
+                                        <Setter Property="Fill" Value="#58AA4A"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Orange"/>
+                                        <Setter Property="Fill" Value="#C7A323"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -936,15 +992,15 @@
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="3">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Green"/>
+                                        <Setter Property="Fill" Value="#58AA4A"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="2">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Orange"/>
+                                        <Setter Property="Fill" Value="#C7A323"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BatteryLevel}" Value="1">
                                         <Setter Property="Visibility" Value="Visible"/>
-                                        <Setter Property="Fill" Value="Red"/>
+                                        <Setter Property="Fill" Value="#E06B28"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
                                         <Setter Property="Visibility" Value="Hidden"/>
@@ -954,7 +1010,7 @@
                         </Rectangle.Style>
                     </Rectangle>
                 </Grid>
-                <TextBlock Text="电池电量" Grid.Row="7" Grid.Column="9" Grid.ColumnSpan="3" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="蓄电池电量" TextWrapping="Wrap" Grid.Row="5" Grid.RowSpan="3" Grid.Column="9" Grid.ColumnSpan="3" FontSize="14" Foreground="#73441A" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
             </Grid>
         </Border>
 

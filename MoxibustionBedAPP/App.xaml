@@ -42,6 +42,41 @@
                         pack://application:,,,/Resources/Fonts/SourceHanSerifCN-SemiBold-7.otf#思源宋体 CN 半粗体
                     </FontFamily>
                 </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Bold">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Bold.otf#思源黑体 CN 粗体
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-ExtraLight">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-ExtraLight.otf#思源黑体 CN 细体
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Heavy">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Heavy.otf#思源黑体 CN 黑体
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Light">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Light.otf#思源黑体 CN 细体
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Medium">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Medium.otf#思源黑体 CN 中等
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Normal">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Normal.otf#思源黑体 CN 半细体
+                    </FontFamily>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <FontFamily x:Key="SourceHanSansCN-Regular">
+                        pack://application:,,,/Resources/Fonts/SourceHanSansCN-Regular.otf#思源黑体 CN 常规
+                    </FontFamily>
+                </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>

@@ -8,6 +8,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Configuration;
+using MoxibustionBedAPP.Views;
+using System.Windows.Threading;
+using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -145,9 +148,9 @@ namespace MoxibustionBedAPP.Models
             {
                 if(bytes[5]==0x12)//监控数据
                 {
-                    App.PropertyModelInstance.Upper_CabinTemperature = Convert.ToInt16(bytes[6]);//上舱温度
-                    App.PropertyModelInstance.BackTemperature= Convert.ToInt16(bytes[7]);//背部温度
-                    App.PropertyModelInstance.LegTemperature= Convert.ToInt16(bytes[8]);//腿部温度
+                    App.PropertyModelInstance.Upper_CabinTemperatureNow = Convert.ToInt16(bytes[6]);//上舱温度
+                    App.PropertyModelInstance.BackTemperatureNow= Convert.ToInt16(bytes[7]);//背部温度
+                    App.PropertyModelInstance.LegTemperatureNow= Convert.ToInt16(bytes[8]);//腿部温度
                     App.PropertyModelInstance.BackMoxibustionColumn_Height=Convert.ToInt16(bytes[9]);//背部灸柱高度
                     App.PropertyModelInstance.LegMoxibustionColumn_Height = Convert.ToInt16(bytes[10]);//腿部灸柱高度
                     App.PropertyModelInstance.BatteryLevel= Convert.ToInt16(bytes[11]);//电池电量
@@ -158,19 +161,32 @@ namespace MoxibustionBedAPP.Models
                     App.PropertyModelInstance.Hatch=bytes[16] == 0x02 ? false :true;//舱盖
 
 
-                    if(App.PropertyModelInstance.Upper_CabinTemperature>=App.PropertyModelInstance.UpperAlarmCabinTemperature)
+                    if(App.PropertyModelInstance.Upper_CabinTemperatureNow >= App.PropertyModelInstance.UpperAlarmCabinTemperature)
                     {
-                        MessageBox.Show("上舱温度过高!");
+                        App.PropertyModelInstance.IsUpperAlarm = true;
                     }
-                    if(App.PropertyModelInstance.BackTemperature>=App.PropertyModelInstance.BackAlarmTemperature)
+                    else
                     {
-                        MessageBox.Show("背部温度过高!");
-                    }
-                    if(App.PropertyModelInstance.LegTemperature>=App.PropertyModelInstance.LegAlarmTemperature)
-                    {
-                        MessageBox.Show("腿部温度过高!");
+                        App.PropertyModelInstance.IsUpperAlarm= false;
                     }
 
+                    if(App.PropertyModelInstance.BackTemperatureNow>=App.PropertyModelInstance.BackAlarmTemperature)
+                    {
+                        App.PropertyModelInstance.IsBackAlarm = true;
+                    }
+                    else
+                    {
+                        App.PropertyModelInstance.IsBackAlarm = false;
+                    }
+
+                    if(App.PropertyModelInstance.LegTemperatureNow>=App.PropertyModelInstance.LegAlarmTemperature)
+                    {
+                        App.PropertyModelInstance.IsLegAlarm = true;
+                    }
+                    else
+                    {
+                        App.PropertyModelInstance.IsLegAlarm= false;
+                    }
 
 
                 }
@@ -183,7 +199,7 @@ namespace MoxibustionBedAPP.Models
                     }
                     else if(bytes[6] == 0x02)
                     {
-                        MessageBox.Show("操作失败，请重新操作");
+                        PopupBoxViewModel.ShowPopupBox("操作失败，请重新操作");
                     }
                     //switch(bytes[5])
                     //{
@@ -222,7 +238,7 @@ namespace MoxibustionBedAPP.Models
             }
             else
             {
-                MessageBox.Show($"数据错误！");
+                PopupBoxViewModel.ShowPopupBox($"数据错误！");
             }
         }
 
@@ -240,17 +256,17 @@ namespace MoxibustionBedAPP.Models
                     Thread.Sleep(500);
                     if (App.IsReceive == false)
                     {
-                        MessageBox.Show($"串口错误，无应答数据");
+                        PopupBoxViewModel.ShowPopupBox($"串口错误，无应答数据");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"数据发送失败: {ex.Message}");
+                    PopupBoxViewModel.ShowPopupBox($"数据发送失败: {ex.Message}");
                 }
             }
             else
             {
-                MessageBox.Show($"串口未打开");
+                PopupBoxViewModel.ShowPopupBox($"串口未打开");
             }
         }
 

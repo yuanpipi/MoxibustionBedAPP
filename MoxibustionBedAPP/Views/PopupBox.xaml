@@ -6,23 +6,36 @@
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
         mc:Ignorable="d"
-        Title="PopupBox" Height="80" Width="240" WindowStyle="None" Margin="0" Background="Transparent" AllowsTransparency="True">
+        Title="PopupBox" Height="218.86" Width="373.52" WindowStyle="None" Margin="0" Background="Transparent" AllowsTransparency="True" WindowStartupLocation="CenterScreen">
     <Window.DataContext>
         <viewmodel:PopupBoxViewModel/>
     </Window.DataContext>
-    <Border CornerRadius="5">
+    <Border CornerRadius="28.17">
         <Border.Background>
-            <SolidColorBrush Color="#FFA7A5A5" Opacity="0.5"/>
+            <SolidColorBrush Color="#403933" Opacity="0.9"/>
         </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1"/>
-                <RowDefinition Height="7*"/>
+                <RowDefinition Height="48.41*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="18.84"/>
+                <RowDefinition Height="60*"/>
+                <RowDefinition Height="51.61*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Title}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="White"/>
-            <Rectangle Grid.Row="1" Height="1" Fill="Gray"/>
-            <TextBlock Text="{Binding Message}" Grid.Row="2" Width="190" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="Black"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="82.58*"/>
+                <ColumnDefinition Width="24.15*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="9.68*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="34.53*"/>
+                <ColumnDefinition Width="82.58*"/>
+                <ColumnDefinition Width="20*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/IMess.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Text="提示!" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="27" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+            <TextBlock Text="{Binding Message}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White"/>
         </Grid>
     </Border>
 </Window>

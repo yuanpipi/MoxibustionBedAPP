@@ -48,5 +48,10 @@ namespace MoxibustionBedAPP.Views
             get { return DataContext; }
             set { DataContext = value; }
         }
+
+        private void MusicList_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
