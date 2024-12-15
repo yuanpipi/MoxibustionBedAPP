@@ -41,7 +41,7 @@ namespace MoxibustionBedAPP.Models
             _serialPort = new SerialPort()
             {
                 PortName = ConfigurationManager.AppSettings["SerialPortName"],//"COM1"
-                BaudRate = int.Parse(ConfigurationManager.AppSettings["BaudRate"]),//9600
+                BaudRate = int.Parse(ConfigurationManager.AppSettings["BaudRate"]),//115200
                 Parity = Parity.None,
                 DataBits = 8,
                 StopBits = StopBits.One,
@@ -161,7 +161,7 @@ namespace MoxibustionBedAPP.Models
                     App.PropertyModelInstance.Hatch=bytes[16] == 0x02 ? false :true;//舱盖
 
 
-                    if(App.PropertyModelInstance.Upper_CabinTemperatureNow >= App.PropertyModelInstance.UpperAlarmCabinTemperature)
+                    if(App.PropertyModelInstance.Upper_CabinTemperatureNow >= App.PropertyModelInstance.UpperAlarmCabinTemperature)//上舱温度
                     {
                         App.PropertyModelInstance.IsUpperAlarm = true;
                     }
@@ -170,7 +170,7 @@ namespace MoxibustionBedAPP.Models
                         App.PropertyModelInstance.IsUpperAlarm= false;
                     }
 
-                    if(App.PropertyModelInstance.BackTemperatureNow>=App.PropertyModelInstance.BackAlarmTemperature)
+                    if(App.PropertyModelInstance.BackTemperatureNow>=App.PropertyModelInstance.BackAlarmTemperature)//背部温度
                     {
                         App.PropertyModelInstance.IsBackAlarm = true;
                     }
@@ -179,7 +179,7 @@ namespace MoxibustionBedAPP.Models
                         App.PropertyModelInstance.IsBackAlarm = false;
                     }
 
-                    if(App.PropertyModelInstance.LegTemperatureNow>=App.PropertyModelInstance.LegAlarmTemperature)
+                    if(App.PropertyModelInstance.LegTemperatureNow>=App.PropertyModelInstance.LegAlarmTemperature)//腿部温度
                     {
                         App.PropertyModelInstance.IsLegAlarm = true;
                     }
@@ -188,6 +188,14 @@ namespace MoxibustionBedAPP.Models
                         App.PropertyModelInstance.IsLegAlarm= false;
                     }
 
+                    if (App.PropertyModelInstance.SmokePurificationSystem == false && App.PropertyModelInstance.SmokeExhaustSystem == 0)//查看是否开启排烟系统或者净烟系统
+                    {
+                        App.PropertyModelInstance.IsSmokeSystemOn = false;
+                    }
+                    else
+                    {
+                        App.PropertyModelInstance.IsSmokeSystemOn = true;
+                    }
 
                 }
                 else

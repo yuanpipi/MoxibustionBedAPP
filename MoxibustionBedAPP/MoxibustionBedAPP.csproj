@@ -275,6 +275,7 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\StopSmoke.png" />
     <Resource Include="Resources\Pictures\Reset.png" />
     <Resource Include="Resources\Pictures\Save.png" />
     <Resource Include="Resources\Pictures\SaveBack.png" />

@@ -12,23 +12,24 @@
         <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         
     </UserControl.Resources>
-    <Grid>
+    <Border CornerRadius="25">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.1">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform Angle="-94" CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF985C33"/>
+                <GradientStop Color="#FFF1C09E" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
         <ScrollViewer VerticalScrollBarVisibility="Auto" IsManipulationEnabled="True" PanningMode="VerticalOnly" Visibility="{Binding IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" ManipulationBoundaryFeedback="ScrollViewer_ManipulationBoundaryFeedback">
             <Border CornerRadius="25">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.1">
-                        <LinearGradientBrush.RelativeTransform>
-                            <TransformGroup>
-                                <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                <RotateTransform Angle="-94" CenterX="0.5" CenterY="0.5"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </LinearGradientBrush.RelativeTransform>
-                        <GradientStop Color="#FF985C33"/>
-                        <GradientStop Color="#FFF1C09E" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+                           
                 <Grid Height="820">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="13.33*"/>
@@ -730,7 +731,7 @@
                 </Grid>
             </Border>
         </ScrollViewer>
-    </Grid>
+    </Border>
 
 
 

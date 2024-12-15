@@ -202,6 +202,7 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+
         /// <summary>
         /// 上舱温度是否报警
         /// </summary>
@@ -252,6 +253,7 @@ namespace MoxibustionBedAPP.Models
                 OnPropertyChanged(nameof(IsLegAlarm));
             }
         }
+
 
         /// <summary>
         /// 背部灸柱高度
@@ -634,6 +636,23 @@ namespace MoxibustionBedAPP.Models
             {
                 isSmokePurificationSystem = value;
                 OnPropertyChanged(nameof (IsSmokePurificationSystem));
+            }
+        }
+
+        /// <summary>
+        /// 是否打开排烟
+        /// </summary>
+        private bool isSmokeSystemOn;
+        public bool IsSmokeSystemOn
+        {
+            get
+            {
+                return isSmokeSystemOn;
+            }
+            set
+            {
+                isSmokeSystemOn = value;
+                OnPropertyChanged(nameof (IsSmokeSystemOn));
             }
         }
 

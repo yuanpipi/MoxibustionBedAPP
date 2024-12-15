@@ -1264,9 +1264,6 @@
             </Border>
 
             <Border CornerRadius="15" Grid.Row="4">
-                <Border.InputBindings>
-                    <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
-                </Border.InputBindings>
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
                         <LinearGradientBrush.RelativeTransform>
@@ -1282,30 +1279,139 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="65.39*"/>
-                        <RowDefinition Height="7.36*"/>
-                        <RowDefinition Height="22.72*"/>
-                        <RowDefinition Height="7.36*"/>
-                        <RowDefinition Height="65.39*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="41.86*"/>
-                        <ColumnDefinition Width="32.64*"/>
-                        <ColumnDefinition Width="6.2*"/>
-                        <ColumnDefinition Width="46.95*"/>
-                        <ColumnDefinition Width="42.35*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Inignition.png">
-                        <Image.InputBindings>
+                    <!--点火-->
+                    <Grid>
+                        <Grid.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
-                        </Image.InputBindings>
-                    </Image>
-                    <TextBlock Text="点火" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
-                        </TextBlock.InputBindings>
-                    </TextBlock>
+                        </Grid.InputBindings>
+
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="true">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                    </DataTrigger>
+                                    <!--<DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="true">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="false">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>-->
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="65.39*"/>
+                            <RowDefinition Height="7.36*"/>
+                            <RowDefinition Height="22.72*"/>
+                            <RowDefinition Height="7.36*"/>
+                            <RowDefinition Height="65.39*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="41.86*"/>
+                            <ColumnDefinition Width="32.64*"/>
+                            <ColumnDefinition Width="6.2*"/>
+                            <ColumnDefinition Width="46.95*"/>
+                            <ColumnDefinition Width="42.35*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Inignition.png">
+                            <Image.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
+                            </Image.InputBindings>
+                        </Image>
+                        <TextBlock Text="点火" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Grid>
+
+                    <!--点火倒计时-->
+                    <Grid>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16.76*"/>
+                            <RowDefinition Height="41.75*"/>
+                            <RowDefinition Height="3.21*"/>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="16.5*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="13.39*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="1" Source="../Resources/Pictures/Clock.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Text="治疗倒计时" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A"/>
+                        <TextBlock Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="20" Foreground="#73441A" TextDecorations="Underline">
+                                <Span>
+                                <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}"/>
+                                <Run Text="min"/>
+                                <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}"/>
+                                <Run Text="s"/>
+                            </Span>
+                        </TextBlock>
+                        <TextBlock Text="取消治疗" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="White">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="MoxibustionTherapy"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Grid>
+                    
+                    <!--点火倒计时/排烟倒计时-->
+                    <Grid>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="true">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="false">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="16.76*"/>
+                            <RowDefinition Height="41.75*"/>
+                            <RowDefinition Height="3.21*"/>
+                            <RowDefinition Height="32*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="16.5*"/>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="13.39*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="1" Source="../Resources/Pictures/StopSmoke.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Row="3" Text="排烟倒计时" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A"/>
+                        <TextBlock Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="20" Foreground="#73441A" TextDecorations="Underline">
+                                <Span>
+                                <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}"/>
+                                <Run Text="min"/>
+                                <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}"/>
+                                <Run Text="s"/>
+                            </Span>
+                        </TextBlock>
+                        <TextBlock Text="取消排烟" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="White">
+                            <TextBlock.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="StopSmoke"/>
+                            </TextBlock.InputBindings>
+                        </TextBlock>
+                    </Grid>
                 </Grid>
             </Border>
 
