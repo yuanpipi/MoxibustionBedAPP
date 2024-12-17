@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using MoxibustionBedAPP.Models;
 using Newtonsoft.Json;
@@ -52,7 +54,7 @@ namespace MoxibustionBedAPP.ViewModes
             GuideClick = new RelayCommand(GuideClickCommand);
             ContraindicationsClick=new RelayCommand(ContraindicationsClickCommand);
             ReturnClick=new RelayCommand(ReturnClickCommand);
-            MyText = ReadFile("Contraindications.txt");
+            //MyText = ReadFile("Contraindications.txt");
         }
 
         private void GuideClickCommand()

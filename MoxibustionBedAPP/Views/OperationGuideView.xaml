@@ -116,11 +116,13 @@
                 </Grid>
             </Border>
             <RichTextBox Grid.Row="2" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="15" Foreground="#73441A" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
-                <FlowDocument>
-                    <Paragraph>
-                        <Run Text="{Binding MyText}"/>
-                    </Paragraph>
-                </FlowDocument>
+                <RichTextBox.Document>
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="{Binding MyText}"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox.Document>
             </RichTextBox>
         </Grid>
     </Border>

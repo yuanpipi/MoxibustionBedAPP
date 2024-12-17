@@ -692,6 +692,23 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 是否开始治疗后自动跳转到音乐播放界面
+        /// </summary>
+        private bool _autoMusic;
+        public bool AutoMusic
+        {
+            get
+            {
+                return _autoMusic;
+            }
+            set
+            {
+                _autoMusic = value;
+                OnPropertyChanged(nameof(AutoMusic));
+            }
+        }
+
 
     }
 }

@@ -299,11 +299,13 @@ namespace MoxibustionBedAPP.ViewModes
         private void QuesClickCommand()
         {
             App.PropertyModelInstance.IsClickQ = !App.PropertyModelInstance.IsClickQ;
+            App.PropertyModelInstance.IsClickS = false;
         }
 
         private void SetClickCommand()
         {
             App.PropertyModelInstance.IsClickS = !App.PropertyModelInstance.IsClickS;
+            App.PropertyModelInstance.IsClickQ = false;
         }
 
 

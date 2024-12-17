@@ -119,6 +119,7 @@
     <Compile Include="ViewModes\ParameterSettingViewModel.cs" />
     <Compile Include="ViewModes\PlayMusicViewModel.cs" />
     <Compile Include="ViewModes\PopupBoxViewModel.cs" />
+    <Compile Include="ViewModes\SettingsViewModel.cs" />
     <Compile Include="ViewModes\TestWindowViewModel.cs" />
     <Compile Include="Views\DataMonitoringView.xaml.cs">
       <DependentUpon>DataMonitoringView.xaml</DependentUpon>
@@ -150,6 +151,10 @@
     </Compile>
     <Compile Include="Views\PopupBox.xaml.cs">
       <DependentUpon>PopupBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Views\TestWindowView.xaml.cs">
       <DependentUpon>TestWindowView.xaml</DependentUpon>
@@ -189,6 +194,10 @@
     <Page Include="Views\PopupBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\TestWindowView.xaml">
       <SubType>Designer</SubType>

@@ -636,15 +636,15 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-                        <Border Grid.Column="2" Grid.Row="1" Background="White" CornerRadius="16.17">
+                        <Border Grid.Column="2" Grid.Row="1" CornerRadius="16.17">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.AutomaticLidOpening}" Value="true">
-                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="Background" Value="White"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.AutomaticLidOpening}" Value="false">
-                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="Background" Value="Transparent"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -667,15 +667,15 @@
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding AutoCommand}" CommandParameter="Auto"/>
                             </TextBlock.InputBindings>
                         </TextBlock>
-                        <Border Grid.Column="4" Grid.Row="1" Background="White" CornerRadius="16.17">
+                        <Border Grid.Column="4" Grid.Row="1" CornerRadius="16.17">
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.AutomaticLidOpening}" Value="true">
-                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="Background" Value="Transparent"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.AutomaticLidOpening}" Value="false">
-                                            <Setter Property="Visibility" Value="Visible"/>
+                                            <Setter Property="Background" Value="White"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
