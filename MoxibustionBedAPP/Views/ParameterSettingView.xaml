@@ -10,7 +10,6 @@
     <UserControl.Resources>
         <viewmodel:ParameterSettingViewModel x:Key="ParameterSettingViewModel"/>
         <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        
     </UserControl.Resources>
     <Border CornerRadius="25">
         <Border.Background>
@@ -27,7 +26,7 @@
                 <GradientStop Color="#FFF1C09E" Offset="1"/>
             </LinearGradientBrush>
         </Border.Background>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" IsManipulationEnabled="True" PanningMode="VerticalOnly" Visibility="{Binding IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" ManipulationBoundaryFeedback="ScrollViewer_ManipulationBoundaryFeedback">
+        <ScrollViewer PanningMode="VerticalOnly"  VerticalScrollBarVisibility="Auto" IsManipulationEnabled="True"  Visibility="{Binding IsControlVisible, Converter={StaticResource BooleanToVisibilityConverter}}" VerticalAlignment="Top" ManipulationBoundaryFeedback="ScrollViewer_ManipulationBoundaryFeedback">
             <Border CornerRadius="25">
                            
                 <Grid Height="820">
@@ -112,7 +111,7 @@
                             </Image>
                             <TextBlock Text="5" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTime,StringFormat='{}{0}min'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTime}" Maximum="90" Minimum="5"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTime}" Maximum="90" Minimum="5" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -165,7 +164,7 @@
                             </Image>
                             <TextBlock Text="20" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature}" Maximum="50" Minimum="20"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature}" Maximum="50" Minimum="20" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="50" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -221,7 +220,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature}" Maximum="60" Minimum="30" ValueChanged="Slider_ValueChanged_1"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature}" Maximum="60" Minimum="30" ValueChanged="Slider_ValueChanged_1" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="60" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -273,7 +272,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.UpperAlarmCabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.UpperAlarmCabinTemperature}" Maximum="80" Minimum="30" ValueChanged="Slider_ValueChanged"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.UpperAlarmCabinTemperature}" Maximum="80" Minimum="30" ValueChanged="Slider_ValueChanged" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="80" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -329,7 +328,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_2"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_2" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="70" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -381,7 +380,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackAlarmTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_3"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_3" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -437,7 +436,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_4"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_4" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="70" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -489,7 +488,7 @@
                             </Image>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegAlarmTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_5"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_5" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -544,7 +543,7 @@
                             </Image>
                             <TextBlock Text="60" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime,StringFormat='{}{0}s'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime}" Maximum="270" Minimum="60"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime}" Maximum="270" Minimum="60" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="270" Grid.Row="0" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
@@ -596,7 +595,7 @@
                             </Image>
                             <TextBlock Text="25" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyTime,StringFormat='{}{0}min'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyTime}" Maximum="90" Minimum="25"/>
+                            <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyTime}" Maximum="90" Minimum="25" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="../Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>

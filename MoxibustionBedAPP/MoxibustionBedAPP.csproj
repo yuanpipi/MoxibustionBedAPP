@@ -109,11 +109,13 @@
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="Models\SaveMode.cs" />
     <Compile Include="Models\SerialPortManager.cs" />
+    <Compile Include="Models\SliderTouchAreaAdorner.cs" />
     <Compile Include="ViewModes\DataMonitoringViewModel.cs" />
     <Compile Include="ViewModes\FunctionControlViewModel.cs" />
     <Compile Include="ViewModes\LoadWindowViewModel.cs" />
     <Compile Include="ViewModes\MainWindowCopyViewModel.cs" />
     <Compile Include="ViewModes\MainWindowViewModel.cs" />
+    <Compile Include="ViewModes\OperationGuideViewModel.cs" />
     <Compile Include="ViewModes\ParameterSettingViewModel.cs" />
     <Compile Include="ViewModes\PlayMusicViewModel.cs" />
     <Compile Include="ViewModes\PopupBoxViewModel.cs" />
@@ -136,6 +138,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\OperationGuideView.xaml.cs">
+      <DependentUpon>OperationGuideView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ParameterSettingView.xaml.cs">
       <DependentUpon>ParameterSettingView.xaml</DependentUpon>
@@ -166,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OperationGuideView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,6 +284,9 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\Contraindications.png" />
+    <Resource Include="Resources\Pictures\Guide.png" />
+    <Resource Include="Resources\Pictures\Return.png" />
     <Resource Include="Resources\Pictures\StopSmoke.png" />
     <Resource Include="Resources\Pictures\Reset.png" />
     <Resource Include="Resources\Pictures\Save.png" />

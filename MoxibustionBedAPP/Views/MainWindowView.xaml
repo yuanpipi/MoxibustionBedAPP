@@ -69,7 +69,11 @@
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
             <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontWeight="Light"/>
             <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding QuesClick}"/>
+                </Image.InputBindings>
+            </Image>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
@@ -78,7 +82,19 @@
         </Grid>
 
         <!--按钮栏-->
-        <Grid Grid.Row="2" Grid.Column="1" Background="{x:Null}">
+        <Grid Grid.Row="2" Grid.Column="1" Background="Transparent">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickS}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8.2*"/>
                 <RowDefinition Height="55.72*"/>
@@ -162,7 +178,53 @@
         </Grid>
 
         <!--用户控件显示-->
-        <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}"/>
+        <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}">
+            <ContentPresenter.Style>
+                <Style TargetType="ContentPresenter">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickS}" Value="true">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ContentPresenter.Style>
+        </ContentPresenter>
+        
+        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <local:OperationGuideView/>
+        </Grid>
+        
+        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickS}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickS}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <local:OperationGuideView/>
+        </Grid>
+        
 
         <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3">
             <Border.Background>
@@ -285,5 +347,6 @@
                 </TextBlock>
             </Grid>
         </Border>
+
     </Grid>
 </Window>

@@ -657,5 +657,41 @@ namespace MoxibustionBedAPP.Models
         }
 
 
+
+        /// <summary>
+        /// 是否点击问号
+        /// </summary>
+        private bool _isClickQ;
+        public bool IsClickQ
+        {
+            get
+            {
+                return _isClickQ;
+            }
+            set
+            {
+                _isClickQ = value;
+                OnPropertyChanged(nameof(IsClickQ));
+            }
+        }
+
+        /// <summary>
+        /// 是否点击设置
+        /// </summary>
+        private bool _isClickS;
+        public bool IsClickS
+        {
+            get
+            {
+                return _isClickS;
+            }
+            set
+            {
+                _isClickS = value;
+                OnPropertyChanged(nameof(IsClickS));
+            }
+        }
+
+
     }
 }

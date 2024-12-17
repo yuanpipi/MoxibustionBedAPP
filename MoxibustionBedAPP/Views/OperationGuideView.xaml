@@ -1,0 +1,127 @@
+﻿<UserControl x:Class="MoxibustionBedAPP.Views.OperationGuideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
+             xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <viewmodel:OperationGuideViewModel x:Key="OperationGuideViewModel"/>
+    </UserControl.Resources>
+    <Border CornerRadius="25">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.1">
+                <LinearGradientBrush.RelativeTransform>
+                    <TransformGroup>
+                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                        <RotateTransform Angle="-90" CenterX="0.5" CenterY="0.5"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </LinearGradientBrush.RelativeTransform>
+                <GradientStop Color="#FF985C33"/>
+                <GradientStop Color="#FFF1C09E" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35.875*"/>
+                <RowDefinition Height="19.8*"/>
+                <RowDefinition Height="357.25*"/>
+                <RowDefinition Height="19.8*"/>
+                <RowDefinition Height="35.875"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20.11*"/>
+                <ColumnDefinition Width="81.98*"/>
+                <ColumnDefinition Width="66.23*"/>
+                <ColumnDefinition Width="732.84*"/>
+                <ColumnDefinition Width="61.77*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Return.png" Stretch="None">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ReturnClick}"/>
+                </Image.InputBindings>
+            </Image>
+            <Border CornerRadius="5" Background="#EFB684" Grid.Row="1" Grid.RowSpan="3" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="23.1*"/>
+                        <RowDefinition Height="34.03*"/>
+                        <RowDefinition Height="8.49*"/>
+                        <RowDefinition Height="32.6*"/>
+                        <RowDefinition Height="32.6*"/>
+                        <RowDefinition Height="32.6*"/>
+                        <RowDefinition Height="19.47*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="19.47*"/>
+                        <RowDefinition Height="34.03*"/>
+                        <RowDefinition Height="8.49*"/>
+                        <RowDefinition Height="31.9*"/>
+                        <RowDefinition Height="31.9*"/>
+                        <RowDefinition Height="31.9*"/>
+                        <RowDefinition Height="31.9*"/>
+                        <RowDefinition Height="23.1*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Contraindications.png"/>
+                    <Border Grid.Row="3" Grid.RowSpan="3" Background="Transparent">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding GuideClick}"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <TextBlock Text="禁" Grid.Row="3" HorizontalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="30" VerticalAlignment="Center">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding GuideClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <TextBlock Text="忌" Grid.Row="4" HorizontalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="30" VerticalAlignment="Center">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding GuideClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <TextBlock Text="症" Grid.Row="5" HorizontalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="30" VerticalAlignment="Center">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding GuideClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <Rectangle Grid.Row="7" Width="28.35" Height="1" Fill="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    <Image Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Guide.png"/>
+                    <Border Grid.Row="11" Grid.RowSpan="4" Background="Transparent">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
+                        </Border.InputBindings>
+                    </Border>
+                    <TextBlock Text="操" Grid.Row="11" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <TextBlock Text="作" Grid.Row="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <TextBlock Text="指" Grid.Row="13" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                    <TextBlock Text="南" Grid.Row="14" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </Grid>
+            </Border>
+            <RichTextBox Grid.Row="2" Grid.Column="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="15" Foreground="#73441A" Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text="{Binding MyText}"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+    </Border>
+</UserControl>

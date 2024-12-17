@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.ViewModes;
 
 namespace MoxibustionBedAPP.Views
@@ -53,5 +54,6 @@ namespace MoxibustionBedAPP.Views
         {
             e.Handled = true;
         }
+
     }
 }

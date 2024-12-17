@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -277,7 +278,7 @@ namespace MoxibustionBedAPP.ViewModes
                     }
                 case "Inignition"://点火选择
                     {
-                        data[5] = 0x06;
+                        data[5] = 0x03;
                         data[6] = 0x01;
                         break;
                     }
@@ -305,18 +306,6 @@ namespace MoxibustionBedAPP.ViewModes
                         data[6] = 0x01;
                         break;
                     }
-                //case "HatchClickUp"://舱盖点开
-                //    {
-                //        data[5] = 0x08;
-                //        data[6] = 0x01;
-                //        break;
-                //    }
-                //case "HatchClickDown"://舱盖点关
-                //    {
-                //        data[5] = 0x09;
-                //        data[6] = 0x01;
-                //        break;
-                //    }
                 case "OpenHatch"://一键开舱
                     {
                         if (IsOpen == false)
@@ -351,7 +340,7 @@ namespace MoxibustionBedAPP.ViewModes
                             timer.Stop();
                             data[5] = 0x0B;
                             data[6] = 0x02;
-                            CloseHatch= "../Resources/Pictures/HatchBtnBack.png";
+                            CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
                         }
                         break;
                     }
@@ -569,21 +558,47 @@ namespace MoxibustionBedAPP.ViewModes
 
             switch(parameter)
             {
-                case "MoxibustionTherapy"://停止治疗
+                case "StopInignition"://点火选择
+                    {
+                        data[5] = 0x06;
+                        data[6] = 0x02;
+                        break;
+                    }
+                case "StopMoxibustionTherapy"://停止治疗
+                    data[5] = 0x08;
+                    data[6] = 0x02;
+                    break;
+                case "StartMoxibustionTherapy"://开始治疗
                     data[5] = 0x08;
                     data[6] = 0x01;
                     break;
                 case "StopSmoke":
-                    if (IsSmokeExhaust == false)//若选择净烟，开启净烟
+                    if (IsSmokeExhaust == false)//若选择净烟，关闭净烟
                     {
                         data[5] = 0x0D;
                         data[6] = 0x02;
                     }
-                    else//若选择排烟，开启排烟中档
+                    else//若选择排烟，关闭排烟
                     {
                         data[5] = 0x0C;
                         data[6] = 0x00;
                     }
+                    break;
+                case "OpenSmoke":
+                    if (IsSmokeExhaust == false)//若选择净烟，开启净烟
+                    {
+                        data[5] = 0x0D;
+                        data[6] = 0x01;
+                    }
+                    else//若选择排烟，开启排烟中档
+                    {
+                        data[5] = 0x0C;
+                        data[6] = 0x02;
+                    }
+                    break;
+                case "OpenHatch"://开启舱门
+                    data[5] = 0x0A;
+                    data[6] = 0x01;
                     break;
             }
 
@@ -624,12 +639,17 @@ namespace MoxibustionBedAPP.ViewModes
                 {
                     App.PropertyModelInstance.InignitionStatus = false;
                     App.PropertyModelInstance.IsInignitionStatus = true;//点火状态设为已点火
+                    //停止点火
+                    StopMethod("StopInignition");
+
                     //开始治疗后，舱盖控制模块不能控制
                     App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
                     RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     IsCountingDown = true;
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
+                    //发送开始治疗指令
+                    StopMethod("StartMoxibustionTherapy");
                     StartCountdown();//开启治疗倒计时
                 }
                 else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
@@ -638,49 +658,40 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
                     byte[] data = new byte[11];
                     //发送结束治疗指令
-                    //data[0] = 0x55;
-                    //data[1] = 0xAA;
-                    //data[2] = 0x07;
-                    //data[3] = 0x01;
-                    //data[4] = 0x10;
-                    //data[5] = 0x08;
-                    //data[6] = 0x01;
-                    //data[9] = 0x55;
-                    //data[10] = 0xAA;
-                    //data = SerialPortManager.CRC16(data);
-                    //SerialPortManager.Instance.SendData(data);
-                    StopMethod("MoxibustionTherapy");
+                    StopMethod("StopMoxibustionTherapy");
 
                     //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
                     {
 
-                        if (IsSmokeExhaust == false)//若选择净烟，开启净烟
-                        {
-                            data[0] = 0x55;
-                            data[1] = 0xAA;
-                            data[2] = 0x07;
-                            data[3] = 0x01;
-                            data[4] = 0x10;
-                            data[5] = 0x0D;
-                            data[6] = 0x01;
-                            data[9] = 0x55;
-                            data[10] = 0xAA;
-                        }
-                        else//若选择排烟，开启排烟中档
-                        {
-                            data[0] = 0x55;
-                            data[1] = 0xAA;
-                            data[2] = 0x07;
-                            data[3] = 0x01;
-                            data[4] = 0x10;
-                            data[5] = 0x0C;
-                            data[6] = 0x02;
-                            data[9] = 0x55;
-                            data[10] = 0xAA;
-                        }
-                        data = SerialPortManager.CRC16(data);
-                        SerialPortManager.Instance.SendData(data);
+                        //if (IsSmokeExhaust == false)//若选择净烟，开启净烟
+                        //{
+                        //    data[0] = 0x55;
+                        //    data[1] = 0xAA;
+                        //    data[2] = 0x07;
+                        //    data[3] = 0x01;
+                        //    data[4] = 0x10;
+                        //    data[5] = 0x0D;
+                        //    data[6] = 0x01;
+                        //    data[9] = 0x55;
+                        //    data[10] = 0xAA;
+                        //}
+                        //else//若选择排烟，开启排烟中档
+                        //{
+                        //    data[0] = 0x55;
+                        //    data[1] = 0xAA;
+                        //    data[2] = 0x07;
+                        //    data[3] = 0x01;
+                        //    data[4] = 0x10;
+                        //    data[5] = 0x0C;
+                        //    data[6] = 0x02;
+                        //    data[9] = 0x55;
+                        //    data[10] = 0xAA;
+                        //}
+                        //data = SerialPortManager.CRC16(data);
+                        //SerialPortManager.Instance.SendData(data);
+                        //开启排烟
+                        StopMethod("OpenSmoke");
                     }
                     App.PropertyModelInstance.IsSmokeSystemOn = true;
                     IsCountingDown = true;
@@ -692,6 +703,14 @@ namespace MoxibustionBedAPP.ViewModes
                 {
                     //排烟结束
                     App.PropertyModelInstance.IsSmokeSystemOn = false;
+                    //发送停止排烟指令
+                    StopMethod("StopSmoke");
+
+                    //结束后自动开盖
+                    if(App.PropertyModelInstance.AutomaticLidOpening)
+                    {
+                        StopMethod("OpenHatch");
+                    }
                     RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     if (IsSmokeExhaust)
                     {

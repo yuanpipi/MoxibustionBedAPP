@@ -1278,9 +1278,9 @@
                         <GradientStop Color="#FFF1C09E" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-                <Grid >
+                <Grid>
                     <!--点火-->
-                    <Grid>
+                    <Grid Background="Transparent">
                         <Grid.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                         </Grid.InputBindings>
@@ -1367,7 +1367,7 @@
                         </TextBlock>
                         <TextBlock Text="取消治疗" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="White">
                             <TextBlock.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="MoxibustionTherapy"/>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="StopMoxibustionTherapy"/>
                             </TextBlock.InputBindings>
                         </TextBlock>
                     </Grid>

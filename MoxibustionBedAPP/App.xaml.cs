@@ -74,10 +74,10 @@ namespace MoxibustionBedAPP
                 WindowState = WindowState.Normal,
                 WindowStyle = WindowStyle.None,
                 Title = "华伟医疗 - 医师",
-                Width = screen1.Bounds.Width,
-                Height = screen1.Bounds.Height,
-                Left = screen1.Bounds.Left,
-                Top = screen1.Bounds.Top
+                Width = screen2.Bounds.Width,
+                Height = screen2.Bounds.Height,
+                Left = screen2.Bounds.Left,
+                Top = screen2.Bounds.Top
             };
             //创建window2，并将sharedPlayMusicModel传入
              var window2 = new MainWindowCopyView(sharedPlayMusicModel)
@@ -85,10 +85,10 @@ namespace MoxibustionBedAPP
                  WindowState = WindowState.Normal,
                  WindowStyle = WindowStyle.None,
                  Title = "华伟医疗 - 患者",
-                 Width = screen2.Bounds.Width,
-                 Height = screen2.Bounds.Height,
-                 Left = screen2.Bounds.Left,
-                 Top = screen2.Bounds.Top,
+                 Width = screen1.Bounds.Width,
+                 Height = screen1.Bounds.Height,
+                 Left = screen1.Bounds.Left,
+                 Top = screen1.Bounds.Top,
                  //IsEnabled = false
              };
 

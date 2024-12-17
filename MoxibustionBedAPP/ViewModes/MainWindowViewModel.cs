@@ -178,6 +178,11 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public ICommand StopPreheadCommon {  get; set; }
 
+
+
+        public ICommand QuesClick { get;private set; }
+        public ICommand SetClick { get;private set; }
+
         #endregion
 
         public MainWindowViewModel()
@@ -191,6 +196,10 @@ namespace MoxibustionBedAPP.ViewModes
             ParameterSettingView = new ParameterSettingView();//定义参数设置界面
             StopInignitionCommon = new RelayCommand(StopInignitionMethod);
             StopPreheadCommon = new RelayCommand(StopPreheadMethod);
+            QuesClick = new RelayCommand(QuesClickCommand);
+            SetClick = new RelayCommand(SetClickCommand);
+            App.PropertyModelInstance.IsClickQ = false;
+            App.PropertyModelInstance.IsClickS = false;
             BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
             BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
             BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
@@ -286,6 +295,18 @@ namespace MoxibustionBedAPP.ViewModes
                 });
             }
         }
+
+        private void QuesClickCommand()
+        {
+            App.PropertyModelInstance.IsClickQ = !App.PropertyModelInstance.IsClickQ;
+        }
+
+        private void SetClickCommand()
+        {
+            App.PropertyModelInstance.IsClickS = !App.PropertyModelInstance.IsClickS;
+        }
+
+
 
         /// <summary>
         /// 显示测试功能界面

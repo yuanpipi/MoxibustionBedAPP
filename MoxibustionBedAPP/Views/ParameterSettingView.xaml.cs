@@ -70,5 +70,10 @@ namespace MoxibustionBedAPP.Views
                 App.PropertyModelInstance.LegAlarmTemperature = App.PropertyModelInstance.LegTemperature;
             }
         }
+
+        private void Slider_TouchDown(object sender, TouchEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
