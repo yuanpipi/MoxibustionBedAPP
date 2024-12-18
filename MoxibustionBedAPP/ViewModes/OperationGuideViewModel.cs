@@ -32,8 +32,36 @@ namespace MoxibustionBedAPP.ViewModes
             }
             set
             {
+                System.Diagnostics.Debug.WriteLine($"RichTextContent is being set to: {value}");
                 _myText = value;
                 OnPropertyChanged(nameof(MyText));
+            }
+        }
+        private string _myFirstText;
+        public string MyFirstText
+        {
+            get
+            {
+                return _myFirstText;
+            }
+            set
+            {
+                _myFirstText = value;
+                OnPropertyChanged(nameof(MyFirstText));
+            }
+        }
+
+        private bool isClick;
+        public bool IsClick
+        {
+            get
+            {
+                return isClick;
+            }
+            set
+            {
+                isClick = value;
+                OnPropertyChanged(nameof(IsClick));
             }
         }
 
@@ -54,18 +82,21 @@ namespace MoxibustionBedAPP.ViewModes
             GuideClick = new RelayCommand(GuideClickCommand);
             ContraindicationsClick=new RelayCommand(ContraindicationsClickCommand);
             ReturnClick=new RelayCommand(ReturnClickCommand);
-            //MyText = ReadFile("Contraindications.txt");
+            IsClick = false;
+            ReadFile("Contraindications.txt");
         }
 
         private void GuideClickCommand()
         {
-            MyText= ReadFile("Contraindications.txt");
+            //IsClick = false;
+            MyText = ReadFile("Contraindications.txt");
         }
         
 
         private void ContraindicationsClickCommand()
         {
-            MyText= ReadFile("Guide.txt");
+            //IsClick = true;
+            MyText = ReadFile("Guide.txt");
         }
 
 
