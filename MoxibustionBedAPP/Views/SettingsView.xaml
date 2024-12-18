@@ -27,8 +27,8 @@
         </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="44.95*"/>
-                <RowDefinition Height="54.14*"/>
+                <RowDefinition Height="35.875"/>
+                <RowDefinition Height="63.215*"/>
                 <RowDefinition Height="43.35*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="35*"/>
@@ -54,7 +54,7 @@
                 <ColumnDefinition Width="213.68*"/>
                 <ColumnDefinition Width="58.62*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Return.png" Stretch="None">
+            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9" VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="0 10 20 0" Source="../Resources/Pictures/Return.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ReturnClick}"/>
                 </Image.InputBindings>

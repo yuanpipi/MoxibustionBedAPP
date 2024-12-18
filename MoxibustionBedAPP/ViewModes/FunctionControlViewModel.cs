@@ -606,6 +606,16 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+            if((string)parameter== "StopMoxibustionTherapy")
+            {
+                _timer.Stop();
+                App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
+            }
+            if((string)parameter== "StopSmoke")
+            {
+                _timer.Stop();
+                App.PropertyModelInstance.IsSmokeSystemOn = false;
+            }
         }
 
         private void StartCountdown()

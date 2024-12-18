@@ -68,7 +68,11 @@
             </Grid.ColumnDefinitions>
             <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
             <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontWeight="Light"/>
-            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Image.InputBindings>
+                    <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
+                </Image.InputBindings>
+            </Image>
             <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding QuesClick}"/>
@@ -133,11 +137,35 @@
                 <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </TextBlock.InputBindings>
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
             </TextBlock>
             <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/Parameter.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </Image.InputBindings>
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
             </Image>
 
             <TextBlock Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
@@ -192,23 +220,7 @@
                 </Style>
             </ContentPresenter.Style>
         </ContentPresenter>
-        
-        <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
-            <Grid.Style>
-                <Style TargetType="Grid">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="true">
-                            <Setter Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsClickQ}" Value="false">
-                            <Setter Property="Visibility" Value="Hidden"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Style>
-            <local:OperationGuideView/>
-        </Grid>
-        
+
         <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
             <Grid.Style>
                 <Style TargetType="Grid">

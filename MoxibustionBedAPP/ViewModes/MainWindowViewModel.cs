@@ -183,6 +183,7 @@ namespace MoxibustionBedAPP.ViewModes
         public ICommand QuesClick { get;private set; }
         public ICommand SetClick { get;private set; }
 
+        private static int c = 0;
         #endregion
 
         public MainWindowViewModel()
@@ -315,13 +316,19 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public ICommand ShowTestWindowCommand
         {
+
             get
             {
                 return new RelayCommand(() =>
                 {
-                    App.Test = new TestWindowView();
+                    c++;
+                    if (c == 3)
+                    {
+                        c = 0;
+                        App.Test = new TestWindowView();
 
-                    App.Test.Show();
+                        App.Test.Show();
+                    }
                 });
             }
         }

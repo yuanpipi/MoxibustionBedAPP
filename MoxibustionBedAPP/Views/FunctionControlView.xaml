@@ -1419,7 +1419,7 @@
                         <Image Grid.Row="1" Source="../Resources/Pictures/StopSmoke.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Row="3" Text="排烟倒计时" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A"/>
                         <TextBlock Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="20" Foreground="#73441A" TextDecorations="Underline">
-                                <Span>
+                            <Span>
                                 <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}"/>
                                 <Run Text="min"/>
                                 <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}"/>

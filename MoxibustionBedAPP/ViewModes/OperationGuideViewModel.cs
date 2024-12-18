@@ -83,7 +83,7 @@ namespace MoxibustionBedAPP.ViewModes
             ContraindicationsClick=new RelayCommand(ContraindicationsClickCommand);
             ReturnClick=new RelayCommand(ReturnClickCommand);
             IsClick = false;
-            ReadFile("Contraindications.txt");
+            MyText = ReadFile("Contraindications.txt");
         }
 
         private void GuideClickCommand()
