@@ -359,38 +359,41 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void PreheadMethod()
         {
-            byte[] data = new byte[11];
-            data[0] = 0x55;
-            data[1] = 0xAA;
-            data[2] = 0x07;
-            data[3] = 0x01;
-            data[4] = 0x10;
-            data[5] = 0x0B;
-            data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
-            data = SerialPortManager.CRC16(data);
-            SerialPortManager.Instance.SendData(data);
-
-
-
-
-
-
-            data[5] = 0x02;
-            if (App.PropertyModelInstance.PreheadMode)
+            if (App.PropertyModelInstance.PreheadMode == false)
             {
-                data[6] = 0x02;
+                byte[] data = new byte[11];
+                data[0] = 0x55;
+                data[1] = 0xAA;
+                data[2] = 0x07;
+                data[3] = 0x01;
+                data[4] = 0x10;
+                data[5] = 0x0B;
+                data[6] = 0x01;
+                data[9] = 0x55;
+                data[10] = 0xAA;
+                data = SerialPortManager.CRC16(data);
+                SerialPortManager.Instance.SendData(data);
+
+
+
+                data[5] = 0x02;
+                data[6] = 0x01;
+                data[9] = 0x55;
+                data[10] = 0xAA;
+                data = SerialPortManager.CRC16(data);
+                SerialPortManager.Instance.SendData(data);
+                App.PropertyModelInstance.PreheadMode = true;
+                IsCountingDown = true;
+                App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+                App.PropertyModelInstance.CountdownSeconds = 0;
+                StartCountdown();
             }
             else
             {
-                data[6] = 0x01;
+                _timer.Stop();
+                StopMethod("StopPrehead");
+                App.PropertyModelInstance.PreheadMode = false;
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
-            data = SerialPortManager.CRC16(data);
-            SerialPortManager.Instance.SendData(data);
-            App.PropertyModelInstance.PreheadMode = true;
         }
 
         /// <summary>
@@ -398,35 +401,41 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void InignitionMethod()
         {
-            byte[] data = new byte[11];
-            data[0] = 0x55;
-            data[1] = 0xAA;
-            data[2] = 0x07;
-            data[3] = 0x01;
-            data[4] = 0x10;
-            data[5] = 0x0B;
-            data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
-            data = SerialPortManager.CRC16(data);
-            SerialPortManager.Instance.SendData(data);
-            App.PropertyModelInstance.Hatch = false;
-
-
-            data[5] = 0x03;
-            if (App.PropertyModelInstance.InignitionStatus)
+            if (App.PropertyModelInstance.InignitionStatus == false)
             {
-                data[6] = 0x02;
+                byte[] data = new byte[11];
+                data[0] = 0x55;
+                data[1] = 0xAA;
+                data[2] = 0x07;
+                data[3] = 0x01;
+                data[4] = 0x10;
+                data[5] = 0x0B;
+                data[6] = 0x01;
+                data[9] = 0x55;
+                data[10] = 0xAA;
+                data = SerialPortManager.CRC16(data);
+                SerialPortManager.Instance.SendData(data);
+                App.PropertyModelInstance.Hatch = false;
+
+
+                data[5] = 0x03;
+                data[6] = 0x01;
+                data[9] = 0x55;
+                data[10] = 0xAA;
+                data = SerialPortManager.CRC16(data);
+                SerialPortManager.Instance.SendData(data);
+                App.PropertyModelInstance.InignitionStatus = true;
+                IsCountingDown = true;
+                App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+                App.PropertyModelInstance.CountdownMinutes = 0;
+                StartCountdown();
             }
             else
             {
-                data[6] = 0x01;
+                _timer.Stop();
+                StopMethod("StopInignition");//停止点火
+                App.PropertyModelInstance.InignitionStatus = false;
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
-            data = SerialPortManager.CRC16(data);
-            SerialPortManager.Instance.SendData(data);
-            App.PropertyModelInstance.InignitionStatus = true;
         }
 
 
@@ -441,9 +450,15 @@ namespace MoxibustionBedAPP.ViewModes
 
             switch (parameter)
             {
-                case "StopInignition"://点火选择
+                case "StopInignition"://停止点火
                     {
-                        data[5] = 0x06;
+                        data[5] = 0x03;
+                        data[6] = 0x02;
+                        break;
+                    }
+                case "StopPrehead"://停止预热
+                    {
+                        data[5] = 0x02;
                         data[6] = 0x02;
                         break;
                     }

@@ -29,39 +29,23 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 音乐播放界面
         /// </summary>
-        private PlayMusicView PlayMusicView { get; set; }
+        public static PlayMusicView PlayMusicView { get; set; }
         /// <summary>
         /// 功能控制界面
         /// </summary>
-        private FunctionControlView FunctionControlView { get; set; }
+        public static FunctionControlView FunctionControlView { get; set; }
         /// <summary>
         /// 数据监控界面
         /// </summary>
-        private DataMonitoringView DataMonitoringView {  get; set; }
+        public static DataMonitoringView DataMonitoringView {  get; set; }
         /// <summary>
         /// 参数设置界面
         /// </summary>
-        private ParameterSettingView ParameterSettingView {  get; set; }
+        public static ParameterSettingView ParameterSettingView {  get; set; }
         /// <summary>
         /// 音乐控制模型
         /// </summary>
         public PlayMusicViewModel SharedVM { get; set; }
-        /// <summary>
-        /// 自定义控件
-        /// </summary>
-        private UserControl _currentUserControl;
-        public UserControl CurrentUserControl
-        {
-            get
-            {
-                return _currentUserControl;
-            }
-            set
-            {
-                _currentUserControl = value;
-                OnPropertyChanged(nameof(CurrentUserControl));
-            }
-        }
 
         /// <summary>
         /// 当前时间
@@ -190,7 +174,7 @@ namespace MoxibustionBedAPP.ViewModes
         {
             
             IsLoading = true;
-            CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
+            App.PropertyModelInstance.CurrentUserControl = new FunctionControlView();//初始界面为功能控制界面
             PlayMusicView = new PlayMusicView();//定义音乐播放界面
             FunctionControlView = new FunctionControlView();//定义功能控制界面
             DataMonitoringView = new DataMonitoringView();//定义数据监控界面
@@ -234,7 +218,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentUserControl = new FunctionControlView();
+                    App.PropertyModelInstance.CurrentUserControl = new FunctionControlView();
                     BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
                     BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
@@ -252,7 +236,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentUserControl = new DataMonitoringView();
+                    App.PropertyModelInstance.CurrentUserControl = new DataMonitoringView();
                     BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack3 = "../Resources/Pictures/BtnStyleSelected.png";
@@ -270,7 +254,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentUserControl = PlayMusicView;
+                    App.PropertyModelInstance.CurrentUserControl = PlayMusicView;
                     BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
@@ -288,11 +272,19 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    CurrentUserControl = new ParameterSettingView();
-                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack2 = "../Resources/Pictures/BtnStyleSelected.png";
-                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    if (App.PropertyModelInstance.IsMoxibustionTherapyMode == false)
+                    {
+
+                        App.PropertyModelInstance.CurrentUserControl = new ParameterSettingView();
+                        BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
+                        BtnBack2 = "../Resources/Pictures/BtnStyleSelected.png";
+                        BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
+                        BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    }
+                    else
+                    {
+                        PopupBoxViewModel.ShowPopupBox("治疗过程中不能进行参数设置！");
+                    }
                 });
             }
         }

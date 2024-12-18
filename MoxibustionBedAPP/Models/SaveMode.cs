@@ -118,5 +118,10 @@ namespace MoxibustionBedAPP.Models
         /// 分钟
         /// </summary>
         public int MoxibustionTherapyTime {  get; set; }
+
+        /// <summary>
+        /// 是否开始治疗后自动跳转到音乐播放界面
+        /// </summary>
+        public bool AutoMusic { get; set; }
     }
 }

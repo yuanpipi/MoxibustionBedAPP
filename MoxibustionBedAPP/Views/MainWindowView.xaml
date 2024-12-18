@@ -137,18 +137,6 @@
                 <TextBlock.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </TextBlock.InputBindings>
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
-                                <Setter Property="IsEnabled" Value="True"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
-                                <Setter Property="IsEnabled" Value="False"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
             </TextBlock>
             <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/Parameter.png" Stretch="None">
                 <Image.InputBindings>
@@ -195,18 +183,10 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
                 </Image.InputBindings>
             </Image>
-            <!--<Button Grid.Column="0" Command="{Binding ShowFunctionControlCommand}" Style="{StaticResource CustomButtonStyle}">
-                    <Button.Background>
-                        <ImageBrush ImageSource="/Views/BtnStyleUnselect.png"/>
-                    </Button.Background>
-                </Button>-->
-            <!--<Button Content="数据监控" Grid.Column="1" Command="{Binding ShowDataMonitoringCommand}"/>
-                <Button Content="参数设置" Grid.Column="2" Command="{Binding ShowParameterSettingCommand}"/>
-                <Button Content="音乐播放" Grid.Column="3" Command="{Binding ShowPlayMusicCommand}"/>-->
         </Grid>
 
         <!--用户控件显示-->
-        <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding CurrentUserControl}">
+        <ContentPresenter x:Name="contentPresenter" Grid.Row="4" Grid.Column="1" Content="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.CurrentUserControl}">
             <ContentPresenter.Style>
                 <Style TargetType="ContentPresenter">
                     <Style.Triggers>

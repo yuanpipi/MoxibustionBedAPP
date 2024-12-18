@@ -5,8 +5,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Forms;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -709,6 +709,23 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+
+        /// <summary>
+        /// 自定义控件
+        /// </summary>
+        private UserControl _currentUserControl;
+        public UserControl CurrentUserControl
+        {
+            get
+            {
+                return _currentUserControl;
+            }
+            set
+            {
+                _currentUserControl = value;
+                OnPropertyChanged(nameof(CurrentUserControl));
+            }
+        }
 
     }
 }

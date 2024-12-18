@@ -35,7 +35,8 @@ namespace MoxibustionBedAPP.Models
                 LegAlarmTemperature=App.PropertyModelInstance.LegAlarmTemperature,
                 PreheadTime = App.PropertyModelInstance.PreheadTime,
                 InignitionTime = App.PropertyModelInstance.InignitionTime,
-                MoxibustionTherapyTime = App.PropertyModelInstance.MoxibustionTherapyTime
+                MoxibustionTherapyTime = App.PropertyModelInstance.MoxibustionTherapyTime,
+                AutoMusic=App.PropertyModelInstance.AutoMusic
             };
             string json = JsonConvert.SerializeObject(data);
             try
@@ -78,6 +79,7 @@ namespace MoxibustionBedAPP.Models
                         App.PropertyModelInstance.InignitionTime = data.InignitionTime;
                         App.PropertyModelInstance.MoxibustionTherapyTime = data.MoxibustionTherapyTime;
                         App.PropertyModelInstance.IsSmokePurificationSystem = data.IsSmokePurificationSystem;
+                        App.PropertyModelInstance.AutoMusic = data.AutoMusic;
                     }
                 }
                 catch (Exception ex)

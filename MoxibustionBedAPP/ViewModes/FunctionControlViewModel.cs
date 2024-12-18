@@ -560,7 +560,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 case "StopInignition"://点火选择
                     {
-                        data[5] = 0x06;
+                        data[5] = 0x03;
                         data[6] = 0x02;
                         break;
                     }
@@ -659,8 +659,12 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
                     //发送开始治疗指令
-                    StopMethod("StartMoxibustionTherapy");
+                    StopMethod("StartMoxibustionTherapy");                    
                     StartCountdown();//开启治疗倒计时
+                    if(App.PropertyModelInstance.AutoMusic==true)
+                    {
+                        App.PropertyModelInstance.CurrentUserControl = MainWindowViewModel.PlayMusicView;
+                    }
                 }
                 else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
                 {

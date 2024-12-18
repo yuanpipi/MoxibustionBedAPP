@@ -33,13 +33,13 @@
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.PreheadMode}" Value="true">
-                                    <Setter Property="Text" Value="预热倒计时"/>
+                                    <Setter Property="Text" Value="预热倒计时:"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.InignitionStatus}" Value="true">
-                                    <Setter Property="Text" Value="点火倒计时"/>
+                                    <Setter Property="Text" Value="点火倒计时:"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
-                                    <Setter Property="Text" Value="治疗倒计时"/>
+                                    <Setter Property="Text" Value="治疗倒计时:"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -58,11 +58,48 @@
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.PreheadMode}" Value="true">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.PreheadMode}" Value="false">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Column="2" FontSize="26" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                    <Span>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}"/>
+                        <Run Text="min"/>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}"/>
+                        <Run Text="s"/>
+                    </Span>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.InignitionStatus}" Value="true">
                                     <Setter Property="Visibility" Value="Visible"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.InignitionStatus}" Value="false">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <TextBlock Grid.Column="2" FontSize="26" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10">
+                    <Span>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}"/>
+                        <Run Text="min"/>
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}"/>
+                        <Run Text="s"/>
+                    </Span>
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Style.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
                                     <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                    <Setter Property="Visibility" Value="Hidden"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -92,13 +129,59 @@
                 <ColumnDefinition Width="30*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="上舱温度：" Grid.Row="0" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperatureNow,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsUpperAlarm}" Value="true">
+                                <Setter Property="Foreground" Value="#E06B28"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsUpperAlarm}" Value="false">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+                       
             <TextBlock Text="背部温度：" Grid.Row="1" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperatureNow,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsBackAlarm}" Value="true">
+                                <Setter Property="Foreground" Value="#E06B28"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsBackAlarm}" Value="false">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <TextBlock Text="腿部温度：" Grid.Row="2" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperatureNow,StringFormat='{}{0}℃'}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperatureNow,StringFormat='{}{0}℃'}" Grid.Row="2" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsLegAlarm}" Value="true">
+                                <Setter Property="Foreground" Value="#E06B28"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Bold}"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsLegAlarm}" Value="false">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="FontFamily" Value="{StaticResource SourceHanSerifCN-Medium}"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
             <TextBlock Text="预热系统：" Grid.Row="3" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="3" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -113,7 +196,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="点火状态：" Grid.Row="4" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="4" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -128,7 +211,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="灸疗模式：" Grid.Row="5" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="5" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="5" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -143,7 +226,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="红外灯状态：" Grid.Row="6" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="6" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="6" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -164,7 +247,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="排烟系统：" Grid.Row="7" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="7" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -185,7 +268,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="净烟系统：" Grid.Row="8" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="8" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="8" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -200,7 +283,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="摇摆系统：" Grid.Row="9" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="9" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="9" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -215,7 +298,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="舱门状态：" Grid.Row="10" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="10" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="10" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -230,7 +313,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="背部灸柱高度：" Grid.Row="11" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="11" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="11" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -254,7 +337,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <TextBlock Text="腿部灸柱高度：" Grid.Row="12" Grid.Column="0" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-            <TextBlock Grid.Row="12" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
+            <TextBlock Grid.Row="12" Grid.Column="1" Margin="5" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
@@ -332,8 +415,7 @@
                                     </Setter>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.InignitionStatus}" Value="false">
-                                    <Setter Property="Text" Value="点火">
-                                    </Setter>
+                                    <Setter Property="Text" Value="点火"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
