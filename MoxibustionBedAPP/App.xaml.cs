@@ -95,22 +95,24 @@ namespace MoxibustionBedAPP
 
             //显示加载界面
 
-            LoadWindowView loadWindow = new LoadWindowView();
-            loadWindow.Show();
+            //LoadWindowView loadWindow = new LoadWindowView();
+            //loadWindow.Show();
 
-            var timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(3)
-            };
-            timer.Tick += (sender, args) =>
-            {
-                window1.Show();
-                window2.Show();
-                loadWindow.Close();
-                ((DispatcherTimer)sender).Stop();
-            };
-            timer.Start();
+            //var timer = new DispatcherTimer
+            //{
+            //    Interval = TimeSpan.FromSeconds(3)
+            //};
+            //timer.Tick += (sender, args) =>
+            //{
+            //    window1.Show();
+            //    window2.Show();
+            //    loadWindow.Close();
+            //    ((DispatcherTimer)sender).Stop();
+            //};
+            //timer.Start();
 
+            window1.Show();
+            window2.Show();
         }
     }
 }

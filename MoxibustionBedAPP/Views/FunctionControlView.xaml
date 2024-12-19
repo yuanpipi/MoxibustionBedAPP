@@ -360,6 +360,10 @@
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Setter Property="IsEnabled" Value="False"/>
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding Smoke}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Border.Style>
@@ -537,12 +541,12 @@
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </Border.InputBindings>
                     </Border>
                     <TextBlock Text="低" Grid.Row="1" Grid.Column="6" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
                         </TextBlock.InputBindings>
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -640,12 +644,12 @@
                             </Style>
                         </Border.Style>
                         <Border.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </Border.InputBindings>
                     </Border>
                     <TextBlock Text="高" Grid.Row="1" Grid.Column="14" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampLow"/>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="InfraredLampHigh"/>
                         </TextBlock.InputBindings>
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -689,6 +693,10 @@
                         <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="false">
                             <Setter Property="Visibility" Value="Hidden"/>
                             <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
                         </DataTrigger>
                         <!--<DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
                             <Setter Property="Visibility" Value="Visible"/>
@@ -1213,6 +1221,10 @@
                                 <Setter Property="Visibility" Value="Hidden"/>
                                 <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Smoke}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
@@ -1278,6 +1290,10 @@
                                 <Setter Property="Visibility" Value="Hidden"/>
                                 <Setter Property="IsEnabled" Value="False"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Smoke}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
@@ -1312,7 +1328,7 @@
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Setter Property="IsEnabled" Value="False"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="true">
+                                    <DataTrigger Binding="{Binding Smoke}" Value="true">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                         <Setter Property="IsEnabled" Value="False"/>
                                     </DataTrigger>
@@ -1397,10 +1413,10 @@
                         <Grid.Style>
                             <Style TargetType="Grid">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="true">
+                                    <DataTrigger Binding="{Binding Smoke}" Value="true">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsSmokeSystemOn}" Value="false">
+                                    <DataTrigger Binding="{Binding Smoke}" Value="false">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
