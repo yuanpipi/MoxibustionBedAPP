@@ -191,7 +191,7 @@
                         <ColumnDefinition Width="48*"/>
                         <ColumnDefinition Width="32.09*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding OpenHatch}">
+                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.OpenHatch}">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
                         </Image.InputBindings>
@@ -203,10 +203,10 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="True">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="False">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -220,10 +220,10 @@
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="True">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="False">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -237,10 +237,10 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="True">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsOpen}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsOpen}" Value="False">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -262,7 +262,7 @@
                         <ColumnDefinition Width="48*"/>
                         <ColumnDefinition Width="32.09*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding CloseHatch}">
+                    <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.CloseHatch}">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
                         </Image.InputBindings>
@@ -274,10 +274,10 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="True">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="False">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -291,10 +291,10 @@
                         <Image.Style>
                             <Style TargetType="Image">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="True">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="False">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -308,10 +308,10 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="True">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="True">
                                         <Setter Property="Visibility" Value="Visible"/>
                                     </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsClose}" Value="False">
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsClose}" Value="False">
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </DataTrigger>
                                 </Style.Triggers>

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Markup.Localizer;
 using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.Views;
@@ -20,6 +21,8 @@ namespace MoxibustionBedAPP.ViewModes
     public class FunctionControlViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #region 自定义变量
         /// <summary>
         /// 公共指令发送方法
         /// </summary>
@@ -50,73 +53,73 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
-        /// <summary>
-        /// 开舱背景图
-        /// </summary>
-        private string _openHatch;
-        public string OpenHatch
-        {
-            get
-            {
-                return _openHatch;
-            }
-            set
-            {
-                _openHatch = value;
-                OnPropertyChanged(nameof(OpenHatch));
-            }
-        }
+        ///// <summary>
+        ///// 开舱背景图
+        ///// </summary>
+        //private string _openHatch;
+        //public string OpenHatch
+        //{
+        //    get
+        //    {
+        //        return _openHatch;
+        //    }
+        //    set
+        //    {
+        //        _openHatch = value;
+        //        OnPropertyChanged(nameof(OpenHatch));
+        //    }
+        //}
 
-        /// <summary>
-        /// 关舱背景图
-        /// </summary>
-        private string _closeHatch;
-        public string CloseHatch
-        {
-            get
-            {
-                return _closeHatch;
-            }
-            set
-            {
-                _closeHatch = value;
-                OnPropertyChanged(nameof(CloseHatch));
-            }
-        }
+        ///// <summary>
+        ///// 关舱背景图
+        ///// </summary>
+        //private string _closeHatch;
+        //public string CloseHatch
+        //{
+        //    get
+        //    {
+        //        return _closeHatch;
+        //    }
+        //    set
+        //    {
+        //        _closeHatch = value;
+        //        OnPropertyChanged(nameof(CloseHatch));
+        //    }
+        //}
 
-        /// <summary>
-        /// 是否处于开舱状态
-        /// </summary>
-        private bool isOpen;
-        public bool IsOpen
-        {
-            get
-            {
-                return isOpen;
-            }
-            set
-            {
-                isOpen = value;
-                OnPropertyChanged(nameof(IsOpen));
-            }
-        }
+        ///// <summary>
+        ///// 是否处于开舱状态
+        ///// </summary>
+        //private bool isOpen;
+        //public bool IsOpen
+        //{
+        //    get
+        //    {
+        //        return isOpen;
+        //    }
+        //    set
+        //    {
+        //        isOpen = value;
+        //        OnPropertyChanged(nameof(IsOpen));
+        //    }
+        //}
 
-        /// <summary>
-        /// 是否处于关舱状态
-        /// </summary>
-        private bool isClose;
-        public bool IsClose
-        {
-            get
-            {
-                return isClose;
-            }
-            set
-            {
-                isClose = value;
-                OnPropertyChanged(nameof(IsClose));
-            }
-        }
+        ///// <summary>
+        ///// 是否处于关舱状态
+        ///// </summary>
+        //private bool isClose;
+        //public bool IsClose
+        //{
+        //    get
+        //    {
+        //        return isClose;
+        //    }
+        //    set
+        //    {
+        //        isClose = value;
+        //        OnPropertyChanged(nameof(IsClose));
+        //    }
+        //}
 
         /// <summary>
         /// 是否选中排烟系统
@@ -174,11 +177,11 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
-        /// 开关舱倒计时，5s
+        /// 开关舱倒计时，20s
         /// </summary>
         private DispatcherTimer timer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(5)
+            Interval = TimeSpan.FromSeconds(20)
         };
 
         public ICommand StopCommand { get; private set; }
@@ -196,6 +199,7 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(Smoke));
             }
         }
+        #endregion
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -207,13 +211,13 @@ namespace MoxibustionBedAPP.ViewModes
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
             Prehead = new RelayCommand(PreheadMethod);
             Inignition= new RelayCommand(InignitionMethod);
-            OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
-            CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
             RadioBtnOfSmoke = new RelayCommand(CloseSmokeSystem);
             RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
             StopCommand = new RelayCommand(StopMethod);
-            IsOpen = false;
-            IsClose=false;
+            App.PropertyModelInstance.IsOpen = false;
+            App.PropertyModelInstance.IsClose=false;
             Smoke = false;
             if (App.PropertyModelInstance.IsSmokePurificationSystem)
             {
@@ -226,6 +230,7 @@ namespace MoxibustionBedAPP.ViewModes
                 IsSmokePurification = false;
             }
         }
+        #region 自定义方法
 
         /// <summary>
         /// 操作指令公共方法
@@ -233,12 +238,12 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="parameter"></param>
         private void ExecuteFunctionMethod(object parameter)
         {
-            if(isClose&& (string)parameter== "OpenHatch")
+            if(App.PropertyModelInstance.IsClose&& (string)parameter== "OpenHatch")
             {
                 PopupBoxViewModel.ShowPopupBox("关舱过程中不能够开舱");
                 return;
             }
-            if (IsOpen && (string)parameter == "CloseHatch")
+            if (App.PropertyModelInstance.IsOpen && (string)parameter == "CloseHatch")
             {
                 PopupBoxViewModel.ShowPopupBox("开舱过程中不能够关舱");
                 return;
@@ -331,39 +336,39 @@ namespace MoxibustionBedAPP.ViewModes
                     }
                 case "OpenHatch"://一键开舱
                     {
-                        if (IsOpen == false)
+                        if (App.PropertyModelInstance.IsOpen == false)
                         {
-                            IsOpen = true;
+                            App.PropertyModelInstance.IsOpen = true;
                             data[5] = 0x0A;
                             data[6] = 0x01;
-                            OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
                         }
                         else
                         {
-                            IsOpen = false;
+                            App.PropertyModelInstance.IsOpen = false;
                             timer.Stop();
                             data[5] = 0x0A;
                             data[6] = 0x02;
-                            OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
                         }
                         break;
                     }
                 case "CloseHatch"://一键关舱
                     {
-                        if (IsClose == false)
+                        if (App.PropertyModelInstance.IsClose == false)
                         {
-                            IsClose = true;
+                            App.PropertyModelInstance.IsClose = true;
                             data[5] = 0x0B;
                             data[6] = 0x01;
-                            CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
                         }
                         else
                         {
-                            IsClose = false;
+                            App.PropertyModelInstance.IsClose = false;
                             timer.Stop();
                             data[5] = 0x0B;
                             data[6] = 0x02;
-                            CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
                         }
                         break;
                     }
@@ -465,22 +470,22 @@ namespace MoxibustionBedAPP.ViewModes
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
 
-            if(IsOpen)
+            if(App.PropertyModelInstance.IsOpen)
             {
                 timer.Tick += (sender, args) =>
                 {
-                    IsOpen = false;
-                    OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    App.PropertyModelInstance.IsOpen = false;
+                    App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                 };
                 timer.Start();
             }
-            if(IsClose)
+            if(App.PropertyModelInstance.IsClose)
             {
                 timer.Tick += (sender, args) =>
                 {
-                    IsClose = false;
-                    CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    App.PropertyModelInstance.IsClose = false;
+                    App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                 };
                 timer.Start();
@@ -582,6 +587,10 @@ namespace MoxibustionBedAPP.ViewModes
             SerialPortManager.Instance.SendData(data);
         }
 
+        /// <summary>
+        /// 停止治疗、停止排烟方法
+        /// </summary>
+        /// <param name="parameter"></param>
         private void StopMethod(object parameter)
         {
             byte[] data = new byte[11];
@@ -619,6 +628,7 @@ namespace MoxibustionBedAPP.ViewModes
                 _timer.Stop();
                 App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
                 RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+                VoiceMethods("StopMoxibustion");//结束治疗发送给语音模块
             }
             if((string)parameter== "StopSmoke")
             {
@@ -628,6 +638,10 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
+        /// <summary>
+        /// 停止点火、停止治疗、开始治疗、开启排烟、关闭排烟、开启舱门等方法
+        /// </summary>
+        /// <param name="parameter"></param>
         private void StopMethods(object parameter)
         {
             byte[] data = new byte[11];
@@ -689,6 +703,29 @@ namespace MoxibustionBedAPP.ViewModes
             SerialPortManager.Instance.SendData(data);
         }
 
+        private void VoiceMethods(object parameter)
+        {
+            byte[] bytes = new byte[6];
+            bytes[0] = 0xAA;
+            bytes[1] = 0x55;
+            bytes[2] = 0x0E;
+            switch(parameter)
+            {
+                case "StartMoxibustion"://开始治疗
+                    bytes[3] = 0x01;
+                    break;
+                case "StopMoxibustion"://结束治疗
+                    bytes[3] = 0x00;
+                    break;
+            }
+            bytes[4] = 0x55;
+            bytes[5] = 0xAA;
+            SerialPortManager.Instance.SendDataByVoice(bytes);
+        }
+
+        /// <summary>
+        /// 开始计时器
+        /// </summary>
         private void StartCountdown()
         {
             _timer = new DispatcherTimer();
@@ -697,6 +734,11 @@ namespace MoxibustionBedAPP.ViewModes
             _timer.Start();
         }
 
+        /// <summary>
+        /// 计时器方法
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (App.PropertyModelInstance.CountdownSeconds > 0)
@@ -736,6 +778,7 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         App.PropertyModelInstance.CurrentUserControl = MainWindowViewModel.PlayMusicView;
                     }
+                    VoiceMethods("StartMoxibustion");//开始治疗发送给语音模块
                 }
                 else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
                 {
@@ -748,7 +791,6 @@ namespace MoxibustionBedAPP.ViewModes
                     //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
                     {
-
                         //if (IsSmokeExhaust == false)//若选择净烟，开启净烟
                         //{
                         //    data[0] = 0x55;
@@ -784,6 +826,7 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = 5;
                     StartCountdown();//开始排烟倒计时，五分钟
+                    VoiceMethods("StopMoxibustion");//结束治疗发送给语音模块
                 }
                 else if (App.PropertyModelInstance.IsSmokeSystemOn == true)
                 {
@@ -812,5 +855,6 @@ namespace MoxibustionBedAPP.ViewModes
                 }
             }
         }
+        #endregion
     }
 }

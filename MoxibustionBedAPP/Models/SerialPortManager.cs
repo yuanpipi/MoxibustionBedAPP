@@ -14,6 +14,8 @@ using MoxibustionBedAPP.ViewModes;
 using System.Windows.Forms.Integration;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using System.Windows.Markup.Localizer;
+using System.Windows.Automation.Peers;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -38,8 +40,17 @@ namespace MoxibustionBedAPP.Models
         public PropertyModel propertyModel = new PropertyModel();
         public static DispatcherTimer _timer;
 
+        /// <summary>
+        /// 下位机相关串口连接
+        /// </summary>
         private SerialPort _serialPort;
         private CancellationTokenSource _cancellationTokenSource;
+
+        /// <summary>
+        /// 语音控制模块相关串口连接
+        /// </summary>
+        private SerialPort _serialPortVoice;
+        private CancellationTokenSource _cancellationTokenSourceVoice;
         private bool _isDisposed = false;
         private byte[] frameHeader = { 0x55, 0xAA };
         private byte[] frameEnd = { 0x55, 0xAA };
@@ -55,8 +66,19 @@ namespace MoxibustionBedAPP.Models
                 Parity = Parity.None,
                 DataBits = 8,
                 StopBits = StopBits.One,
+                ReadBufferSize = 4096
             };
             _cancellationTokenSource = new CancellationTokenSource();
+
+            _serialPortVoice = new SerialPort()
+            {
+                PortName = "COM3",
+                BaudRate = 115200,
+                Parity = Parity.None,
+                DataBits = 8,
+                StopBits = StopBits.One
+            };
+            _cancellationTokenSourceVoice = new CancellationTokenSource();
             StartCountdown();
         }
 
@@ -108,6 +130,20 @@ namespace MoxibustionBedAPP.Models
                 {
                     MessageBox.Show($"打开串口失败: {ex.Message}");
                     //throw ex;
+                    return;
+                }
+            }
+            if(_serialPortVoice!=null&&!_serialPortVoice.IsOpen)
+            {
+                try
+                {
+                    _serialPortVoice.Open();
+                    Console.WriteLine("语音串口已打开");
+                    _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine($"串口打开失败:{e.Message}");
                     return;
                 }
             }
@@ -589,6 +625,156 @@ namespace MoxibustionBedAPP.Models
                 }
             //});
             
+        }
+
+        public void SendDataByVoice(byte[] data)
+        {
+            if (_serialPortVoice.IsOpen)
+            {
+                try
+                {
+                    _serialPortVoice.Write(data, 0, data.Length);
+                }
+                catch (Exception ex)
+                {
+                    PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
+                    return;
+                }
+            }
+            else
+            {
+                PopupBoxViewModel.ShowPopupBox($"串口未打开");
+            }
+        }
+
+        public void ReceiveDataByVoice(object sender,SerialDataReceivedEventArgs e)
+        {
+            if (_serialPortVoice.IsOpen)
+            {
+                if(_serialPortVoice.BytesToRead > 0)
+                {
+                    try
+                    {
+                        byte[] bytes = new byte[_serialPortVoice.BytesToRead];
+                        if(bytes.Length <= 0)
+                        {
+                            return;
+                        }
+                        _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
+
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            OnDataReceivedByVoice(bytes);
+
+                        });
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"串口问题：{ex.Message}");
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void OnDataReceivedByVoice(byte[] b)
+        {
+            bool isNeedSendData = false;
+            byte[] returnDatas = new byte[6];
+            returnDatas[0] = 0xAA;
+            returnDatas[1] = 0x55;
+            byte[] bytes = new byte[11];
+            bytes[0] = 0x55;
+            bytes[1] = 0xAA;
+            bytes[2] = 0x07;
+            bytes[3] = 0x01;
+            bytes[4] = 0x10;
+            switch(b[3])
+            {
+                case 0x01://开舱
+                    isNeedSendData = true;
+                    bytes[5] = 0x0A;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x01;
+                    break;
+                case 0x02://关舱
+                    isNeedSendData = true;
+                    bytes[5] = 0x0B;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x02;
+                    break;
+                case 0x03://上一曲
+                    isNeedSendData = false;
+                    App.sharedPlayMusicModel.LastSong();
+                    returnDatas[2] = 0x03;
+                    break;
+                case 0x04://下一曲
+                    isNeedSendData = false;
+                    App.sharedPlayMusicModel.NextSong();
+                    returnDatas[2] = 0x04;
+                    break;
+                case 0x05://停止播放/暂停播放
+                    isNeedSendData = false;
+                    App.sharedPlayMusicModel.PlayOrPauseSong();
+                    returnDatas[2] = 0x05;
+                    break;
+                case 0x06://播放音乐
+                    isNeedSendData = false;
+                    App.sharedPlayMusicModel.NextSong();
+                    returnDatas[2] = 0x06;
+                    break;
+                case 0x07://继续播放
+                    isNeedSendData = false;
+                    App.sharedPlayMusicModel.PlayOrPauseSong();
+                    returnDatas[2] = 0x07;
+                    break;
+                case 0x08://背部灸盘抬升
+                    isNeedSendData = true;
+                    bytes[5] = 0x04;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x08;
+                    break;
+                case 0x09://背部灸盘降低
+                    isNeedSendData = true;
+                    bytes[5] = 0x05;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x09;
+                    break;
+                case 0x0A://腿部灸盘抬升
+                    isNeedSendData = true;
+                    bytes[5] = 0x06;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x0A;
+                    break;
+                case 0x0B://腿部灸盘降低
+                    isNeedSendData = true;
+                    bytes[5] = 0x07;
+                    bytes[6] = 0x01;
+                    returnDatas[2] = 0x0B;
+                    break;
+            }
+            if (isNeedSendData)
+            {
+                bytes[9] = 0x55;
+                bytes[10] = 0xAA;
+                bytes = CRC16(bytes);
+                SendData(bytes);//发送数据到下位机
+                if (b[3] == 0x01)
+                {
+                    App.PropertyModelInstance.IsOpen = true;//舱门开启
+                    App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                }
+                else if (b[3] == 0x02)
+                {
+                    App.PropertyModelInstance.IsClose = true;//舱门关闭
+                    App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                }
+            }
+            returnDatas[3] = 0x01;
+            returnDatas[4] = 0x55;
+            returnDatas[5] = 0xAA;
+            SendDataByVoice(returnDatas);//返回数据给语音模块
         }
 
         private bool TryToReadFrame(byte[] buffer,out byte[] data)

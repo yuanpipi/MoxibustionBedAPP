@@ -727,5 +727,73 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 是否处于开舱状态
+        /// </summary>
+        private bool isOpen;
+        public bool IsOpen
+        {
+            get
+            {
+                return isOpen;
+            }
+            set
+            {
+                isOpen = value;
+                OnPropertyChanged(nameof(IsOpen));
+            }
+        }
+
+        /// <summary>
+        /// 是否处于关舱状态
+        /// </summary>
+        private bool isClose;
+        public bool IsClose
+        {
+            get
+            {
+                return isClose;
+            }
+            set
+            {
+                isClose = value;
+                OnPropertyChanged(nameof(IsClose));
+            }
+        }
+
+        /// <summary>
+        /// 开舱背景图
+        /// </summary>
+        private string _openHatch;
+        public string OpenHatch
+        {
+            get
+            {
+                return _openHatch;
+            }
+            set
+            {
+                _openHatch = value;
+                OnPropertyChanged(nameof(OpenHatch));
+            }
+        }
+
+        /// <summary>
+        /// 关舱背景图
+        /// </summary>
+        private string _closeHatch;
+        public string CloseHatch
+        {
+            get
+            {
+                return _closeHatch;
+            }
+            set
+            {
+                _closeHatch = value;
+                OnPropertyChanged(nameof(CloseHatch));
+            }
+        }
+
     }
 }

@@ -375,7 +375,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 上一曲事件
         /// </summary>
-        private void LastSong()
+        public void LastSong()
         {
             int i;
             i = SelectIndex - num;
@@ -390,7 +390,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 下一曲事件
         /// </summary>
-        private void NextSong()
+        public void NextSong()
         {
             SelectIndex = (SelectIndex + num) % FileNames.Count;
             PlayMusic();
@@ -399,7 +399,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 播放或暂停
         /// </summary>
-        private void PlayOrPauseSong()
+        public void PlayOrPauseSong()
         {
             if(IsPlaying)
             {
