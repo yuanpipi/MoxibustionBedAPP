@@ -55,7 +55,14 @@ namespace MoxibustionBedAPP.Models
         private byte[] frameHeader = { 0x55, 0xAA };
         private byte[] frameEnd = { 0x55, 0xAA };
         private List<byte> dataBuffer = new List<byte>();
-        private int bufferLength = 0;
+        private int bufferLength = 0; 
+        /// <summary>
+        /// 开关舱倒计时
+        /// </summary>
+        private DispatcherTimer timer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(20)
+        };
 
         private SerialPortManager()
         {
@@ -678,7 +685,7 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
-        private void OnDataReceivedByVoice(byte[] b)
+        private void OnDataReceivedByVoice(byte[] datas)
         {
             bool isNeedSendData = false;
             byte[] returnDatas = new byte[6];
@@ -690,19 +697,17 @@ namespace MoxibustionBedAPP.Models
             bytes[2] = 0x07;
             bytes[3] = 0x01;
             bytes[4] = 0x10;
-            switch(b[3])
+            switch(datas[3])
             {
                 case 0x01://开舱
                     isNeedSendData = true;
                     bytes[5] = 0x0A;
                     bytes[6] = 0x01;
-                    returnDatas[2] = 0x01;
                     break;
                 case 0x02://关舱
                     isNeedSendData = true;
                     bytes[5] = 0x0B;
                     bytes[6] = 0x01;
-                    returnDatas[2] = 0x02;
                     break;
                 case 0x03://上一曲
                     isNeedSendData = false;
@@ -760,21 +765,55 @@ namespace MoxibustionBedAPP.Models
                 bytes[10] = 0xAA;
                 bytes = CRC16(bytes);
                 SendData(bytes);//发送数据到下位机
-                if (b[3] == 0x01)
+                if (datas[3] == 0x01)
                 {
                     App.PropertyModelInstance.IsOpen = true;//舱门开启
                     App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                    timer.Tick += (sender, args) =>
+                    {
+                        App.PropertyModelInstance.IsOpen = false;
+                        App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                        byte[] b = new byte[6];
+                        b[0] = 0xAA;
+                        b[1] = 0x55;
+                        b[2] = 0x01;
+                        b[3] = 0x01;
+                        b[4] = 0x55;
+                        b[5] = 0xAA;
+                        SendDataByVoice(b);//返回数据给语音模块
+                        ((DispatcherTimer)sender).Stop();
+                    };
+                    timer.Start();
+
                 }
-                else if (b[3] == 0x02)
+                else if (datas[3] == 0x02)
                 {
                     App.PropertyModelInstance.IsClose = true;//舱门关闭
                     App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                    timer.Tick += (sender, args) =>
+                    {
+                        App.PropertyModelInstance.IsClose = false;
+                        App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                        byte[] b = new byte[6];
+                        b[0] = 0xAA;
+                        b[1] = 0x55;
+                        b[2] = 0x02;
+                        b[3] = 0x01;
+                        b[4] = 0x55;
+                        b[5] = 0xAA;
+                        SendDataByVoice(b);//返回数据给语音模块
+                        ((DispatcherTimer)sender).Stop();
+                    };
+                    timer.Start();
                 }
             }
-            returnDatas[3] = 0x01;
-            returnDatas[4] = 0x55;
-            returnDatas[5] = 0xAA;
-            SendDataByVoice(returnDatas);//返回数据给语音模块
+            if (datas[3] != 0x01 && datas[3] != 0x02)
+            {
+                returnDatas[3] = 0x01;
+                returnDatas[4] = 0x55;
+                returnDatas[5] = 0xAA;
+                SendDataByVoice(returnDatas);//返回数据给语音模块
+            }
         }
 
         private bool TryToReadFrame(byte[] buffer,out byte[] data)
