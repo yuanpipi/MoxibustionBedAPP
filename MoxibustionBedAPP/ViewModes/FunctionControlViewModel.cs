@@ -350,6 +350,7 @@ namespace MoxibustionBedAPP.ViewModes
                             data[5] = 0x0A;
                             data[6] = 0x02;
                             App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            VoiceMethods("OnAndClose");//发送半开舱状态到语音模块
                         }
                         break;
                     }
@@ -369,6 +370,7 @@ namespace MoxibustionBedAPP.ViewModes
                             data[5] = 0x0B;
                             data[6] = 0x02;
                             App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            VoiceMethods("OnAndClose");//发送半开舱状态到语音模块
                         }
                         break;
                     }
@@ -477,6 +479,7 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.IsOpen = false;
                     App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
+                    VoiceMethods("HatchOn");//发送开舱状态到语音模块
                 };
                 timer.Start();
             }
@@ -487,6 +490,7 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.IsClose = false;
                     App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
+                    VoiceMethods("HatchClose");//发送关舱状态到语音模块
                 };
                 timer.Start();
             }
@@ -509,7 +513,7 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
-
+            VoiceMethods("HatchClose");//发送关舱状态到语音模块
 
 
             data[5] = 0x02;
@@ -543,6 +547,7 @@ namespace MoxibustionBedAPP.ViewModes
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.Hatch = false;
+            VoiceMethods("HatchClose");//发送关舱状态到
 
 
             data[5] = 0x03;
@@ -701,6 +706,10 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0xAA;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+            if ((string)parameter == "OpenHatch")//发送开舱状态到语音模块
+            {
+                VoiceMethods("OpenHatch");
+            }
         }
 
         private void VoiceMethods(object parameter)
@@ -708,14 +717,27 @@ namespace MoxibustionBedAPP.ViewModes
             byte[] bytes = new byte[6];
             bytes[0] = 0xAA;
             bytes[1] = 0x55;
-            bytes[2] = 0x0E;
             switch(parameter)
             {
                 case "StartMoxibustion"://开始治疗
+                    bytes[2] = 0x0E;
                     bytes[3] = 0x01;
                     break;
                 case "StopMoxibustion"://结束治疗
+                    bytes[2] = 0x0E;
                     bytes[3] = 0x00;
+                    break;
+                case "HatchClose"://舱门关闭状态
+                    bytes[2] = 0x0F;
+                    bytes[3] = 0x00;
+                    break;
+                case "HatchOn"://舱门开启状态
+                    bytes[2] = 0x0F;
+                    bytes[3] = 0x01;
+                    break;
+                case "OnAndClose"://舱门半开启状态
+                    bytes[2] = 0x0F;
+                    bytes[3] = 0x02;
                     break;
             }
             bytes[4] = 0x55;

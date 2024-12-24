@@ -59,7 +59,14 @@ namespace MoxibustionBedAPP.Models
         /// <summary>
         /// 开关舱倒计时
         /// </summary>
-        private DispatcherTimer timer = new DispatcherTimer
+        private DispatcherTimer timerOpen = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(20)
+        };
+        /// <summary>
+        /// 开关舱倒计时
+        /// </summary>
+        private DispatcherTimer timerClose = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(20)
         };
@@ -769,7 +776,7 @@ namespace MoxibustionBedAPP.Models
                 {
                     App.PropertyModelInstance.IsOpen = true;//舱门开启
                     App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
-                    timer.Tick += (sender, args) =>
+                    timerOpen.Tick += (sender, args) =>
                     {
                         App.PropertyModelInstance.IsOpen = false;
                         App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
@@ -781,19 +788,27 @@ namespace MoxibustionBedAPP.Models
                         b[4] = 0x55;
                         b[5] = 0xAA;
                         SendDataByVoice(b);//返回数据给语音模块
+
+                        b[0] = 0xAA;
+                        b[1] = 0x55;
+                        b[2] = 0x0F;
+                        b[3] = 0x01;
+                        b[4] = 0x55;
+                        b[5] = 0xAA;
+                        SendDataByVoice(b);//返回舱门状态给语音模块
                         ((DispatcherTimer)sender).Stop();
                     };
-                    timer.Start();
+                    timerOpen.Start();
 
                 }
                 else if (datas[3] == 0x02)
                 {
                     App.PropertyModelInstance.IsClose = true;//舱门关闭
                     App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
-                    timer.Tick += (sender, args) =>
+                    timerClose.Tick += (sender, args) =>
                     {
                         App.PropertyModelInstance.IsClose = false;
-                        App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                        App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
                         byte[] b = new byte[6];
                         b[0] = 0xAA;
                         b[1] = 0x55;
@@ -802,9 +817,18 @@ namespace MoxibustionBedAPP.Models
                         b[4] = 0x55;
                         b[5] = 0xAA;
                         SendDataByVoice(b);//返回数据给语音模块
+
+                        b[0] = 0xAA;
+                        b[1] = 0x55;
+                        b[2] = 0x0F;
+                        b[3] = 0x00;
+                        b[4] = 0x55;
+                        b[5] = 0xAA;
+                        SendDataByVoice(b);//返回舱门状态给语音模块
+
                         ((DispatcherTimer)sender).Stop();
                     };
-                    timer.Start();
+                    timerClose.Start();
                 }
             }
             if (datas[3] != 0x01 && datas[3] != 0x02)
