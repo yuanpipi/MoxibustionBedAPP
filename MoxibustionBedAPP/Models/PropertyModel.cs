@@ -795,5 +795,22 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 是否处于语音控制中
+        /// </summary>
+        private bool _isOnVoice;
+        public bool IsOnVoice
+        {
+            get
+            {
+                return _isOnVoice;
+            }
+            set
+            {
+                _isOnVoice = value;
+                OnPropertyChanged(nameof(IsOnVoice));
+            }
+        }
+
     }
 }

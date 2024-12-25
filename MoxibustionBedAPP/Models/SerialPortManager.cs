@@ -663,6 +663,7 @@ namespace MoxibustionBedAPP.Models
 
         public void ReceiveDataByVoice(object sender,SerialDataReceivedEventArgs e)
         {
+            App.PropertyModelInstance.IsOnVoice = true;
             if (_serialPortVoice.IsOpen)
             {
                 if(_serialPortVoice.BytesToRead > 0)
@@ -690,6 +691,7 @@ namespace MoxibustionBedAPP.Models
                     }
                 }
             }
+            App.PropertyModelInstance.IsOpen = false;
         }
 
         private void OnDataReceivedByVoice(byte[] datas)

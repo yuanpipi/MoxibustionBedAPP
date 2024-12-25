@@ -493,8 +493,8 @@ namespace MoxibustionBedAPP.ViewModes
                 {
                     double x = (i / (double)samplesRead) * 350;
                     double y = (buffer[i] + 1) * 0.55 * 180;
-                    startPoint = new Point(x, 180 - y);
-                    endPoint = new Point(x, y);
+                    startPoint = new Point(x, (180 - y)*1.4);
+                    endPoint = new Point(x, y*1.4);
                     AddLine(startPoint, endPoint);
                 }
                 //double maxAmplitude = buffer.Take(samplesRead).Select(x => Math.Abs(x)).Max();

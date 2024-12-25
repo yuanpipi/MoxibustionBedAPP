@@ -61,7 +61,7 @@
                 <TextBlock Foreground="#73441A"  FontFamily="{StaticResource SourceHanSerifCN-Regular}" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Right">
                     <Span>
                         <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="16"/>
-                        <Run Text="M" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="16"/>
+                        <Run Text="m" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="16"/>
                         <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="16"/>
                         <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="16"/>
                     </Span>
@@ -359,12 +359,20 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Line X1="{Binding StartPoint.X}" Y1="{Binding StartPoint.Y}"
-                                  X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}"
-                                  Stroke="Black" StrokeThickness="1" />
+                                  X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}" StrokeThickness="1" >
+                                <Line.Stroke>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="Transparent"/>
+                                        <GradientStop Color="Transparent" Offset="1"/>
+                                        <GradientStop Color="#FF944907" Offset="0.33"/>
+                                        <GradientStop Color="#FF944907" Offset="0.66"/>
+                                    </LinearGradientBrush>
+                                </Line.Stroke>
+                            </Line>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                
+
                 <TextBlock Text="{Binding Name}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Foreground="#73441A" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
 
@@ -372,10 +380,10 @@
 
                 <TextBlock Text="{Binding Duration}" Grid.Row="5" Grid.Column="11" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"/>
                 <Image Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding RandomOrSequencePicture}" Stretch="None">
-                        <Image.InputBindings>
-                            <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
-                        </Image.InputBindings>
-                    </Image>
+                    <Image.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
+                    </Image.InputBindings>
+                </Image>
                 <Image Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/PreviousMusic.png" Stretch="None">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
@@ -391,8 +399,8 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
                     </Image.InputBindings>
                 </Image>
-                
-                
+
+
                 <Border CornerRadius="15" Grid.Column="13" Grid.Row="1" Grid.RowSpan="8">
                     <Border.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.25">
@@ -414,7 +422,7 @@
                                 <Setter Property="Background" Value="Transparent"/>
                             </Style>
                         </ListBox.ItemContainerStyle>
-                        
+
                         <behavior:Interaction.Triggers>
                             <behavior:EventTrigger EventName="SelectionChanged">
                                 <behavior:InvokeCommandAction Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
@@ -444,7 +452,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Border>
-                
+
             </Grid>
         </Border>
     </Grid>
