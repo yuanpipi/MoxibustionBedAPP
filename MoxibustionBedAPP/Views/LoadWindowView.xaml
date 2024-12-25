@@ -88,7 +88,7 @@
                         <Border CornerRadius="13.5" Grid.Row="7" Grid.Column="2" BorderBrush="White" BorderThickness="1" Width="130" HorizontalAlignment="Left">
                             <TextBlock Text="Wait a little while" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="11.68" Foreground="White"/>
                         </Border>
-                        <Image Grid.Row="1" Grid.Column="2" Source="/Views/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="None"/>
+                        <Image Grid.Row="1" Grid.Column="2" Source="pack://application:,,,/Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="None"/>
                     </Grid>
                 </Border>
                 <Grid Grid.Column="1" Background="White"/>

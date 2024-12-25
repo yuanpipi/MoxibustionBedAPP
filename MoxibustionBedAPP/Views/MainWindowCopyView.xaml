@@ -12,7 +12,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="../Resources/Pictures/MainBackgroundImage.png"/>
+            <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/MainBackgroundImage.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -62,11 +62,11 @@
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
+            <Image Grid.Row="2" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/DataLogo.png"/>
             <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White"  FontFamily="{StaticResource SourceHanSerifCN-Light}" FontWeight="Light"/>
-            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png"/>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png"/>
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="pack://application:,,,/Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="pack://application:,,,/Resources/Pictures/QuestionLogo.png"/>
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/SettingLogo.png"/>
         </Grid>
         <local:PlayMusicView Margin="10" Grid.Row="2" Grid.Column="1"/>
     </Grid>

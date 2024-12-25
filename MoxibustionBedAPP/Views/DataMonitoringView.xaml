@@ -147,7 +147,7 @@
                 </TextBlock>
 
                 <!--<TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Grid.Row="7" Grid.Column="2" FontSize="22" VerticalAlignment="Center" HorizontalAlignment="Left"/>-->
-                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Temp.png" Stretch="None"/>
+                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Temp.png" Stretch="None"/>
             </Grid>
         </Border>
 
@@ -302,8 +302,8 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>-->
-                
-                <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Computer.png" Stretch="None"/>
+
+                <Image Grid.Row="5" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Computer.png" Stretch="None"/>
             </Grid>
         </Border>
 
@@ -439,7 +439,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Set.png" Stretch="None"/>
+                <Image Grid.Row="7" Grid.RowSpan="2" Grid.Column="3" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Set.png" Stretch="None"/>
             </Grid>
         </Border>
 
@@ -936,7 +936,7 @@
                 </Border>
                 <TextBlock Text="腿部灸盘" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
 
-                <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="../Resources/Pictures/Battery.png" Stretch="None"/>
+                <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Battery.png" Stretch="None"/>
                 <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>

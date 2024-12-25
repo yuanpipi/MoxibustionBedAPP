@@ -13,7 +13,7 @@
     <Grid>
         <!--叠加背景图-->
         <Grid.Background>
-            <ImageBrush ImageSource="../Resources/Pictures/MainBackgroundImage.png"/>
+            <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/MainBackgroundImage.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
@@ -66,19 +66,19 @@
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="34.82*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="2" Grid.Column="1" Source="../Resources/Pictures/DataLogo.png"/>
+            <Image Grid.Row="2" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/DataLogo.png"/>
             <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding CurrentTime}" FontSize="17" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontWeight="Light"/>
-            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="../Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Image Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" Source="pack://application:,,,/Resources/Pictures/HuaWeiIcon.png" VerticalAlignment="Center" HorizontalAlignment="Left">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
                 </Image.InputBindings>
             </Image>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="../Resources/Pictures/QuestionLogo.png">
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="pack://application:,,,/Resources/Pictures/QuestionLogo.png">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding QuesClick}"/>
                 </Image.InputBindings>
             </Image>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="../Resources/Pictures/SettingLogo.png">
+            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/SettingLogo.png">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding SetClick}"/>
                 </Image.InputBindings>
@@ -115,7 +115,7 @@
                 <ColumnDefinition Width="150*"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="9" Source="../Resources/Pictures/BtnListStyle.png"/>
+            <Image Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="9" Source="pack://application:,,,/Resources/Pictures/BtnListStyle.png"/>
             <TextBlock Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
                 <TextBlock.Background>
                     <ImageBrush  ImageSource="{Binding BtnBack1}"/>
@@ -124,7 +124,7 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowFunctionControlCommand}"/>
                 </TextBlock.InputBindings>
             </TextBlock>
-            <Image Grid.Row="1" Grid.Column="1" Source="../Resources/Pictures/FunctionControl.png" Stretch="None">
+            <Image Grid.Row="1" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/FunctionControl.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowFunctionControlCommand}"/>
                 </Image.InputBindings>
@@ -138,7 +138,7 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </TextBlock.InputBindings>
             </TextBlock>
-            <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/Parameter.png" Stretch="None">
+            <Image Grid.Row="1" Grid.Column="3" Source="pack://application:,,,/Resources/Pictures/Parameter.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </Image.InputBindings>
@@ -164,7 +164,7 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowDataMonitoringCommand}"/>
                 </TextBlock.InputBindings>
             </TextBlock>
-            <Image Grid.Row="1" Grid.Column="5" Source="../Resources/Pictures/Data.png" Stretch="None">
+            <Image Grid.Row="1" Grid.Column="5" Source="pack://application:,,,/Resources/Pictures/Data.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowDataMonitoringCommand}"/>
                 </Image.InputBindings>
@@ -178,7 +178,7 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
                 </TextBlock.InputBindings>
             </TextBlock>
-            <Image Grid.Row="1" Grid.Column="7" Source="../Resources/Pictures/Music.png" Stretch="None">
+            <Image Grid.Row="1" Grid.Column="7" Source="pack://application:,,,/Resources/Pictures/Music.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowPlayMusicCommand}"/>
                 </Image.InputBindings>
@@ -277,7 +277,7 @@
                     <ColumnDefinition Width="12.28*"/>
                     <ColumnDefinition Width="411.29*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="../Resources/Pictures/CountDown.png"/>
+                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="pack://application:,,,/Resources/Pictures/CountDown.png"/>
                 <TextBlock Text="点火中" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="47" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="点火倒计时" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Row="7" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
@@ -337,7 +337,7 @@
                     <ColumnDefinition Width="12.28*"/>
                     <ColumnDefinition Width="411.29*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="../Resources/Pictures/CountDown.png"/>
+                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="2" Source="pack://application:,,,/Resources/Pictures/CountDown.png"/>
                 <TextBlock Text="预热中" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="47" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="预热倒计时" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Row="7" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="7" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">

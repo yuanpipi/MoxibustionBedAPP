@@ -211,8 +211,8 @@ namespace MoxibustionBedAPP.ViewModes
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
             Prehead = new RelayCommand(PreheadMethod);
             Inignition= new RelayCommand(InignitionMethod);
-            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
-            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             RadioBtnOfSmoke = new RelayCommand(CloseSmokeSystem);
             RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
             StopCommand = new RelayCommand(StopMethod);
@@ -341,7 +341,7 @@ namespace MoxibustionBedAPP.ViewModes
                             App.PropertyModelInstance.IsOpen = true;
                             data[5] = 0x0A;
                             data[6] = 0x01;
-                            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                            App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
                         }
                         else
                         {
@@ -349,7 +349,7 @@ namespace MoxibustionBedAPP.ViewModes
                             timer.Stop();
                             data[5] = 0x0A;
                             data[6] = 0x02;
-                            App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                             VoiceMethods("OnAndClose");//发送半开舱状态到语音模块
                         }
                         break;
@@ -361,7 +361,7 @@ namespace MoxibustionBedAPP.ViewModes
                             App.PropertyModelInstance.IsClose = true;
                             data[5] = 0x0B;
                             data[6] = 0x01;
-                            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
                         }
                         else
                         {
@@ -369,7 +369,7 @@ namespace MoxibustionBedAPP.ViewModes
                             timer.Stop();
                             data[5] = 0x0B;
                             data[6] = 0x02;
-                            App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                             VoiceMethods("OnAndClose");//发送半开舱状态到语音模块
                         }
                         break;
@@ -477,7 +477,7 @@ namespace MoxibustionBedAPP.ViewModes
                 timer.Tick += (sender, args) =>
                 {
                     App.PropertyModelInstance.IsOpen = false;
-                    App.PropertyModelInstance.OpenHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                     VoiceMethods("HatchOn");//发送开舱状态到语音模块
                 };
@@ -488,7 +488,7 @@ namespace MoxibustionBedAPP.ViewModes
                 timer.Tick += (sender, args) =>
                 {
                     App.PropertyModelInstance.IsClose = false;
-                    App.PropertyModelInstance.CloseHatch = "../Resources/Pictures/HatchBtnBack.png";
+                    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                     VoiceMethods("HatchClose");//发送关舱状态到语音模块
                 };

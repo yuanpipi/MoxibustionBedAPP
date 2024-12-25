@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="82.58*"/>
                 <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="1" Grid.Column="3" Source="../Resources/Pictures/IMess.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image Grid.Row="1" Grid.Column="3" Source="pack://application:,,,/Resources/Pictures/IMess.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock Text="提示!" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="27" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
             <TextBlock Text="{Binding Message}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" FontFamily="{StaticResource SourceHanSerifCN-Medium}" Foreground="White"/>
         </Grid>

@@ -384,7 +384,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
                     </Image.InputBindings>
                 </Image>
-                <Image Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/PreviousMusic.png" Stretch="None">
+                <Image Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/PreviousMusic.png" Stretch="None">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
                     </Image.InputBindings>
@@ -394,7 +394,7 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PlayOrPause}"/>
                     </Image.InputBindings>
                 </Image>
-                <Image Grid.Row="7" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/NextMusic.png" Stretch="None">
+                <Image Grid.Row="7" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/NextMusic.png" Stretch="None">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
                     </Image.InputBindings>
@@ -438,7 +438,7 @@
                                         <ColumnDefinition Width="166.74*"/>
                                         <ColumnDefinition Width="13.44*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Source="../Resources/Pictures/PlayIcon.png"/>
+                                    <Image Grid.Column="0" Source="pack://application:,,,/Resources/Pictures/PlayIcon.png"/>
                                     <Grid Grid.Column="2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>

@@ -68,18 +68,18 @@
                     <ColumnDefinition Width="28.41*"/>
                     <ColumnDefinition Width="39.03*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="13" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="13" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                 <TextBlock Text="高度调节" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
                 <!--<Image Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Source="../Resources/Pictures/BackHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Image Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/LegHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
                 <TextBlock Text="背部升降" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="腿部升降" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Image Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
                     </Image.InputBindings>
                 </Image>
-                <Image Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp"/>
                     </Image.InputBindings>
@@ -132,12 +132,12 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown"/>
                     </Image.InputBindings>
                 </Image>
-                <Image Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Image Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown"/>
                     </Image.InputBindings>
@@ -175,7 +175,7 @@
                     <ColumnDefinition Width="164.16*"/>
                     <ColumnDefinition Width="7.23*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                 <TextBlock Text="舱盖控制" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
                 <Grid Grid.Row="2" Grid.Column="1">
@@ -213,7 +213,7 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="../Resources/Pictures/Stop.png">
+                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="pack://application:,,,/Resources/Pictures/Stop.png">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="OpenHatch"/>
                         </Image.InputBindings>
@@ -284,7 +284,7 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="../Resources/Pictures/Stop.png">
+                    <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Stretch="None" Source="pack://application:,,,/Resources/Pictures/Stop.png">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="CloseHatch"/>
                         </Image.InputBindings>
@@ -410,7 +410,7 @@
                     <ColumnDefinition Width="18.88*"/>
                     <ColumnDefinition Width="19.71*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                 <TextBlock Text="系统功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
                 <TextBlock Text="摇摆系统" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
@@ -419,10 +419,10 @@
                         <Style TargetType="Image">
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
-                                    <Setter Property="Source" Value="../Resources/Pictures/OpenBtn.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Pictures/OpenBtn.png"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
-                                    <Setter Property="Source" Value="../Resources/Pictures/CloseBtn.png"/>
+                                    <Setter Property="Source" Value="pack://application:,,,/Resources/Pictures/CloseBtn.png"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -433,7 +433,7 @@
                 </Image>
 
                 <TextBlock Text="红外灯" Grid.Row="7" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
-                <Image Grid.Row="7" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="../Resources/Pictures/BtnBackground.png"/>
+                <Image Grid.Row="7" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="pack://application:,,,/Resources/Pictures/BtnBackground.png"/>
                 <Grid Grid.Row="6" Grid.RowSpan="5" Grid.Column="5" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="6.92*"/>
@@ -743,13 +743,13 @@
                     <ColumnDefinition Width="131.03*"/>
                     <ColumnDefinition Width="31.775*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                 <TextBlock Text="除烟功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
                 <RadioButton Grid.Row="2" Grid.Column="1" Content="排烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokeExhaust}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokeExhaust" IsEnabled="{Binding RadioBtnCanUse}"/>
                 <RadioButton Grid.Row="2" Grid.Column="3" Content="净烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokePurification}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokePurification" IsEnabled="{Binding RadioBtnCanUse}"/>
 
-                <Image Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Source="../Resources/Pictures/BtnBackground.png" Stretch="Fill"/>
+                <Image Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnBackground.png" Stretch="Fill"/>
                 <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
                     <Grid.Style>
                         <Style TargetType="Grid">
@@ -1161,7 +1161,7 @@
                         <ColumnDefinition Width="29.09*"/>
                         <ColumnDefinition Width="23.945*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="../Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
+                    <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                     <TextBlock Text="模式切换" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
                     <Grid Grid.Row="2" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="5">
                         <Grid.Background>
@@ -1190,10 +1190,10 @@
                             <Style TargetType="Image">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="True">
-                                        <Setter Property="Source" Value="../Resources/Pictures/Auto.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Resources/Pictures/Auto.png"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="False">
-                                        <Setter Property="Source" Value="../Resources/Pictures/HandOperated.png"/>
+                                        <Setter Property="Source" Value="pack://application:,,,/Resources/Pictures/HandOperated.png"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -1263,7 +1263,7 @@
                         <ColumnDefinition Width="46.38*"/>
                         <ColumnDefinition Width="38.18*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Prehead.png">
+                    <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="pack://application:,,,/Resources/Pictures/Prehead.png">
                         <Image.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding Prehead}"/>
                         </Image.InputBindings>
@@ -1355,7 +1355,7 @@
                             <ColumnDefinition Width="46.95*"/>
                             <ColumnDefinition Width="42.35*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="../Resources/Pictures/Inignition.png">
+                        <Image Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Source="pack://application:,,,/Resources/Pictures/Inignition.png">
                             <Image.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding Inignition}"/>
                             </Image.InputBindings>
@@ -1391,7 +1391,7 @@
                             <RowDefinition Height="28*"/>
                             <RowDefinition Height="13.39*"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="1" Source="../Resources/Pictures/Clock.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image Grid.Row="1" Source="pack://application:,,,/Resources/Pictures/Clock.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Row="3" Text="治疗倒计时" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A"/>
                         <TextBlock Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="20" Foreground="#73441A" TextDecorations="Underline">
                                 <Span>
@@ -1432,7 +1432,7 @@
                             <RowDefinition Height="28*"/>
                             <RowDefinition Height="13.39*"/>
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="1" Source="../Resources/Pictures/StopSmoke.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <Image Grid.Row="1" Source="pack://application:,,,/Resources/Pictures/StopSmoke.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <TextBlock Grid.Row="3" Text="排烟倒计时" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24" Foreground="#73441A"/>
                         <TextBlock Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="20" Foreground="#73441A" TextDecorations="Underline">
                             <Span>

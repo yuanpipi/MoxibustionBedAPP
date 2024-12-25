@@ -185,10 +185,10 @@ namespace MoxibustionBedAPP.ViewModes
             SetClick = new RelayCommand(SetClickCommand);
             App.PropertyModelInstance.IsClickQ = false;
             App.PropertyModelInstance.IsClickS = false;
-            BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
-            BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-            BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-            BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
+            BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+            BtnBack4 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
             try
             {
                 //显示时间，每隔一秒刷新
@@ -219,10 +219,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     App.PropertyModelInstance.CurrentUserControl = new FunctionControlView();
-                    BtnBack1 = "../Resources/Pictures/BtnStyleSelected.png";
-                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack4 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                 });
             }
         }
@@ -237,10 +237,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     App.PropertyModelInstance.CurrentUserControl = new DataMonitoringView();
-                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack3 = "../Resources/Pictures/BtnStyleSelected.png";
-                    BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack4 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                 });
             }
         }
@@ -255,10 +255,10 @@ namespace MoxibustionBedAPP.ViewModes
                 return new RelayCommand(() =>
                 {
                     App.PropertyModelInstance.CurrentUserControl = PlayMusicView;
-                    BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack2 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-                    BtnBack4 = "../Resources/Pictures/BtnStyleSelected.png";
+                    BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                    BtnBack4 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
                 });
             }
         }
@@ -276,10 +276,10 @@ namespace MoxibustionBedAPP.ViewModes
                     {
 
                         App.PropertyModelInstance.CurrentUserControl = new ParameterSettingView();
-                        BtnBack1 = "../Resources/Pictures/BtnStyleUnselect.png";
-                        BtnBack2 = "../Resources/Pictures/BtnStyleSelected.png";
-                        BtnBack3 = "../Resources/Pictures/BtnStyleUnselect.png";
-                        BtnBack4 = "../Resources/Pictures/BtnStyleUnselect.png";
+                        BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                        BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
+                        BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
+                        BtnBack4 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     }
                     else
                     {

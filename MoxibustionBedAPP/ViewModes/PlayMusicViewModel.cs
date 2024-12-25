@@ -226,8 +226,8 @@ namespace MoxibustionBedAPP.ViewModes
             Name = "Song Name";
             SelectIndex = -1;
             Duration = "00:00";
-            RandomOrSequencePicture = "../Resources/Pictures/Sequence.png";
-            PlayOrPausePicture = "../Resources/Pictures/PlayMusic.png";
+            RandomOrSequencePicture = "pack://application:,,,/Resources/Pictures/Sequence.png";
+            PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/PlayMusic.png";
             Previous = new RelayCommand(LastSong);
             Next = new RelayCommand(NextSong);
             PlayOrPause = new RelayCommand(PlayOrPauseSong);
@@ -372,7 +372,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 Duration = $"{minutes}:{seconds}";
             }
-            PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
+            PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
             //启动定时器更新进度
             UpdateProgressTimer.Start();
             UpdateAmplitudes();
@@ -388,7 +388,7 @@ namespace MoxibustionBedAPP.ViewModes
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
-            PlayOrPausePicture = "../Resources/Pictures/PlayMusic.png";
+            PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/PlayMusic.png";
         }
 
         /// <summary>
@@ -441,7 +441,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 _mediaPlayer.Play();
                 IsPlaying = true;
-                PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
+                PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
                 UpdateProgressTimer.Start();
                 UpdateAmplitudes();
             }

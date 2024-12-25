@@ -40,7 +40,7 @@
                 <ColumnDefinition Width="732.84*"/>
                 <ColumnDefinition Width="61.77*"/>
             </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 10 20 0" Source="../Resources/Pictures/Return.png" Stretch="None">
+            <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 10 20 0" Source="pack://application:,,,/Resources/Pictures/Return.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ReturnClick}"/>
                 </Image.InputBindings>
@@ -65,7 +65,7 @@
                         <RowDefinition Height="31.9*"/>
                         <RowDefinition Height="23.1*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Contraindications.png"/>
+                    <Image Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Contraindications.png"/>
                     <Border Grid.Row="3" Grid.RowSpan="3" Background="Transparent">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding GuideClick}"/>
@@ -87,7 +87,7 @@
                         </TextBlock.InputBindings>
                     </TextBlock>
                     <Rectangle Grid.Row="7" Width="28.35" Height="1" Fill="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <Image Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Resources/Pictures/Guide.png"/>
+                    <Image Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Guide.png"/>
                     <Border Grid.Row="11" Grid.RowSpan="4" Background="Transparent">
                         <Border.InputBindings>
                             <MouseBinding MouseAction="LeftClick" Command="{Binding ContraindicationsClick}"/>
