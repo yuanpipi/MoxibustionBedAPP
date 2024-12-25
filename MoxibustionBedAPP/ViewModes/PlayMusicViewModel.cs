@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -11,8 +12,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.Properties;
+using NAudio.Wave;
 
 namespace MoxibustionBedAPP.ViewModes
 {
@@ -25,6 +28,10 @@ namespace MoxibustionBedAPP.ViewModes
         private ObservableCollection<MusicModel> _fileNames;
         //public PlayerViewModel player;
         public MediaPlayer _mediaPlayer = new MediaPlayer();
+        private WaveOut waveOut;
+        private AudioFileReader audioFileReader;
+        //private DispatcherTimer timer;
+
 
         private double currentPosition;
 
@@ -196,6 +203,17 @@ namespace MoxibustionBedAPP.ViewModes
 
         private int minutes;
         private int seconds;
+
+        private ObservableCollection<LineModel> _lines = new ObservableCollection<LineModel>();
+        public ObservableCollection<LineModel> Lines
+        {
+            get { return _lines; }
+            set
+            {
+                _lines = value;
+                OnPropertyChanged(nameof(Lines));
+            }
+        }
         #endregion
 
         public PlayMusicViewModel()
@@ -216,6 +234,10 @@ namespace MoxibustionBedAPP.ViewModes
             num = 1;
             IsRandom = false;
             RandomOrSequence = new RelayCommand(RandomOrSequenceSong);
+            waveOut = new WaveOut();
+            //timer = new DispatcherTimer();
+            //timer.Interval = TimeSpan.FromSeconds(1);
+            //timer.Tick += Timer_Tick;
             //SliderValueChangedCommand = new RelayCommand(OnSliderValueChanged);
 
             //音乐播放进度条+时间倒计时
@@ -276,18 +298,20 @@ namespace MoxibustionBedAPP.ViewModes
                 //Directory.GetFiles(folderPath).Select(Path.GetFileName)
                 FileNames = new ObservableCollection<MusicModel>();
                 string name = "";
+                string[] strings;
                 foreach (string file in Directory.GetFiles(folderPath))
                 {
                     if (file.EndsWith(".mp3") || file.EndsWith(".wav"))
                     {
                         name = Path.GetFileNameWithoutExtension(file);
+                        strings=name.Split('_');
                         name = name.Remove(name.IndexOf('_'), name.LastIndexOf("_") - name.IndexOf('_') + 1);
                         MusicModel music = new MusicModel
                         {
                             FilePath = Path.GetFullPath(file),
                             MusicName = name.Insert(name.LastIndexOfAny(new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' }) + 1, " - "),
+                            Singer = strings[1]
                         };
-                        FileNames.Add(music);//保存文件中的音乐信息
                         FileNames.Add(music);//保存文件中的音乐信息
                     }
                 }
@@ -317,8 +341,10 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public void PlayMusic()
         {
-            i++;            
-            _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));
+            i++;
+            audioFileReader = new AudioFileReader(FileNames[selectIndex].FilePath);
+            waveOut.Init(audioFileReader);
+            _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));            
             //Thread.Sleep(350);
             //加载音乐时长
             while (!_mediaPlayer.NaturalDuration.HasTimeSpan)
@@ -331,6 +357,8 @@ namespace MoxibustionBedAPP.ViewModes
             //}
             
             _mediaPlayer.Play();
+            waveOut.Play();
+            waveOut.Volume = 0;
             IsPlaying = true;
             CurrentPosition = _mediaPlayer.Position.TotalSeconds;
             TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
@@ -347,6 +375,7 @@ namespace MoxibustionBedAPP.ViewModes
             PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
             //启动定时器更新进度
             UpdateProgressTimer.Start();
+            UpdateAmplitudes();
         }
 
         /// <summary>
@@ -355,6 +384,7 @@ namespace MoxibustionBedAPP.ViewModes
         public void PauseMusic()
         {
             _mediaPlayer.Pause();
+            waveOut.Pause();
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
@@ -367,6 +397,8 @@ namespace MoxibustionBedAPP.ViewModes
         public void StopMusic()
         {
             _mediaPlayer.Stop();
+            waveOut.Stop();
+            Lines.Clear();
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
@@ -411,6 +443,7 @@ namespace MoxibustionBedAPP.ViewModes
                 IsPlaying = true;
                 PlayOrPausePicture = "../Resources/Pictures/StopMusic.png";
                 UpdateProgressTimer.Start();
+                UpdateAmplitudes();
             }
         }
 
@@ -430,6 +463,43 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 num = 1;
                 RandomOrSequencePicture = "../Resources/Pictures/Sequence.png";
+            }
+        }
+
+        private void AddLine(Point startPoint, Point endPoint)
+        {
+            Lines.Add(new LineModel { StartPoint = startPoint, EndPoint = endPoint });
+        }
+
+        private async void UpdateAmplitudes()
+        {
+            const int bufferSize = 64;
+            var buffer = new float[bufferSize];
+            while (IsPlaying)
+            {
+                int samplesRead = audioFileReader.Read(buffer, 0, bufferSize);
+                if (samplesRead == 0)
+                {
+                    break;
+                }
+
+                if (Lines != null)
+                {
+                    Lines.Clear();
+                }
+                Point startPoint;
+                Point endPoint;
+                for (int i = 0; i < samplesRead; i++)
+                {
+                    double x = (i / (double)samplesRead) * 350;
+                    double y = (buffer[i] + 1) * 0.55 * 180;
+                    startPoint = new Point(x, 180 - y);
+                    endPoint = new Point(x, y);
+                    AddLine(startPoint, endPoint);
+                }
+                //double maxAmplitude = buffer.Take(samplesRead).Select(x => Math.Abs(x)).Max();
+                //AudioAmplitudes.Add(maxAmplitude);
+                await Task.Delay(150);
             }
         }
 

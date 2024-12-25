@@ -17,8 +17,8 @@ namespace MoxibustionBedAPP.Models
         /// </summary>
         public string MusicName {  get; set; }
         /// <summary>
-        /// 时长
+        /// 演唱者
         /// </summary>
-        public TimeSpan Duration { get; set; }
+        public string Singer { get; set; }
     }
 }

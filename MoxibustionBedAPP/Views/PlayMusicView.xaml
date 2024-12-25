@@ -349,7 +349,21 @@
                 </Grid.RowDefinitions>
 
                 <MediaElement x:Name="mediaPlayer" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9"/>
-                <Image VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" Source="../Resources/Pictures/Musicplayer.png"/>
+                <!--<Image VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" Source="../Resources/Pictures/Musicplayer.png"/>-->
+                <ItemsControl Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" ItemsSource="{Binding Lines}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas Width="350" Height="180" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Line X1="{Binding StartPoint.X}" Y1="{Binding StartPoint.Y}"
+                                  X2="{Binding EndPoint.X}" Y2="{Binding EndPoint.Y}"
+                                  Stroke="Black" StrokeThickness="1" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
                 
                 <TextBlock Text="{Binding Name}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Foreground="#73441A" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
@@ -423,7 +437,7 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Row="0" Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                                        <TextBlock Grid.Row="1" Text="{Binding MusicName}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                        <TextBlock Grid.Row="1" Text="{Binding Singer}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
