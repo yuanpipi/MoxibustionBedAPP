@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Windows.Markup.Localizer;
 using System.Windows.Automation.Peers;
+using System.Diagnostics;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -45,6 +46,7 @@ namespace MoxibustionBedAPP.Models
         /// </summary>
         private SerialPort _serialPort;
         private CancellationTokenSource _cancellationTokenSource;
+        private Stopwatch _stopWatch;
 
         /// <summary>
         /// 语音控制模块相关串口连接
@@ -100,6 +102,7 @@ namespace MoxibustionBedAPP.Models
                 StopBits = StopBits.One
             };
             _cancellationTokenSourceVoice = new CancellationTokenSource();
+            _stopWatch = new Stopwatch();
             StartCountdown();
         }
 
@@ -142,9 +145,11 @@ namespace MoxibustionBedAPP.Models
                     _serialPort.Open();//打开串口
                     Console.WriteLine("串口已打开");
                     //读写超时设置
-                    _serialPort.WriteTimeout = 3000;
-                    _serialPort.ReadTimeout = 3000;
+                    //_serialPort.WriteTimeout = 3000;
+                    //_serialPort.ReadTimeout = 3000;
                     _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                    Console.WriteLine("Serial port opened");
+                    _stopWatch.Start();
                     //StartReceivingData();
                 }
                 catch (Exception ex)
@@ -181,6 +186,7 @@ namespace MoxibustionBedAPP.Models
                 _serialPort.Close();
                 Console.WriteLine("串口已关闭");
                 _cancellationTokenSource.Cancel();
+                _stopWatch.Stop();
             }
         }
 
@@ -217,7 +223,7 @@ namespace MoxibustionBedAPP.Models
         /// 处理接收到的数据
         /// </summary>
         /// <param name="data"></param>
-        protected async void OnDataReceived(byte[] data)
+        protected void OnDataReceived(byte[] data)
         {
             //DataReceived?.Invoke(this, data);
             // 将ASCII字节数组转换为字符串
@@ -394,7 +400,8 @@ namespace MoxibustionBedAPP.Models
                 }
             }
 
-            await Task.Yield();
+            long timestamp = _stopWatch.ElapsedMilliseconds;
+            Console.WriteLine($"[{timestamp} ms] Data processed.");
             //else
             //{
             //    PopupBoxViewModel.ShowPopupBox($"数据错误！");
@@ -590,26 +597,28 @@ namespace MoxibustionBedAPP.Models
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void ReceiveData(object sender,SerialDataReceivedEventArgs e)
+        public void ReceiveData(object sender, SerialDataReceivedEventArgs e)
         {
             //Application.Current.Dispatcher.Invoke(() =>
             //{
-                if (_serialPort.IsOpen)
-                {
-                    //_serialPort.ReadTimeout = 3000;//读取超时
+            if (_serialPort.IsOpen)
+            {
+                //_serialPort.ReadTimeout = 3000;//读取超时
+                Thread.Sleep(30);
 
-                    if (_serialPort.BytesToRead > 0)
+                if (_serialPort.BytesToRead > 0)
+                {
+                    int bytesToRead = _serialPort.BytesToRead;
+                    try
                     {
-                        try
-                        {
-                            byte[] buffer = new byte[_serialPort.BytesToRead];
-                            if (buffer.Length <= 0)
-                            {
-                                return;
-                            }
-                                
-                            //_serialPort.Read(buffer, 0, buffer.Length);
-                            _serialPort.Read(buffer, 0, buffer.Length);
+                        byte[] buffer = new byte[_serialPort.BytesToRead];
+
+                        //_serialPort.Read(buffer, 0, buffer.Length);
+                        _serialPort.Read(buffer, 0, buffer.Length);
+
+                        long timestamp = _stopWatch.ElapsedMilliseconds;
+                        Console.WriteLine($"[{timestamp} ms] Received {bytesToRead} bytes.");
+
                         //bufferLength += buffer.Length;
                         if (buffer[2] + 4 != buffer.Length)
                         {
@@ -631,23 +640,25 @@ namespace MoxibustionBedAPP.Models
                         //while(TryToReadFrame(buffer,out byte[] data))
                         //{
                         //WriteLog(buffer);
-                        OnDataReceived(buffer);//处理接收到的数据
+                        // 记录接收时间戳和数据大小
+                        Task.Run(() => OnDataReceived(buffer));
+                        //OnDataReceived(buffer);//处理接收到的数据
                         //}
-                            //OnDataReceived(buffer);//处理接收到的数据
-                        }
-                        catch (Exception ex)
-                        {
+                        //OnDataReceived(buffer);//处理接收到的数据
+                    }
+                    catch (Exception ex)
+                    {
                         //MessageBox.Show("串口数据接受失败：" + ex.Message);
-                            return;
-                        }
+                        return;
                     }
                 }
-                else
-                {
-                    MessageBox.Show($"串口未打开");
-                }
+            }
+            else
+            {
+                MessageBox.Show($"串口未打开");
+            }
             //});
-            
+
         }
 
         public void SendDataByVoice(byte[] data)
