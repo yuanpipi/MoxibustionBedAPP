@@ -556,7 +556,6 @@ namespace MoxibustionBedAPP.ViewModes
                     //发送结束治疗指令
                     StopMethod("StopMoxibustionTherapy");
 
-                    //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
                     {
                         StopMethod("OpenSmoke");
@@ -579,17 +578,6 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         StopMethod("OpenHatch");
                     }
-                    //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
-                    //if (IsSmokeExhaust)
-                    //{
-                    //    App.PropertyModelInstance.IsSmokePurificationSystem = false;
-                    //}
-                    //else if (IsSmokePurification)
-                    //{
-                    //    App.PropertyModelInstance.IsSmokePurificationSystem = true;
-                    //}
-
-                    //PublicMethods.SaveToJson();
                 }
             }
         }

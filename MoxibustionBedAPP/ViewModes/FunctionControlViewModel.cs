@@ -143,7 +143,9 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public ICommand RadioBtnOfSmoke { get; }
 
-
+        /// <summary>
+        /// radiobutton是否可选
+        /// </summary>
         private bool _radioBtnCanUse;
         public bool RadioBtnCanUse
         {
@@ -157,7 +159,6 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(RadioBtnCanUse));
             }
         }
-
 
         /// <summary>
         /// 是否选中净烟系统
@@ -810,35 +811,8 @@ namespace MoxibustionBedAPP.ViewModes
                     //发送结束治疗指令
                     StopMethods("StopMoxibustionTherapy");
 
-                    //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
                     {
-                        //if (IsSmokeExhaust == false)//若选择净烟，开启净烟
-                        //{
-                        //    data[0] = 0x55;
-                        //    data[1] = 0xAA;
-                        //    data[2] = 0x07;
-                        //    data[3] = 0x01;
-                        //    data[4] = 0x10;
-                        //    data[5] = 0x0D;
-                        //    data[6] = 0x01;
-                        //    data[9] = 0x55;
-                        //    data[10] = 0xAA;
-                        //}
-                        //else//若选择排烟，开启排烟中档
-                        //{
-                        //    data[0] = 0x55;
-                        //    data[1] = 0xAA;
-                        //    data[2] = 0x07;
-                        //    data[3] = 0x01;
-                        //    data[4] = 0x10;
-                        //    data[5] = 0x0C;
-                        //    data[6] = 0x02;
-                        //    data[9] = 0x55;
-                        //    data[10] = 0xAA;
-                        //}
-                        //data = SerialPortManager.CRC16(data);
-                        //SerialPortManager.Instance.SendData(data);
                         //开启排烟
                         StopMethods("OpenSmoke");
                     }

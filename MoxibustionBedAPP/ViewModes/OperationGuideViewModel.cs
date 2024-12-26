@@ -88,14 +88,12 @@ namespace MoxibustionBedAPP.ViewModes
 
         private void GuideClickCommand()
         {
-            //IsClick = false;
             MyText = ReadFile("Contraindications.txt");
         }
         
 
         private void ContraindicationsClickCommand()
         {
-            //IsClick = true;
             MyText = ReadFile("Guide.txt");
         }
 
@@ -112,7 +110,6 @@ namespace MoxibustionBedAPP.ViewModes
                 try
                 {
                     string data = File.ReadAllText(fileName);
-                    //string data = JsonConvert.DeserializeObject<string>(json);
                     return data;
                 }
                 catch (Exception ex)

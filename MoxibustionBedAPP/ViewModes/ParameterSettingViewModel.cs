@@ -78,11 +78,6 @@ namespace MoxibustionBedAPP.ViewModes
 
             //保存进文件
             PublicMethods.SaveToJson();
-            //Thread.Sleep(1500);
-            //if (!App.IsReceive)
-            //{
-            //    MessageBox.Show($"串口错误，无返回数据");
-            //}
         }
 
         /// <summary>
@@ -124,11 +119,6 @@ namespace MoxibustionBedAPP.ViewModes
 
             //保存进文件
             PublicMethods.SaveToJson();
-            //Thread.Sleep(1500);
-            //if (!App.IsReceive)
-            //{
-            //    MessageBox.Show($"串口错误，无返回数据");
-            //}
         }
 
         /// <summary>

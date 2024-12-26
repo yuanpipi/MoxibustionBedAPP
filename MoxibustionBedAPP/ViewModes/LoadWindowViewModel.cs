@@ -14,14 +14,7 @@ using System.IO;
 
 namespace MoxibustionBedAPP.ViewModes
 {
-    public class LoadWindowViewModel : INotifyPropertyChanged
+    public class LoadWindowViewModel
     {
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

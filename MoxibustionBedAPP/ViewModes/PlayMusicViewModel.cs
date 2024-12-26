@@ -26,12 +26,9 @@ namespace MoxibustionBedAPP.ViewModes
         #region 变量定义
         private int i = 0;
         private ObservableCollection<MusicModel> _fileNames;
-        //public PlayerViewModel player;
         public MediaPlayer _mediaPlayer = new MediaPlayer();
         private WaveOut waveOut;
         private AudioFileReader audioFileReader;
-        //private DispatcherTimer timer;
-
 
         private double currentPosition;
 
@@ -80,8 +77,6 @@ namespace MoxibustionBedAPP.ViewModes
         /// 随机/暂停事件
         /// </summary>
         public RelayCommand RandomOrSequence {  get; set; }
-
-        //public RelayCommand SliderValueChangedCommand { get; set; }
 
         /// <summary>
         /// 歌曲名称
@@ -218,11 +213,8 @@ namespace MoxibustionBedAPP.ViewModes
 
         public PlayMusicViewModel()
         {
-            //FileNames=MainWindowViewModel.FileNames;
             ReadFileNamesFromFolder(@"./Resources/Music");
-            //ButtonClickCommand = new RelayCommand(Click);
             ItemSelectedCommand =new RelayCommand(OnItemSelected);
-            //player=new PlayerViewModel();
             Name = "Song Name";
             SelectIndex = -1;
             Duration = "00:00";
@@ -235,10 +227,6 @@ namespace MoxibustionBedAPP.ViewModes
             IsRandom = false;
             RandomOrSequence = new RelayCommand(RandomOrSequenceSong);
             waveOut = new WaveOut();
-            //timer = new DispatcherTimer();
-            //timer.Interval = TimeSpan.FromSeconds(1);
-            //timer.Tick += Timer_Tick;
-            //SliderValueChangedCommand = new RelayCommand(OnSliderValueChanged);
 
             //音乐播放进度条+时间倒计时
             UpdateProgressTimer.Elapsed += (sender, e) =>
@@ -295,7 +283,6 @@ namespace MoxibustionBedAPP.ViewModes
         {
             try
             {
-                //Directory.GetFiles(folderPath).Select(Path.GetFileName)
                 FileNames = new ObservableCollection<MusicModel>();
                 string name = "";
                 string[] strings;
@@ -345,16 +332,11 @@ namespace MoxibustionBedAPP.ViewModes
             audioFileReader = new AudioFileReader(FileNames[selectIndex].FilePath);
             waveOut.Init(audioFileReader);
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));            
-            //Thread.Sleep(350);
             //加载音乐时长
             while (!_mediaPlayer.NaturalDuration.HasTimeSpan)
             {
                 Thread.Sleep(10);
             }
-            //if (!_mediaPlayer.NaturalDuration.HasTimeSpan)
-            //{
-            //    Thread.Sleep(150);
-            //}
             
             _mediaPlayer.Play();
             waveOut.Play();
@@ -497,19 +479,10 @@ namespace MoxibustionBedAPP.ViewModes
                     endPoint = new Point(x, y*1.4);
                     AddLine(startPoint, endPoint);
                 }
-                //double maxAmplitude = buffer.Take(samplesRead).Select(x => Math.Abs(x)).Max();
-                //AudioAmplitudes.Add(maxAmplitude);
                 await Task.Delay(150);
             }
         }
 
-        //private void OnSliderValueChanged(object parameter)
-        //{
-        //    if (parameter is double value && _mediaPlayer != null)
-        //    {
-        //        _mediaPlayer.Position = TimeSpan.FromSeconds(value);
-        //    }
-        //}
         #endregion
     }
 }

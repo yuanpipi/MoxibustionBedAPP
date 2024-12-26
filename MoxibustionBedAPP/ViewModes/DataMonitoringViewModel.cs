@@ -11,7 +11,6 @@ namespace MoxibustionBedAPP.ViewModes
     {
         public DataMonitoringViewModel()
         {
-            //var PropertyModel = (App.PropertyModelInstance)Application.Current.Resources["PropertyModelKey"];
         }
     }
 }

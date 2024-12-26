@@ -25,9 +25,6 @@ namespace MoxibustionBedAPP.Views
         {
             InitializeComponent();
             DataContext=new MainWindowViewModel { SharedVM = sharedPlayMusicModel };
-            //var usercontrol = new PlayMusicView();
-            ////usercontrol.ViewModel=
-            //this.contentPresenter
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

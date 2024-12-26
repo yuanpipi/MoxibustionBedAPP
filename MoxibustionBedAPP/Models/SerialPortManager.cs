@@ -131,7 +131,6 @@ namespace MoxibustionBedAPP.Models
             App.PropertyModelInstance.IsSmokeSystemOn = propertyModel.IsSmokeSystemOn;
         }
 
-
         /// <summary>
         /// 打开串口
         /// </summary>
