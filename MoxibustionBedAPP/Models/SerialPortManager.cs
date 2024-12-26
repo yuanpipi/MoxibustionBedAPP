@@ -217,7 +217,7 @@ namespace MoxibustionBedAPP.Models
         /// 处理接收到的数据
         /// </summary>
         /// <param name="data"></param>
-        protected virtual void OnDataReceived(byte[] data)
+        protected async void OnDataReceived(byte[] data)
         {
             //DataReceived?.Invoke(this, data);
             // 将ASCII字节数组转换为字符串
@@ -393,6 +393,8 @@ namespace MoxibustionBedAPP.Models
                     //}
                 }
             }
+
+            await Task.Yield();
             //else
             //{
             //    PopupBoxViewModel.ShowPopupBox($"数据错误！");
@@ -706,7 +708,7 @@ namespace MoxibustionBedAPP.Models
             timerOfVoice.Start();
         }
 
-        private void OnDataReceivedByVoice(byte[] datas)
+        private async void OnDataReceivedByVoice(byte[] datas)
         {
             bool isNeedSendData = false;
             byte[] returnDatas = new byte[6];
@@ -852,6 +854,7 @@ namespace MoxibustionBedAPP.Models
                 returnDatas[5] = 0xAA;
                 SendDataByVoice(returnDatas);//返回数据给语音模块
             }
+            await Task.Yield();
         }
 
         private bool TryToReadFrame(byte[] buffer,out byte[] data)

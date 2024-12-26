@@ -328,7 +328,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void OnItemSelected()
         {
-            MusicModel ss = (MusicModel)FileNames[selectIndex];
+            MusicModel ss = (MusicModel)FileNames[SelectIndex];
             //更换歌曲名称
             Name = ss.MusicName;
             
