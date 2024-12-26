@@ -416,7 +416,8 @@
                             <GradientStop Color="#FFF1C09E" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
-                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}" BorderBrush="{x:Null}" ManipulationBoundaryFeedback="MusicList_ManipulationBoundaryFeedback">
+                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}" BorderBrush="{x:Null}" ManipulationBoundaryFeedback="MusicList_ManipulationBoundaryFeedback" ManipulationDelta="MusicList_ManipulationDelta" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
+
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="Background" Value="Transparent"/>
@@ -433,21 +434,30 @@
                             <DataTemplate>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20.98*"/>
-                                        <ColumnDefinition Width="12.28*"/>
-                                        <ColumnDefinition Width="166.74*"/>
-                                        <ColumnDefinition Width="13.44*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image Grid.Column="0" Source="pack://application:,,,/Resources/Pictures/PlayIcon.png"/>
-                                    <Grid Grid.Column="2">
+                                    <Image Grid.Column="0" Source="pack://application:,,,/Resources/Pictures/PlayIcon.png" Stretch="None"/>
+                                    <!--<Grid Grid.Column="2">
                                         <Grid.RowDefinitions>
                                             <RowDefinition/>
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
                                         <TextBlock Grid.Row="0" Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
                                         <TextBlock Grid.Row="1" Text="{Binding Singer}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
-                                    </Grid>
+                                    </Grid>-->
+                                    <StackPanel Grid.Column="1">
+                                        <TextBlock Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                        <TextBlock Text="{Binding Singer}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                    </StackPanel>
                                 </Grid>
+                                <!--<UniformGrid Columns="2">
+                                    <Image Source="pack://application:,,,/Resources/Pictures/PlayIcon.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                        <TextBlock Text="{Binding Singer}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                    </StackPanel>
+                                </UniformGrid>-->
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

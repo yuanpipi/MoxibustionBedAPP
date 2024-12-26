@@ -70,6 +70,13 @@ namespace MoxibustionBedAPP.Models
         {
             Interval = TimeSpan.FromSeconds(20)
         };
+        /// <summary>
+        /// 语音倒计时
+        /// </summary>
+        public DispatcherTimer timerOfVoice = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(30)
+        };
 
         private SerialPortManager()
         {
@@ -691,7 +698,12 @@ namespace MoxibustionBedAPP.Models
                     }
                 }
             }
-            App.PropertyModelInstance.IsOpen = false;
+            timerOfVoice.Tick += (sender1, args) =>
+            {
+                App.PropertyModelInstance.IsOnVoice = false;
+                ((DispatcherTimer)sender1).Stop();
+            };
+            timerOfVoice.Start();
         }
 
         private void OnDataReceivedByVoice(byte[] datas)

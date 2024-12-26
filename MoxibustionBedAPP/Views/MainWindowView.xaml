@@ -4,12 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1024" WindowStyle="None" WindowState="Maximized" Closing="Window_Closing" ResizeMode="NoResize" Margin="0">
     <Window.DataContext>
         <viewmodel:MainWindowViewModel/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <Geometry x:Key="GithubGeometry">
+                M185.5,93 C185.5,144.08634 144.08634,185.5 93,185.5 C41.913661,185.5 0.5,144.08634 0.5,93 C0.5,41.913661 41.913661,0.5 93,0.5 C144.08634,0.5 185.5,41.913661 185.5,93 z
+            </Geometry>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <!--叠加背景图-->
         <Grid.Background>
@@ -216,7 +225,7 @@
             </Grid.Style>
             <local:SettingsView/>
         </Grid>
-        
+
         <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="3">
             <Grid.Style>
                 <Style TargetType="Grid">
@@ -232,7 +241,7 @@
             </Grid.Style>
             <local:OperationGuideView/>
         </Grid>
-        
+
 
         <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3">
             <Border.Background>
@@ -353,6 +362,49 @@
                         <MouseBinding MouseAction="LeftClick" Command="{Binding StopPreheadCommon}"/>
                     </TextBlock.InputBindings>
                 </TextBlock>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="0" Grid.RowSpan="6" Grid.Column="0" Grid.ColumnSpan="3">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding CloseVoice}"/>
+            </Border.InputBindings>
+            <Border.Background>
+                <SolidColorBrush Color="#FF403933" Opacity="0.9"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOnVoice}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOnVoice}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Row="1" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/XWLogo.png" Stretch="None" Margin="50"/>
+                <hc:AnimationPath Data="{DynamicResource GithubGeometry}"
+                  Duration="00:00:5"
+                  Stretch="Uniform"
+                  StrokeThickness="1"
+                  PathLength="80"
+                  Stroke="#F0C497"
+                  Grid.Row="1" Grid.Column="1"
+                  VerticalAlignment="Center" HorizontalAlignment="Center" Height="155" Width="155"
+                  />
             </Grid>
         </Border>
 

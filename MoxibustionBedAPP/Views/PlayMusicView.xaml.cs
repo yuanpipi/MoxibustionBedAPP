@@ -55,5 +55,40 @@ namespace MoxibustionBedAPP.Views
             e.Handled = true;
         }
 
+        private void MusicList_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
+        {
+            // 获取 ListBox 的 ScrollViewer
+            ScrollViewer scrollViewer = FindVisualChild<ScrollViewer>(MusicList);
+
+            if (scrollViewer != null)
+            {
+                // 计算滚动偏移量
+                double deltaY = e.DeltaManipulation.Translation.Y;
+
+                // 滚动 ScrollViewer
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - deltaY);
+
+                // 阻止事件冒泡，避免影响其他元素的触摸事件
+                e.Handled = true;
+            }
+        }
+
+        // 辅助方法，用于在可视化树中查找指定类型的子元素
+        private T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child is T)
+                    return (T)child;
+                else
+                {
+                    T foundChild = FindVisualChild<T>(child);
+                    if (foundChild != null)
+                        return foundChild;
+                }
+            }
+            return null;
+        }
     }
 }

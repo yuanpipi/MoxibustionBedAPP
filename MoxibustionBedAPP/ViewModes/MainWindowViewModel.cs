@@ -167,6 +167,8 @@ namespace MoxibustionBedAPP.ViewModes
         public ICommand QuesClick { get;private set; }
         public ICommand SetClick { get;private set; }
 
+        public ICommand CloseVoice { get;private set; }
+
         private static int c = 0;
         #endregion
 
@@ -183,6 +185,7 @@ namespace MoxibustionBedAPP.ViewModes
             StopPreheadCommon = new RelayCommand(StopPreheadMethod);
             QuesClick = new RelayCommand(QuesClickCommand);
             SetClick = new RelayCommand(SetClickCommand);
+            CloseVoice = new RelayCommand(CloseVoiceMethod);
             App.PropertyModelInstance.IsClickQ = false;
             App.PropertyModelInstance.IsClickS = false;
             BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
@@ -372,7 +375,13 @@ namespace MoxibustionBedAPP.ViewModes
             FunctionControlViewModel._timer.Stop();
             FunctionControlViewModel._isCountingDown = false;
         }
+        
 
+        private void CloseVoiceMethod()
+        {
+            SerialPortManager.Instance.timerOfVoice.Stop();
+            App.PropertyModelInstance.IsOnVoice = false;
+        }
         #endregion
 
     }
