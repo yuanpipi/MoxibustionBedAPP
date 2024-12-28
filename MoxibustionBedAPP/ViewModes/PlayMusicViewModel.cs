@@ -245,6 +245,7 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         CurrentPosition = _mediaPlayer.Position.TotalSeconds;
                         TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
+                        audioFileReader.CurrentTime=TimeSpan.FromSeconds(CurrentPosition);
                         minutes = (int)(TotalDuration - CurrentPosition) / 60;
                         seconds = (int)(TotalDuration - CurrentPosition) % 60;
                         if (seconds < 10)
@@ -452,6 +453,7 @@ namespace MoxibustionBedAPP.ViewModes
                 else
                 {
                     _mediaPlayer.Play();
+                    waveOut.Play();
                     IsPlaying = true;
                     PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
                     UpdateProgressTimer.Start();
