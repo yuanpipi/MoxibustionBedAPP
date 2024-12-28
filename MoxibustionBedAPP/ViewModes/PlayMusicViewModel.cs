@@ -54,9 +54,14 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
-        /// listbox点击事件
+        /// listbox双击事件
         /// </summary>
         public RelayCommand ItemSelectedCommand { get; set; }
+
+        /// <summary>
+        /// listbox selectedIndex变化事件
+        /// </summary>
+        public RelayCommand SelectedIndexChangedCommand { get; set; }
 
         /// <summary>
         /// 上一曲点击事件
@@ -209,12 +214,15 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(Lines));
             }
         }
+
+        public bool IsDoubleClick;
         #endregion
 
         public PlayMusicViewModel()
         {
             ReadFileNamesFromFolder(@"./Resources/Music");
             ItemSelectedCommand =new RelayCommand(OnItemSelected);
+            SelectedIndexChangedCommand = new RelayCommand(SelectedIndexChandedMethod);
             Name = "Song Name";
             SelectIndex = -1;
             Duration = "00:00";
@@ -311,16 +319,33 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
-        /// listbox单击事件
+        /// listbox双击事件
         /// </summary>
         private void OnItemSelected()
         {
-            MusicModel ss = (MusicModel)FileNames[SelectIndex];
-            //更换歌曲名称
-            Name = ss.MusicName;
-            
+            //MusicModel ss = (MusicModel)FileNames[SelectIndex];
+            ////更换歌曲名称
+            //Name = ss.MusicName;
+
             //播放音乐
             PlayMusic();
+        }
+
+        /// <summary>
+        /// listbox双击事件
+        /// </summary>
+        private void SelectedIndexChandedMethod(object parameter)
+        {
+            if(IsDoubleClick)
+            {
+                MusicModel ss = (MusicModel)FileNames[SelectIndex];
+                //更换歌曲名称
+                Name = ss.MusicName;
+
+                //播放音乐
+                PlayMusic();
+            }
+            IsDoubleClick = false;
         }
 
         /// <summary>
@@ -329,6 +354,7 @@ namespace MoxibustionBedAPP.ViewModes
         public void PlayMusic()
         {
             i++;
+            Name = FileNames[selectIndex].MusicName;
             audioFileReader = new AudioFileReader(FileNames[selectIndex].FilePath);
             waveOut.Init(audioFileReader);
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));            
@@ -391,6 +417,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public void LastSong()
         {
+            IsDoubleClick = true;
             int i;
             i = SelectIndex - num;
             if (i < 0)
@@ -406,6 +433,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public void NextSong()
         {
+            IsDoubleClick = true;
             SelectIndex = (SelectIndex + num) % FileNames.Count;
             PlayMusic();
         }
@@ -415,17 +443,24 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         public void PlayOrPauseSong()
         {
-            if(IsPlaying)
+            if(SelectIndex!=-1)
             {
-                PauseMusic();
+                if (IsPlaying)
+                {
+                    PauseMusic();
+                }
+                else
+                {
+                    _mediaPlayer.Play();
+                    IsPlaying = true;
+                    PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
+                    UpdateProgressTimer.Start();
+                    UpdateAmplitudes();
+                }
             }
             else
             {
-                _mediaPlayer.Play();
-                IsPlaying = true;
-                PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
-                UpdateProgressTimer.Start();
-                UpdateAmplitudes();
+                NextSong();
             }
         }
 
@@ -465,10 +500,10 @@ namespace MoxibustionBedAPP.ViewModes
                     break;
                 }
 
-                if (Lines != null)
-                {
-                    Lines.Clear();
-                }
+                //if (Lines != null&&Lines.Count()!=0)
+                //{
+                //    Lines.Clear();
+                //}
                 Point startPoint;
                 Point endPoint;
                 for (int i = 0; i < samplesRead; i++)
@@ -479,7 +514,8 @@ namespace MoxibustionBedAPP.ViewModes
                     endPoint = new Point(x, y*1.4);
                     AddLine(startPoint, endPoint);
                 }
-                await Task.Delay(150);
+                await Task.Delay(50);
+                Lines.Clear();
             }
         }
 

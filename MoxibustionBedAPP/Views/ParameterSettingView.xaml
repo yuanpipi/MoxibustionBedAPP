@@ -544,7 +544,7 @@
                             <TextBlock Text="60" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime,StringFormat='{}{0}s'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime}" Maximum="270" Minimum="60" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
-                            <TextBlock Text="270" Grid.Row="0" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
+                            <TextBlock Text="270" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
                             <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="InignitionTimeAdd"/>
@@ -719,8 +719,8 @@
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
                             </TextBlock.InputBindings>
                         </TextBlock>
-                        <Image Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
-                        <TextBlock Text="恢复初始值" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
+                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
+                        <TextBlock Text="恢复初始值" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
                             </TextBlock.InputBindings>
