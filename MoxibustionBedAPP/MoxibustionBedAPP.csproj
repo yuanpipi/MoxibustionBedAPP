@@ -105,7 +105,9 @@
     </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -119,6 +121,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -317,6 +322,7 @@
     <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
     <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
     <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
+    <Resource Include="Resources\Pictures\Musicplayer.gif" />
     <Resource Include="Resources\Pictures\XWLogo.png" />
     <Resource Include="Resources\Pictures\Contraindications.png" />
     <Resource Include="Resources\Pictures\Guide.png" />

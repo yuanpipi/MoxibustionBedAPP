@@ -4,13 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
+             xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+             xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:behavior="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"     
              mc:Ignorable="d" 
              DataContext="{Binding RelativeSource={RelativeSource self},Path=ViewModel}"
-             d:DesignHeight="419.92" d:DesignWidth="931.44">
+             d:DesignHeight="419.92" d:DesignWidth="931.44" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <viewmodel:PlayMusicViewModel x:Key="PlayMusicViewModel"/>
+        <Geometry x:Key="Circle">
+            M159.5,80 C159.5,123.90664 123.90664,159.5 80,159.5 C36.093362,159.5 0.5,123.90664 0.5,80 C0.5,36.093362 36.093362,0.5 80,0.5 C123.90664,0.5 159.5,36.093362 159.5,80 z
+        </Geometry>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -350,7 +357,7 @@
 
                 <MediaElement x:Name="mediaPlayer" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9"/>
                 <!--<Image VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" Source="../Resources/Pictures/Musicplayer.png"/>-->
-                <ItemsControl Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" ItemsSource="{Binding Lines}">
+                <!--<ItemsControl Grid.Row="1" Grid.RowSpan="1" Grid.Column="1" Grid.ColumnSpan="9" ItemsSource="{Binding Lines}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas Width="350" Height="180" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -371,7 +378,48 @@
                             </Line>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ItemsControl>-->
+
+                <!--<hc:AnimationPath Data="{DynamicResource Circle}"
+                                  Duration="00:00:5"
+                                  Stretch="Uniform"
+                                  StrokeThickness="1"
+                                  PathLength="80"
+                                  Stroke="#F0C497"
+                                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                                  IsPlaying="{Binding IsPlaying}"
+                                  VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="200"
+                                />
+                <hc:AnimationPath Data="{DynamicResource Circle}"
+                                  Duration="00:00:3"
+                                  Stretch="Uniform"
+                                  StrokeThickness="1"
+                                  PathLength="80"
+                                  Stroke="#F0C497"
+                                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                                  IsPlaying="{Binding IsPlaying}"
+                                  VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="150"
+                                />
+                <hc:AnimationPath Data="{DynamicResource Circle}"
+                                  Duration="00:00:3"
+                                  Stretch="Uniform"
+                                  StrokeThickness="1"
+                                  PathLength="80"
+                                  Stroke="#F0C497"
+                                  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"
+                                  IsPlaying="{Binding IsPlaying}"
+                                  VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="100"
+                                />-->
+
+                <wfi:WindowsFormsHost Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" Background="Transparent" IsEnabled="{Binding IsPlaying}">
+                    <winForms:PictureBox x:Name="pictureBox" BackColor="Transparent"/>
+                </wfi:WindowsFormsHost>
+                
+                <!--<Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Pictures/Musicplayer.gif" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" gif:ImageBehavior.AutoStart="True"/>-->
+
+                <!--<wfi:WindowsFormsHost>
+                    <winForms:PictureBox x:Name="pictureGifShow"/>
+                </wfi:WindowsFormsHost>-->
 
                 <TextBlock Text="{Binding Name}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="9" Foreground="#73441A" FontSize="16" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
@@ -379,11 +427,6 @@
                 <Slider x:Name="progressSlider" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="9" VerticalAlignment="Center" Value="{Binding CurrentPosition}" Maximum="{Binding TotalDuration}" IsMoveToPointEnabled="True"/>
 
                 <TextBlock Text="{Binding Duration}" Grid.Row="5" Grid.Column="11" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"/>
-                <!--<Image Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding RandomOrSequencePicture}" Stretch="None">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding RandomOrSequence}"/>
-                    </Image.InputBindings>
-                </Image>-->
 
                 <Button Grid.Row="7" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RandomOrSequence}">
                     <Button.Background>
@@ -456,6 +499,26 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+
+                    <!--<ScrollViewer Margin="5" IsManipulationEnabled="True" PanningMode="VerticalOnly" ManipulationBoundaryFeedback="ScrollViewer_ManipulationBoundaryFeedback">
+                        <ItemsControl x:Name="itemsControl" ItemsSource="{Binding Items}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="5" MouseDown="Grid_MouseDown">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="{Binding ImageSource}" Stretch="None"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Text="{Binding MusicName}" Foreground="#73441A" FontSize="18" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                            <TextBlock Text="{Binding Singer}" Foreground="#73441A" FontSize="14" Height="30" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>-->
                 </Border>
 
             </Grid>

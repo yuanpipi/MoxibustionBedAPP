@@ -11,7 +11,6 @@ using System.Configuration;
 using MoxibustionBedAPP.Views;
 using System.Windows.Threading;
 using MoxibustionBedAPP.ViewModes;
-using System.Windows.Forms.Integration;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using System.Windows.Markup.Localizer;

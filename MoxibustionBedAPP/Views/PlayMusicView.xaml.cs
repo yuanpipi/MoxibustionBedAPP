@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace MoxibustionBedAPP.Views
             InitializeComponent();
             DataContext = App.sharedPlayMusicModel;
             progressSlider.ValueChanged += ProgressSlider_ValueChanged;
+
+            //string imagePath = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
+            //BitmapImage bitmapImage = new BitmapImage();
+            //bitmapImage.BeginInit();
+            //bitmapImage.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+            //bitmapImage.EndInit();
+            //imageControl.Source = bitmapImage;
         }
 
         /// <summary>
@@ -89,6 +97,36 @@ namespace MoxibustionBedAPP.Views
                 }
             }
             return null;
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //var grid = (sender as FrameworkElement);
+
+            //// 获取绑定上下文
+            //object item = grid.DataContext;
+
+            //int index = itemsControl.Items.IndexOf(item);
+            //App.sharedPlayMusicModel.SelectIndex = index;
+            //App.sharedPlayMusicModel.PlayMusic();
+        }
+
+        private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            e.Handled= true;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\Musicplayer.gif";
+            //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\02.gif";
+            //this.pictureBox.Image = System.Drawing.Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + @"Resources/Pictures/Load.gif");
+            this.pictureBox.ImageLocation = url;
+            //using (FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Resources/Pictures/Musicplayer.gif", FileMode.Open, FileAccess.Read))
+            //{
+            //    pictureBox.Image = System.Drawing.Image.FromStream(fs);
+            //}
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
         }
     }
 }
