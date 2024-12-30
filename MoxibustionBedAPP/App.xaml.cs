@@ -66,7 +66,7 @@ namespace MoxibustionBedAPP
             sharedPlayMusicModel = new PlayMusicViewModel();
             //显示在两块屏幕上
             //var screen1 = System.Windows.Forms.Screen.AllScreens[0];
-            var screen2 = System.Windows.Forms.Screen.AllScreens[0];
+            var screen2 = System.Windows.Forms.Screen.AllScreens[1];
 
             //创建window1，并将sharedPlayMusicModel传入
             //var window1 = new MainWindowView(sharedPlayMusicModel)
@@ -139,7 +139,7 @@ namespace MoxibustionBedAPP
             await Task.Delay(3000);
 
             //显示在两块屏幕上
-            var screen1 = System.Windows.Forms.Screen.AllScreens[1];
+            var screen1 = System.Windows.Forms.Screen.AllScreens[0];
 
             //创建window1，并将sharedPlayMusicModel传入
             var window1 = new MainWindowView(sharedPlayMusicModel)
