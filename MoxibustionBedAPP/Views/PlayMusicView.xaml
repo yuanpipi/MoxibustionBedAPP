@@ -396,16 +396,6 @@
                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/PreviousMusic.png" Stretch="None"/>
                     </Button.Background>
                 </Button>
-                <!--<Image Grid.Row="7" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/PreviousMusic.png" Stretch="None">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding Previous}"/>
-                    </Image.InputBindings>
-                </Image>-->
-                <!--<Image Grid.Row="7" Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding PlayOrPausePicture}" Stretch="None">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PlayOrPause}"/>
-                    </Image.InputBindings>
-                </Image>-->
 
                 <Button Grid.Row="7" Grid.Column="6"  VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding PlayOrPause}" Height="40" Width="40">
                     <Button.Background>
@@ -419,12 +409,6 @@
                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/NextMusic.png" Stretch="None"/>
                     </Button.Background>
                 </Button>
-
-                <!--<Image Grid.Row="7" Grid.Column="8" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/NextMusic.png" Stretch="None">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding Next}"/>
-                    </Image.InputBindings>
-                </Image>-->
 
 
                 <Border CornerRadius="15" Grid.Column="13" Grid.Row="1" Grid.RowSpan="8">
@@ -451,9 +435,6 @@
                         </ListBox.ItemContainerStyle>
 
                         <behavior:Interaction.Triggers>
-                            <!--<behavior:EventTrigger EventName="SelectionChanged">MouseDoubleClick
-                                <behavior:InvokeCommandAction Command="{Binding SelectedIndexChangedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
-                            </behavior:EventTrigger>-->
                             <behavior:EventTrigger EventName="MouseDoubleClick">
                                 <behavior:InvokeCommandAction Command="{Binding ItemSelectedCommand}" CommandParameter="{Binding ElementName=MusicList,Path=SelectedItem}"/>
                             </behavior:EventTrigger>
