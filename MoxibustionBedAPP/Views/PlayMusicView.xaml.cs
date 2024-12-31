@@ -99,17 +99,18 @@ namespace MoxibustionBedAPP.Views
             return null;
         }
 
-        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //var grid = (sender as FrameworkElement);
+        //private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    var grid = (sender as FrameworkElement);
 
-            //// 获取绑定上下文
-            //object item = grid.DataContext;
+        //    // 获取绑定上下文
+        //    object item = grid.DataContext;
 
-            //int index = itemsControl.Items.IndexOf(item);
-            //App.sharedPlayMusicModel.SelectIndex = index;
-            //App.sharedPlayMusicModel.PlayMusic();
-        }
+        //    int index = itemsControl.Items.IndexOf(item);
+        //    App.sharedPlayMusicModel.SelectIndex = index;
+        //    App.sharedPlayMusicModel.PlayMusic();
+        //    SelectItemByIndex(index);
+        //}
 
         private void ScrollViewer_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
         {
@@ -128,5 +129,24 @@ namespace MoxibustionBedAPP.Views
             //}
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
         }
+
+        //public void SelectItemByIndex(int index)
+        //{
+        //    // 获取 ItemsControl 的实例
+        //    ItemsControl itemsControl = FindName("itemsControl") as ItemsControl;
+        //    if (itemsControl != null && index >= 0 && index < itemsControl.Items.Count)
+        //    {
+        //        // 通过 index 获取 item
+        //        object item = itemsControl.Items[index];
+        //        // 假设 item 是一个 FrameworkElement，设置其 IsSelected 属性
+        //        if (item is Border border)
+        //        {
+        //            border.SetValue(Border.TagProperty, true);
+        //        }
+        //    }
+        //    else
+        //    {
+        //    }
+        //}
     }
 }

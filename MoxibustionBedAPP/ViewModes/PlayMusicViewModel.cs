@@ -199,7 +199,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 定时器用于更新播放进度
         /// </summary>
-        private System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(1000);
+        public System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(1000);
 
         private int minutes;
         private int seconds;
@@ -352,6 +352,7 @@ namespace MoxibustionBedAPP.ViewModes
             ////更换歌曲名称
             //Name = ss.MusicName;
 
+            MusicIndex = SelectIndex;
             //播放音乐
             PlayMusic();
         }

@@ -29,6 +29,12 @@ namespace MoxibustionBedAPP.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            MainWindowCopyViewModel.UpdateProgressTimer.Stop();
+            MainWindowViewModel.UpdateProgressTimer.Stop();
+            if(App.sharedPlayMusicModel.IsPlaying)
+            {
+                App.sharedPlayMusicModel.UpdateProgressTimer.Stop();
+            }
             App.Current.Shutdown();
         }
     }

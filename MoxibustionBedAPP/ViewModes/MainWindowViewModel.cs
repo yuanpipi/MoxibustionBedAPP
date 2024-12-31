@@ -66,7 +66,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 定时器用于更新时间
         /// </summary>
-        private System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(500);
+        public static System.Timers.Timer UpdateProgressTimer = new System.Timers.Timer(500);
 
         private bool _isLoading;
         public bool IsLoading
