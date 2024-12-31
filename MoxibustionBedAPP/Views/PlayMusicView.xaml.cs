@@ -120,9 +120,13 @@ namespace MoxibustionBedAPP.Views
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\Musicplayer.gif";
+            //string url = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
             //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\02.gif";
-            //this.pictureBox.Image = System.Drawing.Image.FromFile(AppDomain.CurrentDomain.BaseDirectory + @"Resources/Pictures/Load.gif");
+            //this.pictureBox.Image = System.Drawing.Image.FromFile("pack://application:,,,/Resources/Pictures/Musicplayer.gif");
             this.pictureBox.ImageLocation = url;
+
+
+
             //using (FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Resources/Pictures/Musicplayer.gif", FileMode.Open, FileAccess.Read))
             //{
             //    pictureBox.Image = System.Drawing.Image.FromStream(fs);

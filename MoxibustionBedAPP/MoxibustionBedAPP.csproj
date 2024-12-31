@@ -336,14 +336,12 @@
     <Resource Include="Resources\Pictures\GapImage.png" />
     <Resource Include="Resources\Pictures\IMess.png" />
     <Resource Include="Resources\Pictures\Stop.png" />
-    <Resource Include="Resources\Pictures\Musicplayer.png" />
     <Resource Include="Resources\Pictures\Title.png" />
     <Resource Include="Resources\Pictures\Set.png" />
     <Resource Include="Resources\Pictures\Temp.png" />
     <Resource Include="Resources\Pictures\PlayIcon.png" />
     <Resource Include="Resources\Pictures\StopMusic.png" />
     <Resource Include="Resources\Pictures\NextMusic.png" />
-    <Resource Include="Resources\Pictures\PlayByOne.png" />
     <Resource Include="Resources\Pictures\PlayMusic.png" />
     <Resource Include="Resources\Pictures\PreviousMusic.png" />
     <Resource Include="Resources\Pictures\Random.png" />
