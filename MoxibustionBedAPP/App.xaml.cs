@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Microsoft.Win32;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.ViewModes;
 using MoxibustionBedAPP.Views;
@@ -28,6 +29,22 @@ namespace MoxibustionBedAPP
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            string exePath = System.Reflection.Assembly.GetExecutingAssembly().Location;//获取当前程序的可执行文件的路径
+
+            string keyName = "MoxibustionBedApp";//注册表键值名称
+
+            RegistryKey key= Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);//打开或创建一个注册表
+            if(key==null)
+            {
+                throw new Exception("无法打开注册表项");
+            }
+            key.SetValue(keyName, exePath);//设置注册表项的值，将程序添加到自启列表
+            key.Close();//关闭注册表项
+            Console.WriteLine("程序已添加到开机自启列表");
+
+
+
 
             //将PropertyModel注册为资源
             PropertyModelInstance = new PropertyModel();
