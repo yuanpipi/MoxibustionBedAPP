@@ -412,9 +412,26 @@
                                   VerticalAlignment="Center" HorizontalAlignment="Center" Width="100" Height="100"
                                 />-->
 
-                <wfi:WindowsFormsHost Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="9" Background="Transparent" IsEnabled="{Binding IsPlaying}">
+                <!--<wfi:WindowsFormsHost Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="9" Background="Transparent" IsEnabled="{Binding IsPlaying}">
                     <winForms:PictureBox x:Name="pictureBox" BackColor="Transparent"/>
-                </wfi:WindowsFormsHost>
+                </wfi:WindowsFormsHost>-->
+
+                <!--<Image x:Name="imageControl" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="9" gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Pictures/Musicplayer.gif" gif:ImageBehavior.AutoStart="True" gif:ImageBehavior.RepeatBehavior="Forever" gif:ImageBehavior.AnimateInDesignMode="True" Stretch="Fill">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAutoPlay}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsAutoPlay}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>-->
+
+                <Image x:Name="image" Source="{Binding GifSource}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="9" Stretch="Fill"/>
                 
                 <!--<Image gif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/Pictures/Musicplayer.gif" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9" gif:ImageBehavior.AutoStart="True"/>-->
 
@@ -441,7 +458,7 @@
                     </Button.Background>
                 </Button>
 
-                <Button Grid.Row="8" Grid.Column="6"  VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding PlayOrPause}" Height="40" Width="40">
+                <Button Grid.Row="8" Grid.Column="6"  VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding PlayOrPause}" Height="40" Width="40" Click="Button_Click">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding PlayOrPausePicture}" Stretch="None"/>
                     </Button.Background>
@@ -470,7 +487,7 @@
                             <GradientStop Color="#FFF1C09E" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
-                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}" BorderBrush="{x:Null}" ManipulationBoundaryFeedback="MusicList_ManipulationBoundaryFeedback" ManipulationDelta="MusicList_ManipulationDelta" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                    <ListBox x:Name="MusicList" ItemsSource="{Binding FileNames}" SelectedIndex="{Binding SelectIndex}" Background="{x:Null}" BorderBrush="{x:Null}" ManipulationBoundaryFeedback="MusicList_ManipulationBoundaryFeedback" ManipulationDelta="MusicList_ManipulationDelta" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" MouseDoubleClick="MusicList_MouseDoubleClick">
 
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">

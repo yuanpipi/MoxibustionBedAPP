@@ -12,10 +12,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.Properties;
+using MoxibustionBedAPP.Views;
 using NAudio.Wave;
+using WpfAnimatedGif;
 
 namespace MoxibustionBedAPP.ViewModes
 {
@@ -232,6 +235,44 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         private int MusicIndex;
+
+        //private bool _isAutoPlay;
+        //public bool IsAutoPlay
+        //{
+        //    get
+        //    {
+        //        return _isAutoPlay;
+        //    }
+        //    set
+        //    {
+        //        _isAutoPlay = value;
+        //        OnPropertyChanged(nameof(IsAutoPlay));
+        //    }
+        //}
+
+        //public ImageAnimationController controller { get; set; }
+
+
+        // 用于控制GIF播放的定时器
+        private DispatcherTimer _timer;
+        // 当前显示的帧索引
+        private int _currentFrameIndex;
+        // 存储GIF帧的列表
+        private BitmapFrame[] _frames;
+
+        private ImageSource _gifSource;
+        public ImageSource GifSource
+        {
+            get 
+            { 
+                return _gifSource; 
+            }
+            set
+            {
+                _gifSource = value;
+                OnPropertyChanged(nameof(GifSource));
+            }
+        }
         #endregion
 
         public PlayMusicViewModel()
@@ -251,6 +292,8 @@ namespace MoxibustionBedAPP.ViewModes
             num = 1;
             IsRandom = false;
             RandomOrSequence = new RelayCommand(RandomOrSequenceSong);
+            // 初始化方法，用于加载GIF并设置定时器
+            InitializeGifPlayer(@"pack://application:,,,/Resources/Pictures/Musicplayer.gif");
             //waveOut = new WaveOut();
 
             //音乐播放进度条+时间倒计时
@@ -370,6 +413,8 @@ namespace MoxibustionBedAPP.ViewModes
 
                 //播放音乐
                 PlayMusic();
+                //controller.Play();
+                //IsAutoPlay = true;
             }
             IsDoubleClick = false;
         }
@@ -394,6 +439,10 @@ namespace MoxibustionBedAPP.ViewModes
             //waveOut.Play();
             //waveOut.Volume = 0;
             IsPlaying = true;
+            // 启动定时器
+            _timer.Start();
+            //controller.Play();
+            //IsAutoPlay = true;
             CurrentPosition = _mediaPlayer.Position.TotalSeconds;
             TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             minutes = (int)(TotalDuration - CurrentPosition) / 60;
@@ -422,6 +471,10 @@ namespace MoxibustionBedAPP.ViewModes
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
+            // 启动定时器
+            _timer.Stop();
+            //controller.Pause();
+            //IsAutoPlay = false;
             PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/PlayMusic.png";
         }
 
@@ -436,6 +489,8 @@ namespace MoxibustionBedAPP.ViewModes
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
+            //controller.Pause();
+            //IsAutoPlay = false;
         }
         
         /// <summary>
@@ -482,6 +537,10 @@ namespace MoxibustionBedAPP.ViewModes
                     _mediaPlayer.Play();
                     //waveOut.Play();
                     IsPlaying = true;
+                    // 启动定时器
+                    _timer.Start();
+                    //controller.Play();
+                    //IsAutoPlay = true;
                     PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
                     UpdateProgressTimer.Start();
                     //UpdateAmplitudes();
@@ -547,6 +606,57 @@ namespace MoxibustionBedAPP.ViewModes
         //        Lines.Clear();
         //    }
         //}
+
+        private void InitializeGifPlayer(string gifPath)
+        {
+            // 检查文件是否存在
+            //if (!File.Exists(gifPath))
+            //{
+            //    MessageBox.Show("GIF file not found.");
+            //    return;
+            //}
+
+            try
+            {
+                // 使用BitmapDecoder创建一个解码器，用于读取GIF文件
+                var decoder = BitmapDecoder.Create(
+                    new Uri(gifPath, UriKind.RelativeOrAbsolute),
+                    BitmapCreateOptions.PreservePixelFormat,
+                    BitmapCacheOption.Default);
+
+                // 获取GIF的所有帧并存储在数组中
+                _frames = decoder.Frames.ToArray();
+
+                // 设置初始帧
+                GifSource = _frames[0];
+
+                // 初始化帧索引
+                _currentFrameIndex = 0;
+
+                // 创建一个定时器，用于控制GIF的播放速度
+                _timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromMilliseconds(100) // 调整此值以控制播放速度
+                };
+                // 定时器触发时，更新显示的帧
+                _timer.Tick += Timer_Tick;
+                //// 启动定时器
+                //_timer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading GIF: {ex.Message}");
+            }
+        }
+
+        // 定时器触发的事件处理方法，用于更新显示的帧
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // 更新帧索引，实现循环播放
+            _currentFrameIndex = (_currentFrameIndex + 1) % _frames.Length;
+            // 设置Image控件的源为当前帧
+            GifSource = _frames[_currentFrameIndex];
+        }
 
         #endregion
     }

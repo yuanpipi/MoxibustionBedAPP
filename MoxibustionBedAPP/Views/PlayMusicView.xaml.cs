@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
 using MoxibustionBedAPP.ViewModes;
+using WpfAnimatedGif;
 
 namespace MoxibustionBedAPP.Views
 {
@@ -24,12 +25,14 @@ namespace MoxibustionBedAPP.Views
     /// </summary>
     public partial class PlayMusicView : UserControl
     {
+        //public static ImageAnimationController controller;
         public PlayMusicView()
         {
             InitializeComponent();
             DataContext = App.sharedPlayMusicModel;
             progressSlider.ValueChanged += ProgressSlider_ValueChanged;
 
+            //App.sharedPlayMusicModel.IsAutoPlay = false;
             //string imagePath = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
             //BitmapImage bitmapImage = new BitmapImage();
             //bitmapImage.BeginInit();
@@ -119,11 +122,11 @@ namespace MoxibustionBedAPP.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\Musicplayer.gif";
+            //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\Musicplayer.gif";
             //string url = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
             //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\02.gif";
             //this.pictureBox.Image = System.Drawing.Image.FromFile("pack://application:,,,/Resources/Pictures/Musicplayer.gif");
-            this.pictureBox.ImageLocation = url;
+            //this.pictureBox.ImageLocation = url;
 
 
 
@@ -131,7 +134,46 @@ namespace MoxibustionBedAPP.Views
             //{
             //    pictureBox.Image = System.Drawing.Image.FromStream(fs);
             //}
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            //this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //if(App.sharedPlayMusicModel.controller == null)
+            //{
+            //    App.sharedPlayMusicModel.controller = ImageBehavior.GetAnimationController(imageControl);
+            //}
+
+            //if (App.sharedPlayMusicModel.IsPlaying)
+            //{
+            //    //mediaElement.Pause();
+            //    controller.Pause();
+            //    App.sharedPlayMusicModel.IsAutoPlay = false;
+            //}
+            //else
+            //{
+            //    //mediaElement.Play();
+            //    controller.Play();
+            //    App.sharedPlayMusicModel.IsAutoPlay = true;
+            //}
+            //if(!App.sharedPlayMusicModel.IsAutoPlay)
+            //{
+            //    App.sharedPlayMusicModel.IsAutoPlay = true;
+            //}
+            
+        }
+
+        private void MusicList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //if (App.sharedPlayMusicModel.controller == null)
+            //{
+            //    App.sharedPlayMusicModel.controller = ImageBehavior.GetAnimationController(imageControl);
+            //}
+            //controller.Play();
+            //if (!App.sharedPlayMusicModel.IsAutoPlay)
+            //{
+            //    App.sharedPlayMusicModel.IsAutoPlay = true;
+            //}
         }
 
         //public void SelectItemByIndex(int index)
