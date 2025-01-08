@@ -308,7 +308,6 @@
     <Resource Include="Resources\Pictures\BtnUpSelected.png" />
     <Resource Include="Resources\Pictures\BtnUpUnselected.png" />
     <Resource Include="Resources\Pictures\BtnBackground.png" />
-    <Resource Include="Resources\Pictures\InfraredLamp.png" />
     <Resource Include="Resources\Pictures\Inignition.png" />
     <Resource Include="Resources\Pictures\CountDown.png" />
     <Resource Include="Resources\Pictures\Computer.png" />

@@ -221,7 +221,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    App.PropertyModelInstance.CurrentUserControl = new FunctionControlView();
+                    App.PropertyModelInstance.CurrentUserControl = FunctionControlView;
                     BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
                     BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
@@ -239,7 +239,7 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
-                    App.PropertyModelInstance.CurrentUserControl = new DataMonitoringView();
+                    App.PropertyModelInstance.CurrentUserControl = DataMonitoringView;
                     BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
@@ -278,7 +278,7 @@ namespace MoxibustionBedAPP.ViewModes
                     if (App.PropertyModelInstance.IsMoxibustionTherapyMode == false)
                     {
 
-                        App.PropertyModelInstance.CurrentUserControl = new ParameterSettingView();
+                        App.PropertyModelInstance.CurrentUserControl = ParameterSettingView;
                         BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                         BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
                         BtnBack3 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
