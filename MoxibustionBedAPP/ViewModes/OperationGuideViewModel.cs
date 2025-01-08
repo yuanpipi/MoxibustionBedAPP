@@ -32,7 +32,7 @@ namespace MoxibustionBedAPP.ViewModes
             }
             set
             {
-                System.Diagnostics.Debug.WriteLine($"RichTextContent is being set to: {value}");
+                //System.Diagnostics.Debug.WriteLine($"RichTextContent is being set to: {value}");
                 _myText = value;
                 OnPropertyChanged(nameof(MyText));
             }

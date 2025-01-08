@@ -277,7 +277,9 @@ namespace MoxibustionBedAPP.ViewModes
 
         public PlayMusicViewModel()
         {
-            ReadFileNamesFromFolder(@"./Resources/Music");
+            string filepath=Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)+ "/Resources/Music";
+            //ReadFileNamesFromFolder(@"/Resources/Music");
+            ReadFileNamesFromFolder(filepath);
             ItemSelectedCommand =new RelayCommand(OnItemSelected);
             SelectedIndexChangedCommand = new RelayCommand(SelectedIndexChandedMethod);
             Name = "Song Name";
