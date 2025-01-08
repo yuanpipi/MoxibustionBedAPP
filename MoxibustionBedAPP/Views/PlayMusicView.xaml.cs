@@ -31,14 +31,6 @@ namespace MoxibustionBedAPP.Views
             InitializeComponent();
             DataContext = App.sharedPlayMusicModel;
             progressSlider.ValueChanged += ProgressSlider_ValueChanged;
-
-            //App.sharedPlayMusicModel.IsAutoPlay = false;
-            //string imagePath = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
-            //BitmapImage bitmapImage = new BitmapImage();
-            //bitmapImage.BeginInit();
-            //bitmapImage.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
-            //bitmapImage.EndInit();
-            //imageControl.Source = bitmapImage;
         }
 
         /// <summary>
@@ -120,79 +112,5 @@ namespace MoxibustionBedAPP.Views
             e.Handled= true;
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\Musicplayer.gif";
-            //string url = "pack://application:,,,/Resources/Pictures/Musicplayer.gif";
-            //string url = AppDomain.CurrentDomain.BaseDirectory + @"Resources\Pictures\02.gif";
-            //this.pictureBox.Image = System.Drawing.Image.FromFile("pack://application:,,,/Resources/Pictures/Musicplayer.gif");
-            //this.pictureBox.ImageLocation = url;
-
-
-
-            //using (FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"Resources/Pictures/Musicplayer.gif", FileMode.Open, FileAccess.Read))
-            //{
-            //    pictureBox.Image = System.Drawing.Image.FromStream(fs);
-            //}
-            //this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //if(App.sharedPlayMusicModel.controller == null)
-            //{
-            //    App.sharedPlayMusicModel.controller = ImageBehavior.GetAnimationController(imageControl);
-            //}
-
-            //if (App.sharedPlayMusicModel.IsPlaying)
-            //{
-            //    //mediaElement.Pause();
-            //    controller.Pause();
-            //    App.sharedPlayMusicModel.IsAutoPlay = false;
-            //}
-            //else
-            //{
-            //    //mediaElement.Play();
-            //    controller.Play();
-            //    App.sharedPlayMusicModel.IsAutoPlay = true;
-            //}
-            //if(!App.sharedPlayMusicModel.IsAutoPlay)
-            //{
-            //    App.sharedPlayMusicModel.IsAutoPlay = true;
-            //}
-            
-        }
-
-        private void MusicList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //if (App.sharedPlayMusicModel.controller == null)
-            //{
-            //    App.sharedPlayMusicModel.controller = ImageBehavior.GetAnimationController(imageControl);
-            //}
-            //controller.Play();
-            //if (!App.sharedPlayMusicModel.IsAutoPlay)
-            //{
-            //    App.sharedPlayMusicModel.IsAutoPlay = true;
-            //}
-        }
-
-        //public void SelectItemByIndex(int index)
-        //{
-        //    // 获取 ItemsControl 的实例
-        //    ItemsControl itemsControl = FindName("itemsControl") as ItemsControl;
-        //    if (itemsControl != null && index >= 0 && index < itemsControl.Items.Count)
-        //    {
-        //        // 通过 index 获取 item
-        //        object item = itemsControl.Items[index];
-        //        // 假设 item 是一个 FrameworkElement，设置其 IsSelected 属性
-        //        if (item is Border border)
-        //        {
-        //            border.SetValue(Border.TagProperty, true);
-        //        }
-        //    }
-        //    else
-        //    {
-        //    }
-        //}
     }
 }

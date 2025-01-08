@@ -391,10 +391,6 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void OnItemSelected()
         {
-            //MusicModel ss = (MusicModel)FileNames[SelectIndex];
-            ////更换歌曲名称
-            //Name = ss.MusicName;
-
             MusicIndex = SelectIndex;
             //播放音乐
             PlayMusic();
@@ -413,8 +409,6 @@ namespace MoxibustionBedAPP.ViewModes
 
                 //播放音乐
                 PlayMusic();
-                //controller.Play();
-                //IsAutoPlay = true;
             }
             IsDoubleClick = false;
         }
@@ -426,8 +420,6 @@ namespace MoxibustionBedAPP.ViewModes
         {
             i++;
             Name = FileNames[selectIndex].MusicName;
-            //audioFileReader = new AudioFileReader(FileNames[selectIndex].FilePath);
-            //waveOut.Init(audioFileReader);
             _mediaPlayer.Open(new Uri(FileNames[selectIndex].FilePath));            
             //加载音乐时长
             while (!_mediaPlayer.NaturalDuration.HasTimeSpan)
@@ -436,13 +428,9 @@ namespace MoxibustionBedAPP.ViewModes
             }
             
             _mediaPlayer.Play();
-            //waveOut.Play();
-            //waveOut.Volume = 0;
             IsPlaying = true;
             // 启动定时器
             _timer.Start();
-            //controller.Play();
-            //IsAutoPlay = true;
             CurrentPosition = _mediaPlayer.Position.TotalSeconds;
             TotalDuration = _mediaPlayer.NaturalDuration.TimeSpan.TotalSeconds;
             minutes = (int)(TotalDuration - CurrentPosition) / 60;
@@ -458,7 +446,6 @@ namespace MoxibustionBedAPP.ViewModes
             PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
             //启动定时器更新进度
             UpdateProgressTimer.Start();
-            //UpdateAmplitudes();
         }
 
         /// <summary>
@@ -467,14 +454,11 @@ namespace MoxibustionBedAPP.ViewModes
         public void PauseMusic()
         {
             _mediaPlayer.Pause();
-            //waveOut.Pause();
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
-            // 启动定时器
+            // 停止定时器
             _timer.Stop();
-            //controller.Pause();
-            //IsAutoPlay = false;
             PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/PlayMusic.png";
         }
 
@@ -484,13 +468,11 @@ namespace MoxibustionBedAPP.ViewModes
         public void StopMusic()
         {
             _mediaPlayer.Stop();
-            //waveOut.Stop();
             Lines.Clear();
             // 停止定时器
             UpdateProgressTimer.Stop();
             IsPlaying = false;
-            //controller.Pause();
-            //IsAutoPlay = false;
+            _timer.Stop();
         }
         
         /// <summary>
@@ -535,15 +517,11 @@ namespace MoxibustionBedAPP.ViewModes
                 else
                 {
                     _mediaPlayer.Play();
-                    //waveOut.Play();
                     IsPlaying = true;
                     // 启动定时器
                     _timer.Start();
-                    //controller.Play();
-                    //IsAutoPlay = true;
                     PlayOrPausePicture = "pack://application:,,,/Resources/Pictures/StopMusic.png";
                     UpdateProgressTimer.Start();
-                    //UpdateAmplitudes();
                 }
             }
             else
@@ -571,51 +549,8 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
-        //private void AddLine(Point startPoint, Point endPoint)
-        //{
-        //    Lines.Add(new LineModel { StartPoint = startPoint, EndPoint = endPoint });
-        //}
-
-        //private async void UpdateAmplitudes()
-        //{
-        //    const int bufferSize = 64;
-        //    var buffer = new float[bufferSize];
-        //    while (IsPlaying)
-        //    {
-        //        int samplesRead = audioFileReader.Read(buffer, 0, bufferSize);
-        //        if (samplesRead == 0)
-        //        {
-        //            break;
-        //        }
-
-        //        //if (Lines != null&&Lines.Count()!=0)
-        //        //{
-        //        //    Lines.Clear();
-        //        //}
-        //        Point startPoint;
-        //        Point endPoint;
-        //        for (int i = 0; i < samplesRead; i++)
-        //        {
-        //            double x = (i / (double)samplesRead) * 350;
-        //            double y = (buffer[i] + 1) * 0.55 * 180;
-        //            startPoint = new Point(x, (180 - y)*1.4);
-        //            endPoint = new Point(x, y*1.4);
-        //            AddLine(startPoint, endPoint);
-        //        }
-        //        await Task.Delay(50);
-        //        Lines.Clear();
-        //    }
-        //}
-
         private void InitializeGifPlayer(string gifPath)
         {
-            // 检查文件是否存在
-            //if (!File.Exists(gifPath))
-            //{
-            //    MessageBox.Show("GIF file not found.");
-            //    return;
-            //}
-
             try
             {
                 // 使用BitmapDecoder创建一个解码器，用于读取GIF文件
