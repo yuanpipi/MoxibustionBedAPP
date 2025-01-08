@@ -256,20 +256,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Resources\Fonts\SourceHanSansCN-Bold.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSansCN-ExtraLight.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSansCN-Heavy.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSansCN-Light.otf" />
     <Resource Include="Resources\Fonts\SourceHanSansCN-Medium.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSansCN-Normal.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSansCN-Regular.otf" />
     <Resource Include="Resources\Fonts\SourceHanSerifCN-Bold-2.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSerifCN-ExtraLight-3.otf" />
     <Resource Include="Resources\Fonts\SourceHanSerifCN-Heavy-4.otf" />
     <Resource Include="Resources\Fonts\SourceHanSerifCN-Light-5.otf" />
     <Resource Include="Resources\Fonts\SourceHanSerifCN-Medium-6.otf" />
     <Resource Include="Resources\Fonts\SourceHanSerifCN-Regular-1.otf" />
-    <Resource Include="Resources\Fonts\SourceHanSerifCN-SemiBold-7.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -287,41 +279,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Music\001_Bandari_-_碧涧流泉.mp3" />
-    <Content Include="Resources\Music\002_Bandari_-_变幻彩风.mp3" />
-    <Content Include="Resources\Music\003_Bandari_-_大海奔腾.mp3" />
-    <Content Include="Resources\Music\004_Bandari_-_冬表树.mp3" />
-    <Content Include="Resources\Music\005_Bandari_-_感觉完美.mp3" />
-    <Content Include="Resources\Music\006_Bandari_-_河上的月亮.mp3" />
-    <Content Include="Resources\Music\007_Bandari_-_流星雨.mp3" />
-    <Content Include="Resources\Music\008_Bandari_-_梦之地.mp3" />
-    <Content Include="Resources\Music\009_Bandari_-_秋天的落叶.mp3" />
-    <Content Include="Resources\Music\010_Bandari_-_森林幻想曲.mp3" />
-    <Content Include="Resources\Music\011_Bandari_-_天地美乐诗.mp3" />
-    <Content Include="Resources\Music\012_Bandari_-_天真浪漫.mp3" />
-    <Content Include="Resources\Music\013_Bandari_-_我划的小船.mp3" />
-    <Content Include="Resources\Music\014_Bandari_-_溪边的铃儿声.mp3" />
-    <Content Include="Resources\Music\015_Bandari_-_银色沙滩.mp3" />
-    <Content Include="Resources\Music\016_传奇乐坊_-_花好月圆%28民乐合奏%29.mp3" />
-    <Content Include="Resources\Music\017_传奇乐坊_-_苦雪烹茶.mp3" />
-    <Content Include="Resources\Music\018_传奇乐坊_-_十面埋伏%28琵琶独奏%29.mp3" />
-    <Content Include="Resources\Music\019_纯音乐_-_风清云淡.mp3" />
-    <Content Include="Resources\Music\020_纯音乐_-_金蛇狂舞.mp3" />
-    <Content Include="Resources\Music\021_纯音乐_-_水碧霞光.mp3" />
-    <Content Include="Resources\Music\022_纯音乐_-_紫竹调.mp3" />
-    <Content Include="Resources\Music\023_戴亚_-_茶悟聚友.mp3" />
-    <Content Include="Resources\Music\024_林石城_-_月儿高.mp3" />
-    <Content Include="Resources\Music\025_巫娜_-_一叶知心.mp3" />
-    <Content Include="Resources\Music\026_张维良_-_行云流水.mp3" />
-    <Content Include="Resources\Music\027_纯音乐_-_平湖秋月.mp3" />
-    <Content Include="Resources\Music\028_中央民族乐团_-_步步高.mp3" />
-    <Content Include="Resources\Music\029_赵聪_-_琵琶语.mp3" />
-    <Content Include="Resources\Music\030_张维良_-_疏梅弄影.mp3" />
-    <Content Include="Resources\Music\031_付娜_-_渔舟唱晚.mp3" />
-    <Content Include="Resources\Music\032_纯音乐_-_夏.mp3" />
-    <Content Include="Resources\Music\033_传奇乐坊_-_阳春白雪.mp3" />
-    <Content Include="Resources\Music\034_传奇乐坊_-_梅花三弄.mp3" />
-    <Content Include="Resources\Music\035_Bandari_-_心灵之音.mp3" />
     <Resource Include="Resources\Pictures\Musicplayer.gif" />
     <Resource Include="Resources\Pictures\XWLogo.png" />
     <Resource Include="Resources\Pictures\Contraindications.png" />
