@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>D:\WPF Projects\中医智能灸疗床安装包\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,9 +26,11 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,6 +54,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>MoxibustionBedAPP.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>1579B89D3331ABA94A02EC9C04B16420C8A901F9</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MoxibustionBedAPP_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HandyControl, Version=3.5.1.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
@@ -251,6 +265,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="MoxibustionBedAPP_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -333,6 +348,31 @@
     <Resource Include="Resources\Pictures\Parameter.png" />
     <Resource Include="Resources\Pictures\HuaWeiIcon.png" />
     <Resource Include="Resources\Pictures\LoadPicture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Music\001_Jason Piano_Canon%28钢琴版%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\002_宗次郎_永远同在.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\003_空白君MAX_Windy Hill %28风之谷%29.mp3">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Music\004_纯音乐_鸟之诗%28八音盒%29.mp3" />
+    <Content Include="Resources\Music\005_蓝云木_Old Memory.mp3" />
+    <Content Include="Resources\Music\006_pianocd_舒伯特小夜曲.mp3" />
+    <Content Include="Resources\Music\007_马新桦、冯丹、瑞鸣音乐_爱的致意 %28大提琴曲%29.mp3" />
+    <Content Include="Resources\Music\008_巫娜_静观山河.mp3" />
+    <Content Include="Resources\Music\009_高宇古琴_半山听雨 %28古琴版%29.mp3" />
+    <Content Include="Resources\Music\010_Seize the time_芳菲落尽梨花白 %28古筝版%29.mp3" />
+    <Content Include="Resources\Music\011_Jordan Critz_Starry Night.mp3" />
+    <Content Include="Resources\Music\012_赵海洋_好久不见 %28钢琴版%29.mp3" />
+    <Content Include="Resources\Music\013_纯音乐_FAKE LOVE.mp3" />
+    <Content Include="Resources\Music\014_默念的星空_爱的纪念 %28钢琴版%29.mp3" />
+    <Content Include="Resources\Music\015_魏琮霏_青石巷 %28纯音乐%29.mp3" />
+    <Content Include="Resources\Music\016_DBRT_lost.mp3" />
+    <Content Include="Resources\Music\017_昼夜_千与千寻 %28钢琴版%29.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
