@@ -83,6 +83,16 @@ namespace MoxibustionBedAPP
             sharedPlayMusicModel = new PlayMusicViewModel();
             //显示在两块屏幕上
             //var screen1 = System.Windows.Forms.Screen.AllScreens[0];
+
+
+            //显示加载界面
+
+            LoadWindowView loadWindow = new LoadWindowView();
+            MainWindow = loadWindow;
+            MainWindow.Show();
+            LoadMainPageAsync();
+
+
             var screen2 = System.Windows.Forms.Screen.AllScreens[1];
 
             //创建window1，并将sharedPlayMusicModel传入
@@ -97,24 +107,23 @@ namespace MoxibustionBedAPP
             //    Top = screen1.Bounds.Top
             //};
             //创建window2，并将sharedPlayMusicModel传入
-             var window2 = new MainWindowCopyView(sharedPlayMusicModel)
-             {
-                 WindowState = WindowState.Normal,
-                 WindowStyle = WindowStyle.None,
-                 Title = "华伟医疗 - 患者",
-                 Width = screen2.Bounds.Width,
-                 Height = screen2.Bounds.Height,
-                 Left = screen2.Bounds.Left,
-                 Top = screen2.Bounds.Top,
-                 //IsEnabled = false
-             };
+            if (screen2 != null)
 
+            {
+                var window2 = new MainWindowCopyView(sharedPlayMusicModel)
+                {
+                    WindowState = WindowState.Normal,
+                    WindowStyle = WindowStyle.None,
+                    Title = "华伟医疗 - 患者",
+                    Width = screen2.Bounds.Width,
+                    Height = screen2.Bounds.Height,
+                    Left = screen2.Bounds.Left,
+                    Top = screen2.Bounds.Top,
+                    //IsEnabled = false
+                };
+                window2.Show();
+            }
 
-            //显示加载界面
-
-            LoadWindowView loadWindow = new LoadWindowView();
-            MainWindow = loadWindow;
-            MainWindow.Show();
             //loadWindow.Show();
 
             //Task.Run(async () =>
@@ -132,8 +141,6 @@ namespace MoxibustionBedAPP
             //    });
             //});
 
-            LoadMainPageAsync();
-            window2.Show();
             //var timer = new DispatcherTimer
             //{
             //    Interval = TimeSpan.FromSeconds(3)

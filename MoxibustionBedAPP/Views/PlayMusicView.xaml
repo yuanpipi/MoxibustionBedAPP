@@ -367,26 +367,26 @@
 
                 <TextBlock Text="{Binding Duration}" Grid.Row="6" Grid.Column="11" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A"/>
 
-                <Button Grid.Row="8" Grid.Column="2" VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RandomOrSequence}">
+                <Button Width="30" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RandomOrSequence}">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding RandomOrSequencePicture}" Stretch="None"/>
                     </Button.Background>
                 </Button>
 
-                <Button Grid.Row="8" Grid.Column="4" VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding Previous}">
+                <Button Width="30" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="Transparent" BorderThickness="0" Command="{Binding Previous}">
                     <Button.Background>
                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/PreviousMusic.png" Stretch="None"/>
                     </Button.Background>
                 </Button>
 
-                <Button Grid.Row="8" Grid.Column="6"  VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding PlayOrPause}" Height="40" Width="40">
+                <Button Grid.Row="8" Grid.Column="5" Grid.ColumnSpan="3"  VerticalAlignment="Center" HorizontalAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding PlayOrPause}" Height="42" Width="42">
                     <Button.Background>
                         <ImageBrush ImageSource="{Binding PlayOrPausePicture}" Stretch="None"/>
                     </Button.Background>
                 </Button>
 
 
-                <Button Grid.Row="8" Grid.Column="8" VerticalAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="Transparent" BorderThickness="0" Command="{Binding Next}">
+                <Button Width="30" Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="Transparent" BorderThickness="0" Command="{Binding Next}">
                     <Button.Background>
                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/NextMusic.png" Stretch="None"/>
                     </Button.Background>
