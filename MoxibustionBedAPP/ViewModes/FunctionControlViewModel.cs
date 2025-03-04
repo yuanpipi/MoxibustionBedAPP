@@ -152,6 +152,7 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.IsOpen = false;
             App.PropertyModelInstance.IsClose=false;
             Smoke = false;
+            StartCountdown();
             if (App.PropertyModelInstance.IsSmokePurificationSystem)
             {
                 IsSmokeExhaust = false;
@@ -400,8 +401,8 @@ namespace MoxibustionBedAPP.ViewModes
                         break;
                     }
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
 
@@ -442,8 +443,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[4] = 0x10;
             data[5] = 0x0B;
             data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             VoiceMethods("HatchClose");//发送关舱状态到语音模块
@@ -451,15 +452,16 @@ namespace MoxibustionBedAPP.ViewModes
 
             data[5] = 0x02;
             data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.PreheadMode = true;
             IsCountingDown = true;
             App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
             App.PropertyModelInstance.CountdownSeconds = 0;
-            StartCountdown();
+            //StartCountdown();
+            _timer.Start();
         }
 
         /// <summary>
@@ -475,8 +477,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[4] = 0x10;
             data[5] = 0x0B;
             data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.Hatch = false;
@@ -485,15 +487,16 @@ namespace MoxibustionBedAPP.ViewModes
 
             data[5] = 0x03;
             data[6] = 0x01;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.InignitionStatus = true;
             IsCountingDown = true;
             App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
             App.PropertyModelInstance.CountdownMinutes = 0;
-            StartCountdown();
+            //StartCountdown();
+            _timer.Start();
         }
 
         /// <summary>
@@ -519,8 +522,8 @@ namespace MoxibustionBedAPP.ViewModes
                 data[5] = 0x0C;
                 data[6] = 0x00;
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
         }
@@ -557,8 +560,8 @@ namespace MoxibustionBedAPP.ViewModes
                     }
                     break;
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             if((string)parameter== "StopMoxibustionTherapy")
@@ -635,8 +638,8 @@ namespace MoxibustionBedAPP.ViewModes
                     break;
             }
 
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             if ((string)parameter == "OpenHatch")//发送开舱状态到语音模块
@@ -673,8 +676,8 @@ namespace MoxibustionBedAPP.ViewModes
                     bytes[3] = 0x02;
                     break;
             }
-            bytes[4] = 0x55;
-            bytes[5] = 0xAA;
+            bytes[4] = 0xAA;
+            bytes[5] = 0x5C;
             SerialPortManager.Instance.SendDataByVoice(bytes);
         }
 
@@ -686,7 +689,7 @@ namespace MoxibustionBedAPP.ViewModes
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromSeconds(1);
             _timer.Tick += Timer_Tick;
-            _timer.Start();
+            //_timer.Start();
         }
 
         /// <summary>

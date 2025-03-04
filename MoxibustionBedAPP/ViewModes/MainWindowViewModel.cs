@@ -343,8 +343,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[4] = 0x10;
             data[5] = 0x02;
             data[6] = 0x02;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.PreheadMode = false;
@@ -367,8 +367,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[4] = 0x10;
             data[5] = 0x03;
             data[6] = 0x02;
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.InignitionStatus = false;

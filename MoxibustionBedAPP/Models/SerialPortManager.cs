@@ -16,6 +16,7 @@ using System.IO;
 using System.Windows.Markup.Localizer;
 using System.Windows.Automation.Peers;
 using System.Diagnostics;
+using System.Windows.Ink;
 
 namespace MoxibustionBedAPP.Models
 {
@@ -37,8 +38,8 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
-        public PropertyModel propertyModel = new PropertyModel();
-        public static DispatcherTimer _timer;
+        //public PropertyModel propertyModel = new PropertyModel();
+        //public static DispatcherTimer _timer;
 
         /// <summary>
         /// 下位机相关串口连接
@@ -82,8 +83,8 @@ namespace MoxibustionBedAPP.Models
         {
             _serialPort = new SerialPort()
             {
-                PortName = ConfigurationManager.AppSettings["SerialPortName"],//"COM1"
-                BaudRate = int.Parse(ConfigurationManager.AppSettings["BaudRate"]),//115200
+                PortName = "COM1",
+                BaudRate = 115200,
                 Parity = Parity.None,
                 DataBits = 8,
                 StopBits = StopBits.One,
@@ -101,34 +102,34 @@ namespace MoxibustionBedAPP.Models
             };
             _cancellationTokenSourceVoice = new CancellationTokenSource();
             _stopWatch = new Stopwatch();
-            StartCountdown();
+            //StartCountdown();
         }
 
-        private void StartCountdown()
-        {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += Timer_Tick;
-            _timer.Start();
-        }
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            App.PropertyModelInstance.Upper_CabinTemperatureNow = propertyModel.Upper_CabinTemperatureNow;//上舱温度
-            App.PropertyModelInstance.BackTemperatureNow = propertyModel.BackTemperatureNow;//背部温度
-            App.PropertyModelInstance.LegTemperatureNow = propertyModel.LegTemperatureNow;//腿部温度
-            App.PropertyModelInstance.BackMoxibustionColumn_Height = propertyModel.BackMoxibustionColumn_Height;//背部灸柱高度
-            App.PropertyModelInstance.LegMoxibustionColumn_Height = propertyModel.LegMoxibustionColumn_Height;//腿部灸柱高度
-            App.PropertyModelInstance.BatteryLevel = propertyModel.BatteryLevel;//电池电量
-            App.PropertyModelInstance.InfraredLamp = propertyModel.InfraredLamp;//红外灯
-            App.PropertyModelInstance.SmokeExhaustSystem = propertyModel.SmokeExhaustSystem;//排烟系统
-            App.PropertyModelInstance.SmokePurificationSystem = propertyModel.SmokePurificationSystem;//净烟系统
-            App.PropertyModelInstance.SwingSystem = propertyModel.SwingSystem;//摇摆系统
-            App.PropertyModelInstance.Hatch = propertyModel.Hatch;//舱盖
-            App.PropertyModelInstance.IsUpperAlarm = propertyModel.IsUpperAlarm;
-            App.PropertyModelInstance.IsBackAlarm = propertyModel.IsBackAlarm;
-            App.PropertyModelInstance.IsLegAlarm = propertyModel.IsLegAlarm;
-            App.PropertyModelInstance.IsSmokeSystemOn = propertyModel.IsSmokeSystemOn;
-        }
+        //private void StartCountdown()
+        //{
+        //    _timer = new DispatcherTimer();
+        //    _timer.Interval = TimeSpan.FromSeconds(1);
+        //    _timer.Tick += Timer_Tick;
+        //    _timer.Start();
+        //}
+        //private void Timer_Tick(object sender, EventArgs e)
+        //{
+        //    App.PropertyModelInstance.Upper_CabinTemperatureNow = propertyModel.Upper_CabinTemperatureNow;//上舱温度
+        //    App.PropertyModelInstance.BackTemperatureNow = propertyModel.BackTemperatureNow;//背部温度
+        //    App.PropertyModelInstance.LegTemperatureNow = propertyModel.LegTemperatureNow;//腿部温度
+        //    App.PropertyModelInstance.BackMoxibustionColumn_Height = propertyModel.BackMoxibustionColumn_Height;//背部灸柱高度
+        //    App.PropertyModelInstance.LegMoxibustionColumn_Height = propertyModel.LegMoxibustionColumn_Height;//腿部灸柱高度
+        //    App.PropertyModelInstance.BatteryLevel = propertyModel.BatteryLevel;//电池电量
+        //    App.PropertyModelInstance.InfraredLamp = propertyModel.InfraredLamp;//红外灯
+        //    App.PropertyModelInstance.SmokeExhaustSystem = propertyModel.SmokeExhaustSystem;//排烟系统
+        //    App.PropertyModelInstance.SmokePurificationSystem = propertyModel.SmokePurificationSystem;//净烟系统
+        //    App.PropertyModelInstance.SwingSystem = propertyModel.SwingSystem;//摇摆系统
+        //    App.PropertyModelInstance.Hatch = propertyModel.Hatch;//舱盖
+        //    App.PropertyModelInstance.IsUpperAlarm = propertyModel.IsUpperAlarm;
+        //    App.PropertyModelInstance.IsBackAlarm = propertyModel.IsBackAlarm;
+        //    App.PropertyModelInstance.IsLegAlarm = propertyModel.IsLegAlarm;
+        //    App.PropertyModelInstance.IsSmokeSystemOn = propertyModel.IsSmokeSystemOn;
+        //}
 
         /// <summary>
         /// 打开串口
@@ -204,69 +205,181 @@ namespace MoxibustionBedAPP.Models
             b = CRC16(b);
             if (b[b.Count() - 3] == bytes[bytes.Count() - 3]&& b[b.Count() - 4] == bytes[bytes.Count() - 4])
             {
-                if(bytes[5]==0x12)//监控数据
+                if (bytes[4]==0x12)
                 {
-                    propertyModel.Upper_CabinTemperatureNow = Convert.ToInt16(bytes[6]);//上舱温度
-                    propertyModel.BackTemperatureNow= Convert.ToInt16(bytes[7]);//背部温度
-                    propertyModel.LegTemperatureNow= Convert.ToInt16(bytes[8]);//腿部温度
-                    propertyModel.BackMoxibustionColumn_Height=Convert.ToInt16(bytes[9]);//背部灸柱高度
-                    propertyModel.LegMoxibustionColumn_Height = Convert.ToInt16(bytes[10]);//腿部灸柱高度
-                    propertyModel.BatteryLevel= Convert.ToInt16(bytes[11]);//电池电量
-                    propertyModel.InfraredLamp= Convert.ToInt16(bytes[12]);//红外灯
-                    propertyModel.SmokeExhaustSystem = Convert.ToInt16(bytes[13]);//排烟系统
-                    propertyModel.SmokePurificationSystem=bytes[14] == 0x02 ? false : true;//净烟系统
-                    propertyModel.SwingSystem=bytes[15] == 0x02 ? false :true;//摇摆系统
-                    propertyModel.Hatch=bytes[16] == 0x02 ? false :true;//舱盖
-
-
-                    if(propertyModel.Upper_CabinTemperatureNow >= App.PropertyModelInstance.UpperAlarmCabinTemperature)//上舱温度
+                    switch (bytes[5])
                     {
-                        propertyModel.IsUpperAlarm = true;
-                    }
-                    else
-                    {
-                        propertyModel.IsUpperAlarm= false;
-                    }
-
-                    if(propertyModel.BackTemperatureNow>=App.PropertyModelInstance.BackAlarmTemperature)//背部温度
-                    {
-                        propertyModel.IsBackAlarm = true;
-                    }
-                    else
-                    {
-                        propertyModel.IsBackAlarm = false;
-                    }
-
-                    if(propertyModel.LegTemperatureNow>=App.PropertyModelInstance.LegAlarmTemperature)//腿部温度
-                    {
-                        propertyModel.IsLegAlarm = true;
-                    }
-                    else
-                    {
-                        propertyModel.IsLegAlarm= false;
-                    }
-
-                    if (propertyModel.SmokePurificationSystem == false && propertyModel.SmokeExhaustSystem == 0)//查看是否开启排烟系统或者净烟系统
-                    {
-                        propertyModel.IsSmokeSystemOn = false;
-                    }
-                    else
-                    {
-                        propertyModel.IsSmokeSystemOn = true;
+                        case 0x00://紧急开舱
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.IsOpen = true;
+                                App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                                timerOpen.Start();
+                            }
+                            else if(bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.IsOpen = false;
+                                App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";//切换背景图片
+                                timerOpen.Stop();
+                            }
+                            break;
+                        case 0x01://开舱
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.IsOpen = true;
+                                App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+                                timerOpen.Start();
+                            }
+                            else if (bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.IsOpen = false;
+                                App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";//切换背景图片
+                                timerOpen.Stop();
+                            }
+                            break;
+                        case 0x02://关舱
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.IsClose = true;
+                                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png"; ;//切换背景图片
+                                timerClose.Start();
+                            }
+                            else if (bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.IsClose = false;
+                                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";//切换背景图片
+                                timerClose.Stop();
+                            }
+                            break;
+                        case 0x03://点火
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.InignitionStatus = true;
+                                App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+                                App.PropertyModelInstance.CountdownMinutes = 0;
+                                FunctionControlViewModel._timer.Start();
+                            }
+                            else if (bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.InignitionStatus = false;
+                                FunctionControlViewModel._timer.Stop();
+                            }
+                            break;
+                        case 0x04://摇摆
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.SmokePurificationSystem = true;
+                            }
+                            else if (bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.SmokePurificationSystem = false;
+                            }
+                            break;
+                        case 0x05://排烟
+                            if (bytes[6] == 0x01)
+                            {
+                                App.PropertyModelInstance.IsSmokeSystemOn = true;
+                                App.PropertyModelInstance.SmokeExhaustSystem = 3;
+                            }
+                            else if (bytes[6] == 0x02)
+                            {
+                                App.PropertyModelInstance.IsSmokeSystemOn = false;
+                                App.PropertyModelInstance.SmokeExhaustSystem = 0;
+                            }
+                            break;
+                        case 0x06://背部点升
+                            if(App.PropertyModelInstance.BackMoxibustionColumn_Height < 4)
+                            {
+                                App.PropertyModelInstance.BackMoxibustionColumn_Height++;
+                            }
+                            break;
+                        case 0x07://背部点降
+                            if (App.PropertyModelInstance.BackMoxibustionColumn_Height > 0)
+                            {
+                                App.PropertyModelInstance.BackMoxibustionColumn_Height--;
+                            }
+                            break;
+                        case 0x08://腿部点升
+                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height < 4)
+                            {
+                                App.PropertyModelInstance.LegMoxibustionColumn_Height++;
+                            }                            
+                            break;
+                        case 0x09://腿部点降
+                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height > 0)
+                            {
+                                App.PropertyModelInstance.LegMoxibustionColumn_Height--;
+                            }
+                            break;
                     }
                 }
                 else
                 {
-                    App.IsReceive = true;
-                    if (bytes[6]==0x01)
+                    if (bytes[5] == 0x12)//监控数据
                     {
-                        Console.WriteLine("操作成功");
+                        App.PropertyModelInstance.Upper_CabinTemperatureNow = Convert.ToInt16(bytes[6]);//上舱温度
+                        App.PropertyModelInstance.BackTemperatureNow = Convert.ToInt16(bytes[7]);//背部温度
+                        App.PropertyModelInstance.LegTemperatureNow = Convert.ToInt16(bytes[8]);//腿部温度
+                        App.PropertyModelInstance.BackMoxibustionColumn_Height = Convert.ToInt16(bytes[9]);//背部灸柱高度
+                        App.PropertyModelInstance.LegMoxibustionColumn_Height = Convert.ToInt16(bytes[10]);//腿部灸柱高度
+                        App.PropertyModelInstance.BatteryLevel = Convert.ToInt16(bytes[11]);//电池电量
+                        App.PropertyModelInstance.InfraredLamp = Convert.ToInt16(bytes[12]);//红外灯
+                        App.PropertyModelInstance.SmokeExhaustSystem = Convert.ToInt16(bytes[13]);//排烟系统
+                        App.PropertyModelInstance.SmokePurificationSystem = bytes[14] == 0x02 ? false : true;//净烟系统
+                        App.PropertyModelInstance.SwingSystem = bytes[15] == 0x02 ? false : true;//摇摆系统
+                        App.PropertyModelInstance.Hatch = bytes[16] == 0x02 ? false : true;//舱盖
+
+
+                        if (App.PropertyModelInstance.Upper_CabinTemperatureNow >= App.PropertyModelInstance.UpperAlarmCabinTemperature)//上舱温度
+                        {
+                            App.PropertyModelInstance.IsUpperAlarm = true;
+                        }
+                        else
+                        {
+                            App.PropertyModelInstance.IsUpperAlarm = false;
+                        }
+
+                        if (App.PropertyModelInstance.BackTemperatureNow >= App.PropertyModelInstance.BackAlarmTemperature)//背部温度
+                        {
+                            App.PropertyModelInstance.IsBackAlarm = true;
+                        }
+                        else
+                        {
+                            App.PropertyModelInstance.IsBackAlarm = false;
+                        }
+
+                        if (App.PropertyModelInstance.LegTemperatureNow >= App.PropertyModelInstance.LegAlarmTemperature)//腿部温度
+                        {
+                            App.PropertyModelInstance.IsLegAlarm = true;
+                        }
+                        else
+                        {
+                            App.PropertyModelInstance.IsLegAlarm = false;
+                        }
+
+                        if (App.PropertyModelInstance.SmokePurificationSystem == false && App.PropertyModelInstance.SmokeExhaustSystem == 0)//查看是否开启排烟系统或者净烟系统
+                        {
+                            App.PropertyModelInstance.IsSmokeSystemOn = false;
+                        }
+                        else
+                        {
+                            App.PropertyModelInstance.IsSmokeSystemOn = true;
+                        }
                     }
-                    else if(bytes[6] == 0x02)
+                    else
                     {
-                        PopupBoxViewModel.ShowPopupBox("操作失败，请重新操作");
-                    }                    
+                        App.IsReceive = true;
+                        if (bytes[6] == 0x01)
+                        {
+                            Console.WriteLine("操作成功");
+                        }
+                        else if (bytes[6] == 0x02)
+                        {
+                            PopupBoxViewModel.ShowPopupBox("操作失败，请重新操作");
+                        }
+                    }
                 }
+                
             }
 
             long timestamp = _stopWatch.ElapsedMilliseconds;
@@ -484,8 +597,8 @@ namespace MoxibustionBedAPP.Models
             }
             if (isNeedSendData)
             {
-                bytes[9] = 0x55;
-                bytes[10] = 0xAA;
+                bytes[9] = 0xAA;
+                bytes[10] = 0x5C;
                 bytes = CRC16(bytes);
                 SendData(bytes);//发送数据到下位机
                 if (datas[3] == 0x01)

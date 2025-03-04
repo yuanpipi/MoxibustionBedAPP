@@ -329,8 +329,8 @@ namespace MoxibustionBedAPP.ViewModes
                         break;
                     }
             }
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
 
@@ -369,8 +369,8 @@ namespace MoxibustionBedAPP.ViewModes
                 data[4] = 0x10;
                 data[5] = 0x0B;
                 data[6] = 0x01;
-                data[9] = 0x55;
-                data[10] = 0xAA;
+                data[9] = 0xAA;
+                data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
 
@@ -378,8 +378,8 @@ namespace MoxibustionBedAPP.ViewModes
 
                 data[5] = 0x02;
                 data[6] = 0x01;
-                data[9] = 0x55;
-                data[10] = 0xAA;
+                data[9] = 0xAA;
+                data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
                 App.PropertyModelInstance.PreheadMode = true;
@@ -411,8 +411,8 @@ namespace MoxibustionBedAPP.ViewModes
                 data[4] = 0x10;
                 data[5] = 0x0B;
                 data[6] = 0x01;
-                data[9] = 0x55;
-                data[10] = 0xAA;
+                data[9] = 0xAA;
+                data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
                 App.PropertyModelInstance.Hatch = false;
@@ -420,8 +420,8 @@ namespace MoxibustionBedAPP.ViewModes
 
                 data[5] = 0x03;
                 data[6] = 0x01;
-                data[9] = 0x55;
-                data[10] = 0xAA;
+                data[9] = 0xAA;
+                data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
                 App.PropertyModelInstance.InignitionStatus = true;
@@ -500,8 +500,8 @@ namespace MoxibustionBedAPP.ViewModes
                     break;
             }
 
-            data[9] = 0x55;
-            data[10] = 0xAA;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
         }

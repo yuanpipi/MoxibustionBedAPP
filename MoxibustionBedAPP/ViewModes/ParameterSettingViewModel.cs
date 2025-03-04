@@ -71,8 +71,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[11] = Convert.ToByte(App.PropertyModelInstance.BackAlarmTemperature.ToString("X"),16);
             data[12] = Convert.ToByte(App.PropertyModelInstance.LegAlarmTemperature.ToString("X"),16);
             data[13] = Convert.ToByte(App.PropertyModelInstance.AutomaticLidOpening==true ? 0x00 : 0x01);
-            data[16] = 0x55;
-            data[17] = 0xAA;
+            data[16] = 0xAA;
+            data[17] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
 
@@ -112,8 +112,8 @@ namespace MoxibustionBedAPP.ViewModes
             data[11] = Convert.ToByte(App.PropertyModelInstance.BackAlarmTemperature.ToString("X"), 16);
             data[12] = Convert.ToByte(App.PropertyModelInstance.LegAlarmTemperature.ToString("X"), 16);
             data[13] = Convert.ToByte(App.PropertyModelInstance.AutomaticLidOpening == true ? 0x00 : 0x01);
-            data[16] = 0x55;
-            data[17] = 0xAA;
+            data[16] = 0xAA;
+            data[17] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
 

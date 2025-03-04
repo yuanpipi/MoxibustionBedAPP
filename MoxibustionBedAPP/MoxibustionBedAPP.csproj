@@ -156,6 +156,7 @@
     <Compile Include="Models\SaveMode.cs" />
     <Compile Include="Models\SerialPortManager.cs" />
     <Compile Include="Models\SliderTouchAreaAdorner.cs" />
+    <Compile Include="ViewModes\COMFailMessageBoxViewModel.cs" />
     <Compile Include="ViewModes\DataMonitoringViewModel.cs" />
     <Compile Include="ViewModes\FunctionControlViewModel.cs" />
     <Compile Include="ViewModes\LoadWindowViewModel.cs" />
@@ -167,6 +168,9 @@
     <Compile Include="ViewModes\PopupBoxViewModel.cs" />
     <Compile Include="ViewModes\SettingsViewModel.cs" />
     <Compile Include="ViewModes\TestWindowViewModel.cs" />
+    <Compile Include="Views\COMFailMessageBox.xaml.cs">
+      <DependentUpon>COMFailMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DataMonitoringView.xaml.cs">
       <DependentUpon>DataMonitoringView.xaml</DependentUpon>
     </Compile>
@@ -205,6 +209,10 @@
     <Compile Include="Views\TestWindowView.xaml.cs">
       <DependentUpon>TestWindowView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\COMFailMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DataMonitoringView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
