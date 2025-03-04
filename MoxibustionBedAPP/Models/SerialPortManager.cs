@@ -22,6 +22,7 @@ namespace MoxibustionBedAPP.Models
 {
     public class SerialPortManager : IDisposable
     {
+        #region 自定义变脸
         /// <summary>
         /// 串口变量
         /// </summary>
@@ -79,11 +80,14 @@ namespace MoxibustionBedAPP.Models
             Interval = TimeSpan.FromSeconds(30)
         };
 
+        public COMFailMessageBox comfail = new COMFailMessageBox();
+        #endregion
+
         private SerialPortManager()
         {
             _serialPort = new SerialPort()
             {
-                PortName = "COM1",
+                PortName = App.PropertyModelInstance.MotherboardCOM,
                 BaudRate = 115200,
                 Parity = Parity.None,
                 DataBits = 8,
@@ -94,7 +98,7 @@ namespace MoxibustionBedAPP.Models
 
             _serialPortVoice = new SerialPort()
             {
-                PortName = "COM3",
+                PortName = App.PropertyModelInstance.AICOM,
                 BaudRate = 115200,
                 Parity = Parity.None,
                 DataBits = 8,
@@ -147,11 +151,17 @@ namespace MoxibustionBedAPP.Models
                     _serialPort.ReadTimeout = 3000;
                     _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                     Console.WriteLine("Serial port opened");
+                    Console.WriteLine("Serial port opened");
                     _stopWatch.Start();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"打开串口失败: {ex.Message}");
+                    //MessageBox.Show($"打开串口失败: {ex.Message}");
+                    //PopupBoxViewModel.ShowPopupBox($"串口打开失败：{ex.Message}");
+                    //COMFailMessageBox comfail = new COMFailMessageBox();
+                    comfail.ShowDialog();
+
+                    //自动重连逻辑
                     return;
                 }
             }
@@ -166,6 +176,8 @@ namespace MoxibustionBedAPP.Models
                 catch (Exception e)
                 {
                     Console.WriteLine($"串口打开失败:{e.Message}");
+
+                    //自动重连逻辑
                     return;
                 }
             }

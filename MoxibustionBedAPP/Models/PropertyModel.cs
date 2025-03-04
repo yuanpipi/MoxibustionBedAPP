@@ -812,5 +812,39 @@ namespace MoxibustionBedAPP.Models
             }
         }
 
+        /// <summary>
+        /// 主板COM口
+        /// </summary>
+        private string _motherboardCOM;
+        public string MotherboardCOM
+        {
+            get
+            {
+                return _motherboardCOM;
+            }
+            set
+            {
+                _motherboardCOM = value;
+                OnPropertyChanged(nameof(MotherboardCOM));
+            }
+        }
+
+        /// <summary>
+        /// 语音助手COM口
+        /// </summary>
+        private string _aiCOM;
+        public string AICOM
+        {
+            get
+            {
+                return _aiCOM;
+            }
+            set
+            {
+                _aiCOM = value;
+                OnPropertyChanged(nameof(AICOM));
+            }
+        }
+
     }
 }

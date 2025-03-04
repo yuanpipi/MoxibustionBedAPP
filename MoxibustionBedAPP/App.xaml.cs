@@ -49,6 +49,7 @@ namespace MoxibustionBedAPP
             //将PropertyModel注册为资源
             PropertyModelInstance = new PropertyModel();
             PublicMethods.ReadFromJson();//开机自启时自动获取保存的文件
+            PublicMethods.ReadFromCOMJson();//开机自启时自动获取保存的COM文件
 
             //PropertyModelInstance.Upper_CabinTemperature = 40;//上舱温度
             //PropertyModelInstance.BackTemperature = 40;//背部温度
@@ -180,6 +181,10 @@ namespace MoxibustionBedAPP
             MainWindow.Close();
             MainWindow = window1;
             MainWindow.Show();
+            if(SerialPortManager.Instance.comfail.Visibility== Visibility.Collapsed)
+            {
+                SerialPortManager.Instance.comfail.Close();
+            }
         }
 
     }

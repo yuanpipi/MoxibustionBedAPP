@@ -147,6 +147,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\COMSetting.cs" />
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\LineModel.cs" />
     <Compile Include="Models\MusicModel.cs" />
