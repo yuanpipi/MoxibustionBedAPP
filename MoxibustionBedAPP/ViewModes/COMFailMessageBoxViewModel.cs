@@ -38,6 +38,18 @@ namespace MoxibustionBedAPP.ViewModes
         public ICommand ButtonClickCommon { get; set; }
 
         public ObservableCollection<string> ComPorts { get; } = new ObservableCollection<string>();
+
+
+        private int _selectedItem;
+        public int SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
         #endregion
 
         public COMFailMessageBoxViewModel()
