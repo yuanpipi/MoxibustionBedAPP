@@ -81,6 +81,9 @@ namespace MoxibustionBedAPP.Models
         };
 
         public COMFailMessageBox comfail = new COMFailMessageBox();
+
+        private bool isOpenMotherboardCOM = false;
+        private bool isOpenAICOM = false;
         #endregion
 
         private SerialPortManager()
@@ -150,19 +153,30 @@ namespace MoxibustionBedAPP.Models
                     _serialPort.WriteTimeout = 3000;
                     _serialPort.ReadTimeout = 3000;
                     _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
-                    Console.WriteLine("Serial port opened");
-                    Console.WriteLine("Serial port opened");
                     _stopWatch.Start();
+                    isOpenMotherboardCOM = true;
                 }
                 catch (Exception ex)
                 {
                     //MessageBox.Show($"打开串口失败: {ex.Message}");
                     //PopupBoxViewModel.ShowPopupBox($"串口打开失败：{ex.Message}");
                     //COMFailMessageBox comfail = new COMFailMessageBox();
-                    comfail.ShowDialog();
 
-                    //自动重连逻辑
-                    return;
+
+                    //comfail.ShowDialog();
+
+                    ////自动重连逻辑
+                    //_serialPort.PortName=App.PropertyModelInstance.MotherboardCOM;
+                    //_serialPort.Open();//打开串口
+                    //_serialPort.WriteTimeout = 3000;
+                    //_serialPort.ReadTimeout = 3000;
+                    //byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                    //_serialPort.Write(data, 0, data.Length);
+                    //Thread.Sleep(1500);
+                    //byte[] buffer = new byte[_serialPort.BytesToRead];
+                    //_serialPort.Read(buffer, 0, buffer.Length);
+
+                    isOpenMotherboardCOM = false;
                 }
             }
             if (_serialPortVoice != null && !_serialPortVoice.IsOpen)
@@ -172,13 +186,140 @@ namespace MoxibustionBedAPP.Models
                     _serialPortVoice.Open();
                     Console.WriteLine("语音串口已打开");
                     _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
+                    isOpenAICOM = true;
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"串口打开失败:{e.Message}");
+                    //Console.WriteLine($"串口打开失败:{e.Message}");
+
+                    ////自动重连逻辑
+                    //return;
+                    isOpenAICOM = false;
+                }
+            }
+
+
+            while(!isOpenMotherboardCOM || !isOpenAICOM)
+            {
+                if (!isOpenMotherboardCOM && !isOpenAICOM)//主板串口和语音助手串口均为打开
+                {
+                    MessageBox.Show("主板串口和语音助手串口错误，请重新设置");
+                    comfail.ShowDialog();
 
                     //自动重连逻辑
-                    return;
+                    _serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
+                    try
+                    {
+                        _serialPort.Open();//打开串口
+                        _serialPort.WriteTimeout = 3000;
+                        _serialPort.ReadTimeout = 3000;
+                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        _serialPort.Write(data, 0, data.Length);
+                        Thread.Sleep(1500);
+                        byte[] buffer = new byte[_serialPort.BytesToRead];
+                        _serialPort.Read(buffer, 0, buffer.Length);
+                        if(buffer.Length > 0)
+                        {
+                            isOpenMotherboardCOM = true;
+                        }
+                        else
+                        {
+                            isOpenMotherboardCOM = false;
+                        }
+                    }
+                    catch
+                    {
+                        isOpenMotherboardCOM = false;
+                    }
+
+
+                    //自动重连逻辑
+                    _serialPortVoice.PortName = App.PropertyModelInstance.AICOM;
+                    try
+                    {
+                        _serialPortVoice.Open();//打开串口
+                        _serialPortVoice.WriteTimeout = 3000;
+                        _serialPortVoice.ReadTimeout = 3000;
+                        byte[] data1 = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        _serialPortVoice.Write(data1, 0, data1.Length);
+                        Thread.Sleep(1500);
+                        byte[] buffer1 = new byte[_serialPort.BytesToRead];
+                        _serialPortVoice.Read(buffer1, 0, buffer1.Length);
+                        if (buffer1.Length > 0)
+                        {
+                            isOpenAICOM = true;
+                        }
+                        else
+                        {
+                            isOpenAICOM = false;
+                        }
+                    }
+                    catch
+                    {
+                        isOpenAICOM = false;
+                    }                
+                }
+                else if (!isOpenMotherboardCOM && isOpenAICOM)//主板串口未打开，语音串口已打开
+                {
+                    MessageBox.Show("主板串口错误，请重新设置");
+                    comfail.ShowDialog();
+
+                    //主板串口自动重连逻辑
+                    _serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
+                    try
+                    {
+                        _serialPort.Open();//打开串口
+                        _serialPort.WriteTimeout = 3000;
+                        _serialPort.ReadTimeout = 3000;
+                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        _serialPort.Write(data, 0, data.Length);
+                        Thread.Sleep(1500);
+                        byte[] buffer = new byte[_serialPort.BytesToRead];
+                        _serialPort.Read(buffer, 0, buffer.Length);
+                        if (buffer.Length > 0)
+                        {
+                            isOpenMotherboardCOM = true;
+                        }
+                        else
+                        {
+                            isOpenMotherboardCOM = false;
+                        }
+                    }
+                    catch
+                    {
+                        isOpenMotherboardCOM = false;
+                    }
+                }
+                else if (isOpenMotherboardCOM && !isOpenAICOM)//主板串口已打开，语音串口未打开
+                {
+                    MessageBox.Show("语音助手串口错误，请重新设置");
+                    comfail.ShowDialog();
+
+                    //语音助手串口自动重连逻辑
+                    _serialPortVoice.PortName = App.PropertyModelInstance.AICOM;
+                    try
+                    {
+                        _serialPortVoice.Open();//打开串口
+                        _serialPortVoice.WriteTimeout = 3000;
+                        _serialPortVoice.ReadTimeout = 3000;
+                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        _serialPortVoice.Write(data, 0, data.Length);
+                        Thread.Sleep(1500);
+                        byte[] buffer = new byte[_serialPort.BytesToRead];
+                        _serialPortVoice.Read(buffer, 0, buffer.Length);
+                        if (buffer.Length > 0)
+                        {
+                            isOpenAICOM = true;
+                        }
+                        else
+                        {
+                            isOpenAICOM = false;
+                        }
+                    }
+                    catch
+                    {
+                        isOpenAICOM = false;
+                    }
                 }
             }
         }
@@ -724,8 +865,8 @@ namespace MoxibustionBedAPP.Models
             {
                 newByte[i] = bytes[i];
             }
-            newByte[len - 4] = (byte)redata[0];
-            newByte[len - 3] = redata[1];
+            newByte[len - 3] = (byte)redata[0];
+            newByte[len - 4] = (byte)redata[1];
             // HelperTypeConversion.concat(bytes, newByte)
             return newByte;
         }
