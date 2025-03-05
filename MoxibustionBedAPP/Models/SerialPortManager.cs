@@ -218,8 +218,11 @@ namespace MoxibustionBedAPP.Models
                         Thread.Sleep(1500);
                         byte[] buffer = new byte[_serialPort.BytesToRead];
                         _serialPort.Read(buffer, 0, buffer.Length);
-                        if(buffer.Length > 0)
+                        if (buffer.Length > 0)
                         {
+                            isOpenMotherboardCOM = true;
+                            _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                            _stopWatch.Start();
                             isOpenMotherboardCOM = true;
                         }
                         else
@@ -247,6 +250,8 @@ namespace MoxibustionBedAPP.Models
                         _serialPortVoice.Read(buffer1, 0, buffer1.Length);
                         if (buffer1.Length > 0)
                         {
+                            isOpenAICOM = true;
+                            _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
                             isOpenAICOM = true;
                         }
                         else
@@ -279,6 +284,9 @@ namespace MoxibustionBedAPP.Models
                         if (buffer.Length > 0)
                         {
                             isOpenMotherboardCOM = true;
+                            _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                            _stopWatch.Start();
+                            isOpenMotherboardCOM = true;
                         }
                         else
                         {
@@ -309,6 +317,8 @@ namespace MoxibustionBedAPP.Models
                         _serialPortVoice.Read(buffer, 0, buffer.Length);
                         if (buffer.Length > 0)
                         {
+                            isOpenAICOM = true;
+                            _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
                             isOpenAICOM = true;
                         }
                         else
