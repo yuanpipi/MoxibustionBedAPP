@@ -206,7 +206,7 @@ namespace MoxibustionBedAPP.Models
                     MessageBox.Show("主板串口和语音助手串口错误，请重新设置");
                     comfail.ShowDialog();
 
-                    //自动重连逻辑
+                    //主板自动重连逻辑
                     _serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
                     try
                     {
@@ -233,14 +233,14 @@ namespace MoxibustionBedAPP.Models
                     }
 
 
-                    //自动重连逻辑
+                    //语音助手自动重连逻辑
                     _serialPortVoice.PortName = App.PropertyModelInstance.AICOM;
                     try
                     {
                         _serialPortVoice.Open();//打开串口
                         _serialPortVoice.WriteTimeout = 3000;
                         _serialPortVoice.ReadTimeout = 3000;
-                        byte[] data1 = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        byte[] data1 = { 0xAA, 0x55, 0x10, 0x55, 0XAA };
                         _serialPortVoice.Write(data1, 0, data1.Length);
                         Thread.Sleep(1500);
                         byte[] buffer1 = new byte[_serialPort.BytesToRead];
@@ -302,7 +302,7 @@ namespace MoxibustionBedAPP.Models
                         _serialPortVoice.Open();//打开串口
                         _serialPortVoice.WriteTimeout = 3000;
                         _serialPortVoice.ReadTimeout = 3000;
-                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        byte[] data = { 0xAA, 0x55, 0x10, 0x55, 0XAA };
                         _serialPortVoice.Write(data, 0, data.Length);
                         Thread.Sleep(1500);
                         byte[] buffer = new byte[_serialPort.BytesToRead];
