@@ -132,6 +132,9 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(Smoke));
             }
         }
+
+        private static DateTime StartTime;
+        private static int seconds;
         #endregion
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -360,15 +363,15 @@ namespace MoxibustionBedAPP.ViewModes
                 case "SwingSystem"://摇摆系统
                     {
                         data[5] = 0x0E;
-                        if (App.PropertyModelInstance.SmokePurificationSystem)
+                        if (App.PropertyModelInstance.SwingSystem)
                         {
                             data[6] = 0x02;
-                            App.PropertyModelInstance.SmokePurificationSystem = false;
+                            App.PropertyModelInstance.SwingSystem = false;
                         }
                         else
                         {
                             data[6] = 0x01;
-                            App.PropertyModelInstance.SmokePurificationSystem= true;
+                            App.PropertyModelInstance.SwingSystem = true;
                         }
                         break;
                     }
@@ -461,6 +464,8 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
             App.PropertyModelInstance.CountdownSeconds = 0;
             //StartCountdown();
+            seconds = App.PropertyModelInstance.CountdownSeconds+App.PropertyModelInstance.CountdownMinutes*60;
+            StartTime = DateTime.Now;
             _timer.Start();
         }
 
@@ -496,6 +501,8 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
             App.PropertyModelInstance.CountdownMinutes = 0;
             //StartCountdown();
+            seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+            StartTime = DateTime.Now;
             _timer.Start();
         }
 
@@ -687,7 +694,7 @@ namespace MoxibustionBedAPP.ViewModes
         private void StartCountdown()
         {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Interval = TimeSpan.FromMilliseconds(200);
             _timer.Tick += Timer_Tick;
             //_timer.Start();
         }
@@ -699,15 +706,25 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (App.PropertyModelInstance.CountdownSeconds > 0)
+            TimeSpan t = DateTime.Now.Subtract(StartTime);
+            if(App.PropertyModelInstance.CountdownMinutes > 0 || App.PropertyModelInstance.CountdownSeconds > 0)
             {
-                App.PropertyModelInstance.CountdownSeconds--;
+                int s = (int)(seconds - t.TotalSeconds);
+                App.PropertyModelInstance.CountdownMinutes = s / 60;
+                App.PropertyModelInstance.CountdownSeconds = s % 60;
             }
-            else if (App.PropertyModelInstance.CountdownMinutes > 0)
-            {
-                App.PropertyModelInstance.CountdownMinutes--;
-                App.PropertyModelInstance.CountdownSeconds = 59;
-            }
+            //if (App.PropertyModelInstance.CountdownSeconds > 0)
+            //{
+            //    App.PropertyModelInstance.CountdownSeconds = seconds - t.Seconds;
+            //}
+            //else if (App.PropertyModelInstance.CountdownMinutes > 0)
+            //{
+            //    App.PropertyModelInstance.CountdownMinutes--;
+            //    App.PropertyModelInstance.CountdownSeconds = 60;
+            //    seconds = 59;
+
+
+            //}
             else
             {
                 _timer.Stop();
@@ -730,9 +747,12 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
                     //发送开始治疗指令
-                    StopMethods("StartMoxibustionTherapy");                    
-                    StartCountdown();//开启治疗倒计时
-                    if(App.PropertyModelInstance.AutoMusic==true)
+                    StopMethods("StartMoxibustionTherapy");
+                    //StartCountdown();//开启治疗倒计时
+                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                    StartTime = DateTime.Now;
+                    _timer.Start();
+                    if (App.PropertyModelInstance.AutoMusic==true)
                     {
                         App.PropertyModelInstance.CurrentUserControl = MainWindowViewModel.PlayMusicView;
                     }
@@ -756,7 +776,10 @@ namespace MoxibustionBedAPP.ViewModes
                     IsCountingDown = true;
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = 5;
-                    StartCountdown();//开始排烟倒计时，五分钟
+                    //StartCountdown();//开始排烟倒计时，五分钟
+                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                    StartTime = DateTime.Now;
+                    _timer.Start();
                     VoiceMethods("StopMoxibustion");//结束治疗发送给语音模块
                 }
                 else if (App.PropertyModelInstance.IsSmokeSystemOn == true)
