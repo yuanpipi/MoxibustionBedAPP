@@ -574,6 +574,8 @@ namespace MoxibustionBedAPP.ViewModes
             if((string)parameter== "StopMoxibustionTherapy")
             {
                 _timer.Stop();
+                App.PropertyModelInstance.CountdownMinutes = 0;
+                App.PropertyModelInstance.CountdownSeconds = 0;
                 App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
                 RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                 VoiceMethods("StopMoxibustion");//结束治疗发送给语音模块
@@ -581,6 +583,8 @@ namespace MoxibustionBedAPP.ViewModes
             if((string)parameter== "StopSmoke")
             {
                 _timer.Stop();
+                App.PropertyModelInstance.CountdownMinutes = 0;
+                App.PropertyModelInstance.CountdownSeconds = 0;
                 App.PropertyModelInstance.IsSmokeSystemOn = false;
                 Smoke = false;
             }
@@ -728,6 +732,8 @@ namespace MoxibustionBedAPP.ViewModes
             else
             {
                 _timer.Stop();
+                App.PropertyModelInstance.CountdownMinutes = 0;
+                App.PropertyModelInstance.CountdownSeconds = 0;
                 IsCountingDown = false;
                 if (App.PropertyModelInstance.PreheadMode == true)
                 {

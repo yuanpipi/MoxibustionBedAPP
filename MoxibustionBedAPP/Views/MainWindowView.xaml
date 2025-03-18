@@ -291,6 +291,10 @@
                 <TextBlock Text="点火倒计时" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Foreground="White" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="36" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Row="7" Grid.RowSpan="2" Grid.Column="2" Grid.ColumnSpan="5" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="White">
                     <Span>
+                        <!--<Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
+                        <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>-->
+                        <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownMinutes}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
+                        <Run Text="min" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>
                         <Run Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.CountdownSeconds}" FontFamily="{StaticResource SourceHanSerifCN-Heavy}" FontSize="50"/>
                         <Run Text="s" FontFamily="{StaticResource SourceHanSerifCN-Regular}" FontSize="30"/>
                     </Span>

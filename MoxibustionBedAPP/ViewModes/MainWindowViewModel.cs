@@ -349,6 +349,8 @@ namespace MoxibustionBedAPP.ViewModes
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.PreheadMode = false;
             FunctionControlViewModel._timer.Stop();
+            App.PropertyModelInstance.CountdownMinutes = 0;
+            App.PropertyModelInstance.CountdownSeconds = 0;
             FunctionControlViewModel._isCountingDown = false;
         }
 
@@ -373,6 +375,8 @@ namespace MoxibustionBedAPP.ViewModes
             SerialPortManager.Instance.SendData(data);
             App.PropertyModelInstance.InignitionStatus = false;
             FunctionControlViewModel._timer.Stop();
+            App.PropertyModelInstance.CountdownMinutes = 0;
+            App.PropertyModelInstance.CountdownSeconds = 0;
             FunctionControlViewModel._isCountingDown = false;
         }
         
