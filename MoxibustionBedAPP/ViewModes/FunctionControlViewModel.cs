@@ -533,6 +533,15 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+
+            if ((string)parameter == "SmokeExhaust")
+            {
+                App.PropertyModelInstance.SmokeExhaustSystem = 2;
+            }
+            else if ((string)parameter == "SmokePurification")
+            {
+                App.PropertyModelInstance.SmokePurificationSystem = false;
+            }
         }
 
         /// <summary>
