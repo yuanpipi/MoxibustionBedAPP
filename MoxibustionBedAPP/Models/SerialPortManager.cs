@@ -370,6 +370,7 @@ namespace MoxibustionBedAPP.Models
             {
                 if (bytes[4]==0x12)
                 {
+                    App.PropertyModelInstance.CurrentUserControl= MainWindowViewModel.FunctionControlView;
                     switch (bytes[5])
                     {
                         case 0x00://紧急开舱
