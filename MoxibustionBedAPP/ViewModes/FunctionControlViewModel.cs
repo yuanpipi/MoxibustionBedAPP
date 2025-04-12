@@ -141,8 +141,8 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
 
-        private static DateTime StartTime;
-        private static int seconds;
+        public static DateTime StartTime;
+        public static int seconds;
         #endregion
 
         protected virtual void OnPropertyChanged(string propertyName)

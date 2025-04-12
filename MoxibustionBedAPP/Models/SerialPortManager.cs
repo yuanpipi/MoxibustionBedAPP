@@ -166,7 +166,7 @@ namespace MoxibustionBedAPP.Models
                     //comfail.ShowDialog();
 
                     ////自动重连逻辑
-                    //_serialPort.PortName=App.PropertyModelInstance.MotherboardCOM;
+                    //_serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
                     //_serialPort.Open();//打开串口
                     //_serialPort.WriteTimeout = 3000;
                     //_serialPort.ReadTimeout = 3000;
@@ -195,6 +195,7 @@ namespace MoxibustionBedAPP.Models
                     ////自动重连逻辑
                     //return;
                     isOpenAICOM = false;
+                    //isOpenAICOM = true;
                 }
             }
 
@@ -233,6 +234,7 @@ namespace MoxibustionBedAPP.Models
                     catch
                     {
                         isOpenMotherboardCOM = false;
+                        //isOpenMotherboardCOM = true;
                     }
 
 
@@ -262,7 +264,7 @@ namespace MoxibustionBedAPP.Models
                     catch
                     {
                         isOpenAICOM = false;
-                    }                
+                    }
                 }
                 else if (!isOpenMotherboardCOM && isOpenAICOM)//主板串口未打开，语音串口已打开
                 {
@@ -296,6 +298,7 @@ namespace MoxibustionBedAPP.Models
                     catch
                     {
                         isOpenMotherboardCOM = false;
+                        //isOpenMotherboardCOM = true;
                     }
                 }
                 else if (isOpenMotherboardCOM && !isOpenAICOM)//主板串口已打开，语音串口未打开
@@ -421,6 +424,8 @@ namespace MoxibustionBedAPP.Models
                                 App.PropertyModelInstance.InignitionStatus = true;
                                 App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
                                 App.PropertyModelInstance.CountdownMinutes = 0;
+                                FunctionControlViewModel.seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                                FunctionControlViewModel.StartTime = DateTime.Now;
                                 FunctionControlViewModel._timer.Start();
                             }
                             else if (bytes[6] == 0x02)
