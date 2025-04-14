@@ -224,7 +224,6 @@ namespace MoxibustionBedAPP.Models
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                             _stopWatch.Start();
-                            isOpenMotherboardCOM = true;
                         }
                         else
                         {
@@ -254,7 +253,6 @@ namespace MoxibustionBedAPP.Models
                         {
                             isOpenAICOM = true;
                             _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
-                            isOpenAICOM = true;
                         }
                         else
                         {
@@ -288,7 +286,6 @@ namespace MoxibustionBedAPP.Models
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                             _stopWatch.Start();
-                            isOpenMotherboardCOM = true;
                         }
                         else
                         {
@@ -322,7 +319,6 @@ namespace MoxibustionBedAPP.Models
                         {
                             isOpenAICOM = true;
                             _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
-                            isOpenAICOM = true;
                         }
                         else
                         {
