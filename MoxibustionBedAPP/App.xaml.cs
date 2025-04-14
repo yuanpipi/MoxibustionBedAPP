@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading;
@@ -186,6 +187,14 @@ namespace MoxibustionBedAPP
                 SerialPortManager.Instance.comfail.Close();
             }
         }
+
+        //private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        //{
+        //    MessageBox.Show($"致命错误: {e.Exception.Message}");
+        //    e.Handled = true; // 防止进程终止
+        //                      // 记录日志
+        //    File.WriteAllText("error.log", e.Exception.ToString());
+        //}
 
     }
 }
