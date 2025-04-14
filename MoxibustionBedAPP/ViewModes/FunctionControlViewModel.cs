@@ -110,7 +110,7 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
-        /// 开关舱倒计时，20s
+        /// 开关舱倒计时，10s
         /// </summary>
         private DispatcherTimer timer = new DispatcherTimer
         {
@@ -118,7 +118,7 @@ namespace MoxibustionBedAPP.ViewModes
         };
 
         /// <summary>
-        /// 开关舱倒计时，20s
+        /// 开关舱倒计时，10s
         /// </summary>
         private DispatcherTimer timer1 = new DispatcherTimer
         {
@@ -292,6 +292,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             App.PropertyModelInstance.IsOpen = false;
                             timer.Stop();
+                            App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0A;
                             data[6] = 0x02;
                             App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
@@ -312,6 +313,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             App.PropertyModelInstance.IsClose = false;
                             timer.Stop();
+                            App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0B;
                             data[6] = 0x02;
                             App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
@@ -421,23 +423,27 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 timer.Tick += (sender, args) =>
                 {
+                    App.PropertyModelInstance.IsOpenOrClose = false;
                     App.PropertyModelInstance.IsOpen = false;
                     App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                     VoiceMethods("HatchOn");//发送开舱状态到语音模块
                 };
                 timer.Start();
+                App.PropertyModelInstance.IsOpenOrClose = true;
             }
             if(App.PropertyModelInstance.IsClose)
             {
                 timer.Tick += (sender, args) =>
                 {
+                    App.PropertyModelInstance.IsOpenOrClose = false;
                     App.PropertyModelInstance.IsClose = false;
                     App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
                     ((DispatcherTimer)sender).Stop();
                     VoiceMethods("HatchClose");//发送关舱状态到语音模块
                 };
                 timer.Start();
+                App.PropertyModelInstance.IsOpenOrClose = true;
             }
         }
 

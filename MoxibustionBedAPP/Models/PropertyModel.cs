@@ -762,6 +762,23 @@ namespace MoxibustionBedAPP.Models
         }
 
         /// <summary>
+        /// 是否处于开舱或关舱状态
+        /// </summary>
+        private bool isOpenOrClose;
+        public bool IsOpenOrClose
+        {
+            get
+            {
+                return isOpenOrClose;
+            }
+            set
+            {
+                isOpenOrClose = value;
+                OnPropertyChanged(nameof(IsOpenOrClose));
+            }
+        }
+
+        /// <summary>
         /// 开舱背景图
         /// </summary>
         private string _openHatch;

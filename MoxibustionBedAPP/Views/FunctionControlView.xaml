@@ -1294,6 +1294,14 @@
                                 <Setter Property="Visibility" Value="Visible"/>
                                 <Setter Property="IsEnabled" Value="True"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOpenOrClose}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOpenOrClose}" Value="false">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
@@ -1451,6 +1459,29 @@
                 </Grid>
             </Border>
 
+
+            <!--舱盖控制模块覆盖-->
+            <Border CornerRadius="25" Grid.Row="4">
+                <Border.Background>
+                    <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+                </Border.Background>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOpenOrClose}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsOpenOrClose}" Value="false">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+
         </Grid>
+
     </Grid>
 </UserControl>
