@@ -458,44 +458,21 @@ namespace MoxibustionBedAPP.ViewModes
             data[2] = 0x07;
             data[3] = 0x01;
             data[4] = 0x10;
-            if (App.PropertyModelInstance.Hatch)
-            {
-                data[5] = 0x0B;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
-                App.PropertyModelInstance.IsClose = true;
-                App.PropertyModelInstance.Hatch = false;
-                VoiceMethods("HatchClose");//发送关舱状态到语音模块
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+            App.PropertyModelInstance.IsClose = true;
+            App.PropertyModelInstance.Hatch = false;
+            App.PropertyModelInstance.IsOpenOrClose = true;
+            VoiceMethods("HatchClose");//发送关舱状态到语音模块
 
-                timer1.Tick += (sender, args) =>
-                {
-                    data[5] = 0x02;
-                    data[6] = 0x01;
-                    data[9] = 0xAA;
-                    data[10] = 0x5C;
-                    data = SerialPortManager.CRC16(data);
-                    SerialPortManager.Instance.SendData(data);
-                    App.PropertyModelInstance.PreheadMode = true;
-                    IsCountingDown = true;
-                    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
-                    App.PropertyModelInstance.CountdownSeconds = 0;
-                    //StartCountdown();
-                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                    StartTime = DateTime.Now;
-                    _timer.Start();
-                    //App.PropertyModelInstance.IsOpen = false;
-                    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                    App.PropertyModelInstance.IsClose = false;
-                    ((DispatcherTimer)sender).Stop();
-                };
-                timer1.Start();
-            }
-            else
+            timer1.Tick += (sender, args) =>
             {
+                App.PropertyModelInstance.IsOpenOrClose = false;
                 data[5] = 0x02;
                 data[6] = 0x01;
                 data[9] = 0xAA;
@@ -510,7 +487,12 @@ namespace MoxibustionBedAPP.ViewModes
                 seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
                 StartTime = DateTime.Now;
                 _timer.Start();
-            }
+                //App.PropertyModelInstance.IsOpen = false;
+                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+                App.PropertyModelInstance.IsClose = false;
+                ((DispatcherTimer)sender).Stop();
+            };
+            timer1.Start();
         }
 
         /// <summary>
@@ -524,44 +506,22 @@ namespace MoxibustionBedAPP.ViewModes
             data[2] = 0x07;
             data[3] = 0x01;
             data[4] = 0x10;
-            if (App.PropertyModelInstance.Hatch)
-            {
-                data[5] = 0x0B;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
-                App.PropertyModelInstance.IsClose = true;
-                App.PropertyModelInstance.Hatch = false;
-                VoiceMethods("HatchClose");//发送关舱状态到
+            data[5] = 0x0B;
+            data[6] = 0x01;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBackSelected.png";//切换背景图片
+            App.PropertyModelInstance.IsClose = true;
+            App.PropertyModelInstance.Hatch = false;
+            App.PropertyModelInstance.IsOpenOrClose = true;
+            VoiceMethods("HatchClose");//发送关舱状态到
 
 
-                timer1.Tick += (sender, args) =>
-                {
-                    data[5] = 0x03;
-                    data[6] = 0x01;
-                    data[9] = 0xAA;
-                    data[10] = 0x5C;
-                    data = SerialPortManager.CRC16(data);
-                    SerialPortManager.Instance.SendData(data);
-                    App.PropertyModelInstance.InignitionStatus = true;
-                    IsCountingDown = true;
-                    App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
-                    App.PropertyModelInstance.CountdownMinutes = 0;
-                    //StartCountdown();
-                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                    StartTime = DateTime.Now;
-                    _timer.Start();
-                    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                    App.PropertyModelInstance.IsClose = false;
-                    ((DispatcherTimer)sender).Stop();
-                };
-                timer1.Start();
-            }
-            else
+            timer1.Tick += (sender, args) =>
             {
+                App.PropertyModelInstance.IsOpenOrClose = false;
                 data[5] = 0x03;
                 data[6] = 0x01;
                 data[9] = 0xAA;
@@ -576,7 +536,11 @@ namespace MoxibustionBedAPP.ViewModes
                 seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
                 StartTime = DateTime.Now;
                 _timer.Start();
-            }
+                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+                App.PropertyModelInstance.IsClose = false;
+                ((DispatcherTimer)sender).Stop();
+            };
+            timer1.Start();
         }
 
         /// <summary>
