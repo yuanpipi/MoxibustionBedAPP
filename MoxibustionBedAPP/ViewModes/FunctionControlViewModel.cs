@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Ink;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Markup.Localizer;
 using System.Windows.Threading;
 using MoxibustionBedAPP.Models;
@@ -313,6 +314,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             App.PropertyModelInstance.IsClose = false;
                             timer.Stop();
+                            timer1.Stop();
                             App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0B;
                             data[6] = 0x02;
@@ -421,31 +423,109 @@ namespace MoxibustionBedAPP.ViewModes
 
             if(App.PropertyModelInstance.IsOpen)
             {
-                timer.Tick += (sender, args) =>
-                {
-                    App.PropertyModelInstance.IsOpenOrClose = false;
-                    App.PropertyModelInstance.IsOpen = false;
-                    App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                    ((DispatcherTimer)sender).Stop();
-                    VoiceMethods("HatchOn");//发送开舱状态到语音模块
-                };
+                //timer.Tick += (sender, args) =>
+                //{
+                //    ((DispatcherTimer)sender).Stop();
+                //    App.PropertyModelInstance.IsOpenOrClose = false;
+                //    App.PropertyModelInstance.IsOpen = false;
+                //    byte[] c = new byte[11];
+                //    c[0] = 0x55;
+                //    c[1] = 0xAA;
+                //    c[2] = 0x07;
+                //    c[3] = 0x01;
+                //    c[4] = 0x10;
+                //    c[5] = 0x0A;
+                //    c[6] = 0x02;
+                //    c[9] = 0xAA;
+                //    c[10] = 0x5C;
+                //    c = SerialPortManager.CRC16(c);
+                //    SerialPortManager.Instance.SendData(c);
+                //    App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+                //    //((DispatcherTimer)sender).Stop();
+                //    VoiceMethods("HatchOn");//发送开舱状态到语音模块
+                //};
+                timer.Tick -= TimerOpenHandler;
+                timer.Tick -= TimerCloseHandler;
+                timer.Tick += TimerOpenHandler;
                 timer.Start();
                 App.PropertyModelInstance.IsOpenOrClose = true;
             }
-            if(App.PropertyModelInstance.IsClose)
+            else if(App.PropertyModelInstance.IsClose)
             {
-                timer.Tick += (sender, args) =>
-                {
-                    App.PropertyModelInstance.IsOpenOrClose = false;
-                    App.PropertyModelInstance.IsClose = false;
-                    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                    ((DispatcherTimer)sender).Stop();
-                    VoiceMethods("HatchClose");//发送关舱状态到语音模块
-                };
+                //timer.Tick += (sender, args) =>
+                //{
+                //    ((DispatcherTimer)sender).Stop();
+                //    App.PropertyModelInstance.IsOpenOrClose = false;
+                //    App.PropertyModelInstance.IsClose = false;
+                //    byte[] c = new byte[11];
+                //    c[0] = 0x55;
+                //    c[1] = 0xAA;
+                //    c[2] = 0x07;
+                //    c[3] = 0x01;
+                //    c[4] = 0x10;
+                //    c[5] = 0x0B;
+                //    c[6] = 0x02;
+                //    c[9] = 0xAA;
+                //    c[10] = 0x5C;
+                //    c = SerialPortManager.CRC16(c);
+                //    SerialPortManager.Instance.SendData(c);
+                //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+                //    //((DispatcherTimer)sender).Stop();
+                //    VoiceMethods("HatchClose");//发送关舱状态到语音模块
+                //};
+
+                timer.Tick -= TimerOpenHandler;
+                timer.Tick -= TimerCloseHandler;
+                timer.Tick += TimerCloseHandler;
                 timer.Start();
                 App.PropertyModelInstance.IsOpenOrClose = true;
             }
         }
+
+        private void TimerOpenHandler(object sender, EventArgs e)
+        {
+            ((DispatcherTimer)sender).Stop();
+            App.PropertyModelInstance.IsOpenOrClose = false;
+            App.PropertyModelInstance.IsOpen = false;
+            byte[] c = new byte[11];
+            c[0] = 0x55;
+            c[1] = 0xAA;
+            c[2] = 0x07;
+            c[3] = 0x01;
+            c[4] = 0x10;
+            c[5] = 0x0A;
+            c[6] = 0x02;
+            c[9] = 0xAA;
+            c[10] = 0x5C;
+            c = SerialPortManager.CRC16(c);
+            SerialPortManager.Instance.SendData(c);
+            App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            //((DispatcherTimer)sender).Stop();
+            VoiceMethods("HatchOn");//发送开舱状态到语音模块
+        }
+
+        private void TimerCloseHandler(object sender, EventArgs e)
+        {
+            ((DispatcherTimer)sender).Stop();
+            App.PropertyModelInstance.IsOpenOrClose = false;
+            App.PropertyModelInstance.IsClose = false;
+            byte[] c = new byte[11];
+            c[0] = 0x55;
+            c[1] = 0xAA;
+            c[2] = 0x07;
+            c[3] = 0x01;
+            c[4] = 0x10;
+            c[5] = 0x0B;
+            c[6] = 0x02;
+            c[9] = 0xAA;
+            c[10] = 0x5C;
+            c = SerialPortManager.CRC16(c);
+            SerialPortManager.Instance.SendData(c);
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            //((DispatcherTimer)sender).Stop();
+            VoiceMethods("HatchClose");//发送关舱状态到语音模块
+        }
+
 
         /// <summary>
         /// 预热选择
@@ -470,28 +550,39 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.IsOpenOrClose = true;
             VoiceMethods("HatchClose");//发送关舱状态到语音模块
 
-            timer1.Tick += (sender, args) =>
-            {
-                App.PropertyModelInstance.IsOpenOrClose = false;
-                data[5] = 0x02;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.PreheadMode = true;
-                IsCountingDown = true;
-                App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
-                App.PropertyModelInstance.CountdownSeconds = 0;
-                //StartCountdown();
-                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                StartTime = DateTime.Now;
-                _timer.Start();
-                //App.PropertyModelInstance.IsOpen = false;
-                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                App.PropertyModelInstance.IsClose = false;
-                ((DispatcherTimer)sender).Stop();
-            };
+
+            timer1.Tick -= Timer1InignitionHandler;
+            timer1.Tick -= Timer1PreheadHandler;
+            timer1.Tick += Timer1PreheadHandler;
+            //timer1.Tick += (sender, args) =>
+            //{
+            //    ((DispatcherTimer)sender).Stop();
+            //    App.PropertyModelInstance.IsOpenOrClose = false;
+            //    data[5] = 0x0B;
+            //    data[6] = 0x02;
+            //    data[9] = 0xAA;
+            //    data[10] = 0x5C;
+            //    data = SerialPortManager.CRC16(data);
+            //    SerialPortManager.Instance.SendData(data);
+            //    data[5] = 0x02;
+            //    data[6] = 0x01;
+            //    data[9] = 0xAA;
+            //    data[10] = 0x5C;
+            //    data = SerialPortManager.CRC16(data);
+            //    SerialPortManager.Instance.SendData(data);
+            //    App.PropertyModelInstance.PreheadMode = true;
+            //    IsCountingDown = true;
+            //    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+            //    App.PropertyModelInstance.CountdownSeconds = 0;
+            //    //StartCountdown();
+            //    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+            //    StartTime = DateTime.Now;
+            //    _timer.Start();
+            //    //App.PropertyModelInstance.IsOpen = false;
+            //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            //    App.PropertyModelInstance.IsClose = false;
+            //    ((DispatcherTimer)sender).Stop();
+            //};
             timer1.Start();
         }
 
@@ -518,29 +609,120 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.IsOpenOrClose = true;
             VoiceMethods("HatchClose");//发送关舱状态到
 
+            timer1.Tick -= Timer1InignitionHandler;
+            timer1.Tick -= Timer1PreheadHandler;
+            timer1.Tick += Timer1InignitionHandler;
 
-            timer1.Tick += (sender, args) =>
-            {
-                App.PropertyModelInstance.IsOpenOrClose = false;
-                data[5] = 0x03;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.InignitionStatus = true;
-                IsCountingDown = true;
-                App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
-                App.PropertyModelInstance.CountdownMinutes = 0;
-                //StartCountdown();
-                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                StartTime = DateTime.Now;
-                _timer.Start();
-                App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                App.PropertyModelInstance.IsClose = false;
-                ((DispatcherTimer)sender).Stop();
-            };
+            //timer1.Tick += (sender, args) =>
+            //{
+            //    ((DispatcherTimer)sender).Stop();
+            //    App.PropertyModelInstance.IsOpenOrClose = false; 
+            //    data[5] = 0x0B;
+            //    data[6] = 0x02;
+            //    data[9] = 0xAA;
+            //    data[10] = 0x5C;
+            //    data = SerialPortManager.CRC16(data);
+            //    SerialPortManager.Instance.SendData(data);
+            //    data[5] = 0x03;
+            //    data[6] = 0x01;
+            //    data[9] = 0xAA;
+            //    data[10] = 0x5C;
+            //    data = SerialPortManager.CRC16(data);
+            //    SerialPortManager.Instance.SendData(data);
+            //    App.PropertyModelInstance.InignitionStatus = true;
+            //    IsCountingDown = true;
+            //    App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+            //    App.PropertyModelInstance.CountdownMinutes = 0;
+            //    //StartCountdown();
+            //    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+            //    StartTime = DateTime.Now;
+            //    _timer.Start();
+            //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            //    App.PropertyModelInstance.IsClose = false;
+            //    ((DispatcherTimer)sender).Stop();
+            //};
             timer1.Start();
+        }
+
+        /// <summary>
+        /// 预热timer事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer1PreheadHandler(object sender, EventArgs e)
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            ((DispatcherTimer)sender).Stop();
+            App.PropertyModelInstance.IsOpenOrClose = false;
+            data[5] = 0x0B;
+            data[6] = 0x02;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            data[5] = 0x02;
+            data[6] = 0x01;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.PreheadMode = true;
+            IsCountingDown = true;
+            App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+            App.PropertyModelInstance.CountdownSeconds = 0;
+            //StartCountdown();
+            seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+            StartTime = DateTime.Now;
+            _timer.Start();
+            //App.PropertyModelInstance.IsOpen = false;
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.IsClose = false;
+            ((DispatcherTimer)sender).Stop();
+        }
+
+        /// <summary>
+        /// 点火timer事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer1InignitionHandler(object sender, EventArgs e)
+        {
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            ((DispatcherTimer)sender).Stop();
+            App.PropertyModelInstance.IsOpenOrClose = false;
+            data[5] = 0x0B;
+            data[6] = 0x02;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            data[5] = 0x03;
+            data[6] = 0x01;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
+            App.PropertyModelInstance.InignitionStatus = true;
+            IsCountingDown = true;
+            App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+            App.PropertyModelInstance.CountdownMinutes = 0;
+            //StartCountdown();
+            seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+            StartTime = DateTime.Now;
+            _timer.Start();
+            App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+            App.PropertyModelInstance.IsClose = false;
+            ((DispatcherTimer)sender).Stop();
         }
 
         /// <summary>
