@@ -194,22 +194,22 @@ namespace MoxibustionBedAPP.ViewModes
                 PopupBoxViewModel.ShowPopupBox("开舱过程中不能够关舱");
                 return;
             }
-            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 0 && (string)parameter == "BackMoxibustionColumnDown")
+            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 1 && (string)parameter == "BackMoxibustionColumnDown")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已降至最低位置");
                 return;
             }
-            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 4 && (string)parameter == "BackMoxibustionColumnUp")
+            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 3 && (string)parameter == "BackMoxibustionColumnUp")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已升至最高位置");
                 return;
             }
-            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 0 && (string)parameter == "LegMoxibustionColumnDown")
+            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 1 && (string)parameter == "LegMoxibustionColumnDown")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已降至最低位置");
                 return;
             }
-            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 4 && (string)parameter == "LegMoxibustionColumnUp")
+            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 3 && (string)parameter == "LegMoxibustionColumnUp")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已升至最高位置");
                 return;

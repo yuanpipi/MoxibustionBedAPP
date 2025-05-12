@@ -89,12 +89,6 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Text" Value="5"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Text" Value="4"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
                                     <Setter Property="Text" Value="3"/>
                                 </DataTrigger>
@@ -112,12 +106,6 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Text" Value="5"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Text" Value="4"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
                                     <Setter Property="Text" Value="3"/>
                                 </DataTrigger>

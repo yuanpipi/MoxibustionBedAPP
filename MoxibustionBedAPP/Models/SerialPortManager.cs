@@ -453,25 +453,25 @@ namespace MoxibustionBedAPP.Models
                             }
                             break;
                         case 0x06://背部点升
-                            if(App.PropertyModelInstance.BackMoxibustionColumn_Height < 4)
+                            if(App.PropertyModelInstance.BackMoxibustionColumn_Height < 3)
                             {
                                 App.PropertyModelInstance.BackMoxibustionColumn_Height++;
                             }
                             break;
                         case 0x07://背部点降
-                            if (App.PropertyModelInstance.BackMoxibustionColumn_Height > 0)
+                            if (App.PropertyModelInstance.BackMoxibustionColumn_Height > 1)
                             {
                                 App.PropertyModelInstance.BackMoxibustionColumn_Height--;
                             }
                             break;
                         case 0x08://腿部点升
-                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height < 4)
+                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height < 3)
                             {
                                 App.PropertyModelInstance.LegMoxibustionColumn_Height++;
                             }                            
                             break;
                         case 0x09://腿部点降
-                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height > 0)
+                            if (App.PropertyModelInstance.LegMoxibustionColumn_Height > 1)
                             {
                                 App.PropertyModelInstance.LegMoxibustionColumn_Height--;
                             }

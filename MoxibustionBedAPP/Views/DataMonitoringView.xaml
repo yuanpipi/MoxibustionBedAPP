@@ -481,11 +481,9 @@
             <Grid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="15.16*"/>
-                    <RowDefinition Height="20.648*"/>
-                    <RowDefinition Height="20.648*"/>
-                    <RowDefinition Height="20.648*"/>
-                    <RowDefinition Height="20.648*"/>
-                    <RowDefinition Height="20.648*"/>
+                    <RowDefinition Height="30.648*"/>
+                    <RowDefinition Height="30.648*"/>
+                    <RowDefinition Height="30.648*"/>
                     <RowDefinition Height="5.76*"/>
                     <RowDefinition Height="34.02"/>
                     <RowDefinition Height="8.71"/>
@@ -506,7 +504,7 @@
                     <ColumnDefinition Width="22.51*"/>
                 </Grid.ColumnDefinitions>
 
-                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="5" Grid.Column="2" BorderThickness="1">
+                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="3" Grid.Column="2" BorderThickness="1">
                     <Border.BorderBrush>
                         <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
                             <DrawingBrush.Drawing>
@@ -544,14 +542,8 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
                                     <Setter Property="Background" Value="#E7CEA5"/>
@@ -583,17 +575,11 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
                                     <Setter Property="Background" Value="#E7CEA5"/>
@@ -622,90 +608,6 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                </Border>
-                <Border CornerRadius="7.35" Grid.Row="4" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Border.BorderBrush>
-                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
-                            <DrawingBrush.Drawing>
-                                <DrawingGroup>
-                                    <GeometryDrawing Brush="#A5744A">
-                                        <GeometryDrawing.Geometry>
-                                            <GeometryGroup>
-                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                <RectangleGeometry Rect="50,50,50,50" />
-                                            </GeometryGroup>
-                                        </GeometryDrawing.Geometry>
-                                    </GeometryDrawing>
-                                </DrawingGroup>
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Border.BorderBrush>
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                </Border>
-                <Border CornerRadius="7.35" Grid.Row="5" BorderThickness="1" Grid.Column="2" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Border.BorderBrush>
-                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
-                            <DrawingBrush.Drawing>
-                                <DrawingGroup>
-                                    <GeometryDrawing Brush="#A5744A">
-                                        <GeometryDrawing.Geometry>
-                                            <GeometryGroup>
-                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                <RectangleGeometry Rect="50,50,50,50" />
-                                            </GeometryGroup>
-                                        </GeometryDrawing.Geometry>
-                                    </GeometryDrawing>
-                                </DrawingGroup>
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Border.BorderBrush>
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
                                     <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
@@ -719,9 +621,9 @@
                         </Style>
                     </Border.Style>
                 </Border>
-                <TextBlock Text="背部灸盘" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="20" Foreground="#73441A" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="背部灸盘" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"  FontSize="20" Foreground="#73441A" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
 
-                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="5" Grid.Column="6" BorderThickness="1">
+                <Border CornerRadius="7.35" Grid.Row="1" Grid.RowSpan="3" Grid.Column="6" BorderThickness="1">
                     <Border.BorderBrush>
                         <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
                             <DrawingBrush.Drawing>
@@ -759,14 +661,8 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
                                     <Setter Property="Background" Value="#E7CEA5"/>
@@ -798,17 +694,11 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
+                                    <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
                                     <Setter Property="Background" Value="#E7CEA5"/>
@@ -837,90 +727,6 @@
                     <Border.Style>
                         <Style TargetType="Border">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                </Border>
-                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="4" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Border.BorderBrush>
-                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
-                            <DrawingBrush.Drawing>
-                                <DrawingGroup>
-                                    <GeometryDrawing Brush="#A5744A">
-                                        <GeometryDrawing.Geometry>
-                                            <GeometryGroup>
-                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                <RectangleGeometry Rect="50,50,50,50" />
-                                            </GeometryGroup>
-                                        </GeometryDrawing.Geometry>
-                                    </GeometryDrawing>
-                                </DrawingGroup>
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Border.BorderBrush>
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
-                                    <Setter Property="Background" Value="#E7CEA5"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                </Border>
-                <Border CornerRadius="7.35" BorderThickness="1" Grid.Row="5" Grid.Column="6" Width="33.75" Height="17.01" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Border.BorderBrush>
-                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
-                            <DrawingBrush.Drawing>
-                                <DrawingGroup>
-                                    <GeometryDrawing Brush="#A5744A">
-                                        <GeometryDrawing.Geometry>
-                                            <GeometryGroup>
-                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                <RectangleGeometry Rect="50,50,50,50" />
-                                            </GeometryGroup>
-                                        </GeometryDrawing.Geometry>
-                                    </GeometryDrawing>
-                                </DrawingGroup>
-                            </DrawingBrush.Drawing>
-                        </DrawingBrush>
-                    </Border.BorderBrush>
-                    <Border.Style>
-                        <Style TargetType="Border">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="5">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                    <Setter Property="Background" Value="#E06B28"/>
-                                </DataTrigger>
                                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
                                     <Setter Property="Background" Value="#E06B28"/>
                                 </DataTrigger>
@@ -934,10 +740,10 @@
                         </Style>
                     </Border.Style>
                 </Border>
-                <TextBlock Text="腿部灸盘" Grid.Row="7" Grid.Column="5" Grid.ColumnSpan="3" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
+                <TextBlock Text="腿部灸盘" Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}"/>
 
-                <Image Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Battery.png" Stretch="None"/>
-                <Grid Grid.Row="1" Grid.RowSpan="4" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
+                <Image Grid.Row="1" Grid.RowSpan="3" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Battery.png" Stretch="None"/>
+                <Grid Grid.Row="1" Grid.RowSpan="3" Grid.Column="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="44.28" Width="25.28" Margin="0,0,0,2">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
