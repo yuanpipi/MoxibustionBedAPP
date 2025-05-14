@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
@@ -115,7 +116,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private DispatcherTimer timer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(10)
+            Interval = TimeSpan.FromSeconds(30)
         };
 
         /// <summary>
@@ -123,7 +124,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private DispatcherTimer timer1 = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(10)
+            Interval = TimeSpan.FromSeconds(30)
         };
 
         public ICommand StopCommand { get; private set; }
@@ -144,6 +145,11 @@ namespace MoxibustionBedAPP.ViewModes
 
         public static DateTime StartTime;
         public static int seconds;
+
+
+        private bool isPreheadClicked;//预热
+        private bool isInignitionClicked;//点火
+        private bool isCloseClick;
         #endregion
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -163,6 +169,9 @@ namespace MoxibustionBedAPP.ViewModes
             StopCommand = new RelayCommand(StopMethod);
             App.PropertyModelInstance.IsOpen = false;
             App.PropertyModelInstance.IsClose=false;
+            isInignitionClicked  = false;
+            isPreheadClicked = false;
+            isCloseClick = false;
             Smoke = false;
             StartCountdown();
             if (App.PropertyModelInstance.IsSmokePurificationSystem)
@@ -176,6 +185,7 @@ namespace MoxibustionBedAPP.ViewModes
                 IsSmokePurification = false;
             }
         }
+
         #region 自定义方法
 
         /// <summary>
@@ -303,6 +313,7 @@ namespace MoxibustionBedAPP.ViewModes
                     }
                 case "CloseHatch"://一键关舱
                     {
+                        isCloseClick = true;
                         if (App.PropertyModelInstance.IsClose == false)
                         {
                             App.PropertyModelInstance.IsClose = true;
@@ -420,30 +431,58 @@ namespace MoxibustionBedAPP.ViewModes
             data[10] = 0x5C;
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
+            if (isCloseClick)
+            {
+                isCloseClick = false;
+                byte[] data1 = new byte[11];
+                data1[0] = 0x55;
+                data1[1] = 0xAA;
+                data1[2] = 0x07;
+                data1[3] = 0x01;
+                data1[4] = 0x10;
+                if (isInignitionClicked)
+                {
+                    isInignitionClicked = false;
+                    data[5] = 0x03;
+                    data[6] = 0x01;
+                    data[9] = 0xAA;
+                    data[10] = 0x5C;
+                    data = SerialPortManager.CRC16(data);
+                    SerialPortManager.Instance.SendData(data);
+                    App.PropertyModelInstance.InignitionStatus = true;
+                    IsCountingDown = true;
+                    App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+                    App.PropertyModelInstance.CountdownMinutes = 0;
+                    //StartCountdown();
+                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                    StartTime = DateTime.Now;
+                    _timer.Start();
+                }
+                else if (isPreheadClicked)
+                {
+                    isPreheadClicked = false;
+                    data[5] = 0x02;
+                    data[6] = 0x01;
+                    data[9] = 0xAA;
+                    data[10] = 0x5C;
+                    data = SerialPortManager.CRC16(data);
+                    SerialPortManager.Instance.SendData(data);
+                    App.PropertyModelInstance.PreheadMode = true;
+                    IsCountingDown = true;
+                    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+                    App.PropertyModelInstance.CountdownSeconds = 0;
+                    //StartCountdown();
+                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                    StartTime = DateTime.Now;
+                    _timer.Start();
+                    //App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
+                    //App.PropertyModelInstance.IsClose = false;
+                    //((DispatcherTimer)sender).Stop();
+                }
+            }
 
             if(App.PropertyModelInstance.IsOpen)
             {
-                //timer.Tick += (sender, args) =>
-                //{
-                //    ((DispatcherTimer)sender).Stop();
-                //    App.PropertyModelInstance.IsOpenOrClose = false;
-                //    App.PropertyModelInstance.IsOpen = false;
-                //    byte[] c = new byte[11];
-                //    c[0] = 0x55;
-                //    c[1] = 0xAA;
-                //    c[2] = 0x07;
-                //    c[3] = 0x01;
-                //    c[4] = 0x10;
-                //    c[5] = 0x0A;
-                //    c[6] = 0x02;
-                //    c[9] = 0xAA;
-                //    c[10] = 0x5C;
-                //    c = SerialPortManager.CRC16(c);
-                //    SerialPortManager.Instance.SendData(c);
-                //    App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                //    //((DispatcherTimer)sender).Stop();
-                //    VoiceMethods("HatchOn");//发送开舱状态到语音模块
-                //};
                 timer.Tick -= TimerOpenHandler;
                 timer.Tick -= TimerCloseHandler;
                 timer.Tick += TimerOpenHandler;
@@ -452,28 +491,6 @@ namespace MoxibustionBedAPP.ViewModes
             }
             else if(App.PropertyModelInstance.IsClose)
             {
-                //timer.Tick += (sender, args) =>
-                //{
-                //    ((DispatcherTimer)sender).Stop();
-                //    App.PropertyModelInstance.IsOpenOrClose = false;
-                //    App.PropertyModelInstance.IsClose = false;
-                //    byte[] c = new byte[11];
-                //    c[0] = 0x55;
-                //    c[1] = 0xAA;
-                //    c[2] = 0x07;
-                //    c[3] = 0x01;
-                //    c[4] = 0x10;
-                //    c[5] = 0x0B;
-                //    c[6] = 0x02;
-                //    c[9] = 0xAA;
-                //    c[10] = 0x5C;
-                //    c = SerialPortManager.CRC16(c);
-                //    SerialPortManager.Instance.SendData(c);
-                //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-                //    //((DispatcherTimer)sender).Stop();
-                //    VoiceMethods("HatchClose");//发送关舱状态到语音模块
-                //};
-
                 timer.Tick -= TimerOpenHandler;
                 timer.Tick -= TimerCloseHandler;
                 timer.Tick += TimerCloseHandler;
@@ -532,6 +549,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void PreheadMethod()
         {
+            isPreheadClicked = true;
             byte[] data = new byte[11];
             data[0] = 0x55;
             data[1] = 0xAA;
@@ -550,39 +568,9 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.IsOpenOrClose = true;
             VoiceMethods("HatchClose");//发送关舱状态到语音模块
 
-
             timer1.Tick -= Timer1InignitionHandler;
             timer1.Tick -= Timer1PreheadHandler;
             timer1.Tick += Timer1PreheadHandler;
-            //timer1.Tick += (sender, args) =>
-            //{
-            //    ((DispatcherTimer)sender).Stop();
-            //    App.PropertyModelInstance.IsOpenOrClose = false;
-            //    data[5] = 0x0B;
-            //    data[6] = 0x02;
-            //    data[9] = 0xAA;
-            //    data[10] = 0x5C;
-            //    data = SerialPortManager.CRC16(data);
-            //    SerialPortManager.Instance.SendData(data);
-            //    data[5] = 0x02;
-            //    data[6] = 0x01;
-            //    data[9] = 0xAA;
-            //    data[10] = 0x5C;
-            //    data = SerialPortManager.CRC16(data);
-            //    SerialPortManager.Instance.SendData(data);
-            //    App.PropertyModelInstance.PreheadMode = true;
-            //    IsCountingDown = true;
-            //    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
-            //    App.PropertyModelInstance.CountdownSeconds = 0;
-            //    //StartCountdown();
-            //    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-            //    StartTime = DateTime.Now;
-            //    _timer.Start();
-            //    //App.PropertyModelInstance.IsOpen = false;
-            //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-            //    App.PropertyModelInstance.IsClose = false;
-            //    ((DispatcherTimer)sender).Stop();
-            //};
             timer1.Start();
         }
 
@@ -591,6 +579,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void InignitionMethod()
         {
+            isInignitionClicked = true;
             byte[] data = new byte[11];
             data[0] = 0x55;
             data[1] = 0xAA;
@@ -612,35 +601,6 @@ namespace MoxibustionBedAPP.ViewModes
             timer1.Tick -= Timer1InignitionHandler;
             timer1.Tick -= Timer1PreheadHandler;
             timer1.Tick += Timer1InignitionHandler;
-
-            //timer1.Tick += (sender, args) =>
-            //{
-            //    ((DispatcherTimer)sender).Stop();
-            //    App.PropertyModelInstance.IsOpenOrClose = false; 
-            //    data[5] = 0x0B;
-            //    data[6] = 0x02;
-            //    data[9] = 0xAA;
-            //    data[10] = 0x5C;
-            //    data = SerialPortManager.CRC16(data);
-            //    SerialPortManager.Instance.SendData(data);
-            //    data[5] = 0x03;
-            //    data[6] = 0x01;
-            //    data[9] = 0xAA;
-            //    data[10] = 0x5C;
-            //    data = SerialPortManager.CRC16(data);
-            //    SerialPortManager.Instance.SendData(data);
-            //    App.PropertyModelInstance.InignitionStatus = true;
-            //    IsCountingDown = true;
-            //    App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
-            //    App.PropertyModelInstance.CountdownMinutes = 0;
-            //    //StartCountdown();
-            //    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-            //    StartTime = DateTime.Now;
-            //    _timer.Start();
-            //    App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
-            //    App.PropertyModelInstance.IsClose = false;
-            //    ((DispatcherTimer)sender).Stop();
-            //};
             timer1.Start();
         }
 
@@ -683,6 +643,7 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             App.PropertyModelInstance.IsClose = false;
             ((DispatcherTimer)sender).Stop();
+            isPreheadClicked = false;
         }
 
         /// <summary>
@@ -723,6 +684,7 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             App.PropertyModelInstance.IsClose = false;
             ((DispatcherTimer)sender).Stop();
+            isInignitionClicked = false;
         }
 
         /// <summary>

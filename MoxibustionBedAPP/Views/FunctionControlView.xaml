@@ -10,6 +10,94 @@
              d:DesignHeight="419.92" d:DesignWidth="931.44">
     <UserControl.Resources>
         <viewmodel:FunctionControlViewModel x:Key="FunctionControlViewModel"/>
+
+        <Style x:Key="UpButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpSelected.png" Stretch="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpSelected.png" Stretch="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" Stretch="None"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style x:Key="DownButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentControl VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownSelected.png" Stretch="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownSelected.png" Stretch="None"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" Stretch="None"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width" Value="50"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -74,18 +162,17 @@
                 <Image Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" Source="../Resources/Pictures/LegHigh.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
                 <TextBlock Text="背部升降" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="腿部升降" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <Image Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Image.InputBindings>
-                        <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
-                    </Image.InputBindings>
-                </Image>
-                <Image Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
+                <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp"/>
+
+                <!--<Image Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp"/>
                     </Image.InputBindings>
-                </Image>
+                </Image>-->
 
-                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
+                <TextBlock Grid.Row="6" Grid.Column="3" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -102,7 +189,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
+                <TextBlock Grid.Row="6" Grid.Column="9" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="19" FontFamily="{StaticResource SourceHanSansCN-Medium}">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -120,7 +207,10 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown"/>
+                <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown"/>
+
+                <!--<Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown"/>
                     </Image.InputBindings>
@@ -129,7 +219,7 @@
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown"/>
                     </Image.InputBindings>
-                </Image>
+                </Image>-->
             </Grid>
         </Border>
 

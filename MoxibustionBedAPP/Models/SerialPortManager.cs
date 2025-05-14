@@ -61,7 +61,7 @@ namespace MoxibustionBedAPP.Models
         /// </summary>
         private DispatcherTimer timerOpen = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(20)
+            Interval = TimeSpan.FromSeconds(30)
         };
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace MoxibustionBedAPP.Models
         /// </summary>
         private DispatcherTimer timerClose = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(20)
+            Interval = TimeSpan.FromSeconds(30)
         };
 
         /// <summary>
