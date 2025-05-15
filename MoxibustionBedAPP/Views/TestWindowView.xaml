@@ -317,20 +317,14 @@
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="0">
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
                                 <Setter Property="Text" Value="1档"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="1">
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
                                 <Setter Property="Text" Value="2档"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Text" Value="3档"/>
-                            </DataTrigger>
                             <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Text" Value="4档"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Text" Value="5档"/>
+                                <Setter Property="Text" Value="3档"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -341,20 +335,14 @@
                 <TextBlock.Style>
                     <Style TargetType="TextBlock">
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="0">
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
                                 <Setter Property="Text" Value="1档"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="1">
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
                                 <Setter Property="Text" Value="2档"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="2">
-                                <Setter Property="Text" Value="3档"/>
-                            </DataTrigger>
                             <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="3">
-                                <Setter Property="Text" Value="4档"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegMoxibustionColumn_Height}" Value="4">
-                                <Setter Property="Text" Value="5档"/>
+                                <Setter Property="Text" Value="3档"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -723,6 +711,14 @@
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.SmokeExhaustSystem}" Value="0">
                                 <Setter Property="Background" Value="#ffffcf76"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.SmokePurificationSystem}" Value="False">
+                                <Setter Property="Background" Value="#ffffcf76"/>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.SmokePurificationSystem}" Value="True">
+                                <Setter Property="Background" Value="Orange"/>
                                 <Setter Property="IsEnabled" Value="True"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.SmokeExhaustSystem}" Value="1">

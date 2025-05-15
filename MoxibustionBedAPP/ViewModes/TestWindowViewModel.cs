@@ -61,11 +61,11 @@ namespace MoxibustionBedAPP.ViewModes
         }
 
         /// <summary>
-        /// 开关舱倒计时，5s
+        /// 开关舱倒计时，30s
         /// </summary>
         private DispatcherTimer timer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(5)
+            Interval = TimeSpan.FromSeconds(30)
         };
 
         /// <summary>
@@ -119,32 +119,32 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="parameter"></param>
         private void ExecuteFunctionMethod(object parameter)
         {
-            if (isClose && (string)parameter == "OpenHatch")
+            if (App.PropertyModelInstance.IsClose && (string)parameter == "OpenHatch")
             {
                 PopupBoxViewModel.ShowPopupBox("关舱过程中不能够开舱");
                 return;
             }
-            if (IsOpen && (string)parameter == "CloseHatch")
+            if (App.PropertyModelInstance.IsOpen && (string)parameter == "CloseHatch")
             {
                 PopupBoxViewModel.ShowPopupBox("开舱过程中不能够关舱");
                 return;
             }
-            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 0 && (string)parameter == "BackMoxibustionColumnDown")
+            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 1 && (string)parameter == "BackMoxibustionColumnDown")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已降至最低位置");
                 return;
             }
-            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 4 && (string)parameter == "BackMoxibustionColumnUp")
+            if (App.PropertyModelInstance.BackMoxibustionColumn_Height == 3 && (string)parameter == "BackMoxibustionColumnUp")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已升至最高位置");
                 return;
             }
-            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 0 && (string)parameter == "LegMoxibustionColumnDown")
+            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 1 && (string)parameter == "LegMoxibustionColumnDown")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已降至最低位置");
                 return;
             }
-            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 4 && (string)parameter == "LegMoxibustionColumnUp")
+            if (App.PropertyModelInstance.LegMoxibustionColumn_Height == 3 && (string)parameter == "LegMoxibustionColumnUp")
             {
                 PopupBoxViewModel.ShowPopupBox("灸盘已升至最高位置");
                 return;
@@ -160,21 +160,21 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 case "TreatmentMode"://设置治疗模式
                     {
-
                         data[5] = 0x00;
                         if (App.PropertyModelInstance.MoxibustionTherapyMode)
                         {
                             data[6] = 0x02;
+                            App.PropertyModelInstance.MoxibustionTherapyMode = false;
                         }
                         else
                         {
                             data[6] = 0x01;
+                            App.PropertyModelInstance.MoxibustionTherapyMode = true;
                         }
                         break;
                     }
                 case "Prehead"://设置预热
                     {
-
                         data[5] = 0x02;
                         data[6] = 0x01;
                         break;
@@ -189,24 +189,28 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         data[5] = 0x04;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.BackMoxibustionColumn_Height++;
                         break;
                     }
                 case "BackMoxibustionColumnDown"://背部点降
                     {
                         data[5] = 0x05;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.BackMoxibustionColumn_Height--;
                         break;
                     }
                 case "LegMoxibustionColumnUp"://腿部点升
                     {
                         data[5] = 0x06;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.LegMoxibustionColumn_Height++;
                         break;
                     }
                 case "LegMoxibustionColumnDown"://腿部点降
                     {
                         data[5] = 0x07;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.LegMoxibustionColumn_Height--;
                         break;
                     }
                 case "OpenHatch"://一键开舱
@@ -221,6 +225,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             IsOpen = false;
                             timer.Stop();
+                            App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0A;
                             data[6] = 0x02;
                         }
@@ -238,6 +243,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             IsClose = false;
                             timer.Stop();
+                            App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0B;
                             data[6] = 0x02;
                         }
@@ -245,62 +251,65 @@ namespace MoxibustionBedAPP.ViewModes
                     }
                 case "SmokeExhaustClose"://关闭排烟系统
                     {
-                        IsSmokeExhaust = true;
                         data[5] = 0x0C;
                         data[6] = 0x00;
                         App.PropertyModelInstance.IsSmokeSystemOn = false;
+                        App.PropertyModelInstance.SmokeExhaustSystem = 0;
                         break;
                     }
                 case "SmokeExhaustLow"://排烟系统低档
                     {
-                        IsSmokeExhaust = true;
                         data[5] = 0x0C;
                         data[6] = 0x01;
                         App.PropertyModelInstance.IsSmokeSystemOn = true;
+                        App.PropertyModelInstance.SmokeExhaustSystem = 1;
                         break;
                     }
                 case "SmokeExhaustMedium"://排烟系统中档
                     {
-                        IsSmokeExhaust = true;
                         data[5] = 0x0C;
                         data[6] = 0x02;
                         App.PropertyModelInstance.IsSmokeSystemOn = true;
+                        App.PropertyModelInstance.SmokeExhaustSystem = 2;
                         break;
                     }
                 case "SmokeExhaustHigh"://排烟系统高档
                     {
-                        IsSmokeExhaust = true;
                         data[5] = 0x0C;
                         data[6] = 0x03;
                         App.PropertyModelInstance.IsSmokeSystemOn = true;
+                        App.PropertyModelInstance.SmokeExhaustSystem = 3;
                         break;
                     }
                 case "SmokePurificationSystem"://净烟系统
                     {
-                        IsSmokeExhaust = false;
                         data[5] = 0x0D;
                         if (App.PropertyModelInstance.SmokePurificationSystem)
                         {
                             data[6] = 0x02;
                             App.PropertyModelInstance.IsSmokeSystemOn = false;
+                            App.PropertyModelInstance.SmokePurificationSystem = false;
                         }
                         else
                         {
                             data[6] = 0x01;
                             App.PropertyModelInstance.IsSmokeSystemOn = true;
+                            App.PropertyModelInstance.SmokePurificationSystem = true;
                         }
                         break;
                     }
                 case "SwingSystem"://摇摆系统
                     {
                         data[5] = 0x0E;
-                        if (App.PropertyModelInstance.SmokePurificationSystem)
+                        if (App.PropertyModelInstance.SwingSystem)
                         {
-                            data[6] = 0x01;
+                            data[6] = 0x02;
+                            App.PropertyModelInstance.SwingSystem = false;
                         }
                         else
                         {
-                            data[6] = 0x02;
+                            data[6] = 0x01;
+                            App.PropertyModelInstance.SwingSystem = true;
                         }
                         break;
                     }
@@ -308,24 +317,28 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         data[5] = 0x0F;
                         data[6] = 0x00;
+                        App.PropertyModelInstance.InfraredLamp = 0;
                         break;
                     }
                 case "InfraredLampLow"://红外线低档
                     {
                         data[5] = 0x0F;
                         data[6] = 0x01;
+                        App.PropertyModelInstance.InfraredLamp = 1;
                         break;
                     }
                 case "InfraredLampMedium"://红外线中档
                     {
                         data[5] = 0x0F;
                         data[6] = 0x02;
+                        App.PropertyModelInstance.InfraredLamp = 2;
                         break;
                     }
                 case "InfraredLampHigh"://红外线高档
                     {
                         data[5] = 0x0F;
                         data[6] = 0x03;
+                        App.PropertyModelInstance.InfraredLamp = 3;
                         break;
                     }
             }
@@ -367,15 +380,6 @@ namespace MoxibustionBedAPP.ViewModes
                 data[2] = 0x07;
                 data[3] = 0x01;
                 data[4] = 0x10;
-                data[5] = 0x0B;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-
-
-
                 data[5] = 0x02;
                 data[6] = 0x01;
                 data[9] = 0xAA;
@@ -409,15 +413,6 @@ namespace MoxibustionBedAPP.ViewModes
                 data[2] = 0x07;
                 data[3] = 0x01;
                 data[4] = 0x10;
-                data[5] = 0x0B;
-                data[6] = 0x01;
-                data[9] = 0xAA;
-                data[10] = 0x5C;
-                data = SerialPortManager.CRC16(data);
-                SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.Hatch = false;
-
-
                 data[5] = 0x03;
                 data[6] = 0x01;
                 data[9] = 0xAA;
