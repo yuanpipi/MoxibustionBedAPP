@@ -84,6 +84,11 @@ namespace MoxibustionBedAPP.Models
 
         private bool isOpenMotherboardCOM = false;
         private bool isOpenAICOM = false;
+
+        // 添加一个计时器用于检测接收超时 
+        private DispatcherTimer _receiveTimeoutTimer;
+        private DateTime _lastReceiveTime;
+        private const int ReceiveTimeoutSeconds =10; // 5秒超时 
         #endregion
 
         private SerialPortManager()
@@ -110,6 +115,16 @@ namespace MoxibustionBedAPP.Models
             _cancellationTokenSourceVoice = new CancellationTokenSource();
             _stopWatch = new Stopwatch();
             //StartCountdown();
+
+            // 初始化接收超时计时器 
+            _receiveTimeoutTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1) // 每秒检查一次
+            };
+            _receiveTimeoutTimer.Tick += CheckReceiveTimeout;
+            _receiveTimeoutTimer.Start();
+
+            _lastReceiveTime = DateTime.Now;
         }
 
         //private void StartCountdown()
@@ -138,6 +153,45 @@ namespace MoxibustionBedAPP.Models
         //    App.PropertyModelInstance.IsSmokeSystemOn = propertyModel.IsSmokeSystemOn;
         //}
 
+        // 检查接收超时的方法 
+        private void CheckReceiveTimeout(object sender, EventArgs e)
+        {
+            if ((DateTime.Now - _lastReceiveTime).TotalSeconds >= ReceiveTimeoutSeconds)
+            {
+                // 超时处理
+                HandlePortDisconnection();
+            }
+        }
+
+        // 处理串口断开连接 
+        private void HandlePortDisconnection()
+        {
+            if (_serialPort != null && _serialPort.IsOpen)
+            {
+                // 关闭串口 
+                try
+                {
+                    _serialPort.Close();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"关闭串口时出错: {ex.Message}");
+                }
+
+                // 更新状态 
+                isOpenMotherboardCOM = false;
+
+                // 通知UI 
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    PopupBoxViewModel.ShowPopupBox("串口连接已断开");
+                });
+
+                // 触发重连逻辑 
+                TriggerReconnect();
+            }
+        }
+
         /// <summary>
         /// 打开串口
         /// </summary>
@@ -155,27 +209,12 @@ namespace MoxibustionBedAPP.Models
                     _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                     _stopWatch.Start();
                     isOpenMotherboardCOM = true;
+
+                    // 重置接收时间
+                    _lastReceiveTime = DateTime.Now;
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show($"打开串口失败: {ex.Message}");
-                    //PopupBoxViewModel.ShowPopupBox($"串口打开失败：{ex.Message}");
-                    //COMFailMessageBox comfail = new COMFailMessageBox();
-
-
-                    //comfail.ShowDialog();
-
-                    ////自动重连逻辑
-                    //_serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
-                    //_serialPort.Open();//打开串口
-                    //_serialPort.WriteTimeout = 3000;
-                    //_serialPort.ReadTimeout = 3000;
-                    //byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
-                    //_serialPort.Write(data, 0, data.Length);
-                    //Thread.Sleep(1500);
-                    //byte[] buffer = new byte[_serialPort.BytesToRead];
-                    //_serialPort.Read(buffer, 0, buffer.Length);
-
                     isOpenMotherboardCOM = false;
                 }
             }
@@ -194,8 +233,8 @@ namespace MoxibustionBedAPP.Models
 
                     ////自动重连逻辑
                     //return;
-                    isOpenAICOM = false;
-                    //isOpenAICOM = true;
+                    //isOpenAICOM = false;
+                    isOpenAICOM = true;
                 }
             }
 
@@ -214,21 +253,21 @@ namespace MoxibustionBedAPP.Models
                         _serialPort.Open();//打开串口
                         _serialPort.WriteTimeout = 3000;
                         _serialPort.ReadTimeout = 3000;
-                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
-                        _serialPort.Write(data, 0, data.Length);
-                        Thread.Sleep(1500);
-                        byte[] buffer = new byte[_serialPort.BytesToRead];
-                        _serialPort.Read(buffer, 0, buffer.Length);
-                        if (buffer.Length > 0)
-                        {
+                        //byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        //_serialPort.Write(data, 0, data.Length);
+                        //Thread.Sleep(1500);
+                        //byte[] buffer = new byte[_serialPort.BytesToRead];
+                        //_serialPort.Read(buffer, 0, buffer.Length);
+                        //if (buffer.Length > 0)
+                        //{
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                             _stopWatch.Start();
-                        }
-                        else
-                        {
-                            isOpenMotherboardCOM = false;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    isOpenMotherboardCOM = false;
+                        //}
                     }
                     catch
                     {
@@ -276,21 +315,21 @@ namespace MoxibustionBedAPP.Models
                         _serialPort.Open();//打开串口
                         _serialPort.WriteTimeout = 3000;
                         _serialPort.ReadTimeout = 3000;
-                        byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
-                        _serialPort.Write(data, 0, data.Length);
-                        Thread.Sleep(1500);
-                        byte[] buffer = new byte[_serialPort.BytesToRead];
-                        _serialPort.Read(buffer, 0, buffer.Length);
-                        if (buffer.Length > 0)
-                        {
+                        //byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                        //_serialPort.Write(data, 0, data.Length);
+                        //Thread.Sleep(1500);
+                        //byte[] buffer = new byte[_serialPort.BytesToRead];
+                        //_serialPort.Read(buffer, 0, buffer.Length);
+                        //if (buffer.Length > 0)
+                        //{
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
                             _stopWatch.Start();
-                        }
-                        else
-                        {
-                            isOpenMotherboardCOM = false;
-                        }
+                        //}
+                        //else
+                        //{
+                        //    isOpenMotherboardCOM = false;
+                        //}
                     }
                     catch
                     {
@@ -566,16 +605,19 @@ namespace MoxibustionBedAPP.Models
                     if (App.IsReceive == false)
                     {
                         PopupBoxViewModel.ShowPopupBox($"串口错误，无应答数据");
+                        //TriggerReconnect();//重新连接串口
                     }
                 }
                 catch (Exception ex)
                 {
                     PopupBoxViewModel.ShowPopupBox($"数据发送失败: {ex.Message}");
+                    //TriggerReconnect();//重新连接串口
                 }
             }
             else
             {
                 PopupBoxViewModel.ShowPopupBox($"串口未打开");
+                //TriggerReconnect();//重新连接串口
             }
         }
 
@@ -599,6 +641,9 @@ namespace MoxibustionBedAPP.Models
 
                         _serialPort.Read(buffer, 0, buffer.Length);
 
+                        // 更新最后接收时间 
+                        _lastReceiveTime = DateTime.Now;
+
                         long timestamp = _stopWatch.ElapsedMilliseconds;
                         Console.WriteLine($"[{timestamp} ms] Received {bytesToRead} bytes.");
 
@@ -621,27 +666,72 @@ namespace MoxibustionBedAPP.Models
         }
 
         /// <summary>
+        /// 触发重新连接
+        /// </summary>
+        private void TriggerReconnect()
+        {
+            while (!isOpenMotherboardCOM)
+            {
+                COMFailMessageBoxViewModel.Instance.GetAllCOM();
+                if (!COMFailMessageBoxViewModel.Instance.ComPorts.Contains(App.PropertyModelInstance.MotherboardCOM))
+                {
+                    PopupBoxViewModel.ShowPopupBox($"串口丢失");
+                    //comfail.ShowDialog();
+                }
+
+                //_serialPort.Close();
+                //主板自动重连逻辑
+                _serialPort.PortName = App.PropertyModelInstance.MotherboardCOM;
+                try
+                {
+                    _serialPort.Open();//打开串口
+                    _serialPort.WriteTimeout = 3000;
+                    _serialPort.ReadTimeout = 3000;
+                    //byte[] data = { 0x55, 0xAA, 0x0F, 0x01, 0x00, 0x00, 0x01, 0xAA, 0X5C };
+                    //_serialPort.Write(data, 0, data.Length);
+                    //Thread.Sleep(1500);
+                    //byte[] buffer = new byte[_serialPort.BytesToRead];
+                    //_serialPort.Read(buffer, 0, buffer.Length);
+                    //if (buffer.Length > 0)
+                    //{
+                        _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                        _stopWatch.Start();
+                        isOpenMotherboardCOM = true;
+                    //}
+                    //else
+                    //{
+                    //    isOpenMotherboardCOM = false;
+                    //}
+                }
+                catch
+                {
+                    isOpenMotherboardCOM = false;
+                }
+            }
+        }
+
+        /// <summary>
         /// 发送数据给语音模块
         /// </summary>
         /// <param name="data"></param>
         public void SendDataByVoice(byte[] data)
         {
-            if (_serialPortVoice.IsOpen)
-            {
-                try
-                {
-                    _serialPortVoice.Write(data, 0, data.Length);
-                }
-                catch (Exception ex)
-                {
-                    PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
-                    return;
-                }
-            }
-            else
-            {
-                PopupBoxViewModel.ShowPopupBox($"串口未打开");
-            }
+            //if (_serialPortVoice.IsOpen)
+            //{
+            //    try
+            //    {
+            //        _serialPortVoice.Write(data, 0, data.Length);
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    PopupBoxViewModel.ShowPopupBox($"串口未打开");
+            //}
         }
 
         /// <summary>
@@ -651,35 +741,35 @@ namespace MoxibustionBedAPP.Models
         /// <param name="e"></param>
         public void ReceiveDataByVoice(object sender,SerialDataReceivedEventArgs e)
         {
-            App.PropertyModelInstance.IsOnVoice = true;
-            if (_serialPortVoice.IsOpen)
-            {
-                Thread.Sleep(30);
-                if (_serialPortVoice.BytesToRead > 0)
-                {
-                    try
-                    {
-                        byte[] bytes = new byte[_serialPortVoice.BytesToRead];
-                        _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
+            //App.PropertyModelInstance.IsOnVoice = true;
+            //if (_serialPortVoice.IsOpen)
+            //{
+            //    Thread.Sleep(30);
+            //    if (_serialPortVoice.BytesToRead > 0)
+            //    {
+            //        try
+            //        {
+            //            byte[] bytes = new byte[_serialPortVoice.BytesToRead];
+            //            _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
 
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            OnDataReceivedByVoice(bytes);
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"串口问题：{ex.Message}");
-                        return;
-                    }
-                }
-            }
-            timerOfVoice.Tick += (sender1, args) =>
-            {
-                App.PropertyModelInstance.IsOnVoice = false;
-                ((DispatcherTimer)sender1).Stop();
-            };
-            timerOfVoice.Start();
+            //            Application.Current.Dispatcher.Invoke(() =>
+            //            {
+            //                OnDataReceivedByVoice(bytes);
+            //            });
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show($"串口问题：{ex.Message}");
+            //            return;
+            //        }
+            //    }
+            //}
+            //timerOfVoice.Tick += (sender1, args) =>
+            //{
+            //    App.PropertyModelInstance.IsOnVoice = false;
+            //    ((DispatcherTimer)sender1).Stop();
+            //};
+            //timerOfVoice.Start();
         }
 
         /// <summary>

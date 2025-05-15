@@ -70,7 +70,7 @@ namespace MoxibustionBedAPP.ViewModes
             SerialPortManager.Instance.comfail.Hide();
         }
 
-        private void GetAllCOM()
+        public void GetAllCOM()
         {
             ComPorts.Clear();
             foreach(string port in SerialPort.GetPortNames())
