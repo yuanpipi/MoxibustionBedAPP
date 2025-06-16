@@ -10,6 +10,38 @@
     <UserControl.Resources>
         <viewmodel:ParameterSettingViewModel x:Key="ParameterSettingViewModel"/>
         <viewmodel:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <Style TargetType="Button" x:Key="ButtonStyle">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <!-- 使用Border作为根容器 -->
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
+                            <!-- 内容展示区域 -->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+
+                        <!-- 禁用所有状态变化 -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsPressed" Value="True"/>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
     </UserControl.Resources>
     <Border CornerRadius="25">
         <Border.Background>
@@ -104,20 +136,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Width="40" Height="40" Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTimeSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTimeSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="5" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTime,StringFormat='{}{0}min'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTime}" Maximum="90" Minimum="5" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTimeAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTimeAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
 
@@ -157,20 +199,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="20" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.PreheadTemperature}" Maximum="50" Minimum="20" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="50" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="PreheadTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <TextBlock Text="温度设置" Grid.Row="6" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A"/>
@@ -213,20 +265,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="Upper_CabinTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="Upper_CabinTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Upper_CabinTemperature}" Maximum="60" Minimum="30" ValueChanged="Slider_ValueChanged_1" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="60" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="Upper_CabinTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="Upper_CabinTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <TextBlock Text="上舱" Grid.Row="10" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" Foreground="#73441A"/>
@@ -265,20 +327,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="UpperAlarmCabinTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="UpperAlarmCabinTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.UpperAlarmCabinTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.UpperAlarmCabinTemperature}" Maximum="80" Minimum="30" ValueChanged="Slider_ValueChanged" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="80" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="UpperAlarmCabinTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="UpperAlarmCabinTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <Rectangle Grid.Row="12" Grid.Column="1" Grid.ColumnSpan="3">
@@ -321,20 +393,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="BackTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="BackTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_2" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="70" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="BackTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="BackTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <TextBlock Text="背部" Grid.Row="14" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" Foreground="#73441A"/>
@@ -373,20 +455,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="BackAlarmTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="BackAlarmTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackAlarmTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.BackAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_3" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="BackAlarmTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="BackAlarmTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <Rectangle Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="3">
@@ -429,20 +521,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="LegTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="LegTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegTemperature}" Maximum="70" Minimum="30" ValueChanged="Slider_ValueChanged_4" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="70" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="LegTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="LegTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <TextBlock Text="腿部" Grid.Row="18" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" Foreground="#73441A"/>
@@ -481,20 +583,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="LegAlarmTemperatureSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="LegAlarmTemperatureSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="30" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegAlarmTemperature,StringFormat='{}{0}℃'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.LegAlarmTemperature}" Maximum="90" Minimum="30" ValueChanged="Slider_ValueChanged_5" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="LegAlarmTemperatureAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="LegAlarmTemperatureAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
 
@@ -536,20 +648,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="InignitionTimeSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="InignitionTimeSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="60" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime,StringFormat='{}{0}s'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.InignitionTime}" Maximum="270" Minimum="60" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="270" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="InignitionTimeAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="InignitionTimeAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
                     <TextBlock Text="灸疗时间" Grid.Row="22" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#73441A"/>
@@ -588,20 +710,30 @@
                                 <RowDefinition Height="23.06"/>
                                 <RowDefinition Height="16.81*"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="1" Source="pack://application:,,,/Resources/Pictures/Sub.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="MoxibustionTherapyTimeSub"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="MoxibustionTherapyTimeSub">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Sub.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                             <TextBlock Text="25" Grid.Row="0" Grid.RowSpan="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#C09174"/>
                             <TextBlock Text="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyTime,StringFormat='{}{0}min'}" Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="22.04" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Slider Grid.Row="0" Grid.RowSpan="4" Grid.Column="5" VerticalAlignment="Center" Value="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyTime}" Maximum="90" Minimum="25" IsMoveToPointEnabled="True" TouchDown="Slider_TouchDown"/>
                             <TextBlock Text="90" Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="17.11" Foreground="#C09174"/>
-                            <Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/Add.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                                 <Image.InputBindings>
                                     <MouseBinding MouseAction="LeftClick" Command="{Binding AddOrSubCommand}" CommandParameter="MoxibustionTherapyTimeAdd"/>
                                 </Image.InputBindings>
-                            </Image>
+                            </Image>-->
+                            <Button Grid.Row="0" Grid.Column="8" Grid.RowSpan="4" Grid.ColumnSpan="3" Style="{StaticResource ButtonStyle}" Command="{Binding AddOrSubCommand}" CommandParameter="MoxibustionTherapyTimeAdd">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/Add.png" Stretch="None"/>
+                                </Button.Background>
+                            </Button>
                         </Grid>
                     </Border>
 
@@ -700,7 +832,7 @@
                         </TextBlock>
                     </Grid>
 
-                    <Grid Grid.Row="25" Grid.Column="3">
+                    <Grid Grid.Row="25" Grid.Column="3" Grid.ColumnSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="23.09*"/>
                             <ColumnDefinition Width="30.34*"/>
@@ -719,8 +851,8 @@
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
                             </TextBlock.InputBindings>
                         </TextBlock>
-                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
-                        <TextBlock Text="恢复初始值" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
+                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="Uniform"/>
+                        <TextBlock Text="恢复初始值" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
                             </TextBlock.InputBindings>
@@ -731,7 +863,4 @@
             </Border>
         </ScrollViewer>
     </Border>
-
-
-
 </UserControl>

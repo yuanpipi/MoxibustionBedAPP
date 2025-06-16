@@ -27,21 +27,26 @@
         </Border.Background>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="35.875"/>
-                <RowDefinition Height="63.215*"/>
-                <RowDefinition Height="43.35*"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="63*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="35*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="28*"/>
-                <RowDefinition Height="13.12*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="28*"/>
-                <RowDefinition Height="53.02*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="28*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="28*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="28*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="35*"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition Height="28*"/>
-                <RowDefinition Height="13.12*"/>
+                <RowDefinition Height="10*"/>
                 <RowDefinition Height="28*"/>
-                <RowDefinition Height="62.9*"/>
+                <RowDefinition Height="74*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="58.62*"/>
@@ -61,7 +66,7 @@
             </Image>
             <TextBlock Text="功能设置" Grid.Row="1" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             <TextBlock Text="点火即刻跳转到播放页面" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20"/>
-            <Border CornerRadius="12" Grid.Row="1" Grid.Column="6">
+            <Border Margin="0,10" CornerRadius="12" Grid.Row="1" Grid.Column="6">
                 <Border.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.5">
                         <LinearGradientBrush.RelativeTransform>
@@ -159,18 +164,29 @@
                     </TextBlock>
                 </Grid>
             </Border>
-            <Rectangle Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" Height="1" Fill="#73441A"/>
-            <TextBlock Text="关于本机" Grid.Row="5" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="版本号" Grid.Row="5" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="V1.001.01" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
-            <TextBlock Text="软件归属权" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="南京华伟医疗设备有限公司" Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
-            <Rectangle Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="7" Height="1" Fill="#73441A"/>
-            <TextBlock Text="帮助与反馈" Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="联系我们" Grid.Row="11" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="4008-809-909" Grid.Row="11" Grid.Column="4" Grid.ColumnSpan="4" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
-            <TextBlock Text="联系地址" Grid.Row="13" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="南京市浦口区桥林街道兰花路19号" Grid.Row="13" Grid.Column="4" Grid.ColumnSpan="4" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+            <Rectangle Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" Height="1" Fill="#73441A"/>
+            <TextBlock Text="关于本机" Grid.Row="4" Grid.Column="1" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="发布版本" Grid.Row="4" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="V1" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+            <TextBlock Text="完整版本" Grid.Row="6" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="V1.0.0.0" Grid.Row="6" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+            <TextBlock Text="软件归属权" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="南京华伟医疗设备有限公司" Grid.Row="8" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+
+            <TextBlock Text="控制软件" Visibility="{Binding IsShow}" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="HW-MC-V1.0" Visibility="{Binding IsShow}" Grid.Row="10" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+
+            <TextBlock Text="嵌入式软件" Visibility="{Binding IsShow}" Grid.Row="12" Grid.Column="3" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="HW-MC-V1.0.0.0" Visibility="{Binding IsShow}" Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+            
+            <Rectangle Grid.Row="14" Grid.Column="1" Grid.ColumnSpan="7" Height="1" Fill="#73441A"/>
+            <TextBlock Text="帮助与反馈" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="2" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="联系我们" Grid.Row="16" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="4008-809-909" Grid.Row="16" Grid.Column="4" Grid.ColumnSpan="4" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+            <TextBlock Text="联系地址" Grid.Row="18" Grid.Column="3" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="南京市浦口区桥林街道兰花路19号" Grid.Row="18" Grid.Column="4" Grid.ColumnSpan="4" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="20" Foreground="#73441A" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="40 0 0 0"/>
+
+            <Button Grid.Row="19" Grid.Column="7" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" Width="140" Height="70" VerticalAlignment="Center" HorizontalAlignment="Right" Command="{Binding ShowDetail}"/>
         </Grid>
     </Border>
 </UserControl>

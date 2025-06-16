@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using MoxibustionBedAPP.Models;
 
@@ -22,10 +23,25 @@ namespace MoxibustionBedAPP.ViewModes
 
         public ICommand AutoMusicCommand { get; private set; }
 
+        public ICommand ShowDetail { get; private set; }
+
+        private Visibility _isShow;
+        public Visibility IsShow
+        {
+            get { return _isShow; }
+            set
+            {
+                _isShow = value;
+                OnPropertyChanged("IsShow");
+            }
+        }
+
         public SettingsViewModel()
         {
             ReturnClick = new RelayCommand(ReturnClickCommand);
             AutoMusicCommand = new RelayCommand(AutoMusicMethod);
+            ShowDetail = new RelayCommand(ShowDetailMethod);
+            IsShow = Visibility.Hidden;
         }
 
         private void ReturnClickCommand()
@@ -47,6 +63,18 @@ namespace MoxibustionBedAPP.ViewModes
                 case "No":
                     App.PropertyModelInstance.AutoMusic = false;
                     break;
+            }
+        }
+
+        private void ShowDetailMethod()
+        {
+            if (IsShow == Visibility.Visible)
+            {
+                IsShow = Visibility.Hidden;
+            }
+            else
+            {
+                IsShow = Visibility.Visible;
             }
         }
     }

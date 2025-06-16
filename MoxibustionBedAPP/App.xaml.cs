@@ -52,32 +52,6 @@ namespace MoxibustionBedAPP
             PublicMethods.ReadFromJson();//开机自启时自动获取保存的文件
             PublicMethods.ReadFromCOMJson();//开机自启时自动获取保存的COM文件
 
-            //PropertyModelInstance.Upper_CabinTemperature = 40;//上舱温度
-            //PropertyModelInstance.BackTemperature = 40;//背部温度
-            //PropertyModelInstance.LegTemperature = 40;//腿部温度
-            //PropertyModelInstance.PreheadTemperature = 40;//预热温度
-            //PropertyModelInstance.UpperAlarmCabinTemperature = 67;//上舱报警温度
-            //PropertyModelInstance.BackAlarmTemperature = 77;//背部报警温度
-            //PropertyModelInstance.LegAlarmTemperature = 77;//腿部报警温度
-            //PropertyModelInstance.PreheadTime = 30;//预热时间
-            //PropertyModelInstance.MoxibustionTherapyTime = 1;//灸疗时间
-            //PropertyModelInstance.InignitionTime = 20;//点火时间
-            //PropertyModelInstance.AutomaticLidOpening = true;//自动开盖
-
-
-            //PropertyModelInstance.MoxibustionTherapyMode = false;//灸疗模式
-            //PropertyModelInstance.InfraredLamp = 0;//红外灯
-            //PropertyModelInstance.SmokeExhaustSystem = 0;//排烟系统
-            //PropertyModelInstance.SmokePurificationSystem=false;//净烟系统
-            //PropertyModelInstance.SwingSystem = false;//摇摆系统
-            //PropertyModelInstance.InignitionStatus = false;//点火模式
-            //PropertyModelInstance.PreheadMode = false;//预热模式
-            //PropertyModelInstance.Hatch = false;//舱盖
-            //PropertyModelInstance.BackMoxibustionColumn_Height = 3;//背部灸柱高度
-            //PropertyModelInstance.LegMoxibustionColumn_Height = 2;//腿部灸柱高度
-            //PropertyModelInstance.BatteryLevel = 1;//电池电量
-            //PropertyModelInstance.IsMoxibustionTherapyMode = false;//治疗状态
-
             //打开串口并且接受来自底层的数据
             SerialPortManager.Instance.OpenPort();
 
@@ -95,7 +69,7 @@ namespace MoxibustionBedAPP
             LoadMainPageAsync();
 
 
-            var screen2 = System.Windows.Forms.Screen.AllScreens[1];
+            var screen2 = System.Windows.Forms.Screen.AllScreens[0];
 
             //创建window1，并将sharedPlayMusicModel传入
             //var window1 = new MainWindowView(sharedPlayMusicModel)
@@ -165,7 +139,7 @@ namespace MoxibustionBedAPP
             await Task.Delay(3000);
 
             //显示在两块屏幕上
-            var screen1 = System.Windows.Forms.Screen.AllScreens[0];
+            var screen1 = System.Windows.Forms.Screen.AllScreens[1];
 
             //创建window1，并将sharedPlayMusicModel传入
             var window1 = new MainWindowView(sharedPlayMusicModel)

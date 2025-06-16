@@ -59,7 +59,7 @@ namespace MoxibustionBedAPP.Models
         /// <summary>
         /// 开关舱倒计时
         /// </summary>
-        private DispatcherTimer timerOpen = new DispatcherTimer
+        public DispatcherTimer timerOpen = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(30)
         };
@@ -67,7 +67,7 @@ namespace MoxibustionBedAPP.Models
         /// <summary>
         /// 开关舱倒计时
         /// </summary>
-        private DispatcherTimer timerClose = new DispatcherTimer
+        public DispatcherTimer timerClose = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(30)
         };
@@ -88,7 +88,7 @@ namespace MoxibustionBedAPP.Models
         // 添加一个计时器用于检测接收超时 
         private DispatcherTimer _receiveTimeoutTimer;
         private DateTime _lastReceiveTime;
-        private const int ReceiveTimeoutSeconds =10; // 5秒超时 
+        private const int ReceiveTimeoutSeconds =10; // 10秒超时 
         #endregion
 
         private SerialPortManager()
@@ -159,7 +159,7 @@ namespace MoxibustionBedAPP.Models
             if ((DateTime.Now - _lastReceiveTime).TotalSeconds >= ReceiveTimeoutSeconds)
             {
                 // 超时处理
-                HandlePortDisconnection();
+                //HandlePortDisconnection();
             }
         }
 
@@ -852,6 +852,38 @@ namespace MoxibustionBedAPP.Models
             }
             if (isNeedSendData)
             {
+                if (datas[3] == 0x08)//背部灸盘抬升
+                {
+                    if(App.PropertyModelInstance.BackMoxibustionColumn_Height>=3)
+                    {
+                        return;
+                    }
+                    App.PropertyModelInstance.BackMoxibustionColumn_Height++;
+                }
+                else if (datas[3] == 0x09)//背部灸盘降低
+                {
+                    if (App.PropertyModelInstance.BackMoxibustionColumn_Height <= 1)
+                    {
+                        return;
+                    }
+                    App.PropertyModelInstance.BackMoxibustionColumn_Height--;
+                }
+                else if (datas[3] == 0x0A)//腿部灸盘抬升
+                {
+                    if (App.PropertyModelInstance.LegMoxibustionColumn_Height >= 3)
+                    {
+                        return;
+                    }
+                    App.PropertyModelInstance.LegMoxibustionColumn_Height++;
+                }
+                else if (datas[3] == 0x0B)//腿部灸盘抬升
+                {
+                    if (App.PropertyModelInstance.LegMoxibustionColumn_Height <= 1)
+                    {
+                        return;
+                    }
+                    App.PropertyModelInstance.LegMoxibustionColumn_Height--;
+                }
                 bytes[9] = 0xAA;
                 bytes[10] = 0x5C;
                 bytes = CRC16(bytes);
@@ -913,7 +945,7 @@ namespace MoxibustionBedAPP.Models
                         ((DispatcherTimer)sender).Stop();
                     };
                     timerClose.Start();
-                }
+                }                
             }
             if (datas[3] != 0x01 && datas[3] != 0x02)
             {

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:viewmodel="clr-namespace:MoxibustionBedAPP.ViewModes"
              xmlns:local="clr-namespace:MoxibustionBedAPP.Views"
              mc:Ignorable="d" 
@@ -25,24 +26,27 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="border" Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpSelected.png" Stretch="None"/>
+                                        <ImageBrush ImageSource="pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnUpSelected.png" Stretch="None"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
+
+                            <!--<Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpSelected.png" Stretch="None"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
+                            </Trigger>-->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+
+
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" Stretch="None"/>
+                    <ImageBrush ImageSource="pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnUpUnselected.png" Stretch="None"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Width" Value="50"/>
@@ -69,24 +73,24 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="border" Property="Background">
                                     <Setter.Value>
-                                        <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownSelected.png" Stretch="None"/>
+                                        <ImageBrush ImageSource="pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnDownSelected.png" Stretch="None"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
+                            <!--<Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background">
                                     <Setter.Value>
                                         <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownSelected.png" Stretch="None"/>
                                     </Setter.Value>
                                 </Setter>
-                            </Trigger>
+                            </Trigger>-->
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Setter Property="Background">
                 <Setter.Value>
-                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" Stretch="None"/>
+                    <ImageBrush ImageSource="pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnDownUnselected.png" Stretch="None"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="Width" Value="50"/>
@@ -163,8 +167,16 @@
                 <TextBlock Text="背部升降" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="腿部升降" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp"/>
-                <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp"/>
+                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp">
+                    <i:Interaction.Behaviors>
+                        <viewmodel:UpTouchFeedbackBehavior/>
+                    </i:Interaction.Behaviors>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp">
+                    <i:Interaction.Behaviors>
+                        <viewmodel:UpTouchFeedbackBehavior/>
+                    </i:Interaction.Behaviors>
+                </Button>
 
                 <!--<Image Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnUpUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>
@@ -207,8 +219,16 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown"/>
-                <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown"/>
+                <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown">
+                    <i:Interaction.Behaviors>
+                        <viewmodel:DownTouchFeedbackBehavior/>
+                    </i:Interaction.Behaviors>
+                </Button>
+                <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown">
+                    <i:Interaction.Behaviors>
+                        <viewmodel:DownTouchFeedbackBehavior/>
+                    </i:Interaction.Behaviors>
+                </Button>
 
                 <!--<Image Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnDownUnselected.png" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Image.InputBindings>

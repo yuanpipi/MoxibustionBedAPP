@@ -99,6 +99,10 @@ namespace MoxibustionBedAPP.ViewModes
                 OnPropertyChanged(nameof(IsCountingDown));
             }
         }
+
+        public static DateTime StartTime;
+        public static int seconds;
+
         public TestWindowViewModel()
         {
             CloseWindow = new RelayCommand(CloseWindowMethod);
@@ -108,6 +112,7 @@ namespace MoxibustionBedAPP.ViewModes
             IsOpen = false; 
             IsClose=false;
         }
+
         private void CloseWindowMethod()
         {
             App.Test.Close();
@@ -390,6 +395,9 @@ namespace MoxibustionBedAPP.ViewModes
                 IsCountingDown = true;
                 App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
                 App.PropertyModelInstance.CountdownSeconds = 0;
+
+                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                StartTime = DateTime.Now;
                 StartCountdown();
             }
             else
@@ -423,6 +431,9 @@ namespace MoxibustionBedAPP.ViewModes
                 IsCountingDown = true;
                 App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
                 App.PropertyModelInstance.CountdownMinutes = 0;
+
+                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                StartTime = DateTime.Now;
                 StartCountdown();
             }
             else
@@ -503,21 +514,28 @@ namespace MoxibustionBedAPP.ViewModes
         private void StartCountdown()
         {
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1);
+            _timer.Interval = TimeSpan.FromMilliseconds(200);
             _timer.Tick += Timer_Tick;
             _timer.Start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (App.PropertyModelInstance.CountdownSeconds > 0)
+            //if (App.PropertyModelInstance.CountdownSeconds > 0)
+            //{
+            //    App.PropertyModelInstance.CountdownSeconds--;
+            //}
+            //else if (App.PropertyModelInstance.CountdownMinutes > 0)
+            //{
+            //    App.PropertyModelInstance.CountdownMinutes--;
+            //    App.PropertyModelInstance.CountdownSeconds = 59;
+            //}
+            TimeSpan t = DateTime.Now.Subtract(StartTime);
+            if (App.PropertyModelInstance.CountdownMinutes > 0 || App.PropertyModelInstance.CountdownSeconds > 0)
             {
-                App.PropertyModelInstance.CountdownSeconds--;
-            }
-            else if (App.PropertyModelInstance.CountdownMinutes > 0)
-            {
-                App.PropertyModelInstance.CountdownMinutes--;
-                App.PropertyModelInstance.CountdownSeconds = 59;
+                int s = (int)(seconds - t.TotalSeconds);
+                App.PropertyModelInstance.CountdownMinutes = s / 60;
+                App.PropertyModelInstance.CountdownSeconds = s % 60;
             }
             else
             {
@@ -541,6 +559,9 @@ namespace MoxibustionBedAPP.ViewModes
                     App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
                     //发送开始治疗指令
                     StopMethod("StartMoxibustionTherapy");
+
+                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                    StartTime = DateTime.Now;
                     StartCountdown();//开启治疗倒计时
                 }
                 else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)

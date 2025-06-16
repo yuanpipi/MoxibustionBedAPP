@@ -90,16 +90,16 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="舱盖开关" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
+                <TextBlock Text="结束后开舱" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="16" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}"/>
                 <TextBlock Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" FontFamily="{StaticResource SourceHanSerifCN-Regular}" Foreground="#73441A" FontSize="16">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="True">
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.AutomaticLidOpening}" Value="True">
                                     <Setter Property="Text" Value="打开"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.Hatch}" Value="False">
-                                    <Setter Property="Text" Value="闭合"/>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.AutomaticLidOpening}" Value="False">
+                                    <Setter Property="Text" Value="关闭"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Xaml.Behaviors;
+using MoxibustionBedAPP.Models;
+using MoxibustionBedAPP.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -9,13 +12,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Ink;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Markup.Localizer;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using MoxibustionBedAPP.Models;
-using MoxibustionBedAPP.Views;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace MoxibustionBedAPP.ViewModes
@@ -303,6 +307,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             App.PropertyModelInstance.IsOpen = false;
                             timer.Stop();
+                            SerialPortManager.Instance.timerOpen.Stop();
                             App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0A;
                             data[6] = 0x02;
@@ -325,6 +330,7 @@ namespace MoxibustionBedAPP.ViewModes
                         {
                             App.PropertyModelInstance.IsClose = false;
                             timer.Stop();
+                            SerialPortManager.Instance.timerClose.Stop();
                             timer1.Stop();
                             App.PropertyModelInstance.IsOpenOrClose = false;
                             data[5] = 0x0B;
@@ -1006,5 +1012,87 @@ namespace MoxibustionBedAPP.ViewModes
             }
         }
         #endregion
+    }
+
+    public class UpTouchFeedbackBehavior : Behavior<Button>
+    {
+        private Brush _originalBrush;
+        private static readonly ImageBrush PressedBrush = new ImageBrush
+        {
+            ImageSource = new BitmapImage(new Uri("pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnUpSelected.png")),
+            Stretch = Stretch.None
+        };
+
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+            AssociatedObject.PreviewTouchDown += OnTouchDown;
+            AssociatedObject.PreviewTouchUp += OnTouchUp;
+        }
+
+        private void OnTouchDown(object sender, TouchEventArgs e)
+        {
+            if (AssociatedObject.Template?.FindName("border", AssociatedObject) is Border border)
+            {
+                _originalBrush = border.Background;
+                border.Background = PressedBrush;
+            }
+        }
+
+        private void OnTouchUp(object sender, TouchEventArgs e)
+        {
+            if (AssociatedObject.Template?.FindName("border", AssociatedObject) is Border border)
+            {
+                border.Background = _originalBrush;
+            }
+        }
+
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+            AssociatedObject.PreviewTouchDown -= OnTouchDown;
+            AssociatedObject.PreviewTouchUp -= OnTouchUp;
+        }
+    }
+
+    public class DownTouchFeedbackBehavior : Behavior<Button>
+    {
+        private Brush _originalBrush;
+        private static readonly ImageBrush PressedBrush = new ImageBrush
+        {
+            ImageSource = new BitmapImage(new Uri("pack://application:,,,/MoxibustionBedAPP;component/Resources/Pictures/BtnDownSelected.png")),
+            Stretch = Stretch.None
+        };
+
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+            AssociatedObject.PreviewTouchDown += OnTouchDown;
+            AssociatedObject.PreviewTouchUp += OnTouchUp;
+        }
+
+        private void OnTouchDown(object sender, TouchEventArgs e)
+        {
+            if (AssociatedObject.Template?.FindName("border", AssociatedObject) is Border border)
+            {
+                _originalBrush = border.Background;
+                border.Background = PressedBrush;
+            }
+        }
+
+        private void OnTouchUp(object sender, TouchEventArgs e)
+        {
+            if (AssociatedObject.Template?.FindName("border", AssociatedObject) is Border border)
+            {
+                border.Background = _originalBrush;
+            }
+        }
+
+        protected override void OnDetaching()
+        {
+            base.OnDetaching();
+            AssociatedObject.PreviewTouchDown -= OnTouchDown;
+            AssociatedObject.PreviewTouchUp -= OnTouchUp;
+        }
     }
 }

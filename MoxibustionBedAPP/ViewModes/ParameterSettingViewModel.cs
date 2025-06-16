@@ -78,6 +78,8 @@ namespace MoxibustionBedAPP.ViewModes
 
             //保存进文件
             PublicMethods.SaveToJson();
+
+            PopupBoxViewModel.ShowPopupBox("保存成功！");
         }
 
         /// <summary>

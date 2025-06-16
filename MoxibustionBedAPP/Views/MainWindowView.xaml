@@ -62,6 +62,7 @@
                 <RowDefinition Height="23.95*"/>
                 <RowDefinition Height="13.5*"/>
             </Grid.RowDefinitions>
+            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="26.18*"/>
                 <ColumnDefinition Width="20.1*"/>
@@ -82,16 +83,31 @@
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
                 </Image.InputBindings>
             </Image>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" Source="pack://application:,,,/Resources/Pictures/QuestionLogo.png">
+            <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/QuestionLogo.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding QuesClick}"/>
                 </Image.InputBindings>
             </Image>
-            <Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" Source="pack://application:,,,/Resources/Pictures/SettingLogo.png">
+            <Border Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="2" Background="Transparent">
+                <Button Command="{Binding QuesClick}" Padding="0" BorderBrush="Transparent" Opacity="0" BorderThickness="0" MinHeight="0" MinWidth="0"/>
+            </Border>-->
+
+            
+            <Button Grid.Row="0" Grid.RowSpan="4" Grid.Column="6" Grid.ColumnSpan="3" Command="{Binding QuesClick}" Width="70" Height="70" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/QuestionLogo.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
+            <!--<Image Grid.Row="1" Grid.RowSpan="2" Grid.Column="9" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/SettingLogo.png" Stretch="Uniform">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding SetClick}"/>
                 </Image.InputBindings>
-            </Image>
+            </Image>-->
+            <Button Grid.Row="0" Grid.RowSpan="4" Grid.Column="9" Grid.ColumnSpan="2" Command="{Binding SetClick}" Width="70" Height="70" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0" BorderBrush="Transparent" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/SettingLogo.png" Stretch="None"/>
+                </Button.Background>
+            </Button>
         </Grid>
 
         <!--按钮栏-->
@@ -151,7 +167,7 @@
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowParameterSettingCommand}"/>
                 </Image.InputBindings>
-                <Image.Style>
+                <!--<Image.Style>
                     <Style TargetType="Image">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
@@ -162,7 +178,7 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </Image.Style>
+                </Image.Style>-->
             </Image>
 
             <TextBlock Grid.Row="1" Grid.Column="5" FontFamily="{StaticResource SourceHanSerifCN-Regular}">
