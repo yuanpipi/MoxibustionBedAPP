@@ -154,6 +154,57 @@ namespace MoxibustionBedAPP.ViewModes
         private bool isPreheadClicked;//预热
         private bool isInignitionClicked;//点火
         private bool isCloseClick;
+
+        /// <summary>
+        /// 背部调节按钮是否允许点击
+        /// </summary>
+        private bool _isBackAllowClick;
+        public bool IsBackAllowClick
+        {
+            get
+            {
+                return _isBackAllowClick;
+            }
+            set
+            {
+                _isBackAllowClick = value;
+                OnPropertyChanged(nameof(IsBackAllowClick));
+            }
+        }
+
+        /// <summary>
+        /// 腿部调节按钮是否允许点击
+        /// </summary>
+        private bool _isLegAllowClick;
+        public bool IsLegAllowClick
+        {
+            get
+            {
+                return _isLegAllowClick;
+            }
+            set
+            {
+                _isLegAllowClick = value;
+                OnPropertyChanged(nameof(IsLegAllowClick));
+            }
+        }
+
+        /// <summary>
+        /// 腿部按钮是否点击
+        /// </summary>
+        private bool IsLegButtonClicked;
+        /// <summary>
+        /// 背部按钮是否点击
+        /// </summary>
+        private bool IsBackButtonClicked;
+
+        /// <summary>
+        /// 灸柱按钮允许点击倒计时
+        /// </summary>
+        private DispatcherTimer HeightTimer = new DispatcherTimer
+        {
+            Interval = TimeSpan.FromSeconds(3)
+        };
         #endregion
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -166,6 +217,9 @@ namespace MoxibustionBedAPP.ViewModes
             PublicFunction = new RelayCommand(ExecuteFunctionMethod);
             Prehead = new RelayCommand(PreheadMethod);
             Inignition= new RelayCommand(InignitionMethod);
+            IsBackAllowClick = true;
+            IsLegAllowClick = true;
+            HeightTimer.Tick += HeightTimer_Tick;
             App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             RadioBtnOfSmoke = new RelayCommand(CloseSmokeSystem);
@@ -271,6 +325,7 @@ namespace MoxibustionBedAPP.ViewModes
                         data[5] = 0x04;
                         data[6] = 0x01;
                         App.PropertyModelInstance.BackMoxibustionColumn_Height++;
+                        IsBackButtonClicked = true;
                         break;
                     }
                 case "BackMoxibustionColumnDown"://背部点降
@@ -278,6 +333,7 @@ namespace MoxibustionBedAPP.ViewModes
                         data[5] = 0x05;
                         data[6] = 0x01;
                         App.PropertyModelInstance.BackMoxibustionColumn_Height--;
+                        IsBackButtonClicked = true;
                         break;
                     }
                 case "LegMoxibustionColumnUp"://腿部点升
@@ -285,6 +341,7 @@ namespace MoxibustionBedAPP.ViewModes
                         data[5] = 0x06;
                         data[6] = 0x01;
                         App.PropertyModelInstance.LegMoxibustionColumn_Height++;
+                        IsLegButtonClicked = true;
                         break;
                     }
                 case "LegMoxibustionColumnDown"://腿部点降
@@ -292,6 +349,7 @@ namespace MoxibustionBedAPP.ViewModes
                         data[5] = 0x07;
                         data[6] = 0x01;
                         App.PropertyModelInstance.LegMoxibustionColumn_Height--;
+                        IsLegButtonClicked = true;
                         break;
                     }
                 case "OpenHatch"://一键开舱
@@ -502,6 +560,33 @@ namespace MoxibustionBedAPP.ViewModes
                 timer.Tick += TimerCloseHandler;
                 timer.Start();
                 App.PropertyModelInstance.IsOpenOrClose = true;
+            }
+
+            if(IsLegButtonClicked || IsBackButtonClicked)
+            {
+                if (IsLegButtonClicked)
+                {
+                    IsLegAllowClick = false;
+                }
+                else
+                {
+                    IsBackAllowClick = false;
+                }
+                HeightTimer.Start();
+            }
+        }
+
+        private void HeightTimer_Tick(object sender, EventArgs e)
+        {
+            if (IsLegButtonClicked)
+            {
+                IsLegAllowClick = true;
+                IsLegButtonClicked = false;
+            }
+            else if (IsBackButtonClicked)
+            {
+                IsBackAllowClick = true;
+                IsBackButtonClicked = false;
             }
         }
 

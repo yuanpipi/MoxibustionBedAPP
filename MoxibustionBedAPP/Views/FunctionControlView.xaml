@@ -167,12 +167,12 @@
                 <TextBlock Text="背部升降" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Text="腿部升降" Grid.Row="2" Grid.Column="7" Grid.ColumnSpan="5" FontSize="25" Foreground="#73441A" FontFamily="{StaticResource SourceHanSerifCN-Regular}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp">
+                <Button Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnUp" IsEnabled="{Binding IsBackAllowClick}">
                     <i:Interaction.Behaviors>
                         <viewmodel:UpTouchFeedbackBehavior/>
                     </i:Interaction.Behaviors>
                 </Button>
-                <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp">
+                <Button Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource UpButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnUp" IsEnabled="{Binding IsLegAllowClick}">
                     <i:Interaction.Behaviors>
                         <viewmodel:UpTouchFeedbackBehavior/>
                     </i:Interaction.Behaviors>
@@ -219,12 +219,12 @@
                     </TextBlock.Style>
                 </TextBlock>
 
-                <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown">
+                <Button Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="BackMoxibustionColumnDown" IsEnabled="{Binding IsBackAllowClick}">
                     <i:Interaction.Behaviors>
                         <viewmodel:DownTouchFeedbackBehavior/>
                     </i:Interaction.Behaviors>
                 </Button>
-                <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown">
+                <Button Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="3" Style="{StaticResource DownButtonStyle}" Command="{Binding PublicFunction}" CommandParameter="LegMoxibustionColumnDown" IsEnabled="{Binding IsLegAllowClick}">
                     <i:Interaction.Behaviors>
                         <viewmodel:DownTouchFeedbackBehavior/>
                     </i:Interaction.Behaviors>
@@ -1499,7 +1499,7 @@
                                 <Run Text="s"/>
                             </Span>
                         </TextBlock>
-                        <TextBlock Text="取消治疗" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="White">
+                        <TextBlock Text="取消治疗" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="Black">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="StopMoxibustionTherapy"/>
                             </TextBlock.InputBindings>
@@ -1540,7 +1540,7 @@
                                 <Run Text="s"/>
                             </Span>
                         </TextBlock>
-                        <TextBlock Text="取消排烟" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="White">
+                        <TextBlock Text="取消排烟" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="20" Foreground="Black">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding StopCommand}" CommandParameter="StopSmoke"/>
                             </TextBlock.InputBindings>
