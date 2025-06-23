@@ -221,6 +221,8 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
+                    //重新获取保存的参数
+                    PublicMethods.ReadFromJson();
                     App.PropertyModelInstance.CurrentUserControl = FunctionControlView;
                     BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
                     BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
@@ -239,6 +241,8 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
+                    //重新获取保存的参数
+                    PublicMethods.ReadFromJson();
                     App.PropertyModelInstance.CurrentUserControl = DataMonitoringView;
                     BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
@@ -257,6 +261,8 @@ namespace MoxibustionBedAPP.ViewModes
             {
                 return new RelayCommand(() =>
                 {
+                    //重新获取保存的参数
+                    PublicMethods.ReadFromJson();
                     App.PropertyModelInstance.CurrentUserControl = PlayMusicView;
                     BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                     BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
@@ -277,7 +283,8 @@ namespace MoxibustionBedAPP.ViewModes
                 {
                     if (App.PropertyModelInstance.IsMoxibustionTherapyMode == false)
                     {
-
+                        //重新获取保存的参数
+                        PublicMethods.ReadFromJson();
                         App.PropertyModelInstance.CurrentUserControl = ParameterSettingView;
                         BtnBack1 = "pack://application:,,,/Resources/Pictures/BtnStyleUnselect.png";
                         BtnBack2 = "pack://application:,,,/Resources/Pictures/BtnStyleSelected.png";
@@ -321,6 +328,19 @@ namespace MoxibustionBedAPP.ViewModes
                     {
                         c = 0;
                         App.Test = new TestWindowView();
+                        //发送指令，开启调试界面
+                        byte[] data = new byte[11];
+                        data[0] = 0x55;
+                        data[1] = 0xAA;
+                        data[2] = 0x07;
+                        data[3] = 0x01;
+                        data[4] = 0x10;
+                        data[5] = 0x10;
+                        data[6] = 0x01;
+                        data[9] = 0xAA;
+                        data[10] = 0x5C;
+                        data = SerialPortManager.CRC16(data);
+                        SerialPortManager.Instance.SendData(data);
 
                         App.Test.Show();
                     }

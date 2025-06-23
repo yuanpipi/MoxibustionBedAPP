@@ -851,8 +851,8 @@
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
                             </TextBlock.InputBindings>
                         </TextBlock>
-                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="Uniform"/>
-                        <TextBlock Text="恢复初始值" Grid.Column="8" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3,0,0,0" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
+                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
+                        <TextBlock Text="恢复初始值" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
                             </TextBlock.InputBindings>

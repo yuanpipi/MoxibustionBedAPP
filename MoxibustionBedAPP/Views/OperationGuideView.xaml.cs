@@ -27,5 +27,10 @@ namespace MoxibustionBedAPP.Views
             InitializeComponent();
             this.DataContext = viewmodel;
         }
+
+        private void RichTextBox_ManipulationBoundaryFeedback(object sender, ManipulationBoundaryFeedbackEventArgs e)
+        {
+            e.Handled = true; // 禁用边界弹跳效果
+        }
     }
 }

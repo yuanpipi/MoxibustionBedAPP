@@ -512,7 +512,7 @@
                 <TextBlock Text="系统功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
                 <TextBlock Text="摇摆系统" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
-                <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
+                <!--<Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Style.Triggers>
@@ -528,7 +528,112 @@
                     <Image.InputBindings>
                         <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
                     </Image.InputBindings>
-                </Image>
+                </Image>-->
+                <Image Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1" Source="pack://application:,,,/Resources/Pictures/BtnBackground.png" Stretch="Fill"/>
+                <Grid Grid.Row="2" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="1">
+                    <!--<Grid.Style>
+                        <Style TargetType="Grid">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSmokePurification}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSmokePurification}" Value="False">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>-->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="132.6125*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                        <ColumnDefinition Width="132.6125*"/>
+                        <ColumnDefinition Width="10.6125*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5.59*"/>
+                        <RowDefinition Height="45.35*"/>
+                        <RowDefinition Height="5.59*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="1" Grid.Column="1" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
+                        </Border.InputBindings>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                        <Setter Property="Background" Value="#EFB684"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="关" FontFamily="{StaticResource SourceHanSerifCN-Medium}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
+                        </TextBlock.InputBindings>
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                        <!--<Setter Property="Visibility" Value="Hidden"/>-->
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontSize" Value="20"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                        <!--<Setter Property="Visibility" Value="Visible"/>-->
+                                        <Setter Property="Foreground" Value="#73441A"/>
+                                        <Setter Property="FontSize" Value="25"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <Border Grid.Row="1" Grid.Column="3" CornerRadius="5.37">
+                        <Border.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
+                        </Border.InputBindings>
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                        <Setter Property="Background" Value="#EFB684"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="开" FontFamily="{StaticResource SourceHanSerifCN-Medium}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="True">
+                                        <Setter Property="Foreground" Value="#73441A"/>
+                                        <Setter Property="FontSize" Value="25"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.SwingSystem}" Value="False">
+                                        <Setter Property="Foreground" Value="White"/>
+                                        <Setter Property="FontSize" Value="20"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                        <TextBlock.InputBindings>
+                            <MouseBinding MouseAction="LeftClick" Command="{Binding PublicFunction}" CommandParameter="SwingSystem"/>
+                        </TextBlock.InputBindings>
+                    </TextBlock>
+                </Grid>
+
 
                 <TextBlock Text="红外灯" Grid.Row="7" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3" FontSize="24" Foreground="#73441A" VerticalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Regular}" HorizontalAlignment="Center"/>
                 <Image Grid.Row="7" Grid.RowSpan="3" Grid.Column="5" Grid.ColumnSpan="2" Source="pack://application:,,,/Resources/Pictures/BtnBackground.png"/>

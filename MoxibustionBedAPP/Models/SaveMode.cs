@@ -120,6 +120,11 @@ namespace MoxibustionBedAPP.Models
         public int MoxibustionTherapyTime {  get; set; }
 
         /// <summary>
+        /// 结束后自动开舱
+        /// </summary>
+        public bool AutomaticLidOpening { get; set; }
+
+        /// <summary>
         /// 是否开始治疗后自动跳转到音乐播放界面
         /// </summary>
         public bool AutoMusic { get; set; }
