@@ -1322,6 +1322,39 @@
             </Grid>
         </Border>
 
+        <!--除烟功能模块覆盖-->
+        <Border CornerRadius="25" Grid.Row="2" Grid.Column="2">
+            <Border.Background>
+                <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+            </Border.Background>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="true">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </DataTrigger>
+                        <!--<DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>-->
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+
         <!--模式切换：手动、自动/预热功能-->
         <Grid Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">
             <Grid.RowDefinitions>

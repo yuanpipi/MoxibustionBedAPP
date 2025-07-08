@@ -233,8 +233,8 @@ namespace MoxibustionBedAPP.Models
 
                     ////自动重连逻辑
                     //return;
-                    //isOpenAICOM = false;
-                    isOpenAICOM = true;
+                    isOpenAICOM = false;
+                    //isOpenAICOM = true;
                 }
             }
 
@@ -716,22 +716,22 @@ namespace MoxibustionBedAPP.Models
         /// <param name="data"></param>
         public void SendDataByVoice(byte[] data)
         {
-            //if (_serialPortVoice.IsOpen)
-            //{
-            //    try
-            //    {
-            //        _serialPortVoice.Write(data, 0, data.Length);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    PopupBoxViewModel.ShowPopupBox($"串口未打开");
-            //}
+            if (_serialPortVoice.IsOpen)
+            {
+                try
+                {
+                    _serialPortVoice.Write(data, 0, data.Length);
+                }
+                catch (Exception ex)
+                {
+                    PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
+                    return;
+                }
+            }
+            else
+            {
+                PopupBoxViewModel.ShowPopupBox($"串口未打开");
+            }
         }
 
         /// <summary>
@@ -741,35 +741,35 @@ namespace MoxibustionBedAPP.Models
         /// <param name="e"></param>
         public void ReceiveDataByVoice(object sender,SerialDataReceivedEventArgs e)
         {
-            //App.PropertyModelInstance.IsOnVoice = true;
-            //if (_serialPortVoice.IsOpen)
-            //{
-            //    Thread.Sleep(30);
-            //    if (_serialPortVoice.BytesToRead > 0)
-            //    {
-            //        try
-            //        {
-            //            byte[] bytes = new byte[_serialPortVoice.BytesToRead];
-            //            _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
+            App.PropertyModelInstance.IsOnVoice = true;
+            if (_serialPortVoice.IsOpen)
+            {
+                Thread.Sleep(30);
+                if (_serialPortVoice.BytesToRead > 0)
+                {
+                    try
+                    {
+                        byte[] bytes = new byte[_serialPortVoice.BytesToRead];
+                        _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
 
-            //            Application.Current.Dispatcher.Invoke(() =>
-            //            {
-            //                OnDataReceivedByVoice(bytes);
-            //            });
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show($"串口问题：{ex.Message}");
-            //            return;
-            //        }
-            //    }
-            //}
-            //timerOfVoice.Tick += (sender1, args) =>
-            //{
-            //    App.PropertyModelInstance.IsOnVoice = false;
-            //    ((DispatcherTimer)sender1).Stop();
-            //};
-            //timerOfVoice.Start();
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            OnDataReceivedByVoice(bytes);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"串口问题：{ex.Message}");
+                        return;
+                    }
+                }
+            }
+            timerOfVoice.Tick += (sender1, args) =>
+            {
+                App.PropertyModelInstance.IsOnVoice = false;
+                ((DispatcherTimer)sender1).Stop();
+            };
+            timerOfVoice.Start();
         }
 
         /// <summary>

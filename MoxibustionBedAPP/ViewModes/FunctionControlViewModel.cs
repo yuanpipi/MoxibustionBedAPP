@@ -203,7 +203,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private DispatcherTimer HeightTimer = new DispatcherTimer
         {
-            Interval = TimeSpan.FromSeconds(3)
+            Interval = TimeSpan.FromSeconds(5)
         };
         #endregion
 
