@@ -118,7 +118,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 开关舱倒计时，10s
         /// </summary>
-        private DispatcherTimer timer = new DispatcherTimer
+        public static DispatcherTimer timer = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(30)
         };
@@ -126,7 +126,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 开关舱倒计时，10s
         /// </summary>
-        private DispatcherTimer timer1 = new DispatcherTimer
+        public static DispatcherTimer timer1 = new DispatcherTimer
         {
             Interval = TimeSpan.FromSeconds(30)
         };

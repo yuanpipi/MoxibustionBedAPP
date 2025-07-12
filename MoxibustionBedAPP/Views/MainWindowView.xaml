@@ -82,7 +82,38 @@
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding ShowTestWindowCommand}"/>
                 </Image.InputBindings>
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="False">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
             </Image>
+
+            <!--<Button Grid.Column="5" Grid.Row="1" Grid.RowSpan="2" BorderBrush="Transparent" BorderThickness="0" Command="{Binding ShowTestWindowCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/HuaWeiIcon.png"/>
+                </Button.Background>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="False">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>-->            
+            
             <!--<Image Grid.Row="0" Grid.RowSpan="4" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/QuestionLogo.png" Stretch="None">
                 <Image.InputBindings>
                     <MouseBinding MouseAction="LeftClick" Command="{Binding QuesClick}"/>

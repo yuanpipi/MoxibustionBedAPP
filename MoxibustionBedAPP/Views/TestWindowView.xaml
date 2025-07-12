@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="274*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="系统调试" Grid.Column="0" FontSize="26" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10"/>
-                <TextBlock Grid.Column="1" FontSize="26" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
+                <!--<TextBlock Grid.Column="1" FontSize="26" FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
@@ -104,7 +104,7 @@
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>
-                </TextBlock>
+                </TextBlock>-->
             </Grid>
             
         </Border>

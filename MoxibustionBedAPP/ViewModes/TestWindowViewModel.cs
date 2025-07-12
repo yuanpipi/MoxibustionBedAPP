@@ -88,20 +88,23 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// 倒计时
         /// </summary>
-        public static DispatcherTimer _timer;
-        public static bool _isCountingDown;
-        public bool IsCountingDown
-        {
-            get { return _isCountingDown; }
-            set
-            {
-                _isCountingDown = value;
-                OnPropertyChanged(nameof(IsCountingDown));
-            }
-        }
+        //public static DispatcherTimer _timer;
+        //public static bool _isCountingDown;
+        //public bool IsCountingDown
+        //{
+        //    get { return _isCountingDown; }
+        //    set
+        //    {
+        //        _isCountingDown = value;
+        //        OnPropertyChanged(nameof(IsCountingDown));
+        //    }
+        //}
 
-        public static DateTime StartTime;
-        public static int seconds;
+        //public static DateTime StartTime;
+        //public static int seconds;
+
+        private bool PreheadMode = false;
+        private bool InignitionStatus = false;
 
         public TestWindowViewModel()
         {
@@ -391,7 +394,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void PreheadMethod()
         {
-            if (App.PropertyModelInstance.PreheadMode == false)
+            if (PreheadMode == false)
             {
                 byte[] data = new byte[11];
                 data[0] = 0x55;
@@ -405,20 +408,20 @@ namespace MoxibustionBedAPP.ViewModes
                 data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.PreheadMode = true;
-                IsCountingDown = true;
-                App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
-                App.PropertyModelInstance.CountdownSeconds = 0;
+                PreheadMode = true;
+                //IsCountingDown = true;
+                //App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.PreheadTime;
+                //App.PropertyModelInstance.CountdownSeconds = 0;
 
-                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                StartTime = DateTime.Now;
-                StartCountdown();
+                //seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                //StartTime = DateTime.Now;
+                //StartCountdown();
             }
             else
             {
-                _timer.Stop();
+                //_timer.Stop();
                 StopMethod("StopPrehead");
-                App.PropertyModelInstance.PreheadMode = false;
+                PreheadMode = false;
             }
         }
 
@@ -427,7 +430,7 @@ namespace MoxibustionBedAPP.ViewModes
         /// </summary>
         private void InignitionMethod()
         {
-            if (App.PropertyModelInstance.InignitionStatus == false)
+            if (InignitionStatus == false)
             {
                 byte[] data = new byte[11];
                 data[0] = 0x55;
@@ -441,20 +444,20 @@ namespace MoxibustionBedAPP.ViewModes
                 data[10] = 0x5C;
                 data = SerialPortManager.CRC16(data);
                 SerialPortManager.Instance.SendData(data);
-                App.PropertyModelInstance.InignitionStatus = true;
-                IsCountingDown = true;
-                App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
-                App.PropertyModelInstance.CountdownMinutes = 0;
+                InignitionStatus = true;
+                //IsCountingDown = true;
+                //App.PropertyModelInstance.CountdownSeconds = App.PropertyModelInstance.InignitionTime;
+                //App.PropertyModelInstance.CountdownMinutes = 0;
 
-                seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                StartTime = DateTime.Now;
-                StartCountdown();
+                //seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+                //StartTime = DateTime.Now;
+                //StartCountdown();
             }
             else
             {
-                _timer.Stop();
+                //_timer.Stop();
                 StopMethod("StopInignition");//停止点火
-                App.PropertyModelInstance.InignitionStatus = false;
+                InignitionStatus = false;
             }
         }
 
@@ -482,42 +485,42 @@ namespace MoxibustionBedAPP.ViewModes
                         data[6] = 0x02;
                         break;
                     }
-                case "StopMoxibustionTherapy"://停止治疗
-                    data[5] = 0x08;
-                    data[6] = 0x02;
-                    break;
-                case "StartMoxibustionTherapy"://开始治疗
-                    data[5] = 0x08;
-                    data[6] = 0x01;
-                    break;
-                case "StopSmoke":
-                    if (IsSmokeExhaust == false)//若选择净烟，关闭净烟
-                    {
-                        data[5] = 0x0D;
-                        data[6] = 0x02;
-                    }
-                    else//若选择排烟，关闭排烟
-                    {
-                        data[5] = 0x0C;
-                        data[6] = 0x00;
-                    }
-                    break;
-                case "OpenSmoke":
-                    if (IsSmokeExhaust == false)//若选择净烟，开启净烟
-                    {
-                        data[5] = 0x0D;
-                        data[6] = 0x01;
-                    }
-                    else//若选择排烟，开启排烟中档
-                    {
-                        data[5] = 0x0C;
-                        data[6] = 0x02;
-                    }
-                    break;
-                case "OpenHatch"://开启舱门
-                    data[5] = 0x0A;
-                    data[6] = 0x01;
-                    break;
+                //case "StopMoxibustionTherapy"://停止治疗
+                //    data[5] = 0x08;
+                //    data[6] = 0x02;
+                //    break;
+                //case "StartMoxibustionTherapy"://开始治疗
+                //    data[5] = 0x08;
+                //    data[6] = 0x01;
+                //    break;
+                //case "StopSmoke":
+                //    if (IsSmokeExhaust == false)//若选择净烟，关闭净烟
+                //    {
+                //        data[5] = 0x0D;
+                //        data[6] = 0x02;
+                //    }
+                //    else//若选择排烟，关闭排烟
+                //    {
+                //        data[5] = 0x0C;
+                //        data[6] = 0x00;
+                //    }
+                //    break;
+                //case "OpenSmoke":
+                //    if (IsSmokeExhaust == false)//若选择净烟，开启净烟
+                //    {
+                //        data[5] = 0x0D;
+                //        data[6] = 0x01;
+                //    }
+                //    else//若选择排烟，开启排烟中档
+                //    {
+                //        data[5] = 0x0C;
+                //        data[6] = 0x02;
+                //    }
+                //    break;
+                //case "OpenHatch"://开启舱门
+                //    data[5] = 0x0A;
+                //    data[6] = 0x01;
+                //    break;
             }
 
             data[9] = 0xAA;
@@ -525,92 +528,92 @@ namespace MoxibustionBedAPP.ViewModes
             data = SerialPortManager.CRC16(data);
             SerialPortManager.Instance.SendData(data);
         }
-        private void StartCountdown()
-        {
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(200);
-            _timer.Tick += Timer_Tick;
-            _timer.Start();
-        }
+        //private void StartCountdown()
+        //{
+        //    _timer = new DispatcherTimer();
+        //    _timer.Interval = TimeSpan.FromMilliseconds(200);
+        //    _timer.Tick += Timer_Tick;
+        //    _timer.Start();
+        //}
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            //if (App.PropertyModelInstance.CountdownSeconds > 0)
-            //{
-            //    App.PropertyModelInstance.CountdownSeconds--;
-            //}
-            //else if (App.PropertyModelInstance.CountdownMinutes > 0)
-            //{
-            //    App.PropertyModelInstance.CountdownMinutes--;
-            //    App.PropertyModelInstance.CountdownSeconds = 59;
-            //}
-            TimeSpan t = DateTime.Now.Subtract(StartTime);
-            if (App.PropertyModelInstance.CountdownMinutes > 0 || App.PropertyModelInstance.CountdownSeconds > 0)
-            {
-                int s = (int)(seconds - t.TotalSeconds);
-                App.PropertyModelInstance.CountdownMinutes = s / 60;
-                App.PropertyModelInstance.CountdownSeconds = s % 60;
-            }
-            else
-            {
-                _timer.Stop();
-                IsCountingDown = false;
-                if (App.PropertyModelInstance.PreheadMode == true)
-                {
-                    App.PropertyModelInstance.PreheadMode = false;
-                }
-                else if (App.PropertyModelInstance.InignitionStatus == true)
-                {
-                    App.PropertyModelInstance.InignitionStatus = false;
-                    App.PropertyModelInstance.IsInignitionStatus = true;//点火状态设为已点火
-                    //停止点火
-                    StopMethod("StopInignition");
+        //private void Timer_Tick(object sender, EventArgs e)
+        //{
+        //    //if (App.PropertyModelInstance.CountdownSeconds > 0)
+        //    //{
+        //    //    App.PropertyModelInstance.CountdownSeconds--;
+        //    //}
+        //    //else if (App.PropertyModelInstance.CountdownMinutes > 0)
+        //    //{
+        //    //    App.PropertyModelInstance.CountdownMinutes--;
+        //    //    App.PropertyModelInstance.CountdownSeconds = 59;
+        //    //}
+        //    TimeSpan t = DateTime.Now.Subtract(StartTime);
+        //    if (App.PropertyModelInstance.CountdownMinutes > 0 || App.PropertyModelInstance.CountdownSeconds > 0)
+        //    {
+        //        int s = (int)(seconds - t.TotalSeconds);
+        //        App.PropertyModelInstance.CountdownMinutes = s / 60;
+        //        App.PropertyModelInstance.CountdownSeconds = s % 60;
+        //    }
+        //    else
+        //    {
+        //        _timer.Stop();
+        //        IsCountingDown = false;
+        //        if (App.PropertyModelInstance.PreheadMode == true)
+        //        {
+        //            App.PropertyModelInstance.PreheadMode = false;
+        //        }
+        //        else if (App.PropertyModelInstance.InignitionStatus == true)
+        //        {
+        //            App.PropertyModelInstance.InignitionStatus = false;
+        //            App.PropertyModelInstance.IsInignitionStatus = true;//点火状态设为已点火
+        //            //停止点火
+        //            StopMethod("StopInignition");
 
-                    //开始治疗后，舱盖控制模块不能控制
-                    App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
-                    IsCountingDown = true;
-                    App.PropertyModelInstance.CountdownSeconds = 0;
-                    App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
-                    //发送开始治疗指令
-                    StopMethod("StartMoxibustionTherapy");
+        //            //开始治疗后，舱盖控制模块不能控制
+        //            App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
+        //            IsCountingDown = true;
+        //            App.PropertyModelInstance.CountdownSeconds = 0;
+        //            App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
+        //            //发送开始治疗指令
+        //            StopMethod("StartMoxibustionTherapy");
 
-                    seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
-                    StartTime = DateTime.Now;
-                    StartCountdown();//开启治疗倒计时
-                }
-                else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
-                {
-                    //治疗结束
-                    App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
-                    byte[] data = new byte[11];
-                    //发送结束治疗指令
-                    StopMethod("StopMoxibustionTherapy");
+        //            seconds = App.PropertyModelInstance.CountdownSeconds + App.PropertyModelInstance.CountdownMinutes * 60;
+        //            StartTime = DateTime.Now;
+        //            StartCountdown();//开启治疗倒计时
+        //        }
+        //        else if (App.PropertyModelInstance.IsMoxibustionTherapyMode == true)
+        //        {
+        //            //治疗结束
+        //            App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
+        //            byte[] data = new byte[11];
+        //            //发送结束治疗指令
+        //            StopMethod("StopMoxibustionTherapy");
 
-                    if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
-                    {
-                        StopMethod("OpenSmoke");
-                    }
-                    App.PropertyModelInstance.IsSmokeSystemOn = true;
-                    IsCountingDown = true;
-                    App.PropertyModelInstance.CountdownSeconds = 0;
-                    App.PropertyModelInstance.CountdownMinutes = 5;
-                    StartCountdown();//开始排烟倒计时，五分钟
-                }
-                else if (App.PropertyModelInstance.IsSmokeSystemOn == true)
-                {
-                    //排烟结束
-                    App.PropertyModelInstance.IsSmokeSystemOn = false;
-                    //发送停止排烟指令
-                    StopMethod("StopSmoke");
+        //            if (App.PropertyModelInstance.IsSmokeSystemOn == false)//如果排烟和净烟都未开启
+        //            {
+        //                StopMethod("OpenSmoke");
+        //            }
+        //            App.PropertyModelInstance.IsSmokeSystemOn = true;
+        //            IsCountingDown = true;
+        //            App.PropertyModelInstance.CountdownSeconds = 0;
+        //            App.PropertyModelInstance.CountdownMinutes = 5;
+        //            StartCountdown();//开始排烟倒计时，五分钟
+        //        }
+        //        else if (App.PropertyModelInstance.IsSmokeSystemOn == true)
+        //        {
+        //            //排烟结束
+        //            App.PropertyModelInstance.IsSmokeSystemOn = false;
+        //            //发送停止排烟指令
+        //            StopMethod("StopSmoke");
 
-                    //结束后自动开盖
-                    if (App.PropertyModelInstance.AutomaticLidOpening)
-                    {
-                        StopMethod("OpenHatch");
-                    }
-                }
-            }
-        }
+        //            //结束后自动开盖
+        //            if (App.PropertyModelInstance.AutomaticLidOpening)
+        //            {
+        //                StopMethod("OpenHatch");
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 }
