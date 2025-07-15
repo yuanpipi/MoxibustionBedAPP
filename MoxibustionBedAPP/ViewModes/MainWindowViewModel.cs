@@ -329,18 +329,18 @@ namespace MoxibustionBedAPP.ViewModes
                         c = 0;
                         App.Test = new TestWindowView();
                         //发送指令，开启调试界面
-                        //byte[] data = new byte[11];
-                        //data[0] = 0x55;
-                        //data[1] = 0xAA;
-                        //data[2] = 0x07;
-                        //data[3] = 0x01;
-                        //data[4] = 0x10;
-                        //data[5] = 0x10;
-                        //data[6] = 0x01;
-                        //data[9] = 0xAA;
-                        //data[10] = 0x5C;
-                        //data = SerialPortManager.CRC16(data);
-                        //SerialPortManager.Instance.SendData(data);
+                        byte[] data = new byte[11];
+                        data[0] = 0x55;
+                        data[1] = 0xAA;
+                        data[2] = 0x07;
+                        data[3] = 0x01;
+                        data[4] = 0x10;
+                        data[5] = 0x10;
+                        data[6] = 0x01;
+                        data[9] = 0xAA;
+                        data[10] = 0x5C;
+                        data = SerialPortManager.CRC16(data);
+                        SerialPortManager.Instance.SendData(data);
 
                         App.Test.Show();
                     }

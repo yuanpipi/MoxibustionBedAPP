@@ -949,8 +949,8 @@
                 <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" Source="pack://application:,,,/Resources/Pictures/Title.png" HorizontalAlignment="Left"/>
                 <TextBlock Text="除烟功能" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="16" Foreground="#73441A" Margin="20,0,0,0"/>
 
-                <RadioButton Grid.Row="2" Grid.Column="1" Content="排烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokeExhaust}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokeExhaust" IsEnabled="{Binding RadioBtnCanUse}"/>
-                <RadioButton Grid.Row="2" Grid.Column="3" Content="净烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokePurification}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokePurification" IsEnabled="{Binding RadioBtnCanUse}"/>
+                <RadioButton Grid.Row="2" Grid.Column="1" Content="排烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokeExhaust}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokeExhaust"/>
+                <RadioButton Grid.Row="2" Grid.Column="3" Content="净烟系统" FontFamily="{StaticResource SourceHanSerifCN-Medium}" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Foreground="#73441A" IsChecked="{Binding IsSmokePurification}" Command="{Binding RadioBtnOfSmoke}" CommandParameter="SmokePurification"/>
 
                 <Image Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Source="pack://application:,,,/Resources/Pictures/BtnBackground.png" Stretch="Fill"/>
                 <Grid Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
@@ -1319,11 +1319,56 @@
                     </TextBlock>
 
                 </Grid>
+
+                <Border CornerRadius="5" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Border.Background>
+                        <SolidColorBrush Color="White" Opacity="0.1"/>
+                    </Border.Background>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+
+                <!--除烟功能模块覆盖-->
+                <Border CornerRadius="5" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3">
+                    <Border.Background>
+                        <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
+                    </Border.Background>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="true">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.MoxibustionTherapyMode}" Value="false">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
             </Grid>
         </Border>
 
         <!--除烟功能模块覆盖-->
-        <Border CornerRadius="25" Grid.Row="2" Grid.Column="2">
+        <!--<Border CornerRadius="25" Grid.Row="2" Grid.Column="2">
             <Border.Background>
                 <SolidColorBrush Color="#FF2C1E18" Opacity="0.27"/>
             </Border.Background>
@@ -1342,18 +1387,18 @@
                             <Setter Property="Visibility" Value="Visible"/>
                             <Setter Property="IsEnabled" Value="True"/>
                         </DataTrigger>
-                        <!--<DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
+                        --><!--<DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="false">
                     <Setter Property="Visibility" Value="Visible"/>
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Source={x:Static Application.Current}, Path=PropertyModelInstance.IsMoxibustionTherapyMode}" Value="true">
                     <Setter Property="Visibility" Value="Hidden"/>
                     <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>-->
+                </DataTrigger>--><!--
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-        </Border>
+        </Border>-->
 
         <!--模式切换：手动、自动/预热功能-->
         <Grid Grid.Row="0" Grid.Column="4" Grid.RowSpan="3">

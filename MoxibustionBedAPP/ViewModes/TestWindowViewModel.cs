@@ -103,8 +103,26 @@ namespace MoxibustionBedAPP.ViewModes
         //public static DateTime StartTime;
         //public static int seconds;
 
-        private bool PreheadMode = false;
-        private bool InignitionStatus = false;
+        private  bool _preheadMode;
+        public bool PreheadMode
+        {
+            get { return _preheadMode; }
+            set
+            {
+                _preheadMode = value;
+                OnPropertyChanged(nameof(PreheadMode));
+            }
+        }
+        private bool _inignitionStatus;
+        public bool InignitionStatus
+        {
+            get { return _inignitionStatus; }
+            set
+            {
+                _inignitionStatus = value;
+                OnPropertyChanged(nameof(InignitionStatus));
+            }
+        }
 
         public TestWindowViewModel()
         {
@@ -114,23 +132,25 @@ namespace MoxibustionBedAPP.ViewModes
             Inignition = new RelayCommand(InignitionMethod);
             IsOpen = false; 
             IsClose=false;
+            PreheadMode = false;
+            InignitionStatus = false;
         }
 
         private void CloseWindowMethod()
         {
             //发送指令，关闭调试界面
-            //byte[] data = new byte[11];
-            //data[0] = 0x55;
-            //data[1] = 0xAA;
-            //data[2] = 0x07;
-            //data[3] = 0x01;
-            //data[4] = 0x10;
-            //data[5] = 0x10;
-            //data[6] = 0x02;
-            //data[9] = 0xAA;
-            //data[10] = 0x5C;
-            //data = SerialPortManager.CRC16(data);
-            //SerialPortManager.Instance.SendData(data);
+            byte[] data = new byte[11];
+            data[0] = 0x55;
+            data[1] = 0xAA;
+            data[2] = 0x07;
+            data[3] = 0x01;
+            data[4] = 0x10;
+            data[5] = 0x10;
+            data[6] = 0x02;
+            data[9] = 0xAA;
+            data[10] = 0x5C;
+            data = SerialPortManager.CRC16(data);
+            SerialPortManager.Instance.SendData(data);
 
             App.Test.Close();
         }

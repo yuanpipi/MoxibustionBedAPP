@@ -844,19 +844,57 @@
                             <ColumnDefinition Width="13.62*"/>
                             <ColumnDefinition Width="108*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/SaveBack.png"/>
+                        <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="0" Height="70" Width="180" Command="{Binding SaveSetting}">
+                            <Button.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Resources/Pictures/SaveBack.png"/>
+                            </Button.Background>
+                            <Grid Height="70" Width="173" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="30.34*"/>
+                                    <ColumnDefinition Width="15*"/>
+                                    <ColumnDefinition Width="97*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Save.png" Stretch="None"/>
+                                <TextBlock Text="保存设置" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24.35" Foreground="#73441A">
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
+                            </Grid>
+                        </Button>
+                        <!--<Image Grid.Column="0" Grid.ColumnSpan="5" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/SaveBack.png"/>
                         <Image Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Save.png" Stretch="None"/>
                         <TextBlock Text="保存设置" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="24.35" Foreground="#73441A">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding SaveSetting}"/>
                             </TextBlock.InputBindings>
-                        </TextBlock>
-                        <Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
+                        </TextBlock>-->
+
+                        <Button Grid.Row="0" Grid.Column="5" Grid.ColumnSpan="4" BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Height="70" Width="170" Command="{Binding ResetSettings}">
+                            <Grid Height="70" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="24.41*"/>
+                                    <ColumnDefinition Width="13.62*"/>
+                                    <ColumnDefinition Width="108*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
+                                <TextBlock Text="恢复初始值" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Bold}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
+                                    <TextBlock.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
+                                    </TextBlock.InputBindings>
+                                </TextBlock>
+                            </Grid>
+                        </Button>
+
+                        <!--<Image Grid.Column="6" VerticalAlignment="Center" HorizontalAlignment="Right" Source="pack://application:,,,/Resources/Pictures/Reset.png" Stretch="None"/>
                         <TextBlock Text="恢复初始值" Grid.Column="7" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource SourceHanSerifCN-Light}" FontSize="21.57" Foreground="#C09174" TextDecorations="Underline">
                             <TextBlock.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding ResetSettings}"/>
                             </TextBlock.InputBindings>
-                        </TextBlock>
+                        </TextBlock>-->
                     </Grid>
 
                 </Grid>

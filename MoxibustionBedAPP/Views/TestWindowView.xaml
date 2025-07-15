@@ -374,11 +374,11 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.PreheadMode}" Value="true">
+                                <DataTrigger Binding="{Binding PreheadMode}" Value="True">
                                     <Setter Property="Text" Value="停止预热">
                                     </Setter>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.PreheadMode}" Value="false">
+                                <DataTrigger Binding="{Binding PreheadMode}" Value="False">
                                     <Setter Property="Text" Value="预热">
                                     </Setter>
                                 </DataTrigger>
@@ -398,11 +398,11 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.InignitionStatus}" Value="true">
+                                <DataTrigger Binding="{Binding InignitionStatus}" Value="True">
                                     <Setter Property="Text" Value="停止点火">
                                     </Setter>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding Source={x:Static Application.Current},Path = PropertyModelInstance.InignitionStatus}" Value="false">
+                                <DataTrigger Binding="{Binding InignitionStatus}" Value="False">
                                     <Setter Property="Text" Value="点火"/>
                                 </DataTrigger>
                             </Style.Triggers>

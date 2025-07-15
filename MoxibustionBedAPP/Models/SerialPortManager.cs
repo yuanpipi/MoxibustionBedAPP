@@ -139,8 +139,7 @@ namespace MoxibustionBedAPP.Models
             {
                 Interval = TimeSpan.FromSeconds(1) // 每秒检查一次
             };
-            _receiveTimeoutTimer.Tick += CheckReceiveTimeout;
-            _receiveTimeoutTimer.Start();
+            _receiveTimeoutTimer.Tick += CheckReceiveTimeout;            
 
             _lastReceiveTime = DateTime.Now;
             
@@ -177,10 +176,10 @@ namespace MoxibustionBedAPP.Models
         {
             if ((DateTime.Now - _lastReceiveTime).TotalSeconds >= ReceiveTimeoutSeconds)
             {
-                //TimerOfHeart.Stop();
-                //Reset();
-                //// 超时处理
-                //HandlePortDisconnection();
+                TimerOfHeart.Stop();
+                Reset();
+                // 超时处理
+                HandlePortDisconnection();
             }
         }
 
@@ -227,13 +226,35 @@ namespace MoxibustionBedAPP.Models
                     //读写超时设置
                     _serialPort.WriteTimeout = 3000;
                     _serialPort.ReadTimeout = 3000;
-                    _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
-                    _stopWatch.Start();
-                    isOpenMotherboardCOM = true;
 
-                    // 重置接收时间
-                    _lastReceiveTime = DateTime.Now;
-                    TimerOfHeart.Start();
+                    byte[] data = { 0x55, 0xAA, 0x07, 0x01, 0x10, 0x11, 0x01, 0x00, 0x00, 0xAA, 0X5C };
+                    data = CRC16(data);
+                    _serialPort.Write(data, 0, data.Length);
+                    Thread.Sleep(1500);
+                    byte[] buffer = new byte[_serialPort.BytesToRead];
+                    _serialPort.Read(buffer, 0, buffer.Length);
+                    if (buffer.Length > 0)
+                    {
+                        isOpenMotherboardCOM = true;
+                        _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                        _lastReceiveTime = DateTime.Now;
+                        _stopWatch.Start();
+                        TimerOfHeart.Start();
+                        _receiveTimeoutTimer.Start();
+                    }
+                    else
+                    {
+                        isOpenMotherboardCOM = false;
+                    }
+
+                    //_serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                    //_stopWatch.Start();
+                    //isOpenMotherboardCOM = true;
+
+                    //// 重置接收时间
+                    //_lastReceiveTime = DateTime.Now;
+                    //_receiveTimeoutTimer.Start();
+                    //TimerOfHeart.Start();
                 }
                 catch (Exception ex)
                 {
@@ -246,17 +267,29 @@ namespace MoxibustionBedAPP.Models
                 {
                     _serialPortVoice.Open();
                     Console.WriteLine("语音串口已打开");
-                    _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
-                    isOpenAICOM = true;
+
+                    //byte[] data1 = { 0xAA, 0x55, 0x10, 0x55, 0XAA };
+                    //_serialPortVoice.Write(data1, 0, data1.Length);
+                    //Thread.Sleep(1500);
+                    //byte[] buffer1 = new byte[_serialPort.BytesToRead];
+                    //_serialPortVoice.Read(buffer1, 0, buffer1.Length);
+                    //if (buffer1.Length > 0)
+                    //{
+                        isOpenAICOM = true;
+                        _serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
+                    //}
+                    //else
+                    //{
+                    //    isOpenAICOM = false;
+                    //}
+
+                    //_serialPortVoice.DataReceived += new SerialDataReceivedEventHandler(ReceiveDataByVoice);
+                    //isOpenAICOM = true;
                 }
                 catch (Exception e)
                 {
-                    //Console.WriteLine($"串口打开失败:{e.Message}");
-
-                    ////自动重连逻辑
-                    //return;
-                    //isOpenAICOM = false;
-                    isOpenAICOM = true;
+                    isOpenAICOM = false;
+                    //isOpenAICOM = true;
                 }
             }
 
@@ -285,8 +318,10 @@ namespace MoxibustionBedAPP.Models
                         {
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                            _lastReceiveTime = DateTime.Now;
                             _stopWatch.Start();
                             TimerOfHeart.Start();
+                            _receiveTimeoutTimer.Start();
                         }
                         else
                         {
@@ -349,8 +384,10 @@ namespace MoxibustionBedAPP.Models
                         {
                             isOpenMotherboardCOM = true;
                             _serialPort.DataReceived += new SerialDataReceivedEventHandler(ReceiveData);
+                            _lastReceiveTime = DateTime.Now;
                             _stopWatch.Start();
                             TimerOfHeart.Start();
+                            _receiveTimeoutTimer.Start();
                         }
                         else
                         {
@@ -763,22 +800,22 @@ namespace MoxibustionBedAPP.Models
         /// <param name="data"></param>
         public void SendDataByVoice(byte[] data)
         {
-            //if (_serialPortVoice.IsOpen)
-            //{
-            //    try
-            //    {
-            //        _serialPortVoice.Write(data, 0, data.Length);
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
-            //        return;
-            //    }
-            //}
-            //else
-            //{
-            //    PopupBoxViewModel.ShowPopupBox($"语音助手串口未打开");
-            //}
+            if (_serialPortVoice.IsOpen)
+            {
+                try
+                {
+                    _serialPortVoice.Write(data, 0, data.Length);
+                }
+                catch (Exception ex)
+                {
+                    PopupBoxViewModel.ShowPopupBox($"语音模块指令发送失败：{ex.Message}");
+                    return;
+                }
+            }
+            else
+            {
+                PopupBoxViewModel.ShowPopupBox($"语音助手串口未打开");
+            }
         }
 
         /// <summary>
@@ -788,35 +825,35 @@ namespace MoxibustionBedAPP.Models
         /// <param name="e"></param>
         public void ReceiveDataByVoice(object sender,SerialDataReceivedEventArgs e)
         {
-            //App.PropertyModelInstance.IsOnVoice = true;
-            //if (_serialPortVoice.IsOpen)
-            //{
-            //    Thread.Sleep(30);
-            //    if (_serialPortVoice.BytesToRead > 0)
-            //    {
-            //        try
-            //        {
-            //            byte[] bytes = new byte[_serialPortVoice.BytesToRead];
-            //            _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
+            App.PropertyModelInstance.IsOnVoice = true;
+            if (_serialPortVoice.IsOpen)
+            {
+                Thread.Sleep(30);
+                if (_serialPortVoice.BytesToRead > 0)
+                {
+                    try
+                    {
+                        byte[] bytes = new byte[_serialPortVoice.BytesToRead];
+                        _serialPortVoice.Read(bytes, 0, _serialPortVoice.BytesToRead);
 
-            //            Application.Current.Dispatcher.Invoke(() =>
-            //            {
-            //                OnDataReceivedByVoice(bytes);
-            //            });
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            MessageBox.Show($"串口问题：{ex.Message}");
-            //            return;
-            //        }
-            //    }
-            //}
-            //timerOfVoice.Tick += (sender1, args) =>
-            //{
-            //    App.PropertyModelInstance.IsOnVoice = false;
-            //    ((DispatcherTimer)sender1).Stop();
-            //};
-            //timerOfVoice.Start();
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            OnDataReceivedByVoice(bytes);
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"串口问题：{ex.Message}");
+                        return;
+                    }
+                }
+            }
+            timerOfVoice.Tick += (sender1, args) =>
+            {
+                App.PropertyModelInstance.IsOnVoice = false;
+                ((DispatcherTimer)sender1).Stop();
+            };
+            timerOfVoice.Start();
         }
 
         /// <summary>

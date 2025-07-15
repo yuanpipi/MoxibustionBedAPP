@@ -84,19 +84,19 @@ namespace MoxibustionBedAPP.ViewModes
         /// <summary>
         /// radiobutton是否可选
         /// </summary>
-        private bool _radioBtnCanUse;
-        public bool RadioBtnCanUse
-        {
-            get
-            {
-                return _radioBtnCanUse;
-            }
-            set
-            {
-                _radioBtnCanUse = value;
-                OnPropertyChanged(nameof(RadioBtnCanUse));
-            }
-        }
+        //private bool _radioBtnCanUse;
+        //public bool RadioBtnCanUse
+        //{
+        //    get
+        //    {
+        //        return _radioBtnCanUse;
+        //    }
+        //    set
+        //    {
+        //        _radioBtnCanUse = value;
+        //        OnPropertyChanged(nameof(RadioBtnCanUse));
+        //    }
+        //}
 
         /// <summary>
         /// 是否选中净烟系统
@@ -223,7 +223,7 @@ namespace MoxibustionBedAPP.ViewModes
             App.PropertyModelInstance.OpenHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             App.PropertyModelInstance.CloseHatch = "pack://application:,,,/Resources/Pictures/HatchBtnBack.png";
             RadioBtnOfSmoke = new RelayCommand(CloseSmokeSystem);
-            RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+            //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
             StopCommand = new RelayCommand(StopMethod);
             App.PropertyModelInstance.IsOpen = false;
             App.PropertyModelInstance.IsClose=false;
@@ -784,36 +784,36 @@ namespace MoxibustionBedAPP.ViewModes
         /// <param name="parameter"></param>
         private void CloseSmokeSystem(object parameter)
         {
-            byte[] data = new byte[11];
-            data[0] = 0x55;
-            data[1] = 0xAA;
-            data[2] = 0x07;
-            data[3] = 0x01;
-            data[4] = 0x10;
+            //byte[] data = new byte[11];
+            //data[0] = 0x55;
+            //data[1] = 0xAA;
+            //data[2] = 0x07;
+            //data[3] = 0x01;
+            //data[4] = 0x10;
             
-            if ((string)parameter== "SmokeExhaust")
-            {
-                data[5] = 0x0C;
-                data[6] = 0x02;
-            }
-            else if((string)parameter== "SmokePurification")
-            {
-                data[5] = 0x0D;
-                data[6] = 0x00;
-            }
-            data[9] = 0xAA;
-            data[10] = 0x5C;
-            data = SerialPortManager.CRC16(data);
-            SerialPortManager.Instance.SendData(data);
+            //if ((string)parameter== "SmokeExhaust")
+            //{
+            //    data[5] = 0x0C;
+            //    data[6] = 0x02;
+            //}
+            //else if((string)parameter== "SmokePurification")
+            //{
+            //    data[5] = 0x0D;
+            //    data[6] = 0x00;
+            //}
+            //data[9] = 0xAA;
+            //data[10] = 0x5C;
+            //data = SerialPortManager.CRC16(data);
+            //SerialPortManager.Instance.SendData(data);
 
-            if ((string)parameter == "SmokeExhaust")
-            {
-                App.PropertyModelInstance.SmokeExhaustSystem = 2;
-            }
-            else if ((string)parameter == "SmokePurification")
-            {
-                App.PropertyModelInstance.SmokePurificationSystem = false;
-            }
+            //if ((string)parameter == "SmokeExhaust")
+            //{
+            //    App.PropertyModelInstance.SmokeExhaustSystem = 2;
+            //}
+            //else if ((string)parameter == "SmokePurification")
+            //{
+            //    App.PropertyModelInstance.SmokePurificationSystem = false;
+            //}
         }
 
         /// <summary>
@@ -858,7 +858,7 @@ namespace MoxibustionBedAPP.ViewModes
                 App.PropertyModelInstance.CountdownMinutes = 0;
                 App.PropertyModelInstance.CountdownSeconds = 0;
                 App.PropertyModelInstance.IsMoxibustionTherapyMode = false;
-                RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+                //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                 VoiceMethods("StopMoxibustion");//结束治疗发送给语音模块
 
                 //自动开盖,关闭所有系统（摇摆、红外、除烟）
@@ -1020,7 +1020,7 @@ namespace MoxibustionBedAPP.ViewModes
 
                     //开始治疗后，舱盖控制模块不能控制
                     App.PropertyModelInstance.IsMoxibustionTherapyMode = true;
-                    RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
+                    //RadioBtnCanUse = !App.PropertyModelInstance.IsMoxibustionTherapyMode;
                     IsCountingDown = true;
                     App.PropertyModelInstance.CountdownSeconds = 0;
                     App.PropertyModelInstance.CountdownMinutes = App.PropertyModelInstance.MoxibustionTherapyTime;
